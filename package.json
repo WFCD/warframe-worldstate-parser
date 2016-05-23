@@ -1,0 +1,32 @@
+{
+  "name": "warframe-worldstate-parser",
+  "version": "0.0.1",
+  "description": "An Open parser for Warframe's Worldstate in Javascript",
+  "main": "src/worldstate.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "hubot-markdown": "^1.1.1",
+    "request": "^2.72.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliasfalse/warframe-worldstate-parser.git"
+  },
+  "keywords": [
+    "warframe-worldstate",
+    "javascript",
+    "warframe"
+  ],
+  "author": "aliasfalse",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aliasfalse/warframe-worldstate-parser/issues"
+  },
+  "homepage": "https://github.com/aliasfalse/warframe-worldstate-parser#readme"
+}
