@@ -83,7 +83,7 @@ Parser.prototype.retrieve = function(callback) {
 
 Parser.prototype.processRefreshQueue = function(err, data) {
   while(this.refreshQueue.length) {
-    this.refreshQueue.pop()(err, data);
+    this.refreshQueue.shift()(err, data);
   }
 }
 
