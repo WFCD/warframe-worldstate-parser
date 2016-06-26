@@ -14,7 +14,10 @@
     },
     "PVPMODE_CAPTURETHEFLAG": {
       "value": "Capture the Cephalon"
-    }
+    },
+    "PVPMODE_SPEEDBALL": {
+      "value": "Lunaro"
+    }    
   },
   "categories": {
     "PVPChallengeTypeCategory_WEEKLY": {

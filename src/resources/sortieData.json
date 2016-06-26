@@ -693,7 +693,7 @@
           "missions" : [
             "Exterminate",
             "Survival",
-            "Spy",
+            "Survival",
             "Sabotage",
             "Spy",
             "Defense",
@@ -2075,7 +2075,7 @@
             "Spy",
             "Defense",
             "Mobile Defense",
-            "Defense",
+            "Rescue",
             "Spy",
             "Assassination"
           ]

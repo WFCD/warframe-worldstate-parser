@@ -12,6 +12,7 @@ var sortieData = require('../resources/sortieData.json');
  * @param {object} data Sorie data
  */
 var Sorties = function (data) {
+  this.id = data._id.$id;
   this.expiry = new Date(1000 * data.Expiry.sec);
   this.variants = [];
   for (var index = 0; index < data.Variants.length; index++){
