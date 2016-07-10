@@ -33,8 +33,16 @@ GlobalModifiers.prototype.toString = function() {
 var GlobalModifier = function(data) {
   this.start = new Date(1000 * data.Activation.sec);
   this.end = new Date(1000 * data.ExpiryDate.sec);
-  this.upgrade = upgrades[data.UpgradeType].value;
-  this.operation = operations[data.OperationType].value;
+  if(upgrades[data.UpgradeType]){
+    this.upgrade =  upgrades[data.UpgradeType].value;
+  } else {
+    console.error("Error getting upgrade type \nUpgradeType: " + data.UpgradeType );
+  }
+  if(operations[data.OperationType]){
+    this.operation = operations[data.OperationType].value;
+  } else {
+    console.error("Error getting operation type\nOperationType: " + data.OperationType + "\n"+operations[data.OperationType]);
+  }
   this.upgradeOperationValue = data.Value;
 }
 

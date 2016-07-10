@@ -339,4 +339,31 @@
   , "/lotus/pvpchallengetypes/pvptimedchallengespeedballinterceptionshard": {
     "value": "Intercept passes from an enemy"
   }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballcatcheseasy": {
+    "value": "Catch the Lunaro"
+  }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballcatchesmedium": {
+    "value": "Catch the Lunaro"
+  }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballcatcheshard": {
+    "value": "Catch the Lunaro"
+  }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballstealseasy" : {
+    "value": "Steal the Lunaro"
+  }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballstealsmedium" : {
+    "value": "Steal the Lunaro"
+  }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballstealseasy" : {
+    "value": "Steal the Lunaro"
+  }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballchecksmedium" : {
+    "value" : "Check another player"
+  }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballcheckshard" : {
+    "value" : "Check another player"
+  }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballcheckshard" : {
+    "value" : "Check another player"
+  }
 }
