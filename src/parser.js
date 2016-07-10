@@ -273,6 +273,8 @@ Parser.prototype.getPrimeAccessString = function(callback) {
   });
 }
 
+/* TODO
+
 //invasions
 Parser.prototype.getInvasions = function(callback){
   this.getData(function(err, data) {
@@ -380,6 +382,7 @@ Parser.prototype.getDarkSectorsString = function(callback) {
     callback(null, data.darkSectors.toString());
   });
 }
+*/
 
 //Global Modifiers
 Parser.prototype.getGlobalModifers = function(callback) {
