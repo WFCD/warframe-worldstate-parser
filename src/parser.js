@@ -211,7 +211,7 @@ Parser.prototype.getEvents = function(callback) {
     if(err) {
       return callback(err);
     }
-    callback(null, data.events.());
+    callback(null, data.events.getAll());
   });
 }
 Parser.prototype.getEventsString = function(callback) {
