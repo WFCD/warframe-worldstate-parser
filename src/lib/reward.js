@@ -83,6 +83,7 @@ Reward.TYPES = {
   NIGHTMARE_MOD: 'nightmareMod',
   CLANTECH: 'clantech',
   MUTALIST_COORDINATE: 'mutalistCoordinate',
+  FUSION_CORE: 'fusionCore',
   OTHER: 'other'
 }
 
@@ -148,6 +149,8 @@ Reward.typeToString = function(type) {
       return 'ClanTech resources';
     case Reward.TYPES.MUTALIST_COORDINATE:
       return 'Mutalist Alad V Coordinates';
+    case Reward.TYPES.FUSION_CORE:
+      return 'Fusion Core';
     case Reward.TYPES.OTHER:
       return 'Other rewards';
     case 'all':
@@ -201,6 +204,9 @@ function getItemType(item) {
   }
   else if(nightmare.indexOf(item) != -1) {
     return Reward.TYPES.NIGHTMARE_MOD;
+  }
+  else if(/[CUR]\d Fusion Core/i.test(item)) {
+    return Reward.TYPES.FUSION_CORE;
   }
   else {
     return Reward.TYPES.OTHER;
