@@ -127,7 +127,7 @@ Parser.prototype.getConclaveWeeklies = function(callback){
     if(err) {
       return callback(err);
     }
-    callback(null, data.conclaveChallenge.getConclaveWeeklies());
+    callback(null, data.conclaveChallenge.getWeeklies());
   });
 }
 Parser.prototype.getConclaveWeekliesString = function(callback){
@@ -143,7 +143,7 @@ Parser.prototype.getConclaveAll = function(callback){
     if(err) {
       return callback(err);
     }
-    callback(null, data.conclaveChallenge.getConclaveAll());
+    callback(null, data.conclaveChallenge.getAll());
   });
 }
 Parser.prototype.getConclaveAllString = function(callback){
