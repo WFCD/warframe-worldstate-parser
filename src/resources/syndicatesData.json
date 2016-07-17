@@ -1,0 +1,20 @@
+{
+  "ArbitersSyndicate" : {
+    "value" : "Arbiters of Hexis"
+  }
+  ,"CephalonSudaSyndicate" : {
+    "value" : "Cephalon Suda"
+  }
+  ,"NewLokaSyndicate" : {
+    "value" : "New Loka"
+  }
+  ,"RedVeilSyndicate" : {
+    "value" : "Red Veil"
+  }
+  ,"PerrinSyndicate" : {
+    "value" : "Perrin Sequence"
+  }
+  ,"SteelMeridianSyndicate" : {
+    "value" : "Steel Meridian"
+  }
+}

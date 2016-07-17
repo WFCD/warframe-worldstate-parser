@@ -1,7 +1,16 @@
 # Warframe Worldstate Parser
-## Parse the Warframe worldstate into useable javascript objects.
+### Parse the Warframe worldstate into useable javascript objects.
 
-Currently available
+[![Stories in Ready](https://badge.waffle.io/aliasfalse/warframe-worldstate-parser.png?label=ready&title=Ready)](http://waffle.io/aliasfalse/warframe-worldstate-parser) 
+
+[![GitHub issues](https://img.shields.io/github/issues/aliasfalse/warframe-worldstate-parser.svg)](https://github.com/aliasfalse/warframe-worldstate-parser/issues)  
+[![GitHub forks](https://img.shields.io/github/forks/aliasfalse/warframe-worldstate-parser.svg)](https://github.com/aliasfalse/warframe-worldstate-parser/network) 
+[![GitHub stars](https://img.shields.io/github/stars/aliasfalse/warframe-worldstate-parser.svg)](https://github.com/aliasfalse/warframe-worldstate-parser/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/aliasfalse/warframe-worldstate-parser/master/LICENSE) 
+
+[![NPM](https://nodei.co/npm/warframe-worldstate-parser.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/warframe-worldstate-parser/)
+
+## Currently available
 
 Worldstate object | Module File | Accessor | Description
 --- | --- | --- | ---
@@ -12,7 +21,7 @@ Worldstate object | Module File | Accessor | Description
 `PVPChallengeInstances` | `conclave.js` | `.getConclaveDailiesString` | Get daily Conclave Challenges in a string
 `PVPChallengeInstances` | `conclave.js` | `.getConclaveWeekliesString` | Get weekly Conclave Challenges in a string
 `Goals` | `events.js` | `.getEvents` | Get event data for active events
-`Goals` | `events.js` | `.getEvents` | Get event data for active events in a string
+`Goals` | `events.js` | `.getEventsString` | Get event data for active events in a string
 `PersistentEnemies` | `persistentEnemy.js` | `.getAllPersistentEnemies` | Get all present persistent enemy data
 `PersistentEnemies` | `persistentEnemy.js` | `.getHiddenPersistentEnemies` | Get hidden present persistent enemy data
 `PersistentEnemies` | `persistentEnemy.js` | `.getDiscoveredPersistentEnemies` | Get discovered present persistent enemy data

@@ -683,8 +683,11 @@
   , "SolNode227": {
     "value": "Verdi (Mercury)"
   }
+  , "SolNode400" : {
+    "value" : "Teshub (Void)"
+  }
   , "SolNode401" : {
-    "value" : "SolNode401 (Void)"
+    "value" : "Hepit (Void)"
   }
   , "SolNode402" : {
     "value" : "SolNode402 (Void)"
@@ -693,25 +696,25 @@
     "value" : "SolNode403 (Void)"
   }
   , "SolNode404" : {
-    "value" : "SolNode404 (Void)"
+    "value" : "Striborg (Void)"
   }
   , "SolNode405" : {
-    "value" : "SolNode405 (Void)"
+    "value" : "Ani (Void)"
   }
   , "SolNode406" : {
-    "value" : "SolNode406 (Void)"
+    "value" : "Ukko (Void)"
   }
   , "SolNode407" : {
-    "value" : " Mot (Void)"
+    "value" : " Oxomoco (Void)"
   }
   , "SolNode408" : {
     "value" : "SolNode408 (Void)"
   }
   , "SolNode409" : {
-    "value" : "SolNode409 (Void)"
+    "value" : "Mot (Void)"
   }
   , "SolNode410" : {
-    "value" : "SolNode410 (Void)"
+    "value" : "Aten (Void)"
   }
   , "SolNode411" : {
     "value" : "SolNode411 (Void)"

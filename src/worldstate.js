@@ -5,6 +5,7 @@ var GlobalModifiers = require('./modules/globalModifiers.js');
 var DarkSectors = require('./modules/badlands.js');
 var Challenges = require('./modules/conclave.js');
 var Enemies = require('./modules/persistentEnemy.js');
+var Fissures = require('./modules/voidFissure.js');
 
 var Invasion = require('./modules/invasion.js');
 var Alerts = require('./modules/alert.js');
@@ -13,8 +14,9 @@ var Deals = require('./modules/deal.js');
 var FlashDeals = require('./modules/flashDeals.js');
 
 
-WorldState = function(data) {
+WorldState = function(data, platform) {
   this.data = data;
+  this.platform = platform;
   if(this.data.Goals)
     this.events = new Events(data.Goals);
   this.news = new News(data.Events);
@@ -22,6 +24,8 @@ WorldState = function(data) {
   this.globalModifiers = new GlobalModifiers(data.GlobalUpgrades);
   this.conclaveChallenge = new Challenges(data.PVPChallengeInstances);
   this.enemies = new Enemies(data.PersistentEnemies);
+  if(typeof data.ActiveMissions !== 'undefined' && data.ActiveMissions !== null)
+    this.fissures = new Fissures(data.ActiveMissions);
 
   this.creation = Date.now();
 

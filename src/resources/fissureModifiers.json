@@ -1,14 +1,14 @@
 {
   "VoidT1" : {
-    "value" : "Void Tier 1"
+    "value" : "Lith Era (Tier 1)"
   }
   , "VoidT2" : {
-    "value" : "Void Tier 2"
+    "value" : "Meso Era (Tier 2)"
   }
   , "VoidT3" : {
-    "value" : "Void Tier 3"
+    "value" : "Neo Era (Tier 3)"
   }
   , "VoidT4" : {
-    "value" : "Void Tier 4"
+    "value" : "Axi Era (Tier 4)"
   }
 }

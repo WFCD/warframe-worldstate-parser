@@ -4,6 +4,7 @@ var md = require('hubot-markdown');
 var dsUtil = require('../lib/_utils.js');
 
 var sortieData = require('../resources/sortieData.json');
+var solNodes = require('../resources/solNodes.json');
 
 /**
  * Create a new sortie instance
@@ -21,10 +22,19 @@ var Sorties = function (data) {
       this.variants.push(sortie);
     } catch (err) {
       console.log(err);
-      console.log(sortie.boss);
+      console.log(this.id);
     }
   }
   this.boss = this.variants[0].boss
+}
+
+
+Sorties.prototype.getSortie = function(){
+  return this;
+}
+
+Sorties.prototype.getId = function(){
+  return this.id;
 }
 
 /**
@@ -43,11 +53,18 @@ Sorties.prototype.toString = function () {
   sortieString += util.format(': ends in %s%s', this.getETAString(),
                               md.doubleReturn);
   this.variants.forEach(function(sortie, i) {
-    sortieString += util.format('%s (%s) %s%s',
-                                sortie.planet,
-                                sortie.missionType,
-                                sortie.modifier,
-                                md.lineEnd);
+    if(sortie.node)
+      sortieString += util.format('%s %s %s%s',
+                                  sortie.node,                                
+                                  sortie.modifier,
+                                  sortie.missionType,
+                                  md.lineEnd);
+    else
+      sortieString += util.format('%s %s %s%s',
+                                  sortie.planet,
+                                  sortie.missionType,
+                                  sortie.modifier,
+                                  md.lineEnd);
   })
   sortieString += md.blockEnd;
   return sortieString;
@@ -89,6 +106,8 @@ var Sortie = function(data) {
     this.planet = region.name;
     this.missionType = region.missions[data.missionIndex];
     this.modifier = sortieData.modifiers[data.modifierIndex];
+    if(data.node)
+      this.node = solNodes[data.node].value;
   } catch (err) {
     console.log(JSON.stringify(data));
     console.log(err);

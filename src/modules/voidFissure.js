@@ -1,7 +1,8 @@
 var util = require('util');
 var md = require('hubot-markdown');
 
-var strings = require(require('./_utils.js').stringsPath);
+var dsUtil = require('../lib/_utils.js');
+var strings = require(dsUtil.stringsPath);
 var nodes = require('../resources/solNodes.json');
 var modifiers = require('../resources/fissureModifiers.json');
 
@@ -30,11 +31,12 @@ VoidFissures.prototype.getAll = function() {
 VoidFissures.prototype.getString = function() {
   var fissureString = md.codeMulti;
   this.voidFissures.forEach(function(voidFissure){
-    fissureString += voidFissure.toString();
+    fissureString += voidFissure.toString()+md.lineEnd;
   });
   if(fissureString === md.codeMulti)
     return util.format("%sOperator, there are no Void Fissures active%s", md.codeMulti, md.blockEnd);
-  else fissureString += md.blockEnd;
+  else 
+    fissureString += md.blockEnd;
   return fissureString;
 }
 

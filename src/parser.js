@@ -16,14 +16,15 @@ var Parser = function (platform) {
   this.news = null;
   this.sorties = null;
   this.globalModifiers = null;
+  this.fissures = null;
   this.lastRefresh = null;
   this.refreshing = false;
   this.refreshQueue = [];
 }
 
 Parser.prototype.dataIsCurrent = function() {
-  return this.cache &&
-    this.data.creation.getMilliseconds() - Date.now() > MAX_CACHED_TIME
+  return this.cache && this.lastRefresh !== null &&
+    (this.lastRefresh - Date.now() > MAX_CACHED_TIME)
 }
 
 Parser.prototype.getData = function(callback) {
@@ -54,7 +55,7 @@ Parser.prototype.refresh = function(callback) {
 
 Parser.prototype.retrieve = function(callback) {
   var url = platformURL[this.platform];
-
+  var self = this;
   request.get(url, function(err, response, body) {
     if(err) {
       return callback(err);
@@ -77,7 +78,7 @@ Parser.prototype.retrieve = function(callback) {
       error = new Error('Invalid JSON from ' + url);
       return callback(error);
     }
-    callback(null, new WorldState(data));
+    callback(null, new WorldState(data, self.platform));
   });
 }
 
@@ -93,7 +94,7 @@ Parser.prototype.getSortie = function(callback){
     if(err) {
       return callback(err);
     }
-    callback(null, data.sorties);
+    callback(null, data.sorties.getSortie());
   }); 
 }
 Parser.prototype.getSortieString = function(callback){
@@ -227,7 +228,7 @@ Parser.prototype.getEventsString = function(callback) {
 Parser.prototype.getNews = function(callback) {
   this.getData(function(err, data) {
     if(err) {
-      return callback(err);
+      return callback(err, null);
     }
     callback(null, data.news.getAll());
   });
@@ -235,7 +236,7 @@ Parser.prototype.getNews = function(callback) {
 Parser.prototype.getNewsString = function(callback) {
   this.getData(function(err, data) {
     if(err) {
-      return callback(err);
+      return callback(err, null);
     }
     callback(null, data.news.toString());
   });
@@ -243,7 +244,7 @@ Parser.prototype.getNewsString = function(callback) {
 Parser.prototype.getUpdates = function(callback) {
   this.getData(function(err, data) {
     if(err) {
-      return callback(err);
+      return callback(err, null);
     }
     callback(null, data.news.getUpdates());
   });
@@ -251,7 +252,7 @@ Parser.prototype.getUpdates = function(callback) {
 Parser.prototype.getUpdatesString = function(callback) {
   this.getData(function(err, data) {
     if(err) {
-      return callback(err);
+      return callback(err, null);
     }
     callback(null, data.news.getUpdatesString());
   });
@@ -259,7 +260,7 @@ Parser.prototype.getUpdatesString = function(callback) {
 Parser.prototype.getPrimeAccess = function(callback) {
   this.getData(function(err, data) {
     if(err) {
-      return callback(err);
+      return callback(err, null);
     }
     callback(null, data.news.getPrimeAccess());
   });
@@ -271,6 +272,26 @@ Parser.prototype.getPrimeAccessString = function(callback) {
     }
     callback(null, data.news.getPrimeAccessString());
   });
+}
+
+//fissures
+Parser.prototype.getFissures = function(callback){
+  this.getData(function(err, data){
+    if(err) {
+      return callback(err);
+    }
+    if(typeof data.fissures !== 'undefined')
+      callback(null, data.fissures.getAll());
+  })
+}
+Parser.prototype.getFissureString = function(callback){
+  this.getData(function(err, data){
+    if(err) {
+      return callback(err);
+    }
+    if(typeof data.fissures !== 'undefined')
+      callback(null, data.fissures.getString());
+  })
 }
 
 /* TODO

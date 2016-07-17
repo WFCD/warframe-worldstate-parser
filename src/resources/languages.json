@@ -354,8 +354,11 @@
   , "/lotus/pvpchallengetypes/pvptimedchallengespeedballstealsmedium" : {
     "value": "Steal the Lunaro"
   }
-  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballstealseasy" : {
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballstealshard" : {
     "value": "Steal the Lunaro"
+  }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballcheckseasy" : {
+    "value" : "Check another player"
   }
   , "/lotus/pvpchallengetypes/pvptimedchallengespeedballchecksmedium" : {
     "value" : "Check another player"
@@ -363,7 +366,34 @@
   , "/lotus/pvpchallengetypes/pvptimedchallengespeedballcheckshard" : {
     "value" : "Check another player"
   }
-  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballcheckshard" : {
-    "value" : "Check another player"
+  , "/lotus/types/game/library/targets/research1target" : {
+    "value" : "Lancer"
+  }
+  , "/lotus/types/game/library/targets/research2target" : {
+    "value" : "Anti Moa"
+  }
+  , "/lotus/types/game/library/targets/research3target" : {
+    "value" : "Arid Eviscerator"
+  }
+  , "/lotus/types/game/library/targets/research4target" : {
+    "value" : "Corrupted Ancient"
+  }
+  , "/lotus/types/game/library/targets/research5target" : {
+    "value" : "Crewman"
+  }
+  , "/lotus/types/game/library/targets/research6target" : {
+    "value" : "Runner"
+  }
+  , "/lotus/types/game/library/targets/research7target" : {
+    "value" : "Guardsman"
+  }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballpasseseasy":{    
+    "value" : "Make a successful Lunaro pass"
+  }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballpassesmedium":{
+    "value" : "Make a successful Lunaro pass"
+  }
+  , "/lotus/pvpchallengetypes/pvptimedchallengespeedballpasseshard":{
+    "value" : "Make a successful Lunaro pass"
   }
 }

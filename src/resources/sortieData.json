@@ -2165,7 +2165,7 @@
             "Spy",
             "Defense",
             "Mobile Defense",
-            "Excavation",
+            "Interception",
             "Spy",
             "Assassination"
           ]
@@ -2174,7 +2174,7 @@
           "name" : "Pluto",
           "missions" : [
             "Exterminate",
-            "Survival",
+            "Excavation",
             "Rescue",
             "Sabotage",
             "Spy",
