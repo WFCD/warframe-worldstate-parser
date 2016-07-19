@@ -23,7 +23,7 @@ var Parser = function (platform) {
 
 Parser.prototype.dataIsCurrent = function() {
   return this.cache &&
-    this.data.creation.getMilliseconds() - Date.now() > MAX_CACHED_TIME
+     Date.now() - this.cache.creation < MAX_CACHED_TIME
 }
 
 Parser.prototype.getData = function(callback) {
