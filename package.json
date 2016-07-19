@@ -1,13 +1,13 @@
 {
   "name": "warframe-worldstate-parser",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An Open parser for Warframe's Worldstate in Javascript",
   "main": "src/parser.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "npm-md-config": "^2.0.1",
+    "node-md-config": "^2.0.1",
     "request": "^2.72.0"
   },
   "devDependencies": {},
