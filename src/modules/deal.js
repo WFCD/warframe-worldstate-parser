@@ -1,5 +1,5 @@
 var util = require('util');
-var md = require('hubot-markdown');
+var md = require('node-md-config');
 
 var dsUtil = require('../lib/_utils.js');
 var strings = require(dsUtil.stringsPath);

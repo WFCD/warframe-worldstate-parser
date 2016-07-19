@@ -1,4 +1,4 @@
-var md = require('hubot-markdown');
+var md = require('node-md-config');
 var strings = require(dsUtil.stringsPath);
 
 /**
