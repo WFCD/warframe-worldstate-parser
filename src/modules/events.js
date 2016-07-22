@@ -6,7 +6,7 @@ var Reward = require('../lib/reward.js');
 
 var strings = require(dsUtil.stringsPath);
 var eventsData = require('../resources/eventsData.json');
-var solNodes = require('../resources/solNodes.json');
+var nodes = require('../resources/solNodes.json');
 var factions = require('../resources/factionsData.json');
 
 /**
@@ -69,12 +69,12 @@ var Event = function(data) {
     this.largeInterval = data.GoalInterim2;
     this.faction = factions[data.Faction].value;
     this.description = strings[data.Desc.toLowerCase()].value;
-    this.node = solNodes[data.Node.toLowerCase()].value;
+    this.node = nodes[data.Node] ? nodes[data.Node].value : data.Node;
     this.nodes = [];
-    this.victim = solNodes[data.VictimNode].value;
+    this.victim = nodes[data.VictimNode] ? nodes[data.VictimNode].value : data.VictimNode;
     if(data.ConcurrentNodes){
       for(var indexNodes = 0; indexNodes<data.ConcurrentNodes.length; indexNodes++){
-        this.nodes.push(solNodes[data.ConcurrentNodes[indexNodes]].value);
+        this.nodes.push(nodes[data.ConcurrentNodes[indexNodes]] ? nodes[data.ConcurrentNodes[indexNodes]].value : data.ConcurrentNodes[indexNodes]);
       }
     }
     if(data.ScoreLocTag){

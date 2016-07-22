@@ -17,6 +17,16 @@ var VoidFissures = function(data) {
   for (var index = 0; index < data.length; index++){
     this.voidFissures.push(new VoidFissure(data[index]));
   }
+  if(this.voidFissures.length > 0){
+    this.voidFissures.sort(function(a, b){
+      if(a.tierNum > b.tierNum)
+        return 1;
+      else if (a.tierNum < b.tierNum)
+        return -1;
+      else
+        return 0;    
+    });
+  }
 }
 
 /**
@@ -49,10 +59,13 @@ VoidFissures.prototype.getString = function() {
 var VoidFissure = function(data) {
   try{
     this.id = data._id.$id;
-    this.location = nodes[data.Node].value;
-    this.voidTier = modifiers[data.Modifier].value;
+    this.location = nodes[data.Node] ? nodes[data.Node].value : data.Node;
+    this.missionType = nodes[data.Node] ? nodes[data.Node].type : '?';
+    this.voidTier = modifiers[data.Modifier] ? modifiers[data.Modifier].value : data.Modifier;
+    this.tierNum = modifiers[data.Modifier] ? modifiers[data.Modifier].num : 0;
+    this.enemy =  nodes[data.Node] ? nodes[data.Node].enemy : '?'
     if(data.Activation) {
-    this.startTime = new Date(1000 * data.Activation.sec);
+      this.startTime = new Date(1000 * data.Activation.sec);
     }
     if(data.Expiry) {
       this.endTime = new Date(1000 * data.Expiry.sec);
@@ -69,7 +82,7 @@ var VoidFissure = function(data) {
  * @return {string} This mission in string format
  */
 VoidFissure.prototype.toString = function() {
-  return util.format("%s %s Fissure Discovered at %s", this.getETAString(), this.voidTier, this.location);
+  return util.format("%s %s Fissure at %s - %s %s", this.getETAString(), this.voidTier, this.location, this.enemy, this.missionType);
 }
 
 /**
@@ -78,7 +91,11 @@ VoidFissure.prototype.toString = function() {
  * @return {string} Time Remaining for this VoidFissure to be open
  */
 VoidFissure.prototype.getETAString = function() {
-  return "["+dsUtil.timeDeltaToString(Math.abs(Date.now()-this.endTime.getTime()))+"]";
+  var etaString = "["+dsUtil.timeDeltaToString(Math.abs(Date.now()-this.endTime.getTime()))+"]";
+  var paddString = "";
+  for(var i = etaString.length; i< "[1h 35m]".length; i++)
+    paddString += " ";
+  return etaString + paddString
 }
 
 module.exports = VoidFissures;

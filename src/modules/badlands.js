@@ -6,9 +6,6 @@ var Reward = require('../lib/reward.js');
 var Mission = require('../lib/mission.js');
 
 var strings = require(dsUtil.stringsPath);
-var solNodes = require('../resources/solNodes.json');
-var missionTypes = require('../resources/missionTypes.json');
-var factions = require('../resources/factionsData.json');
 
 var Badlands = function(data) {
   this.badlands = [];

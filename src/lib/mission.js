@@ -21,7 +21,7 @@ var Mission = function(data) {
       this.description = data.descText;
     }
     if(data.location)
-      this.location = nodes[data.location].value;
+      this.location = nodes[data.Node] ? nodes[data.Node].value : data.Node;
     this.missionType = missionTypes[data.missionType].value;
     this.faction = factions[data.faction].value;
     this.reward = new Reward(data.missionReward);

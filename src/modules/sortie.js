@@ -4,7 +4,7 @@ var md = require('node-md-config');
 var dsUtil = require('../lib/_utils.js');
 
 var sortieData = require('../resources/sortieData.json');
-var solNodes = require('../resources/solNodes.json');
+var nodes = require('../resources/solNodes.json');
 
 /**
  * Create a new sortie instance
@@ -107,7 +107,7 @@ var Sortie = function(data) {
     this.missionType = region.missions[data.missionIndex];
     this.modifier = sortieData.modifiers[data.modifierIndex];
     if(data.node)
-      this.node = solNodes[data.node].value;
+      this.node = nodes[data.node] ? nodes[data.node].value : data.node;
   } catch (err) {
     console.log(JSON.stringify(data));
     console.log(err);

@@ -5,7 +5,7 @@ var dsUtil = require('../lib/_utils.js');
 
 var strings = require(dsUtil.stringsPath);
 var persistentEnemyData = require('../resources/persistentEnemyData.json');
-var solNodes = require('../resources/solNodes.json');
+var nodes = require('../resources/solNodes.json');
 
 /**
  * Create a new Enemies instance
@@ -131,7 +131,7 @@ var Enemy = function(data) {
     this.healthPercent = parseFloat(data.HealthPercent);
     this.fleeDamage = parseFloat(data.FleeDamage);
     this.region = persistentEnemyData.regions[data.Region];
-    this.lastDiscoveredAt = solNodes[data.LastDiscoveredLocation].value;
+    this.lastDiscoveredAt = nodes[data.LastDiscoveredLocation] ? nodes[data.LastDiscoveredLocation].value : data.LastDiscoveredLocation;
     this.isDiscovered = data.Discovered;
     this.isUsingTicketing = data.UseTicketing;
   } catch (err) {

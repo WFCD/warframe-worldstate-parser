@@ -40,7 +40,7 @@ Invasions.prototype.toString = function(){
 var Invasion = function(data) {
   try{
     this.id = data._id.$id;
-    this.node = nodes[data.Node].value;
+    this.node = nodes[data.Node] ? nodes[data.Node].value : data.Node;
 
     this.faction1 = factions[data.AttackerMissionInfo.faction].value;
     this.type1 = missionTypes[data.AttackerMissionInfo.missionType].value;

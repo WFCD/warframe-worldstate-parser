@@ -15,7 +15,7 @@ var nodes = require('../resources/solNodes.json');
 var Baro = function(data) {
   this.start = new Date(1000 * data.Activation.sec);
   this.end = new Date(1000 * data.Expiry.sec);
-  this.location = nodes[data.Node].value;
+  this.location = nodes[data.Node] ? nodes[data.Node].value : data.Node;
   this.manifest = data.Manifest;
 }
 
