@@ -1,5 +1,6 @@
 var request = require('request');
 var WorldState = require('./worldstate.js');
+var RelicQuery = require('./modules/relics.js');
 
 var MAX_CACHED_TIME = process.env.WORLDSTATE_CACHE_LENGTH || 300000;
 
@@ -558,5 +559,15 @@ Parser.prototype.getDarkSectorsString = function(callback) {
   });
 }
 */
+
+//Relics
+Parser.getRelicFromQuery = function(query, callback){
+  new RelicQuery(query, function(err, parts){
+    if(err){
+      return callback(err);
+    }
+    callback(null, parts.toString());
+  });
+}
 
 module.exports = Parser;

@@ -1,8 +1,8 @@
 var util = require('util');
-var strings = require(require('./_utils.js').stringsPath);
-var nodes = require('../resources/solNodes.json');
-var missionTypes = require('../resources/missionTypes.json');
-var factions = require('../resources/factionsData.json');
+var dsUtil = require('./_utils.js');
+var nodes = require('warframe-worldstate-data').solNodes;
+var missionTypes = require('warframe-worldstate-data').missionTypes;
+var factions = require('warframe-worldstate-data').factions;
 var Reward = require('./reward.js');
 
 /**
@@ -15,15 +15,15 @@ var Mission = function(data) {
   try{
     if(data.descText){
     if(data.descText.indexOf('/')>-1){
-      this.description = strings[data.descText.toLowerCase()].value;
+      this.description = dsUtil.getLocalized(data.descText.toLowerCase());
     }
     else
       this.description = data.descText;
     }
     if(data.location)
-      this.location = nodes[data.Node] ? nodes[data.Node].value : data.Node;
-    this.missionType = missionTypes[data.missionType].value;
-    this.faction = factions[data.faction].value;
+      this.location = dsUtil.getSolNodeValue(data.Node, nodes);//    nodes[data.Node] ? nodes[data.Node].value : data.Node;
+    this.missionType = dsUtil.safeGetLocalized(data.missionType, missionTypes);
+    this.faction = dsUtil.safeGetLocalized(data.faction, factions);//factions[data.faction].value;
     this.reward = new Reward(data.missionReward);
     this.minEnemyLevel = data.minEnemyLevel;
     this.maxEnemyLevel = data.maxEnemyLevel;

@@ -1,5 +1,4 @@
 var md = require('node-md-config');
-var strings = require(require('../lib/_utils.js').stringsPath);
 var dsUtil = require('../lib/_utils.js');
 
 /**
