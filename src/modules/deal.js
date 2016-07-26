@@ -2,7 +2,6 @@ var util = require('util');
 var md = require('node-md-config');
 
 var dsUtil = require('../lib/_utils.js');
-var strings = require(dsUtil.stringsPath);
 
 
 /**
@@ -13,7 +12,7 @@ var strings = require(dsUtil.stringsPath);
  */
 var Deal = function(data) {
   this.id = data._id;
-  this.item = strings[data.StoreItem.toLowerCase()].value;
+  this.item = getLocalized(data.StoreItem.toLowerCase());
   this.expiry = new Date(1000 * data.Expiry.sec);
   this.originalPrice = data.OriginalPrice;
   this.salePrice = data.SalePrice;

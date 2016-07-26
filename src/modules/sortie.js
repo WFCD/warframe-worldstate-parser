@@ -1,10 +1,9 @@
 var util = require('util');
 var md = require('node-md-config');
+var sortieData = require('warframe-worldstate-data').sortie;
+var nodes = require('warframe-worldstate-data').solNodes;
 
 var dsUtil = require('../lib/_utils.js');
-
-var sortieData = require('../resources/sortieData.json');
-var nodes = require('../resources/solNodes.json');
 
 /**
  * Create a new sortie instance
@@ -106,8 +105,9 @@ var Sortie = function(data) {
     this.planet = region.name;
     this.missionType = region.missions[data.missionIndex];
     this.modifier = sortieData.modifiers[data.modifierIndex];
-    if(data.node)
-      this.node = nodes[data.node] ? nodes[data.node].value : data.node;
+    if(data.node){
+      this.node = dsUtil.getSolNodeValue(data.node, nodes);
+    }
   } catch (err) {
     console.log(JSON.stringify(data));
     console.log(err);

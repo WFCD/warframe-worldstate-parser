@@ -5,8 +5,6 @@ var dsUtil = require('../lib/_utils.js');
 var Reward = require('../lib/reward.js');
 var Mission = require('../lib/mission.js');
 
-var strings = require(dsUtil.stringsPath);
-
 var Badlands = function(data) {
   this.badlands = [];
   for (var index = 0; index < data.length; index++){
@@ -44,7 +42,7 @@ var DarkSector = function(data) {
     this.defenderPoolRemaining = data.DefenderInfo.StrengthRemaining;
     this.defenderMaxPool = data.DefenderInfo.MaxStrength;
     this.defenderDeployemntActivation = new Date(1000*data.DefenderInfo.DeploymentActivationTime.sec);
-    this.railType = strings[data.DefenderInfo.RailType.toLowerCase()].value;
+    this.railType = dsUtil.getLocalized(data.DefenderInfo.RailType.toLowerCase());
     this.defenderMOTD = data.DefenderInfo.MOTD;
     this.deployerName = data.DefenderInfo.DeployerName;
     this.deployerClan = data.DefenderInfo.DeployerClan;

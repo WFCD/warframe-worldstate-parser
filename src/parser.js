@@ -17,6 +17,8 @@ var Parser = function (platform) {
   this.sorties = null;
   this.globalModifiers = null;
   this.fissures = null;
+  this.syndicates = null;
+  this.simaris = null;
   this.lastRefresh = null;
   this.refreshing = false;
   this.refreshQueue = [];
@@ -294,6 +296,158 @@ Parser.prototype.getFissureString = function(callback){
   })
 }
 
+//Global Modifiers
+Parser.prototype.getGlobalModifers = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.globalModifiers.getAll());
+  });
+}
+Parser.prototype.getGlobalModifersString = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.globalModifiers.toString());
+  });
+}
+
+//Syndicates
+Parser.prototype.getAllSyndicates = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getAll());
+  });
+}
+Parser.prototype.getAllSyndicatesAsString = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getAllAsString());
+  });
+}
+Parser.prototype.getArbitersOfHexisMissions = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getArbitersOfHexisMissions());
+  });
+}
+Parser.prototype.getCephalonSudaMissions = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getCephalonSudaMissions());
+  });
+}
+Parser.prototype.getNewLokaMissions = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getNewLokaMissions());
+  });
+}
+Parser.prototype.getPerrinSequenceMissions = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getPerrinSequenceMissions());
+  });
+}
+Parser.prototype.getSteelMeridianMissions = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getSteelMeridianMissions());
+  });
+}
+Parser.prototype.getRedVeilMissions = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getRedVeilMissions());
+  });
+}
+
+Parser.prototype.getArbitersOfHexisString = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    var arbiterString = data.syndicates.getArbitersOfHexisString();
+    callback(null, arbiterString);
+  });
+}
+Parser.prototype.getCephalonSudaString = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getCephalonSudaString());
+  });
+}
+Parser.prototype.getNewLokaString = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getNewLokaString());
+  });
+}
+Parser.prototype.getPerrinSequenceString = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getPerrinSequenceString());
+  });
+}
+Parser.prototype.getSteelMeridianString = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getSteelMeridianString());
+  });
+}
+Parser.prototype.getRedVeilString = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.syndicates.getRedVeilString());
+  });
+}
+
+//Simaris
+Parser.prototype.getSimaris = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.simaris.getSimaris());
+  });
+}
+Parser.prototype.getSimarisString = function(callback) {
+  this.getData(function(err, data) {
+    if(err) {
+      return callback(err);
+    }
+    callback(null, data.simaris.toString());
+  });
+}
+
 /* TODO
 
 //invasions
@@ -404,23 +558,5 @@ Parser.prototype.getDarkSectorsString = function(callback) {
   });
 }
 */
-
-//Global Modifiers
-Parser.prototype.getGlobalModifers = function(callback) {
-  this.getData(function(err, data) {
-    if(err) {
-      return callback(err);
-    }
-    callback(null, data.globalModifiers.getAll());
-  });
-}
-Parser.prototype.getGlobalModifersString = function(callback) {
-  this.getData(function(err, data) {
-    if(err) {
-      return callback(err);
-    }
-    callback(null, data.globalModifiers.toString());
-  });
-}
 
 module.exports = Parser;

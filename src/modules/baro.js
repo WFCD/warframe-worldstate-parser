@@ -1,10 +1,9 @@
 var util = require('util');
 var md = require('node-md-config');
+var nodes =  require('warframe-worldstate-data').solNodes;
 
 var dsUtil = require('../lib/_utils.js');
 
-var strings = require(dsUtil.stringsPath);
-var nodes = require('../resources/solNodes.json');
 
 /**
  * Create a new baro instance
@@ -31,7 +30,7 @@ Baro.prototype.toString = function() {
   var baroString = util.format('%sVoid Trader at %s%s', md.codeMulti, this.location, md.doubleReturn);
   for(i in this.manifest) {
     baroString += util.format('%s - price: %d ducats + %dcr%s',
-                              strings[this.manifest[i].ItemType.toLowerCase()].value,
+                              dsUtil.getLocalized(this.manifest[i].ItemType.toLowerCase()),
                               this.manifest[i].PrimePrice,
                               this.manifest[i].RegularPrice,
                               md.lineEnd);

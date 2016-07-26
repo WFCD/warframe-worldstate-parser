@@ -1,11 +1,10 @@
 var util = require('util');
 var md = require('node-md-config');
 
-var dsUtil = require('../lib/_utils.js');
+var persistentEnemyData = require('warframe-worldstate-data').persistentEnemy;
+var nodes = require('warframe-worldstate-data').solNodes;
 
-var strings = require(dsUtil.stringsPath);
-var persistentEnemyData = require('../resources/persistentEnemyData.json');
-var nodes = require('../resources/solNodes.json');
+var dsUtil = require('../lib/_utils.js');
 
 /**
  * Create a new Enemies instance
@@ -125,13 +124,13 @@ var Enemy = function(data) {
       return;
     }
     this.id = data._id.$id;
-    this.agentType = strings[data.AgentType.toLowerCase()].value;
-    this.locationTag = strings[data.LocTag.toLowerCase()].value;
+    this.agentType = dsUtil.getLocalized(data.AgentType.toLowerCase());
+    this.locationTag = dsUtil.getLocalized(data.LocTag.toLowerCase());
     this.rank = data.Rank;
     this.healthPercent = parseFloat(data.HealthPercent);
     this.fleeDamage = parseFloat(data.FleeDamage);
     this.region = persistentEnemyData.regions[data.Region];
-    this.lastDiscoveredAt = nodes[data.LastDiscoveredLocation] ? nodes[data.LastDiscoveredLocation].value : data.LastDiscoveredLocation;
+    this.lastDiscoveredAt = dsUtil.getSolNodeValue(data.LastDiscoveredLocation, nodes);
     this.isDiscovered = data.Discovered;
     this.isUsingTicketing = data.UseTicketing;
   } catch (err) {
