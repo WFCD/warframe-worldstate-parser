@@ -2,37 +2,47 @@ var md = require('node-md-config');
 var jsonQuery = require('json-query');
 var relicData =  require('warframe-worldstate-data').relics;
 
+var toTitleCase = function (str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
+
 var Part = function(name, ducats, relic){
-  this.name = name;
+  this.name = toTitleCase(name);
   this.ducats = ducats;
   this.relics = [relic];
 }
 
 Part.prototype.addRelic = function(relicToAdd){
-  this.relics.forEach(function(existingRelic){
-    if(relicToAdd === existingRelic){
-      return;
-    } else {
-      this.relics.push(relicToAdd);
+  var self = this;
+  self.relics.forEach(function(existingRelic){
+    if(relicToAdd !== existingRelic){
+      self.relics.push(relicToAdd);
     }
   });
 }
 
 Part.prototype.toString = function() {
-  return this.name + "is found in "+ this.relics.join(', ')+ " and is worth "+ this.ducats;
+  return this.name + " found in "+ this.relics.join(', ')+ " worth "+ this.ducats;
 }
 
-var Parts = function(data){
-  this.parts = [];
-  for (var index = 0; index < data.length; index++){
-    this.parts.forEach(function(existingPart){
-      if(data[index].part != existingPart.name){
-        this.parts.push(new Part(data[index].part, data[index].ducats, data[index].relic));
-      } else {
-        existingPart.addRelic(data[index].relic);
-      }
-    });
-  }
+var Parts = function (data) {
+  this.parts = new Array();
+  var self = this;
+  data.forEach(function(reliquary){
+    if (self.parts.length > 0) {
+      self.parts.forEach(function (existingPart) {
+        if (reliquary.part != existingPart.name) {
+          self.parts.push(new Part(reliquary.part, reliquary.ducats, reliquary.relic));
+        } else {
+          existingPart.addRelic(reliquary.relic);
+        }
+      });
+    } else {
+      self.parts.push(new Part(reliquary.part, reliquary.ducats, reliquary.relic));
+    }
+  });
 }
 
 Parts.prototype.toString = function(){
@@ -53,13 +63,12 @@ Parts.prototype.getAll = function(){
 
 var RelicQuery = function(query, callback){
   this.query = query;
-  var results = jsonQuery('relics[part~/'+query+'/i]', {
+  var results = jsonQuery('relics[*part~/'+query+'/i]', {
     data: relicData,
     allowRegexp: true
   });
-  console.log(results.value);
   this.parts = new Parts(results.value);
-  console.log(this.parts);
+  console.log(this.parts.getAll());
   callback(null, this.parts.toString());
 }
 
