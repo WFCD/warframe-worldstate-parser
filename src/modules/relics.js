@@ -16,11 +16,15 @@ var Part = function(name, ducats, relic){
 
 Part.prototype.addRelic = function(relicToAdd){
   var self = this;
+  var relicInRelics = false;
   self.relics.forEach(function(existingRelic){
-    if(relicToAdd !== existingRelic){
-      self.relics.push(relicToAdd);
+    if((relicToAdd.toLowerCase() === existingRelic.toLowerCase())){
+      relicInRelics = true;
     }
   });
+  if(!relicInRelics){
+    self.relics.push(relicToAdd);
+  }
 }
 
 Part.prototype.toString = function() {
@@ -30,20 +34,23 @@ Part.prototype.toString = function() {
 var Parts = function (data) {
   this.parts = new Array();
   var self = this;
-  data.forEach(function(reliquary){
+  data.forEach(function (reliquary) {
+    var partInParts = false;
+    var indexOfPart = null;
     if (self.parts.length > 0) {
-      self.parts.forEach(function (existingPart) {
-        if (reliquary.part != existingPart.name) {
-          self.parts.push(new Part(reliquary.part, reliquary.ducats, reliquary.relic));
-        } else {
+      self.parts.forEach(function (existingPart, index) {
+        if ((reliquary.part.toLowerCase() === existingPart.name.toLowerCase())) {
+          partInParts = true;
           existingPart.addRelic(reliquary.relic);
         }
       });
-    } else {
+    }
+    if(!partInParts){
       self.parts.push(new Part(reliquary.part, reliquary.ducats, reliquary.relic));
     }
   });
 }
+
 
 Parts.prototype.toString = function(){
   var partsString = md.codeMulti;
@@ -68,7 +75,6 @@ var RelicQuery = function(query, callback){
     allowRegexp: true
   });
   this.parts = new Parts(results.value);
-  console.log(this.parts.getAll());
   callback(null, this.parts.toString());
 }
 
