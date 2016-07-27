@@ -28,7 +28,7 @@ Part.prototype.addRelic = function(relicToAdd){
 }
 
 Part.prototype.toString = function() {
-  return this.name + " found in "+ this.relics.join(', ')+ " worth "+ this.ducats;
+  return this.name +" worth "+ this.ducats + ": "+md.lineEnd+"　　" + this.relics.join(","+md.lineEnd+"　　");
 }
 
 var Parts = function (data) {
@@ -41,12 +41,12 @@ var Parts = function (data) {
       self.parts.forEach(function (existingPart, index) {
         if ((reliquary.part.toLowerCase() === existingPart.name.toLowerCase())) {
           partInParts = true;
-          existingPart.addRelic(reliquary.relic);
+          existingPart.addRelic(reliquary.relic + " ("+reliquary.rarity+")");
         }
       });
     }
     if(!partInParts){
-      self.parts.push(new Part(reliquary.part, reliquary.ducats, reliquary.relic));
+      self.parts.push(new Part(reliquary.part, reliquary.ducats, reliquary.relic + " ("+reliquary.rarity+")"));
     }
   });
 }
@@ -54,9 +54,11 @@ var Parts = function (data) {
 
 Parts.prototype.toString = function(){
   var partsString = md.codeMulti;
-  this.parts.forEach(function(part){
+  /*this.parts.forEach(function(part){
     partsString += part.toString() + md.lineEnd;
-  });
+  });*/
+  
+  partsString += this.parts.join(md.doubleReturn);
   if(partsString === md.codeMulti){
     partsString += "Operator, no relics available for that query.";
   }
@@ -78,5 +80,4 @@ var RelicQuery = function(query, callback){
   callback(null, this.parts.toString());
 }
 
-//TODO: Need to populate relic for each
 module.exports = RelicQuery;
