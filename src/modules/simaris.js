@@ -14,7 +14,7 @@ var Simaris = function(data) {
       return;
     }
     if(data.LastCompletedTargetType){
-      this.target = dsUtil.getLocalized(data.LastCompletedTargetType.toLowerCase());
+      this.target = dsUtil.getLocalized(data.LastCompletedTargetType);
       this.isTargetActive = false;
     }
     else{

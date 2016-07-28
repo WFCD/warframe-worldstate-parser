@@ -56,7 +56,7 @@ var safeGetObj = function(path, object){
 }
 
 var getLocalized = function(path){
-  return safeGetLocalized(path, stringsObject);
+  return safeGetLocalized(path.toLowerCase(), stringsObject);
 }
 
 var getSolNodeValue = function(path, solNodes){

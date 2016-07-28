@@ -30,7 +30,7 @@ FlashDeals.prototype.toString = function() {
  */
 var FlashDeal = function(data) {
   this.id = data._id;
-  this.item = dsUtil.getLocalized(data.TypeName.toLowerCase());
+  this.item = dsUtil.getLocalized(data.TypeName);
   this.expiry = new Date(1000 * data.EndDate.sec);
   
   this.discount = data.Discount;

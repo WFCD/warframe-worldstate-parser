@@ -7,6 +7,37 @@ var toTitleCase = function (str)
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
+var RelicSort = function(a, b){
+  var lithReg = /lith/ig;
+  var mesoReg = /meso/ig;
+  var neoReg = /neo/ig;
+  var axiReg = /axi/ig;
+  var aVal;
+  var bVal;
+  if(lithReg.test(a))
+    aVal = 0;
+  else if (mesoReg.test(a))
+    aVal = 1;
+  else if (neoReg.test(a))
+    aVal = 2;
+  else if (axiReg.test(a))
+    aVal = 3;
+  if(lithReg.test(b))
+    bVal = 0;
+  else if (mesoReg.test(b))
+    bVal = 1;
+  else if (neoReg.test(b))
+    bVal = 2;
+  else if (axiReg.test(b))
+    bVal = 3;
+  
+  if(aVal<bVal)
+    return -1;
+  else if(aVal===bVal)
+    return 0;
+  else if (aVal>bVal)
+    return 1;
+}
 
 var Part = function(name, ducats, relic){
   this.name = toTitleCase(name);
@@ -28,7 +59,8 @@ Part.prototype.addRelic = function(relicToAdd){
 }
 
 Part.prototype.toString = function() {
-  return this.name +" worth "+ this.ducats + ": "+md.lineEnd+"　　" + this.relics.join(","+md.lineEnd+"　　");
+  return this.name +" worth "+ this.ducats + ": "+md.lineEnd+"　　" + 
+    this.relics.sort(RelicSort).join(","+md.lineEnd+"　　");
 }
 
 var Parts = function (data) {
@@ -54,10 +86,6 @@ var Parts = function (data) {
 
 Parts.prototype.toString = function(){
   var partsString = md.codeMulti;
-  /*this.parts.forEach(function(part){
-    partsString += part.toString() + md.lineEnd;
-  });*/
-  
   partsString += this.parts.join(md.doubleReturn);
   if(partsString === md.codeMulti){
     partsString += "Operator, no relics available for that query.";
@@ -68,6 +96,16 @@ Parts.prototype.toString = function(){
 
 Parts.prototype.getAll = function(){
   return this.parts;
+}
+
+var RelicQuery = function(query, callback){
+  this.query = query;
+  var results = jsonQuery('relics[*part~/'+query+'/i]', {
+    data: relicData,
+    allowRegexp: true
+  });
+  this.parts = new Parts(results.value);
+  callback(null, this.parts.toString());
 }
 
 var RelicQuery = function(query, callback){

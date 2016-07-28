@@ -30,7 +30,7 @@ Baro.prototype.toString = function() {
   var baroString = util.format('%sVoid Trader at %s%s', md.codeMulti, this.location, md.doubleReturn);
   for(i in this.manifest) {
     baroString += util.format('%s - price: %d ducats + %dcr%s',
-                              dsUtil.getLocalized(this.manifest[i].ItemType.toLowerCase()),
+                              dsUtil.getLocalized(this.manifest[i].ItemType),
                               this.manifest[i].PrimePrice,
                               this.manifest[i].RegularPrice,
                               md.lineEnd);

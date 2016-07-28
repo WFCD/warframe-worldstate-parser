@@ -126,7 +126,7 @@ var Challenge = function(data) {
       return;
     }
     this.id = data._id.$id;
-    this.challengeRef = dsUtil.getLocalized(data.challengeTypeRefID.toLowerCase());
+    this.challengeRef = dsUtil.getLocalized(data.challengeTypeRefID);
     this.expiry = dsUtil.timeDeltaToString(data.endDate.sec - Date.now());
     this.endDate = data.endDate.sec;
     this.amount = parseInt(data.params[0].v);

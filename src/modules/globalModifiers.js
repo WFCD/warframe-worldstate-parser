@@ -19,14 +19,14 @@ GlobalModifiers.prototype.getAll = function() {
 }
 
 GlobalModifiers.prototype.toString = function() {
-  var globlaModifierString = md.codeMulti;
+  var globalModifierString = md.codeMulti;
   for(var globalModifier in this.globalModifiers){
-    globlaModifierString += globalModifier.toString();
+    globalModifierString += globalModifier.toString();
   }
-  if(globlaModifierString === md.codeMulti){
-    globlaModifierString = this.noGlobalModifierString;
+  if(globalModifierString === md.codeMulti){
+    globalModifierString = this.noGlobalModifierString;
   }
-  return globlaModifierString+md.blockEnd;
+  return globalModifierString+md.blockEnd;
 }
 
 

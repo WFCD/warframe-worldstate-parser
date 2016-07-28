@@ -124,8 +124,8 @@ var Enemy = function(data) {
       return;
     }
     this.id = data._id.$id;
-    this.agentType = dsUtil.getLocalized(data.AgentType.toLowerCase());
-    this.locationTag = dsUtil.getLocalized(data.LocTag.toLowerCase());
+    this.agentType = dsUtil.getLocalized(data.AgentType);
+    this.locationTag = dsUtil.getLocalized(data.LocTag);
     this.rank = data.Rank;
     this.healthPercent = parseFloat(data.HealthPercent);
     this.fleeDamage = parseFloat(data.FleeDamage);

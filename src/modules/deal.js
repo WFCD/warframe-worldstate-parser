@@ -12,7 +12,7 @@ var dsUtil = require('../lib/_utils.js');
  */
 var Deal = function(data) {
   this.id = data._id;
-  this.item = getLocalized(data.StoreItem.toLowerCase());
+  this.item = getLocalized(data.StoreItem);
   this.expiry = new Date(1000 * data.Expiry.sec);
   this.originalPrice = data.OriginalPrice;
   this.salePrice = data.SalePrice;

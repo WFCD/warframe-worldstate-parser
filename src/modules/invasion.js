@@ -55,7 +55,7 @@ var Invasion = function(data) {
 
     this.completion = 100*((data.Goal-data.Count)/data.Goal);
     this.ETA = new Date(1000* data.Activation.sec);
-    this.desc = dsUtil.getLocalized(data.LocTag.toLowerCase());
+    this.desc = dsUtil.getLocalized(data.LocTag);
   }
   catch (err) {
     console.log("Invasion: " + err.message);
