@@ -2,7 +2,6 @@ var util = require('util');
 var md = require('node-md-config');
 
 var dsUtil = require('../lib/_utils.js');
-var strings = require(dsUtil.stringsPath);
 
 var FlashDeals = function(data) {
   this.flashDeals = [];
@@ -31,7 +30,7 @@ FlashDeals.prototype.toString = function() {
  */
 var FlashDeal = function(data) {
   this.id = data._id;
-  this.item = strings[data.TypeName.toLowerCase()].value;
+  this.item = dsUtil.getLocalized(data.TypeName);
   this.expiry = new Date(1000 * data.EndDate.sec);
   
   this.discount = data.Discount;

@@ -1,4 +1,10 @@
 var util = require('util');
+var stringsObject = undefined;
+if(process.env.WARFRAME_LANG_PATH){
+  stringsObject = require(process.env.WARFRAME_LANG_PATH);
+} else {
+  stringsObject = require('warframe-worldstate-data').languages;
+}
 
 /**
  * Converts the difference between two Date object to a String.
@@ -8,7 +14,7 @@ var util = require('util');
  *
  * @return {string}
  */
-module.exports.timeDeltaToString = function (millis) {
+var timeDeltaToString = function (millis) {
     var seconds = millis / 1000;
 
     if (seconds >= 86400) { // Seconds in a day
@@ -19,6 +25,59 @@ module.exports.timeDeltaToString = function (millis) {
     } else {
         return util.format('%dm', Math.floor(seconds / 60));
     }
-};
+}
 
-module.exports.stringsPath = process.env.WARFRAME_LANG_PATH || '../resources/languages.json';
+var getStringsObject = function(){
+  return stringsObject;
+}
+
+var safeGetLocalized = function(path, object){
+  if(typeof object[path] !== 'undefined'){
+    return object[path].value;
+  } else {
+    if(path.split("/").length > 1)
+      return path.split("/").slice(-1)[0];
+    else{
+      return path;
+    }
+  }
+}
+
+var safeGetObj = function(path, object){
+  if(typeof object[path] !== 'undefined'){
+    return object[path];
+  } else {
+    if(path.split("/").length > 1)
+      return path.split("/").slice(-1)[0];
+    else{
+      return path;
+    }
+  }
+}
+
+var getLocalized = function(path){
+  return safeGetLocalized(path.toLowerCase(), stringsObject);
+}
+
+var getSolNodeValue = function(path, solNodes){
+  var nodeObj = safeGetObj(path, solNodes);
+  return nodeObj.value ? nodeObj.value : nodeObj;
+}
+var getSolNodeEnemy = function(path, solNodes){
+  var nodeObj = safeGetObj(path, solNodes);
+  return nodeObj.enemy ? nodeObj.enemy : nodeObj;
+}
+var getSolNodeType = function(path, solNodes){
+  var nodeObj = safeGetObj(path, solNodes);
+  return nodeObj.type ? nodeObj.type : nodeObj;
+}
+
+module.exports = {
+  timeDeltaToString,
+  safeGetLocalized,
+  getStringsObject,
+  getLocalized,
+  getSolNodeValue,
+  getSolNodeEnemy,
+  getSolNodeType
+}

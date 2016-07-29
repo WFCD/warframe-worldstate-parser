@@ -1,5 +1,5 @@
 var md = require('node-md-config');
-var strings = require(dsUtil.stringsPath);
+var dsUtil = require('../lib/_utils.js');
 
 /**
  * Create a new Simaris instance
@@ -13,8 +13,8 @@ var Simaris = function(data) {
     {
       return;
     }
-    if(!data.LastCompletedTargetType){
-      this.target = strings[data.LastCompletedTargetType].value;  
+    if(data.LastCompletedTargetType){
+      this.target = dsUtil.getLocalized(data.LastCompletedTargetType);
       this.isTargetActive = false;
     }
     else{
@@ -26,6 +26,10 @@ var Simaris = function(data) {
   } finally {
     return;
   }
+}
+
+Simaris.prototype.getSimaris = function(){
+  return this;
 }
 
 /**
@@ -40,7 +44,7 @@ Simaris.prototype.toString = function () {
   else
     simString += "Simaris's previous objective was " + this.target;
   if(simString === md.codeMulti)
-    syndString += "No info about Synthesis Targets, Simaris has left us alone"
-  return syndString+md.blockEnd;
+    simString += "No info about Synthesis Targets, Simaris has left us alone"
+  return simString+md.blockEnd;
 }
 module.exports = Simaris;

@@ -2,8 +2,7 @@ var util = require('util');
 var md = require('node-md-config');
 
 var dsUtil = require('../lib/_utils.js');
-var conclaveData = require('../resources/conclaveData.json');
-var strings = require(dsUtil.stringsPath);
+var conclaveData = require('warframe-worldstate-data').conclave;
 
 /**
  * Create a new ConclaveChallenge instance
@@ -127,12 +126,12 @@ var Challenge = function(data) {
       return;
     }
     this.id = data._id.$id;
-    this.challengeRef = strings[data.challengeTypeRefID.toLowerCase()].value;
+    this.challengeRef = dsUtil.getLocalized(data.challengeTypeRefID);
     this.expiry = dsUtil.timeDeltaToString(data.endDate.sec - Date.now());
     this.endDate = data.endDate.sec;
     this.amount = parseInt(data.params[0].v);
-    this.category = conclaveData.categories[data.Category].value;
-    this.mode = conclaveData.modes[data.PVPMode].value;
+    this.category = dsUtil.safeGetLocalized(data.Category, conclaveData.categories);
+    this.mode = dsUtil.safeGetLocalized(data.PVPMode, conclaveData.modes)
   } catch (err) {
     console.log("Conclave: " + err.message);
     console.log(JSON.stringify(data));

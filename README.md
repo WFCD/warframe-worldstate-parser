@@ -36,18 +36,20 @@ Worldstate object | Module File | Accessor | Description
 `Events` | `news.js` | `.getPrimeAccessString` | Get current prime access news items
 `Events` | `news.js` | `.getUpdatesString` | Get current updates news items
 `Events` | `news.js` | `.getNewsString` | Get all current news items
-`Invasion` | `invasion.js` | `.getInvasions` | Get all current Invasions
-`Invasion` | `invasion.js` | `.getInvasionsString` | Get all current Invasions as a string
-`Alerts` | `alert.js` | `.getAlerts` | Get all alerts
-`Alerts` | `alert.js` | `.getAlertsAsString` | Get all alerts as a string
-`VoidTrader` | `baro.js` | `.getVoidTrader` | Get The void trader information
-`VoidTrader` | `baro.js` | `.getVoidTraderString` | Get The void trader information as a string
-`DailyDeals` | `deal.js` | `.getDeals` | Get current Darvo Daily Deal
-`DailyDeals` | `deal.js` | `.getDealsAsString` | Get current Darvo Daily Deal as a string
-`BadlandNodes` | `badlands.js` | `.getDarkSectors` | Get Darksectors object
-`BadlandNodes` | `badlands.js` | `.getDarkSectorsString` | Get a string representation of the Darksectors
+`Invasion` | `invasion.js` | `.getInvasions` | Get all current Invasions (incomplete)
+`Invasion` | `invasion.js` | `.getInvasionsString` | Get all current Invasions as a string (incomplete)
+`Alerts` | `alert.js` | `.getAlerts` | Get all alerts (incomplete)
+`Alerts` | `alert.js` | `.getAlertsString` | Get all alerts as a string (incomplete)
+`VoidTrader` | `baro.js` | `.getVoidTrader` | Get The void trader information (incomplete)
+`VoidTrader` | `baro.js` | `.getVoidTraderString` | Get The void trader information as a string (incomplete)
+`DailyDeals` | `deal.js` | `.getDeals` | Get current Darvo Daily Deal (incomplete)
+`DailyDeals` | `deal.js` | `.getDealsAsString` | Get current Darvo Daily Deal as a string (incomplete)
+`BadlandNodes` | `badlands.js` | `.getDarkSectors` | Get Darksectors object (incomplete)
+`BadlandNodes` | `badlands.js` | `.getDarkSectorsString` | Get a string representation of the Darksectors (incomplete)
 `GlobalUpgrades` | `globalModifiers.js` | `.getGlobalModifers` | Get global modifiers objects
 `GlobalUpgrades` | `globalModifiers.js` | `.getGlobalModifersString` | Get global modifiers objects as a string
+`ActiveMissions` | `voidFissure.js` | `.getAll` | Get all currently active void fissure objects
+`ActiveMissions` | `voidFissure.js` | `.getString` | Get a string of all currently active void fissure objects
 
 ## Environment variables
 
@@ -58,5 +60,22 @@ Variable | example | default
 ## Installation
 `npm install --save warframe-worldstate-parser`
 
+## Usage
+
+```javascript
+var WorldState = require('warframe-worldstate-parser');
+var worldStates = {
+  PC : new Worldstate('PC'),
+  PS4 : new Worldstate('PS4'),
+  X1 : new Worldstate('X1'),
+}
+var primeAccess = null;
+worldStates[platform].getPrimeAccessString(function(err, primeAccessObject) {
+  if (err) {
+    return console.err(err);
+  }
+  primeAccess = primeAccessObject;
+});
+```
 ## Note
 Because of the volatile, ever-changing nature of warframe, it would be best to install from the github branch instead of from npm, while using npm for management, still, because there will always be more strings to add to the languages file.

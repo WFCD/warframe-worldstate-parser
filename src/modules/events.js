@@ -4,10 +4,10 @@ var md = require('node-md-config');
 var dsUtil = require('../lib/_utils.js');
 var Reward = require('../lib/reward.js');
 
-var strings = require(dsUtil.stringsPath);
-var eventsData = require('../resources/eventsData.json');
-var nodes = require('../resources/solNodes.json');
-var factions = require('../resources/factionsData.json');
+var strings = dsUtil.getStringsObject();
+var eventsData = require('warframe-worldstate-data').events;
+var nodes = require('warframe-worldstate-data').solNodes;
+var factions = require('warframe-worldstate-data').factions;
 
 /**
  * Create a new Events instance
@@ -68,13 +68,13 @@ var Event = function(data) {
     this.smallInterval = data.GoalInterim;
     this.largeInterval = data.GoalInterim2;
     this.faction = factions[data.Faction].value;
-    this.description = strings[data.Desc.toLowerCase()].value;
-    this.node = nodes[data.Node] ? nodes[data.Node].value : data.Node;
+    this.description = dsUtil.getLocalized(data.Desc);
+    this.node = dsUtil.getSolNodeValue(data.Node, nodes);
     this.nodes = [];
-    this.victim = nodes[data.VictimNode] ? nodes[data.VictimNode].value : data.VictimNode;
+    this.victim = dsUtil.getSolNodeValue(data.VictimNode, nodes);
     if(data.ConcurrentNodes){
       for(var indexNodes = 0; indexNodes<data.ConcurrentNodes.length; indexNodes++){
-        this.nodes.push(nodes[data.ConcurrentNodes[indexNodes]] ? nodes[data.ConcurrentNodes[indexNodes]].value : data.ConcurrentNodes[indexNodes]);
+        this.nodes.push(dsUtil.getSolNodeValue(data.ConcurrentNodes[indexNodes], nodes));
       }
     }
     if(data.ScoreLocTag){

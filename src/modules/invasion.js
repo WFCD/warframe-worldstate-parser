@@ -4,10 +4,9 @@ var md = require('node-md-config');
 var dsUtil = require('../lib/_utils.js');
 var Reward = require('../lib/reward.js');
 
-var strings = require(dsUtil.stringsPath);
-var nodes = require('../resources/solNodes.json');
-var factions = require('../resources/factionsData.json');
-var missionTypes = require('../resources/missionTypes.json');
+var nodes = require('warframe-worldstate-data').solNodes;
+var factions = require('warframe-worldstate-data').factions;
+var missionTypes = require('warframe-worldstate-data').missionTypes;
 
 var Invasions = function(data) {
   this.invasions = [];
@@ -42,21 +41,21 @@ var Invasion = function(data) {
     this.id = data._id.$id;
     this.node = nodes[data.Node] ? nodes[data.Node].value : data.Node;
 
-    this.faction1 = factions[data.AttackerMissionInfo.faction].value;
-    this.type1 = missionTypes[data.AttackerMissionInfo.missionType].value;
+    this.faction1 = dsUtil.safeGetLocalized(data.AttackerMissionInfo.faction, factions);
+    this.type1 = dsUtil.safeGetLocalized(data.AttackerMissionInfo.missionType, missionTypes);
     this.reward1 = rewardFromString(data.AttackerMissionInfo.missionReward);
     this.minLevel1 = data.AttackerMissionInfo.minEnemyLevel;
     this.maxLevel1 = data.AttackerMissionInfo.maxEnemyLevel;
 
-    this.faction2 = factions[data.DefenderMissionInfo.faction].value;
-    this.type2 = missionTypes[data.DefenderMissionInfo.missionType].value;
+    this.faction2 = dsUtil.safeGetLocalized(data.DefenderMissionInfo.faction, factions);
+    this.type2 = dsUtil.safeGetLocalized(data.DefenderMissionInfo.missionType, missionTypes);
     this.reward2 = rewardFromString(data.DefenderMissionInfo.missionReward);
     this.minLevel2 = data.DefenderMissionInfo.minEnemyLevel;
     this.maxLevel2 = data.DefenderMissionInfo.maxEnemyLevel;
 
     this.completion = 100*((data.Goal-data.Count)/data.Goal);
     this.ETA = new Date(1000* data.Activation.sec);
-    this.desc = strings[data.LocTag.toLowerCase()].value;
+    this.desc = dsUtil.getLocalized(data.LocTag);
   }
   catch (err) {
     console.log("Invasion: " + err.message);
