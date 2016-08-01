@@ -18,9 +18,9 @@ Alerts.prototype.getAll = function() {
 
 Alerts.prototype.getAllString = function() {
   var allString = '';
-  for(var alert in this.alerts){
+  this.alerts.forEach(function(alert){
     allString += alert.toString();
-  }
+  });
   return allString;
 }
 
@@ -49,9 +49,9 @@ Alert.prototype.toString = function() {
                                 '%s%s' +
                                 'level %d - %d%s' +
                                 'Expires in %s%s',
-                                md.codeMulti, this.mission.getLocation(), md.lineEnd,
-                                this.mission.getMissionType(), this.reward.getFaction(), md.lineEnd,
-                                this.reward.toString(), md.lineEnd,
+                                md.codeMulti, this.reward.toString(), md.lineEnd,
+                                this.mission.getFaction(), this.mission.getMissionType(), md.lineEnd,
+                                this.mission.getLocation(), md.lineEnd,
                                 this.mission.getMinEnemyLevel(), this.mission.getMaxEnemyLevel(), md.lineEnd,
                                 this.getETAString(), md.blockEnd);
 

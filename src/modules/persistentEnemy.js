@@ -127,7 +127,7 @@ var Enemy = function(data) {
     this.agentType = dsUtil.getLocalized(data.AgentType);
     this.locationTag = dsUtil.getLocalized(data.LocTag);
     this.rank = data.Rank;
-    this.healthPercent = parseFloat(data.HealthPercent);
+    this.healthPercent = (parseFloat(data.HealthPercent)*100).toFixed(2);
     this.fleeDamage = parseFloat(data.FleeDamage);
     this.region = persistentEnemyData.regions[data.Region];
     this.lastDiscoveredAt = dsUtil.getSolNodeValue(data.LastDiscoveredLocation, nodes);
@@ -218,7 +218,7 @@ Enemy.prototype.getIsDiscovered = function() {
  * @return (string) The new string object
  */
 Enemy.prototype.toString = function () {
-  return util.format('%s last discovered at %s (%s). %sIt has %d% health remaining and is currently %s%s', this.agentType, this.lastDiscoveredAt, this.region, md.lineEnd, this.healthPercent, this.isDiscovered ? 'discovered' : 'not discovered', md.lineEnd);
+  return util.format('%s last discovered at %s. %s    It has %d% health remaining and is currently %s%s', this.agentType, this.lastDiscoveredAt, md.lineEnd, this.healthPercent, this.isDiscovered ? 'discovered' : 'not discovered', md.lineEnd);
 }
 
 /**

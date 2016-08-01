@@ -108,28 +108,41 @@ Invasion.prototype.getRewardTypes = function() {
  * @return {object} Reward object
  */
 function rewardFromString(text) {
-  /*var credits, items, countedItems;
-  credits = text.match(/(^[1-9][0-9,]+)cr/);
-  if(credits) {
-    credits = parseInt(credits[1].replace(',',''), 10);
-  }
+  /*try{
+    var credits, items, countedItems;
+    credits = text.match(/(^[1-9][0-9,]+)cr/);
+    if(credits) {
+      credits = parseInt(credits[1].replace(',',''), 10);
+    }
 
-  items = text.match(/^(?:([1-9]+\d*)\s+)?([A-Za-z\s]+)/) || [];
-  if(items[1]) {
-    countedItems = [{ItemCount: items[1], ItemType: items[2]}];
-    items = [];
-  }
-  else if(items[2]) {
-    countedItems = [];
-    items = [items[2]]
-  }
-  else {
-    countedItems = [];
-    items = [];
-  }*/
+    items = text.match(/^(?:([1-9]+\d*)\s+)?([A-Za-z\s]+)/) || [];
+    if(items[1]) {
+      countedItems = [{ItemCount: items[1], ItemType: items[2]}];
+      items = [];
+    }
+    else if(items[2]) {
+      countedItems = [];
+      items = [items[2]]
+    }
+    else {
+      countedItems = [];
+      items = [];
+    }
 
-  return new Reward({credits: credits, items: items,
-                    countedItems: countedItems});
+    return new Reward({credits: text.credits, items: text.items,
+                      countedItems: text.countedItems});
+  } catch(err) {
+    console.log ("Error building reward from string: " + err);
+    console.log ("Text: " + text);
+  }
+  */
+  try{
+    return new Reward({credits: text.credits, items: text.items,
+                      countedItems: text.countedItems});
+  } catch(err){
+    console.error(err);
+  }
+  
 }
 
 module.exports = Invasions;

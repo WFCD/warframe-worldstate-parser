@@ -1,4 +1,5 @@
 var util = require('util');
+var dsUtil = require('./_utils.js');
 
 // Resource names
 const resources = [
@@ -96,12 +97,12 @@ Reward.prototype.toString = function() {
   var tokens = [];
 
   for(var i in this.items) {
-    tokens.push(this.items[i]);
+    tokens.push(dsUtil.getLocalized(this.items[i]));
   }
 
   for(var i in this.countedItems) {
-/*    tokens.push(util.format('%d %s', this.countedItems[i].ItemCount,
-				this.countedItems[i].ItemType));*/
+    tokens.push(util.format('%d %s', this.countedItems[i].ItemCount,
+				dsUtil.getLocalized(this.countedItems[i].ItemType)));
   }
   if(this.credits) {
     tokens.push(this.credits + 'cr');
@@ -111,10 +112,13 @@ Reward.prototype.toString = function() {
 }
 
 Reward.prototype.getTypes = function() {
-  var allItems = [].concat(this.items);
-
+  var translatedItems = [];
+  this.items.forEach(function(item){
+    translatedItems.push(dsUtil.getLocalized(item));
+  });
+  var allItems = [].concat(translatedItems);
   for(var i in this.countedItems) {
-    allItems.push(this.countedItems[i].ItemType);
+    allItems.push(dsUtil.getLocalized(this.countedItems[i].ItemType));
   }
 
   return allItems.map(getItemType);

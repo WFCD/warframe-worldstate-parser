@@ -37,14 +37,14 @@ WorldState = function(data, platform) {
   
   this.creation = Date.now();
 
-  /*
+  
   this.darkSectors = new DarkSectors(data.BadlandNodes);
   this.invasion = new Invasion(data.Invasions);
   this.alerts =  new Alerts(data.Alerts);
   this.voidTrader = new VoidTrader(data.VoidTraders[0]);
   this.deals = new Deals(data.DailyDeals);
   this.flashDeals = new FlashDeals(data.FlashSales);
-  */
+  
 }
 
 module.exports = WorldState;

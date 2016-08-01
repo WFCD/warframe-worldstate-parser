@@ -449,7 +449,6 @@ Parser.prototype.getSimarisString = function(callback) {
   });
 }
 
-/* TODO
 
 //invasions
 Parser.prototype.getInvasions = function(callback){
@@ -511,7 +510,7 @@ Parser.prototype.getDeals = function(callback){
     if(err) {
       return callback(err);
     }
-    callback(null, data.deals);
+    callback(null, data.deals.getAll());
   });
 }
 Parser.prototype.getDealsString = function(callback) {
@@ -558,7 +557,6 @@ Parser.prototype.getDarkSectorsString = function(callback) {
     callback(null, data.darkSectors.toString());
   });
 }
-*/
 
 //Relics
 Parser.getRelicFromQuery = function(query, callback){

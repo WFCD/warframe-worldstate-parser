@@ -14,17 +14,18 @@ var Reward = require('./reward.js');
 var Mission = function(data) {
   try{
     if(data.descText){
-    if(data.descText.indexOf('/')>-1){
-      this.description = dsUtil.getLocalized(data.descText.toLowerCase());
+      if(data.descText.indexOf('/')>-1){
+        this.description = dsUtil.getLocalized(data.descText);
+      }
+      else
+        this.description = data.descText;
     }
-    else
-      this.description = data.descText;
-    }
-    if(data.location)
-      this.location = dsUtil.getSolNodeValue(data.Node, nodes);//    nodes[data.Node] ? nodes[data.Node].value : data.Node;
+    this.location = dsUtil.getSolNodeValue(data.location, nodes);
     this.missionType = dsUtil.safeGetLocalized(data.missionType, missionTypes);
-    this.faction = dsUtil.safeGetLocalized(data.faction, factions);//factions[data.faction].value;
-    this.reward = new Reward(data.missionReward);
+    this.faction = dsUtil.safeGetLocalized(data.faction, factions);
+    if(data.missionReward){
+      this.reward = new Reward(data.missionReward);
+    }
     this.minEnemyLevel = data.minEnemyLevel;
     this.maxEnemyLevel = data.maxEnemyLevel;
     this.maxWaveNum = data.maxWaveNum;
@@ -40,8 +41,15 @@ var Mission = function(data) {
  * @return {string} This mission in string format
  */
 Mission.prototype.toString = function() {
-//  var mission = util.format(this.location, )
-  return "";
+  var mission = util.format('%s%s' +
+                            '%s (%s)%s' +
+                            '%s%s%s' +
+                            'level %d - %d%', 
+                            this.reward.toString(), md.lineEnd, 
+                            this.mission.getFaction(), this.mission.getMissionType(), md.lineEnd,
+                            this.mission.getLocation(), md.lineEnd, 
+                            this.mission.getMinEnemyLevel(), this.mission.getMaxEnemyLevel());
+  return mission;
 }
 
 /**

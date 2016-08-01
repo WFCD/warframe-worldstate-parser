@@ -12,6 +12,7 @@ var dsUtil = require('../lib/_utils.js');
  * @param {object} data Void Trader data
  */
 var Baro = function(data) {
+  this.id = data._id.$id;
   this.start = new Date(1000 * data.Activation.sec);
   this.end = new Date(1000 * data.Expiry.sec);
   this.location = nodes[data.Node] ? nodes[data.Node].value : data.Node;
@@ -46,7 +47,7 @@ Baro.prototype.toString = function() {
  * @return {string} The new string object
  */
 Baro.prototype.getStartString = function() {
-  return dsUtil.timeDeltaToString(this.start.getTime() - Date.now());
+  return "["+dsUtil.timeDeltaToString(Math.abs(Date.now()-this.start.getTime()))+"]";
 }
 
 /**
@@ -55,7 +56,7 @@ Baro.prototype.getStartString = function() {
  * @return {string} The new string object
  */
 Baro.prototype.getEndString = function() {
-  return dsUtil.timeDeltaToString(this.end.getTime() - Date.now());
+  return   dsUtil.timeDeltaToString(Math.abs(Date.now()-this.end.getTime()));
 }
 
 /**
