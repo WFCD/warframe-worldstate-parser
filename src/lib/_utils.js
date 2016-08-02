@@ -6,6 +6,11 @@ if(process.env.WARFRAME_LANG_PATH){
   stringsObject = require('warframe-worldstate-data').languages;
 }
 
+var toTitleCase = function (str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 /**
  * Converts the difference between two Date object to a String.
  * Convenience function
@@ -16,21 +21,26 @@ if(process.env.WARFRAME_LANG_PATH){
  */
 var timeDeltaToString = function (millis) {
   var seconds = millis / 1000;
-  var time = '';
+  var timePieces = [];
 
   if (seconds >= 86400) { // Seconds in a day
-    time += util.format('%dd', Math.floor(seconds / 86400));
-    seconds = seconds % 86400;
+    timePieces.push(util.format('%dd', Math.floor(seconds / 86400)));
+    seconds = Math.floor(seconds) % 86400;
   }
   if (seconds >= 3600) { // Seconds in an hour
-    time += util.format(' %dh %dm', Math.floor(seconds / 3600)
-                        , Math.floor((seconds % 3600) / 60));
-    seconds = seconds % 3600;
+    timePieces.push(util.format('%dh', Math.floor(seconds / 3600)));
+    seconds = Math.floor(seconds) % 3600;
   }
-  time += util.format(' %ds', Math.floor(seconds / 60));
-  
-  return time;
-}
+  if(seconds > 60){
+    timePieces.push(util.format('%dm', Math.floor(seconds/60)));
+    seconds = Math.floor(seconds) % 60;
+  }
+  if(seconds > 0)
+  {
+    timePieces.push(util.format('%ds', Math.floor(seconds)));
+  }
+  return timePieces.join(' ');
+};
 
 var getStringsObject = function(){
   if(typeof stringsObject  !==  'undefined')
@@ -48,14 +58,14 @@ var getStringsObject = function(){
 var safeGetLocalized = function(path, object){
   if(typeof path !== 'undefined') {
     if(typeof object[path] !== 'undefined'){
-      return object[path].value;
+      return toTitleCase(object[path].value);
     } else {
       if(path.split("/").length > 1){
         console.error(path);
-        return path.split("/").slice(-1)[0];
+        return toTitleCase(path.split("/").slice(-1)[0]);
       }
       else{
-        return path;
+        return toTitleCase(path);
       }
     }
   } else {
@@ -69,10 +79,10 @@ var safeGetObj = function(path, object){
     } else {
       if(path.split("/").length > 1){
         console.error(path);
-        return path.split("/").slice(-1)[0];
+        return toTitleCase(path.split("/").slice(-1)[0]);
       }
       else{
-        return path;
+        return toTitleCase(path);
       }
     }
   } else {

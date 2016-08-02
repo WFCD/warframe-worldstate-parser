@@ -10,10 +10,6 @@ var missionTypes = require('warframe-worldstate-data').missionTypes;
 
 var Invasions = function(data) {
   this.invasions = [];
-  /*for(var invasion in data){
-    this.invasions.push(new Invasion(invasion));
-  }*/
-  
   for (var index = 0; index < data.length; index++){
     this.invasions.push(new Invasion(data[index]));
   }
@@ -24,11 +20,15 @@ Invasions.prototype.getAll = function(){
 }
 
 Invasions.prototype.toString = function(){
-  var invasionsString = md.codeMulti;
+  var invasionsString = '';
+  console.log(this.invasions.length)
   for(var invasion in this.invasions){
-    invasionsString += invasion.toString();
+    invasionsString += this.invasions[invasion].toString();
   }
-  return invasionsString+md.blockEnd;
+  if(this.invasions.length < 1){
+    invasionsString = md.codeMulti+"There are no invasions"+md.blockEnd;
+  }
+  return invasionsString;
 }
 /**
  * Create a new invasion instance
@@ -68,7 +68,8 @@ var Invasion = function(data) {
  * @return {string} This invasion in string format
  */
 Invasion.prototype.toString = function() {
-  if(this.faction1 === 'Infestation') {
+  var infestReg = /infest(ed)?(ation)?/ig;
+  if(infestReg.test(this.faction1) || infestReg.test(this.faction2)){
     return util.format('%s%s%s' +
                        '%s (%s)%s' +
                        '%s%s' +
@@ -77,7 +78,7 @@ Invasion.prototype.toString = function() {
                        this.desc, this.type2, md.lineEnd,
                        this.reward2.toString(), md.lineEnd,
                        Math.round(this.completion * 100) / 100,
-                       this.ETA, md.blockEnd);
+                       this.getETAString(), md.blockEnd);
   }
 
   return util.format('%s%s - %s%s' +
@@ -87,7 +88,7 @@ Invasion.prototype.toString = function() {
                      md.codeMulti, this.node, this.desc, md.lineEnd,
 					 this.faction1, this.type1, this.reward1.toString(), md.lineEnd,
 					 this.faction2, this.type2, this.reward2.toString(), md.lineEnd,
-                     Math.round(this.completion * 100) / 100, this.ETA, md.blockEnd);
+                     Math.round(this.completion * 100) / 100, this.getETAString(), md.blockEnd);
 }
 
 /**
@@ -101,6 +102,16 @@ Invasion.prototype.getRewardTypes = function() {
 }
 
 /**
+ * Return an the ETA string for this invaion
+ *
+ * @return {string} The ETA string for this invaion
+ */
+Invasion.prototype.getETAString = function() {
+  
+  return dsUtil.timeDeltaToString(Math.abs(Date.now()-this.ETA.getTime()));
+}
+
+/**
  * Parse a reward object from a string
  *
  * @param {string} text String to parse
@@ -108,41 +119,12 @@ Invasion.prototype.getRewardTypes = function() {
  * @return {object} Reward object
  */
 function rewardFromString(text) {
-  /*try{
-    var credits, items, countedItems;
-    credits = text.match(/(^[1-9][0-9,]+)cr/);
-    if(credits) {
-      credits = parseInt(credits[1].replace(',',''), 10);
-    }
-
-    items = text.match(/^(?:([1-9]+\d*)\s+)?([A-Za-z\s]+)/) || [];
-    if(items[1]) {
-      countedItems = [{ItemCount: items[1], ItemType: items[2]}];
-      items = [];
-    }
-    else if(items[2]) {
-      countedItems = [];
-      items = [items[2]]
-    }
-    else {
-      countedItems = [];
-      items = [];
-    }
-
-    return new Reward({credits: text.credits, items: text.items,
-                      countedItems: text.countedItems});
-  } catch(err) {
-    console.log ("Error building reward from string: " + err);
-    console.log ("Text: " + text);
-  }
-  */
   try{
     return new Reward({credits: text.credits, items: text.items,
                       countedItems: text.countedItems});
   } catch(err){
     console.error(err);
-  }
-  
+  } 
 }
 
 module.exports = Invasions;

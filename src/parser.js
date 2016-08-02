@@ -176,7 +176,7 @@ Parser.prototype.getAllPersistentEnemiesString = function(callback) {
     callback(null, data.enemies.getAllAsString());
   });
 }
-Parser.prototype.getDisoveredPersistentEnemies = function(callback) {
+Parser.prototype.getDiscoveredPersistentEnemies = function(callback) {
   this.getData(function(err, data) {
     if(err) {
       return callback(err);
@@ -184,7 +184,7 @@ Parser.prototype.getDisoveredPersistentEnemies = function(callback) {
     callback(null, data.enemies.getDiscovered());
   });
 }
-Parser.prototype.getDisoveredPersistentEnemiesString = function(callback) {
+Parser.prototype.getDiscoveredPersistentEnemiesString = function(callback) {
   this.getData(function(err, data) {
     if(err) {
       return callback(err);
