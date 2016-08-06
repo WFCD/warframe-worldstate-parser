@@ -27,22 +27,8 @@ var Sorties = function (data) {
     }
     this.boss = this.variants[0].boss
   } else {
-    self = this;
-    setTimeout(function(){
-      self.id = data._id.$id;
-      self.expiry = new Date(1000 * data.Expiry.sec);
-      self.variants = [];
-      for (var index = 0; index < data.Variants.length; index++){
-        try {
-          var sortie = new Sortie(data.Variants[index]);
-          self.variants.push(sortie);
-        } catch (err) {
-          console.log(err);
-          console.log(self.id);
-        }
-      }
-    this.boss = this.variants[0].boss
-    }, 60000);
+    console.error('couldn\'t initialize sortie, data is undefined')
+    this.id = 0;
   }
 }
 
