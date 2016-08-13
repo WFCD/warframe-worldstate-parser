@@ -76,20 +76,20 @@ var Components = function (data) {
       });
     }
     if(!partInParts){
-      self.components.push(new Part(reliquary.component, reliquary.ducats, reliquary.location + " ("+reliquary.rarity+")"));
+      self.components.push(new Component(reliquary.component, reliquary.ducats, reliquary.location + " ("+reliquary.rarity+")"));
     }
   });
 }
 
 
 Components.prototype.toString = function(){
-  var partsString = md.codeMulti;
-  partsString += this.parts.join(md.doubleReturn);
-  if(partsString === md.codeMulti){
-    partsString += "Operator, no relics available for that query.";
+  var componentString = md.codeMulti;
+  componentString += this.components.join(md.doubleReturn);
+  if(componentString === md.codeMulti){
+    componentString += "Operator, no relics available for that query.";
   }
-  partsString += md.blockEnd;
-  return partsString;
+  componentString += md.blockEnd;
+  return componentString;
 }
 
 Components.prototype.getAll = function(){
