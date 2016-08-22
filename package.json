@@ -10,7 +10,7 @@
     "json-query": "^2.1.1",
     "node-md-config": "^2.0.1",
     "request": "^2.72.0",
-    "warframe-worldstate-data": "file:///home/pi/warframe-worldstate-data"
+    "warframe-worldstate-data": "git://github.com/aliasfalse/warframe-worldstate-data.git#master"
   },
   "devDependencies": {},
   "scripts": {
