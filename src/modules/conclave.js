@@ -127,7 +127,7 @@ var Challenge = function(data) {
     }
     this.id = data._id.$id;
     this.challengeRef = dsUtil.getLocalized(data.challengeTypeRefID);
-    this.expiry = dsUtil.timeDeltaToString(data.endDate.sec - Date.now());
+    this.expiry = new Date(data.endDate.sec);
     this.endDate = data.endDate.sec;
     this.amount = parseInt(data.params[0].v);
     this.category = dsUtil.safeGetLocalized(data.Category, conclaveData.categories);
@@ -182,7 +182,7 @@ Challenge.prototype.getMode = function() {
  * @return {boolean} truthy if challenge is daily
  */
 Challenge.prototype.isDaily = function(){
-  return this.category == 'day';
+  return this.category.toLowerCase() == 'day'.toLowerCase();
 }
 
 /**
@@ -191,7 +191,7 @@ Challenge.prototype.isDaily = function(){
  * @return {boolean} truthy if challenge is weekly
  */
 Challenge.prototype.isWeekly = function(){
-  return this.category == 'week';
+  return this.category.toLowerCase() == 'week'.toLowerCase();
 }
 
 /**
@@ -199,8 +199,8 @@ Challenge.prototype.isWeekly = function(){
  * 
  * @return (string) The new string object
  */
-Challenge.prototype.toString = function () {
-  return util.format('%s on %s %s times in a %s%s', this.challengeRef, this.mode, this.amount, this.category, md.lineEnd);
+Challenge.prototype.toString = function (isIndividual) {
+  return util.format('%s%s on %s %s times in a %s%s', isIndividual ? "["+this.getEndString()+"]" : "", this.challengeRef, this.mode, this.amount, this.category, md.lineEnd);
 }
 
 /**
@@ -210,6 +210,15 @@ Challenge.prototype.toString = function () {
  */
 Challenge.prototype.isExpired = function(){
   return this.endDate - Date.now() < 0;
+}
+
+/**
+ * Return how much time is left with the 
+ *
+ * @return {string} The new string object
+ */
+Challenge.prototype.getEndString = function() {
+  return dsUtil.timeDeltaToString(Math.abs(Date.now()-this.expiry.getTime()));
 }
 
 /**

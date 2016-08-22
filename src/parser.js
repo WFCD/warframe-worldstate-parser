@@ -1,6 +1,7 @@
 var request = require('request');
 var WorldState = require('./worldstate.js');
 var LocationQuery = require('./modules/components.js');
+var Reward = require('./lib/reward.js');
 
 var MAX_CACHED_TIME = process.env.WORLDSTATE_CACHE_LENGTH || 300000;
 
@@ -386,8 +387,7 @@ Parser.prototype.getArbitersOfHexisString = function(callback) {
     if(err) {
       return callback(err);
     }
-    var arbiterString = data.syndicates.getArbitersOfHexisString();
-    callback(null, arbiterString);
+    callback(null, data.syndicates.getArbitersOfHexisString());
   });
 }
 Parser.prototype.getCephalonSudaString = function(callback) {
@@ -456,7 +456,7 @@ Parser.prototype.getInvasions = function(callback){
     if(err) {
       return callback(err);
     }
-    callback(null, data.invasion);
+    callback(null, data.invasion.getAll());
   });
 }
 Parser.prototype.getInvasionsString = function(callback){
@@ -568,4 +568,7 @@ Parser.getComponentFromQuery = function(query, callback){
   });
 }
 
-module.exports = Parser;
+module.exports = {
+  Parser,
+  Reward
+}

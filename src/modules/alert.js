@@ -30,7 +30,7 @@ Alerts.prototype.getAllString = function() {
  * @param {object} data Alert data
  */
 var Alert = function(data) {
-  this.id = data.id;
+  this.id = data._id.$id;
   this.activation = new Date(1000 * data.Activation.sec);
   this.expiry = new Date(1000 * data.Expiry.sec);
   this.mission = new Mission(data.MissionInfo);

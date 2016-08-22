@@ -21,7 +21,6 @@ Invasions.prototype.getAll = function(){
 
 Invasions.prototype.toString = function(){
   var invasionsString = '';
-  console.log(this.invasions.length)
   for(var invasion in this.invasions){
     invasionsString += this.invasions[invasion].toString();
   }
@@ -43,13 +42,13 @@ var Invasion = function(data) {
 
     this.faction1 = dsUtil.safeGetLocalized(data.AttackerMissionInfo.faction, factions);
     this.type1 = dsUtil.safeGetLocalized(data.AttackerMissionInfo.missionType, missionTypes);
-    this.reward1 = rewardFromString(data.AttackerMissionInfo.missionReward);
+    this.reward1 = new Reward(data.AttackerReward);
     this.minLevel1 = data.AttackerMissionInfo.minEnemyLevel;
     this.maxLevel1 = data.AttackerMissionInfo.maxEnemyLevel;
 
     this.faction2 = dsUtil.safeGetLocalized(data.DefenderMissionInfo.faction, factions);
     this.type2 = dsUtil.safeGetLocalized(data.DefenderMissionInfo.missionType, missionTypes);
-    this.reward2 = rewardFromString(data.DefenderMissionInfo.missionReward);
+    this.reward2 = new Reward(data.DefenderReward);
     this.minLevel2 = data.DefenderMissionInfo.minEnemyLevel;
     this.maxLevel2 = data.DefenderMissionInfo.maxEnemyLevel;
 

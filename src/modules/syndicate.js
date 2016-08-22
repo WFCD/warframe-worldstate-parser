@@ -19,55 +19,10 @@ var Syndicates = function (data) {
     return;
   }
   this.syndicates = [];
-  this.allString = '';
-  
-  this.arbitersMissions = [];
-  this.arbitersString = '';
-  
-  this.lokaMissions = [];
-  this.lokaString = '';
-  
-  this.sudaMissions = [];
-  this.sudaString = '';
-  
-  this.perrinMissions = [];
-  this.perrinString = '';
-  
-  this.steelMeridianMissions = [];
-  this.steelString = '';
-  
-  this.redVeilMissions = [];
-  this.redVeilString = '';
-  
+
   for (var index = 0; index < data.length; index++){
     var syndicate = new Syndicate(data[index]);
     this.syndicates.push(syndicate);
-    switch(data[index].Tag) {
-      case "ArbitersSyndicate":
-        this.arbitersMissions = syndicate.planNodes;
-        this.arbitersString = syndicate.toString();
-        break;
-      case "CephalonSudaSyndicate":
-        this.sudaMissions = syndicate.planNodes;
-        this.sudaString = syndicate.toString();
-        break;
-      case "NewLokaSyndicate":
-        this.lokaMissions = syndicate.planNodes;
-        this.lokaString  = syndicate.toString();
-        break;
-      case "RedVeilSyndicate":
-        this.redVeilMissions = syndicate.planNodes;
-        this.redVeilString = syndicate.toString();
-        break;
-      case "PerrinSyndicate":
-        this.perrinMissions = syndicate.planNodes;
-         this.perrinString = syndicate.toString();
-        break;
-      case "SteelMeridianSyndicate":
-        this.steelMeridianMissions = syndicate.planNodes;
-        this.steelString = syndicate.toString();
-        break;
-    } 
   }
   this.noSyndicatesString = util.format('%sOperator, there is no sign of syndicate missions, stay alert.', 
                         md.codeMulti);
@@ -83,8 +38,9 @@ Syndicates.prototype.getAllAsString = function(){
   this.syndicates.forEach(function(syndicate){
     allString += syndicate.toString();
   });
-  if(allString === md.codeMulti)
+  if(allString === md.codeMulti){
     allString = this.noSyndicatesString;
+  }
   return allString+md.blockEnd;
 }
 
@@ -100,10 +56,18 @@ Syndicates.prototype.getAll = function(){
 /**
  * Get Arbiters of Hexis syndicate missions in an array
  *
- * @return {array} an array of Arbiters of Hexis syndicate missions
+ * @return {syndicate} Arbiters of Hexis syndicate
  */
 Syndicates.prototype.getArbitersOfHexisMissions = function(){
-  return this.arbitersMissions;
+  var syndicateToReturn = null;
+  var syndicateFound = false;
+  this.syndicates.forEach(function(syndicate){
+    if(syndicate.name === "Arbiters of Hexis"  && !syndicateFound){
+      syndicateToReturn = syndicate;
+      syndicateFound = true;
+    }
+  });
+  return syndicateToReturn;
 }
 
 /**
@@ -111,7 +75,15 @@ Syndicates.prototype.getArbitersOfHexisMissions = function(){
   @return {string} a string representation of Arbiters of Hexis syndicate
  */
 Syndicates.prototype.getArbitersOfHexisString = function(){
-  return util.format(syndFormat, md.codeMulti, this.arbitersString, md.blockEnd);
+  var syndicateStringToReturn = null;
+  var syndicateFound = false;
+  this.syndicates.forEach(function(syndicate){
+    if(syndicate.name === "Arbiters of Hexis"  && !syndicateFound){
+      syndicateStringToReturn = syndicate.toString();
+      syndicateFound = true;
+    }
+  });
+  return util.format(syndFormat, md.codeMulti, syndicateStringToReturn, md.blockEnd);
 }
 
 /**
@@ -120,7 +92,15 @@ Syndicates.prototype.getArbitersOfHexisString = function(){
  * @return {array} an array of Cephalon Suda syndicate missions
  */
 Syndicates.prototype.getCephalonSudaMissions = function(){
-  return this.sudaMissions;
+  var syndicateToReturn = null;
+  var syndicateFound = false;
+  this.syndicates.forEach(function(syndicate){
+    if(syndicate.name === "Cephalon Suda"  && !syndicateFound){
+      syndicateToReturn = syndicate;
+      syndicateFound = true;
+    }
+  });
+  return syndicateToReturn;
 }
 
 /**
@@ -128,7 +108,15 @@ Syndicates.prototype.getCephalonSudaMissions = function(){
   @return {string} a string representation of Cephalon Suda syndicate
  */
 Syndicates.prototype.getCephalonSudaString = function(){
-  return util.format(syndFormat, md.codeMulti, this.sudaString, md.blockEnd);
+  var syndicateStringToReturn = null;
+  var syndicateFound = false;
+  this.syndicates.forEach(function(syndicate){
+    if(syndicate.name === "Cephalon Suda"  && !syndicateFound){
+      syndicateStringToReturn = syndicate.toString();
+      syndicateFound = true;
+    }
+  });
+  return util.format(syndFormat, md.codeMulti, syndicateStringToReturn, md.blockEnd);
 }
 
 /**
@@ -137,7 +125,15 @@ Syndicates.prototype.getCephalonSudaString = function(){
  * @return {array} an array of New Loka syndicate missions
  */
 Syndicates.prototype.getNewLokaMissions = function(){
-  return this.lokaMissions;
+  var syndicateToReturn = null;
+  var syndicateFound = false;
+  this.syndicates.forEach(function(syndicate){
+    if(syndicate.name === "New Loka"  && !syndicateFound){
+      syndicateToReturn = syndicate;
+      syndicateFound = true;
+    }
+  });
+  return syndicateToReturn;
 }
 
 /**
@@ -145,7 +141,15 @@ Syndicates.prototype.getNewLokaMissions = function(){
   @return {string} a string representation of New Loka syndicate
  */
 Syndicates.prototype.getNewLokaString = function(){
-  return util.format(syndFormat, md.codeMulti, this.lokaString, md.blockEnd);
+  var syndicateStringToReturn = null;
+  var syndicateFound = false;
+  this.syndicates.forEach(function(syndicate){
+    if(syndicate.name === "New Loka"  && !syndicateFound){
+      syndicateStringToReturn = syndicate.toString();
+      syndicateFound = true;
+    }
+  });
+  return util.format(syndFormat, md.codeMulti, syndicateStringToReturn, md.blockEnd);
 }
 
 /**
@@ -154,7 +158,15 @@ Syndicates.prototype.getNewLokaString = function(){
  * @return {array} an array of Perrin Sequence syndicate missions
  */
 Syndicates.prototype.getPerrinSequenceMissions = function(){
-  return this.perrinMissions;
+  var syndicateToReturn = null;
+  var syndicateFound = false;
+  this.syndicates.forEach(function(syndicate){
+    if(syndicate.name === "Perrin Sequence"  && !syndicateFound){
+      syndicateToReturn = syndicate;
+      syndicateFound = true;
+    }
+  });
+  return syndicateToReturn;
 }
 
 /**
@@ -162,7 +174,15 @@ Syndicates.prototype.getPerrinSequenceMissions = function(){
   @return {string} a string representation of Perrin Sequence syndicate
  */
 Syndicates.prototype.getPerrinSequenceString = function(){
-  return util.format(syndFormat, md.codeMulti, this.perrinString, md.blockEnd);
+  var syndicateStringToReturn = null;
+  var syndicateFound = false;
+  this.syndicates.forEach(function(syndicate){
+    if(syndicate.name === "Perrin Sequence"  && !syndicateFound){
+      syndicateStringToReturn = syndicate.toString();
+      syndicateFound = true;
+    }
+  });
+  return util.format(syndFormat, md.codeMulti, syndicateStringToReturn, md.blockEnd);
 }
 
 /**
@@ -171,7 +191,15 @@ Syndicates.prototype.getPerrinSequenceString = function(){
  * @return {array} an array of Steel Meridian syndicate missions
  */
 Syndicates.prototype.getSteelMeridianMissions = function(){
-  return this.steelMeridianMissions;
+  var syndicateToReturn = null;
+  var syndicateFound = false;
+  this.syndicates.forEach(function(syndicate){
+    if(syndicate.name === "Steel Meridian"  && !syndicateFound){
+      syndicateToReturn = syndicate;
+      syndicateFound = true;
+    }
+  });
+  return syndicateToReturn;
 }
 
 /**
@@ -179,15 +207,32 @@ Syndicates.prototype.getSteelMeridianMissions = function(){
   @return {string} a string representation of Steel Meridian syndicate
  */
 Syndicates.prototype.getSteelMeridianString = function(){
-  return util.format(syndFormat, md.codeMulti, this.steelString, md.blockEnd);
+  var syndicateStringToReturn = null;
+  var syndicateFound = false;
+  this.syndicates.forEach(function(syndicate){
+    if(syndicate.name === "Steel Meridian"  && !syndicateFound){
+      syndicateStringToReturn = syndicate.toString();
+      syndicateFound = true;
+    }
+  });
+  return util.format(syndFormat, md.codeMulti, syndicateStringToReturn, md.blockEnd);
 }
+
 /**
  * Get Red Veil syndicate missions in an array
  *
  * @return {array} an array of Red Veil syndicate missions
  */
 Syndicates.prototype.getRedVeilMissions = function(){
-  return this.redVeilMissions;
+  var syndicateToReturn = null;
+  var syndicateFound = false;
+  this.syndicates.forEach(function(syndicate){
+    if(syndicate.name === "Red Veil"  && !syndicateFound){
+      syndicateToReturn = syndicate;
+      syndicateFound = true;
+    }
+  });
+  return syndicateToReturn;
 }
 
 /**
@@ -195,7 +240,15 @@ Syndicates.prototype.getRedVeilMissions = function(){
   @return {string} a string representation of Red Veil syndicate
  */
 Syndicates.prototype.getRedVeilString = function(){
-  return util.format(syndFormat, md.codeMulti, this.redVeilString, md.blockEnd);
+  var syndicateStringToReturn = null;
+  var syndicateFound = false;
+  this.syndicates.forEach(function(syndicate){
+    if(syndicate.name === "Red Veil"  && !syndicateFound){
+      syndicateStringToReturn = syndicate.toString();
+      syndicateFound = true;
+    }
+  });
+  return util.format(syndFormat, md.codeMulti, syndicateStringToReturn, md.blockEnd);
 }
 /**
  * Create a new Syndicate instance
@@ -234,7 +287,7 @@ var Syndicate = function(data) {
 Syndicate.prototype.toString = function() {
   var syndStringPre = util.format("%s %s currently  has missions available on: %s  \u2022 ", this.getETAString(), this.name, md.lineEnd);
   var syndString = '';
-  syndString = syndString.concat(syndStringPre, this.planNodes.join(util.format("%s  \u2022 ", md.lineEnd)));
+  syndString = syndString.concat(syndStringPre, this.planNodes.join(util.format(md.lineEnd +"  \u2022 ")));
   if(syndString === syndStringPre)
   {
     syndString = util.format("No missions available for %s", this.name);

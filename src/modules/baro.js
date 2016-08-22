@@ -57,7 +57,7 @@ Baro.prototype.toString = function() {
  * @return {string} The new string object
  */
 Baro.prototype.getStartString = function() {
-  return "["+dsUtil.timeDeltaToString(Math.abs(Date.now()-this.start.getTime()))+"]";
+  return dsUtil.timeDeltaToString(Math.abs(Date.now()-this.start.getTime()));
 }
 
 /**
@@ -66,7 +66,7 @@ Baro.prototype.getStartString = function() {
  * @return {string} The new string object
  */
 Baro.prototype.getEndString = function() {
-  return   dsUtil.timeDeltaToString(Math.abs(Date.now()-this.end.getTime()));
+  return dsUtil.timeDeltaToString(Math.abs(Date.now()-this.end.getTime()));
 }
 
 /**

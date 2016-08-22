@@ -40,7 +40,8 @@ var setRelicValForCompare = function(a){
 var Component = function(name, ducats, location){
   this.name = toTitleCase(name);
   this.ducats = ducats;
-  this.locations = [location];
+  if(typeof location === 'object')
+  this.locations = location;
 }
 
 Component.prototype.addLocation = function(locationToAdd){
@@ -52,13 +53,19 @@ Component.prototype.addLocation = function(locationToAdd){
     }
   });
   if(!locationInLocations){
-    self.relics.push(locationToAdd);
+    self.locations.push(locationToAdd);
+  }
+}
+
+Component.prototype.addAll = function(locations){
+  for(i in locations){
+    this.addLocation(locations[i]);
   }
 }
 
 Component.prototype.toString = function() {
   return this.name +" worth "+ this.ducats + ": "+md.lineEnd+"　　" + 
-    this.relics.sort(RelicSort).join(","+md.lineEnd+"　　");
+    this.locations.sort(RelicSort).join(","+md.lineEnd+"　　");
 }
 
 var Components = function (data) {
@@ -71,12 +78,15 @@ var Components = function (data) {
       self.components.forEach(function (existingComponent, index) {
         if ((reliquary.component.toLowerCase() === existingComponent.name.toLowerCase())) {
           partInParts = true;
-          existingComponent.addLocation(reliquary.location + " ("+reliquary.rarity+")");
+          existingComponent.addAll(reliquary.location.slice(0,5));
         }
       });
     }
     if(!partInParts){
-      self.components.push(new Component(reliquary.component, reliquary.ducats, reliquary.location + " ("+reliquary.rarity+")"));
+      if(typeof reliquary.ducats === 'undefined'){
+        reliquary.ducats = 0
+      }
+      self.components.push(new Component(reliquary.component, reliquary.ducats, reliquary.location.slice(0,5)));
     }
   });
 }

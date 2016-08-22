@@ -28,36 +28,43 @@ const resources = [
 const auras = [
   'Corrosive Projection',
   'Dead Eye',
+  'EMP Aura',
   'Enemy Radar',
   'Energy Siphon',
   'Infested Impedance',
+  'Loot Detector',
   'Physique',
   'Pistol Scavenger',
   'Rejuvenation',
+  'Rifle Amp',
   'Rifle Scavenger',
   'Shield Disruption',
   'Shotgun Scavenger',
   'Sniper Scavenger',
   'Speed Holster',
   'Sprint Boost',
+  'Stand United',
   'Steel Charge'
 ];
 
 // Nightmare mod names
 const nightmare = [
   'Accelerated Blast',
+  'Animal Instinct',
+  'Armored Agility',
   'Blaze',
   'Constitution',
   'Focus Energy',
   'Fortitude',
   'Hammer Shot',
   'Ice Storm',
+  'Lethal Torrent',
   'Rending Strike',
   'Stunning Speed',
   'Wildfire',
-  'Animal Instinct',
-  'Armored Agility',
-  'Seeking Fury'
+  'Seeking Fury',
+  'Shred',
+  'Vigor'
 ];
 
 /**
@@ -67,8 +74,8 @@ const nightmare = [
  * @param {object} data Reward data
  */
 var Reward = function(data) {
-  this.items = data.items;
-  this.countedItems = data.countedItems;
+  this.items = itemListFromJson(data.items);
+  this.countedItems = countedItemTranslation(data.countedItems);
   this.credits = data.credits || null;
 }
 
@@ -89,6 +96,7 @@ Reward.TYPES = {
   FORMA: 'forma',
   EXILUS: 'exilus',
   VAUBAN: 'vauban',
+  ENDO:'endo',
   OTHER: 'other'
 }
 
@@ -101,12 +109,12 @@ Reward.prototype.toString = function() {
   var tokens = [];
 
   for(var i in this.items) {
-    tokens.push(dsUtil.getLocalized(this.items[i]));
+    tokens.push(this.items[i]);
   }
 
   for(var i in this.countedItems) {
     tokens.push(util.format('%d %s', this.countedItems[i].ItemCount,
-				dsUtil.getLocalized(this.countedItems[i].ItemType)));
+				this.countedItems[i].ItemType));
   }
   if(this.credits) {
     tokens.push(this.credits + 'cr');
@@ -118,12 +126,12 @@ Reward.prototype.toString = function() {
 Reward.prototype.getTypes = function() {
   var translatedItems = [];
   for(var i in this.items){
-    translatedItems.push(dsUtil.getLocalized(this.items[i]));
+    translatedItems.push(this.items[i]);
   }
   
   var allItems = [].concat(translatedItems);
   for(var i in this.countedItems) {
-    allItems.push(dsUtil.getLocalized(this.countedItems[i].ItemType));
+    allItems.push(this.countedItems[i].ItemType);
   }
 
   return allItems.map(getItemType);
@@ -167,11 +175,11 @@ Reward.typeToString = function(type) {
     case Reward.TYPES.EXILUS:
       return 'Exilus Adapters';
     case Reward.TYPES.VAUBAN:
-      return 'Vauban Parts'
+      return 'Vauban Parts';
+    case  Reward.TYPES.ENDO:
+      return 'Endo';
     case Reward.TYPES.OTHER:
       return 'Other rewards';
-    case 'all':
-      return 'All';
     default:
       return 'Unrecognized type';
   }
@@ -222,8 +230,11 @@ function getItemType(item) {
   else if(nightmare.indexOf(item) != -1) {
     return Reward.TYPES.NIGHTMARE_MOD;
   }
-  else if(/[CUR]\d Fusion Core/i.test(item)) {
+  else if(/[CUR]\d\sFusion Core/i.test(item)) {
     return Reward.TYPES.FUSION_CORE;
+  }
+  else if(/\d+\sEndo/i.test(item)){
+    return Reward.TYPES.ENDO;
   }
   else if(/catalyst/i.test(item) || /reactor/i.test(item)) {
     return Reward.TYPES.POTATO;
@@ -237,6 +248,27 @@ function getItemType(item) {
   else {
     return Reward.TYPES.OTHER;
   }
+}
+
+
+var itemListFromJson = function(itemList){
+  var translatedItemList = [];
+   for(var i in itemList) {
+      translatedItemList.push(dsUtil.getLocalized(itemList[i]));
+  }
+  return translatedItemList;
+}
+
+var countedItemTranslation = function(countedItemList){
+  var jsonString = "[";
+  var tokens = [];
+  for(var i in countedItemList) {
+    var format = "{\"ItemType\":\"%s\",\"ItemCount\":%d}";
+    tokens.push(util.format(format, dsUtil.getLocalized(countedItemList[i].ItemType), countedItemList[i].ItemCount));
+  }
+  jsonString += tokens.join(",")+"]";
+  
+  return JSON.parse(jsonString);
 }
 
 module.exports = Reward;

@@ -28,7 +28,10 @@ var Sorties = function (data) {
     this.boss = this.variants[0].boss
   } else {
     console.error('couldn\'t initialize sortie, data is undefined')
-    this.id = 0;
+    this.id = Date.now();
+    this.expiry = new Date();
+    this.variants =  [];
+    this.boss = "";
   }
 }
 
@@ -48,7 +51,7 @@ Sorties.prototype.getId = function(){
  */
 Sorties.prototype.toString = function () {
   if(this.isExpired()){
-    return 'None'
+    return md.codeMulti+'There is currently no sortie.'+md.lineEnd+md.blockEnd;
   }
   var sortieString = util.format('%s%s', 
     md.codeMulti, 
