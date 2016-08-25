@@ -91,7 +91,7 @@ NewsItem.prototype.isUpdate = function() {
   return mlower.includes('update') || mlower.includes('hotfix');
 }
 NewsItem.prototype.toString = function() {
-  return util.format('%s[%s] %s%s%s%s%s%s%s', md.codeMulti, this.getETAString(), md.linkBegin, this.message, md.linkMid, this.link, md.linkEnd, md.blockEnd, md.lineEnd);
+  return util.format('[%s] %s%s%s%s%s', this.getETAString(), md.linkBegin, this.message, md.linkMid, this.link, md.linkEnd);
 }
 NewsItem.prototype.getETAString = function() {
   var dateToUse = this.startTime || this.date;

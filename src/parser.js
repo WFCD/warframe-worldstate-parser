@@ -558,16 +558,6 @@ Parser.prototype.getDarkSectorsString = function(callback) {
   });
 }
 
-//Component Query lookup
-Parser.getComponentFromQuery = function(query, callback){
-  new LocationQuery(query, function(err, parts){
-    if(err){
-      return callback(err);
-    }
-    callback(null, parts.toString());
-  });
-}
-
 module.exports = {
   Parser,
   Reward
