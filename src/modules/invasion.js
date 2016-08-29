@@ -11,7 +11,9 @@ var missionTypes = require('warframe-worldstate-data').missionTypes;
 var Invasions = function(data) {
   this.invasions = [];
   for (var index = 0; index < data.length; index++){
-    this.invasions.push(new Invasion(data[index]));
+    if(!data[index].Completed){
+      this.invasions.push(new Invasion(data[index]));
+    }
   }
 }
 
@@ -51,10 +53,24 @@ var Invasion = function(data) {
     this.reward2 = new Reward(data.DefenderReward);
     this.minLevel2 = data.DefenderMissionInfo.minEnemyLevel;
     this.maxLevel2 = data.DefenderMissionInfo.maxEnemyLevel;
-
-    this.completion = 100*((data.Goal-data.Count)/data.Goal);
+    
+    this.completion = null;
     this.ETA = new Date(1000* data.Activation.sec);
     this.desc = dsUtil.getLocalized(data.LocTag);
+    
+    var infestReg = /(?:infest(ed)?(ation)?)|(?:(phorid))/ig;
+    if(infestReg.test(this.faction1) || infestReg.test(this.faction2)){
+      this.completion = 100*((data.Goal + data.Count)/data.Goal);
+    } else {
+      this.completion = 50 - (25*((data.Goal-data.Count)/data.Goal));
+    }
+    
+    if(this.completion < 0){
+      this.completion = 0;
+    }
+    if(this.completion > 100){
+      this.completion = 100;
+    }
   }
   catch (err) {
     console.log("Invasion: " + err.message);
@@ -67,7 +83,7 @@ var Invasion = function(data) {
  * @return {string} This invasion in string format
  */
 Invasion.prototype.toString = function() {
-  var infestReg = /infest(ed)?(ation)?/ig;
+  var infestReg = /(?:infest(ed)?(ation)?)|(?:(phorid))/ig;
   if(infestReg.test(this.faction1) || infestReg.test(this.faction2)){
     return util.format('%s%s%s' +
                        '%s (%s)%s' +

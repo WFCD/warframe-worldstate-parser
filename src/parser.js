@@ -1,6 +1,5 @@
 var request = require('request');
 var WorldState = require('./worldstate.js');
-var LocationQuery = require('./modules/components.js');
 var Reward = require('./lib/reward.js');
 
 var MAX_CACHED_TIME = process.env.WORLDSTATE_CACHE_LENGTH || 300000;
