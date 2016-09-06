@@ -89,20 +89,21 @@ Invasion.prototype.toString = function() {
                        '%s (%s)%s' +
                        '%s%s' +
                        '%d% - %s%s',
-                       md.codeMulti, this.node, md.lineEnd,
+                       md.codeMulti,this.reward2.toString(), md.lineEnd,
                        this.desc, this.type2, md.lineEnd,
-                       this.reward2.toString(), md.lineEnd,
+                       this.node, md.lineEnd,
                        Math.round(this.completion * 100) / 100,
                        this.getETAString(), md.blockEnd);
   }
 
-  return util.format('%s%s - %s%s' +
-                     '%s (%s, %s) vs.%s' +
+  return util.format('%s%s (%s, %s) vs. ' +
                      '%s (%s, %s)%s' +
+                     '%s - %s%s'+
                      '%d% - %s%s',
-                     md.codeMulti, this.node, this.desc, md.lineEnd,
-					 this.faction1, this.type1, this.reward1.toString(), md.lineEnd,
+                     md.codeMulti,
+					 this.faction1, this.type1, this.reward1.toString(),
 					 this.faction2, this.type2, this.reward2.toString(), md.lineEnd,
+                     this.node, this.desc, md.lineEnd,
                      Math.round(this.completion * 100) / 100, this.getETAString(), md.blockEnd);
 }
 
