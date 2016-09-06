@@ -1,11 +1,10 @@
 var util = require('util');
 var md = require('node-md-config');
 
-var dsUtil = require('../lib/_utils.js');
+var persistentEnemyData = require('warframe-worldstate-data').persistentEnemy;
+var nodes = require('warframe-worldstate-data').solNodes;
 
-var strings = require(dsUtil.stringsPath);
-var persistentEnemyData = require('../resources/persistentEnemyData.json');
-var nodes = require('../resources/solNodes.json');
+var dsUtil = require('../lib/_utils.js');
 
 /**
  * Create a new Enemies instance
@@ -125,13 +124,13 @@ var Enemy = function(data) {
       return;
     }
     this.id = data._id.$id;
-    this.agentType = strings[data.AgentType.toLowerCase()].value;
-    this.locationTag = strings[data.LocTag.toLowerCase()].value;
+    this.agentType = dsUtil.getLocalized(data.AgentType);
+    this.locationTag = dsUtil.getLocalized(data.LocTag);
     this.rank = data.Rank;
-    this.healthPercent = parseFloat(data.HealthPercent);
+    this.healthPercent = (parseFloat(data.HealthPercent)*100).toFixed(2);
     this.fleeDamage = parseFloat(data.FleeDamage);
     this.region = persistentEnemyData.regions[data.Region];
-    this.lastDiscoveredAt = nodes[data.LastDiscoveredLocation] ? nodes[data.LastDiscoveredLocation].value : data.LastDiscoveredLocation;
+    this.lastDiscoveredAt = dsUtil.getSolNodeValue(data.LastDiscoveredLocation, nodes);
     this.isDiscovered = data.Discovered;
     this.isUsingTicketing = data.UseTicketing;
   } catch (err) {
@@ -219,7 +218,7 @@ Enemy.prototype.getIsDiscovered = function() {
  * @return (string) The new string object
  */
 Enemy.prototype.toString = function () {
-  return util.format('%s last discovered at %s (%s). %sIt has %d% health remaining and is currently %s%s', this.agentType, this.lastDiscoveredAt, this.region, md.lineEnd, this.healthPercent, this.isDiscovered ? 'discovered' : 'not discovered', md.lineEnd);
+  return util.format('%s last discovered at %s. %s    It has %d% health remaining and is currently %s%s', this.agentType, this.lastDiscoveredAt, md.lineEnd, this.healthPercent, this.isDiscovered ? 'discovered' : 'not discovered', md.lineEnd);
 }
 
 /**

@@ -2,7 +2,6 @@ var util = require('util');
 var md = require('node-md-config');
 
 var dsUtil = require('../lib/_utils.js');
-var strings = require(dsUtil.stringsPath);
 
 var FlashDeals = function(data) {
   this.flashDeals = [];
@@ -17,8 +16,13 @@ FlashDeals.prototype.getAll = function() {
 
 FlashDeals.prototype.toString = function() {
   var flashDealsString = '';
-  for(var flashDeal in this.flashDeals){
-    flashDealsString += flashDeal.toString();
+  for(var i in this.flashDeals){
+    if(this.flashDeals[i].discount > 0){
+      flashDealsString += this.flashDeals[i].toString();
+    }
+  }
+  if(flashDealsString === ''){
+    flashDealsString = md.codeMulti+"Operator, there are currently no flash deals"+md.blockEnd;
   }
   return flashDealsString;
 }
@@ -31,7 +35,7 @@ FlashDeals.prototype.toString = function() {
  */
 var FlashDeal = function(data) {
   this.id = data._id;
-  this.item = strings[data.TypeName.toLowerCase()].value;
+  this.item = dsUtil.getLocalized(data.TypeName);
   this.expiry = new Date(1000 * data.EndDate.sec);
   
   this.discount = data.Discount;
@@ -45,9 +49,12 @@ var FlashDeal = function(data) {
  * @return {string} The new string
  */
 FlashDeal.prototype.toString = function() {
-  var dealString = util.format('%sFlash Deal: %s, %sp%s' +
+  var dealString = util.format('%s%s%s, %sp%s' +
                                'Expires in %s%s',
-                               md.codeMulti,
+                               md.codeMulti, 
+                               this.discount > 0  ? this.discount+"% off!"+md.lineEnd : 
+                               (this.isPopular ? ("**Popular**"+md.lineEnd) : 
+                               (this.isFeatured ? "**Featured**"+md.lineEnd : "")),
                                this.item, this.premiumOverride, md.lineEnd,
                                this.getETAString(), md.blockEnd);
   return dealString;

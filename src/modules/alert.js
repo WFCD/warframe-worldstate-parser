@@ -5,11 +5,6 @@ var dsUtil = require('../lib/_utils.js');
 var Reward = require('../lib/reward.js');
 var Mission = require('../lib/mission.js');
 
-var strings = require(dsUtil.stringsPath);
-var solNodes = require('../resources/solNodes.json');
-var missionTypes = require('../resources/missionTypes.json');
-var factions = require('../resources/factionsData.json');
-
 var Alerts = function(data) {
   this.alerts = [];
   for (var index = 0; index < data.length; index++){
@@ -23,9 +18,9 @@ Alerts.prototype.getAll = function() {
 
 Alerts.prototype.getAllString = function() {
   var allString = '';
-  for(var alert in this.alerts){
+  this.alerts.forEach(function(alert){
     allString += alert.toString();
-  }
+  });
   return allString;
 }
 
@@ -35,7 +30,7 @@ Alerts.prototype.getAllString = function() {
  * @param {object} data Alert data
  */
 var Alert = function(data) {
-  this.id = data.id;
+  this.id = data._id.$id;
   this.activation = new Date(1000 * data.Activation.sec);
   this.expiry = new Date(1000 * data.Expiry.sec);
   this.mission = new Mission(data.MissionInfo);
@@ -54,9 +49,9 @@ Alert.prototype.toString = function() {
                                 '%s%s' +
                                 'level %d - %d%s' +
                                 'Expires in %s%s',
-                                md.codeMulti, this.mission.getLocation(), md.lineEnd,
-                                this.mission.getMissionType(), this.reward.getFaction(), md.lineEnd,
-                                this.reward.toString(), md.lineEnd,
+                                md.codeMulti, this.reward.toString(), md.lineEnd,
+                                this.mission.getFaction(), this.mission.getMissionType(), md.lineEnd,
+                                this.mission.getLocation(), md.lineEnd,
                                 this.mission.getMinEnemyLevel(), this.mission.getMaxEnemyLevel(), md.lineEnd,
                                 this.getETAString(), md.blockEnd);
 

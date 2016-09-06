@@ -2,9 +2,8 @@ var util = require('util');
 var md = require('node-md-config');
 
 var dsUtil = require('../lib/_utils.js');
-var strings = require(dsUtil.stringsPath);
-var nodes = require('../resources/solNodes.json');
-var modifiers = require('../resources/fissureModifiers.json');
+var nodes = require('warframe-worldstate-data').solNodes;
+var modifiers = require('warframe-worldstate-data').fissureModifiers;
 
 /**
  * Create a new void fissures list
@@ -59,11 +58,11 @@ VoidFissures.prototype.getString = function() {
 var VoidFissure = function(data) {
   try{
     this.id = data._id.$id;
-    this.location = nodes[data.Node] ? nodes[data.Node].value : data.Node;
-    this.missionType = nodes[data.Node] ? nodes[data.Node].type : '?';
+    this.location = dsUtil.getSolNodeValue(data.Node, nodes);
+    this.missionType = dsUtil.getSolNodeType(data.Node, nodes);
     this.voidTier = modifiers[data.Modifier] ? modifiers[data.Modifier].value : data.Modifier;
     this.tierNum = modifiers[data.Modifier] ? modifiers[data.Modifier].num : 0;
-    this.enemy =  nodes[data.Node] ? nodes[data.Node].enemy : '?'
+    this.enemy =  dsUtil.getSolNodeEnemy(data.Node, nodes);
     if(data.Activation) {
       this.startTime = new Date(1000 * data.Activation.sec);
     }

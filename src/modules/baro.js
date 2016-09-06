@@ -1,10 +1,9 @@
 var util = require('util');
 var md = require('node-md-config');
+var nodes =  require('warframe-worldstate-data').solNodes;
 
 var dsUtil = require('../lib/_utils.js');
 
-var strings = require(dsUtil.stringsPath);
-var nodes = require('../resources/solNodes.json');
 
 /**
  * Create a new baro instance
@@ -13,10 +12,19 @@ var nodes = require('../resources/solNodes.json');
  * @param {object} data Void Trader data
  */
 var Baro = function(data) {
-  this.start = new Date(1000 * data.Activation.sec);
-  this.end = new Date(1000 * data.Expiry.sec);
-  this.location = nodes[data.Node] ? nodes[data.Node].value : data.Node;
-  this.manifest = data.Manifest;
+  if(typeof data._id !== 'undefined'){
+    this.id = data._id.$id;
+    this.start = new Date(1000 * data.Activation.sec);
+    this.end = new Date(1000 * data.Expiry.sec);
+    this.location = nodes[data.Node] ? nodes[data.Node].value : data.Node;
+    this.manifest = data.Manifest; 
+  } else {
+    this.id = 0;
+    this.start = new Date();
+    this.end = new Date();
+    this.location = "Alpha Centauri Bb (Alpha Centauri)";
+    this.manafest = [];
+  }
 }
 
 /**
@@ -28,10 +36,12 @@ Baro.prototype.toString = function() {
   if(!this.isActive()) {
     return util.format('%sBaro is not here yet, he will arrive in %s at %s%s', md.codeMulti, this.getStartString(), this.location, md.blockEnd);
   }
-  var baroString = util.format('%sVoid Trader at %s%s', md.codeMulti, this.location, md.doubleReturn);
+  var baroString = util.format('%sVoid Trader at %s%s', md.codeMulti, this.location, md.lineEnd);
   for(i in this.manifest) {
-    baroString += util.format('%s - price: %d ducats + %dcr%s',
-                              strings[this.manifest[i].ItemType.toLowerCase()].value,
+    baroString += util.format('　　%s - %d ducats + %dcr%s',
+                              dsUtil.getLocalized(this.manifest[i].ItemType)
+                                .replace(/'S/,"s")
+                                .replace(/'/, ''),
                               this.manifest[i].PrimePrice,
                               this.manifest[i].RegularPrice,
                               md.lineEnd);
@@ -47,7 +57,7 @@ Baro.prototype.toString = function() {
  * @return {string} The new string object
  */
 Baro.prototype.getStartString = function() {
-  return dsUtil.timeDeltaToString(this.start.getTime() - Date.now());
+  return dsUtil.timeDeltaToString(Math.abs(Date.now()-this.start.getTime()));
 }
 
 /**
@@ -56,7 +66,7 @@ Baro.prototype.getStartString = function() {
  * @return {string} The new string object
  */
 Baro.prototype.getEndString = function() {
-  return dsUtil.timeDeltaToString(this.end.getTime() - Date.now());
+  return dsUtil.timeDeltaToString(Math.abs(Date.now()-this.end.getTime()));
 }
 
 /**

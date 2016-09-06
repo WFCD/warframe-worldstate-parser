@@ -1,10 +1,9 @@
 var util = require('util');
 var md = require('node-md-config');
+var sortieData = require('warframe-worldstate-data').sortie;
+var nodes = require('warframe-worldstate-data').solNodes;
 
 var dsUtil = require('../lib/_utils.js');
-
-var sortieData = require('../resources/sortieData.json');
-var nodes = require('../resources/solNodes.json');
 
 /**
  * Create a new sortie instance
@@ -13,19 +12,27 @@ var nodes = require('../resources/solNodes.json');
  * @param {object} data Sorie data
  */
 var Sorties = function (data) {
-  this.id = data._id.$id;
-  this.expiry = new Date(1000 * data.Expiry.sec);
-  this.variants = [];
-  for (var index = 0; index < data.Variants.length; index++){
-    try {
-      var sortie = new Sortie(data.Variants[index]);
-      this.variants.push(sortie);
-    } catch (err) {
-      console.log(err);
-      console.log(this.id);
+  if(typeof data !== 'undefined') {
+    this.id = data._id.$id;
+    this.expiry = new Date(1000 * data.Expiry.sec);
+    this.variants = [];
+    for (var index = 0; index < data.Variants.length; index++){
+      try {
+        var sortie = new Sortie(data.Variants[index]);
+        this.variants.push(sortie);
+      } catch (err) {
+        console.log(err);
+        console.log(this.id);
+      }
     }
+    this.boss = this.variants[0].boss
+  } else {
+    console.error('couldn\'t initialize sortie, data is undefined')
+    this.id = Date.now();
+    this.expiry = new Date();
+    this.variants =  [];
+    this.boss = "";
   }
-  this.boss = this.variants[0].boss
 }
 
 
@@ -44,7 +51,7 @@ Sorties.prototype.getId = function(){
  */
 Sorties.prototype.toString = function () {
   if(this.isExpired()){
-    return 'None'
+    return md.codeMulti+'There is currently no sortie.'+md.lineEnd+md.blockEnd;
   }
   var sortieString = util.format('%s%s', 
     md.codeMulti, 
@@ -106,8 +113,9 @@ var Sortie = function(data) {
     this.planet = region.name;
     this.missionType = region.missions[data.missionIndex];
     this.modifier = sortieData.modifiers[data.modifierIndex];
-    if(data.node)
-      this.node = nodes[data.node] ? nodes[data.node].value : data.node;
+    if(data.node){
+      this.node = dsUtil.getSolNodeValue(data.node, nodes);
+    }
   } catch (err) {
     console.log(JSON.stringify(data));
     console.log(err);
