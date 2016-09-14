@@ -65,9 +65,9 @@ Variable | example | default
 ```javascript
 var WorldState = require('warframe-worldstate-parser');
 var worldStates = {
-  PC : new Worldstate('PC'),
-  PS4 : new Worldstate('PS4'),
-  X1 : new Worldstate('X1'),
+  PC : new WorldState('PC'),
+  PS4 : new WorldState('PS4'),
+  X1 : new WorldState('X1'),
 }
 var primeAccess = null;
 worldStates[platform].getPrimeAccessString(function(err, primeAccessObject) {
