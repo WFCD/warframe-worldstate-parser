@@ -1,4 +1,4 @@
-var util = require('util');
+ var util = require('util');
 var md = require('node-md-config');
 
 var dsUtil = require('../lib/_utils.js');
@@ -92,7 +92,7 @@ VoidFissure.prototype.toString = function() {
 VoidFissure.prototype.getETAString = function() {
   var etaString = "["+dsUtil.timeDeltaToString(Math.abs(Date.now()-this.endTime.getTime()))+"]";
   var paddString = "";
-  for(var i = etaString.length; i< "[1h 35m]".length; i++)
+  for(var i = etaString.length; i< 12; i++)
     paddString += " ";
   return etaString + paddString
 }
