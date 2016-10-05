@@ -10,6 +10,9 @@
 
 [![NPM](https://nodei.co/npm/warframe-worldstate-parser.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/warframe-worldstate-parser/)
 
+[![Contact me on Discord](https://img.shields.io/badge/discord-Tobiah%238452-7289DA.svg)](https://discord.gg/bZgq6Pt "Contact me on Discord: Tobiah#8452")
+
+
 ## Currently available
 
 Worldstate object | Module File | Accessor | Description
@@ -63,18 +66,17 @@ Variable | example | default
 ## Usage
 
 ```javascript
-var WorldState = require('warframe-worldstate-parser');
+var WorldState = require('warframe-worldstate-parser').Parser;
 var worldStates = {
   PC : new WorldState('PC'),
   PS4 : new WorldState('PS4'),
   X1 : new WorldState('X1'),
 }
-var primeAccess = null;
-worldStates[platform].getPrimeAccessString(function(err, primeAccessObject) {
+worldStates['PC'].getPrimeAccessString(function(err, primeAccessObject) {
   if (err) {
     return console.err(err);
   }
-  primeAccess = primeAccessObject;
+  console.log(primeAccessObject)
 });
 ```
 ## Note
