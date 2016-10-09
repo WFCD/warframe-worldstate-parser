@@ -1,0 +1,8 @@
+{
+	"_id": { "$id": "testID" },
+	"Messages": [{ "Message": "Test Message" }],
+	"Prop": "http://example.com",
+	"ImageURL": "http://example.com/image",
+	"Priority": false,
+	"Date": { "sec": 200 }
+}

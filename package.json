@@ -2,19 +2,28 @@
   "name": "warframe-worldstate-parser",
   "version": "0.0.6",
   "description": "An Open parser for Warframe's Worldstate in Javascript",
-  "main": "src/parser.js",
+  "main": "src/Parser.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "json-query": "^2.1.1",
     "node-md-config": "^2.0.1",
-    "request": "^2.72.0",
     "warframe-worldstate-data": "git://github.com/aliasfalse/warframe-worldstate-data.git#master"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0",
+    "mocha": "^3.1.0",
+    "rewire": "^2.5.2",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint src/ test/ && node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
