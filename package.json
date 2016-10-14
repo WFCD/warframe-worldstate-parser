@@ -23,7 +23,7 @@
     "sinon-chai": "^2.8.0"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "test": "node_modules/.bin/eslint src/ test/ && node_modules/.bin/mocha"
