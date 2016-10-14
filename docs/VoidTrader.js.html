@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: VoidTrader.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: VoidTrader.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+const WorldstateObject = require('./WorldstateObject.js');
+
+class VoidTrader extends WorldstateObject {
+  constructor(data, { mdConfig, timeDate, translator }) {
+    super(data);
+
+    /**
+     * The time and date functions
+     * @type {Object}
+     * @private
+     */
+    this.timeDate = timeDate;
+
+    /**
+     * The markdown settings
+     * @type {Object.&lt;string, string>}
+     * @private
+     */
+    this.mdConfig = mdConfig;
+
+    /**
+     * The date and time at which the sortie starts
+     * @type {Date}
+     */
+    this.activation = new Date(1000 * data.Activation.sec);
+
+    /**
+     * The date and time at which the sortie ends
+     * @type {Date}
+     */
+    this.expiry = new Date(1000 * data.Expiry.sec);
+
+    /**
+     * The void trader's name
+     * @type {string}
+     */
+    this.character = data.Character.replace('Baro\'Ki Teel', 'Baro Ki\'Teer');
+
+    /**
+     * The node at which the Void Trader appears
+     * @type {string}
+     */
+    this.location = translator.node(data.Node);
+
+    /**
+     * The trader's inventory
+     * @type {Array}
+     */
+    this.inventory = data.Manifest ? data.Manifest.map(i => ({
+      item: translator.languageString(i.ItemType).replace(/'S/, 's').replace(/'/, ''),
+      ducats: i.PrimePrice,
+      credits: i.RegularPrice,
+    })) : [];
+  }
+
+  /**
+   * Whether or not the trader is currently active
+   * @returns {boolean}
+   */
+  isActive() {
+    return (this.timeDate.fromNow(this.activation) &lt; 0) &amp;&amp; (this.timeDate.fromNow(this.expiry) > 0);
+  }
+
+  /**
+   * Returns a string indicating how long it will take for the trader to arrive
+   * @returns {string}
+   */
+  getStartString() {
+    return this.timeDate.timeDeltaToString(this.timeDate.fromNow(this.activation));
+  }
+
+  /**
+   * Returns a string indicating how long it will take for the trader to leave
+   * @returns {string}
+   */
+  getEndString() {
+    return this.timeDate.timeDeltaToString(this.timeDate.fromNow(this.expiry));
+  }
+
+  /**
+   * Returns a string representation of the trader
+   * @returns {string}
+   */
+  toString() {
+    if (!this.isActive()) {
+      const timeDelta = this.timeDate.fromNow(this.activation);
+      const nextArrivalTime = this.timeDate.timeDeltaToString(timeDelta);
+      return `${this.mdConfig.codeMulti}${this.character} is not here yet, he will arrive in ` +
+        `${nextArrivalTime} at ${this.location}${this.mdConfig.blockEnd}`;
+    }
+
+    const inventoryString = this.inventory.map(i =>
+      `  ${i.item} - ${i.ducats} ducats + ${i.credits}cr%s`).join(this.mdConfig.lineEnd);
+
+    const lines = [
+      `${this.mdConfig.codeMulti}Void Trader at ${this.location}`,
+      inventoryString,
+      `Trader departing in ${this.getEndString()}${this.mdConfig.blockEnd}`,
+    ];
+
+    return lines.join(this.mdConfig.lineEnd);
+  }
+}
+
+module.exports = VoidTrader;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Parser.html">Parser</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li></ul><h3>Global</h3><ul><li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Fri Oct 14 2016 18:22:56 GMT+0200 (CEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
