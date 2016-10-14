@@ -1,14 +1,14 @@
 {
   "name": "warframe-worldstate-parser",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "description": "An Open parser for Warframe's Worldstate in Javascript",
-  "main": "src/Parser.js",
+  "main": "main.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
     "node-md-config": "^2.0.1",
-    "warframe-worldstate-data": "git://github.com/aliasfalse/warframe-worldstate-data.git#master"
+    "warframe-worldstate-data": "aliasfalse/warframe-worldstate-data"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -22,19 +22,26 @@
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0"
   },
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "scripts": {
-    "test": "eslint src/ test/ && node_modules/.bin/mocha"
+    "test": "node_modules/.bin/eslint src/ test/ && node_modules/.bin/mocha"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aliasfalse/warframe-worldstate-parser.git"
-  },
+  "files": [
+    "lib",
+    "main.js",
+    "LICENSE"
+  ],
+  "repository": "aliasfalse/warframe-worldstate-parser",
   "keywords": [
     "warframe-worldstate",
-    "javascript",
     "warframe"
   ],
   "author": "aliasfalse",
+  "contributors": [
+    "nspacestd (https://github.com/nspacestd)"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/aliasfalse/warframe-worldstate-parser/issues"

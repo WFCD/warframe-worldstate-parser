@@ -8,7 +8,7 @@ const rewire = require('rewire');
 chai.should();
 chai.use(sinonChai);
 
-const Parser = rewire('../src/Parser.js');
+const Parser = rewire('../lib/Parser.js');
 
 describe('Parser', function () {
   describe('#constructor()', function () {

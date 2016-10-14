@@ -5,7 +5,7 @@ const rewire = require('rewire');
 
 chai.should();
 
-const translator = rewire('../src/translation.js');
+const translator = rewire('../lib/translation.js');
 
 describe('translation', function () {
   describe('toTitleCase()', function () {
@@ -54,7 +54,23 @@ describe('translation', function () {
       translator.missionType('MT_EXCAVATE').should.equal('Excavation');
     });
     it('should return the key if it\'s not found in the data', function () {
-      translator.faction('notFound').should.equal('notFound');
+      translator.missionType('notfound').should.equal('notfound');
+    });
+  });
+  describe('conclaveMode()', function () {
+    it('should return a translation of the key if it\'s found in the data', function () {
+      translator.conclaveMode('PVPMODE_ALL').should.equal('Any Mode');
+    });
+    it('should return the key if it\'s not found in the data', function () {
+      translator.faction('notfound').should.equal('notfound');
+    });
+  });
+  describe('conclaveCategory()', function () {
+    it('should return a translation of the key if it\'s found in the data', function () {
+      translator.conclaveCategory('PVPChallengeTypeCategory_WEEKLY').should.equal('week');
+    });
+    it('should return the key if it\'s not found in the data', function () {
+      translator.faction('notfound').should.equal('notfound');
     });
   });
 });

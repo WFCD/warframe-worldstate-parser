@@ -1,6 +1,0 @@
-{
-  "_id": { "$id": "testID" },
-  "Activation": { "sec": 1 },
-  "Expiry": { "sec": 2 },
-  "MissionInfo": "testMission"
-}

@@ -4,13 +4,13 @@ const chai = require('chai');
 
 chai.should();
 
-const Alert = require('../lib/Alert.js');
+const DarkSector = require('../lib/DarkSector.js');
 
-describe('Alert', function () {
+describe('DarkSector', function () {
   describe('#constructor()', function () {
     it('should throw TypeError when called with no argument or an invalid argument', function () {
-      (() => { new Alert(); }).should.throw(TypeError);
-      (() => { new Alert({}); }).should.throw(TypeError);
+      (() => { new DarkSector(); }).should.throw();
+      (() => { new DarkSector({}); }).should.throw();
     });
   });
 });
