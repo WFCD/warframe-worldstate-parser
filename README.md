@@ -16,7 +16,10 @@
 ## Installation
 `npm install --save warframe-worldstate-parser`
 
-## Usage
+## Documentation
+You can find the documentation [here](https://aliasfalse.github.io/warframe-worldstate-parser/)
+
+## Example usage
 
 ```javascript
 const WorldState = require('warframe-worldstate-parser');
