@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Parser.html">Parser</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Parser.html">Parser</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
@@ -93,7 +93,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="Mission"><span class="type-signature"></span>new Mission(data)</h4>
+    <h4 class="name" id="Mission"><span class="type-signature"></span>new Mission(data, deps)</h4>
     
     
 </dt>
@@ -156,7 +156,7 @@
 
         <tr>
             
-                <td class="name"><code>options.translator</code></td>
+                <td class="name"><code>deps</code></td>
             
 
             <td class="type">
@@ -173,20 +173,39 @@
 
             
 
-            <td class="description last">The string translator</td>
-        </tr>
+            <td class="description last">The dependencies object
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
 
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>options.md</code></td>
+                <td class="name"><code>mdConfig</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object.&lt;string, string></span>
+<span class="param-type"><a href="global.html#MarkdownSettings">MarkdownSettings</a></span>
 
 
 
@@ -204,7 +223,31 @@
 
         <tr>
             
-                <td class="name"><code>options.Reward</code></td>
+                <td class="name"><code>translator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Translator">Translator</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The string translator</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Reward</code></td>
             
 
             <td class="type">
@@ -221,7 +264,14 @@
 
             
 
-            <td class="description last">The reward parser</td>
+            <td class="description last">The Reward parser</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -260,6 +310,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Mission.js.html">Mission.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -312,7 +371,7 @@
 <dd>
     
     <div class="description">
-        The Mission description
+        The mission's description
     </div>
     
 
@@ -359,6 +418,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Mission.js.html">Mission.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -383,7 +451,7 @@
 <dd>
     
     <div class="description">
-        The mission faction
+        The factions that the players must fight in the mission
     </div>
     
 
@@ -430,6 +498,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Mission.js.html">Mission.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -454,7 +531,7 @@
 <dd>
     
     <div class="description">
-        The maximum enemy level
+        The maximum level of the enemies in the mission
     </div>
     
 
@@ -501,6 +578,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Mission.js.html">Mission.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -525,7 +611,7 @@
 <dd>
     
     <div class="description">
-        The number of waves that the players need to complete
+        The number of waves that the players need to complete (null if not applicable)
     </div>
     
 
@@ -572,6 +658,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Mission.js.html">Mission.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -596,7 +691,7 @@
 <dd>
     
     <div class="description">
-        The minimum enemy level
+        The minimum level of the enemies in the mission
     </div>
     
 
@@ -644,6 +739,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Mission.js.html">Mission.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -667,7 +771,7 @@
 <dd>
     
     <div class="description">
-        The mission node
+        The node where the mission takes place
     </div>
     
 
@@ -715,6 +819,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Mission.js.html">Mission.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -738,7 +851,7 @@
 <dd>
     
     <div class="description">
-        The mission reward
+        The mission's reward
     </div>
     
 
@@ -786,6 +899,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Mission.js.html">Mission.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -809,7 +931,7 @@
 <dd>
     
     <div class="description">
-        The mission type
+        The mission's type
     </div>
     
 
@@ -856,6 +978,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Mission.js.html">Mission.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -928,6 +1059,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Mission.js.html">Mission.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	

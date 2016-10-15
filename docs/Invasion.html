@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Parser.html">Parser</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Parser.html">Parser</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
@@ -93,7 +93,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="Invasion"><span class="type-signature"></span>new Invasion(data)</h4>
+    <h4 class="name" id="Invasion"><span class="type-signature"></span>new Invasion(data, deps)</h4>
     
     
 </dt>
@@ -156,13 +156,80 @@
 
         <tr>
             
-                <td class="name"><code>options.translator</code></td>
+                <td class="name"><code>deps</code></td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The dependencies object
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mdConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#MarkdownSettings">MarkdownSettings</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The markdown settings</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>translator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Translator">Translator</a></span>
 
 
 
@@ -180,7 +247,31 @@
 
         <tr>
             
-                <td class="name"><code>options.Mission</code></td>
+                <td class="name"><code>timeDate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#TimeDateFunctions">TimeDateFunctions</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The time and date functions</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Mission</code></td>
             
 
             <td class="type">
@@ -197,14 +288,14 @@
 
             
 
-            <td class="description last">The mission parser</td>
+            <td class="description last">The Mission parser</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>options.Reward</code></td>
+                <td class="name"><code>Reward</code></td>
             
 
             <td class="type">
@@ -221,31 +312,14 @@
 
             
 
-            <td class="description last">The reward parser</td>
+            <td class="description last">The Reward parser</td>
         </tr>
 
     
+    </tbody>
+</table>
 
-        <tr>
-            
-                <td class="name"><code>options.mdConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object.&lt;string, string></span>
-
-
-
-            
             </td>
-
-            
-
-            
-
-            <td class="description last">The markdown settings</td>
         </tr>
 
     
@@ -284,6 +358,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -336,7 +419,7 @@
 <dd>
     
     <div class="description">
-        The time at which the invasion started
+        The time at which the invasion starts
     </div>
     
 
@@ -383,6 +466,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -454,6 +546,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -527,6 +628,15 @@ Grineer vs. Corpus invasions start at 50, Infested invasions start at 100
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -599,6 +709,15 @@ supporting the defenders makes it go down
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -669,6 +788,15 @@ supporting the defenders makes it go down
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -741,6 +869,15 @@ supporting the defenders makes it go down
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -811,6 +948,15 @@ supporting the defenders makes it go down
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -883,6 +1029,15 @@ supporting the defenders makes it go down
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -954,6 +1109,15 @@ supporting the defenders makes it go down
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -984,7 +1148,7 @@ supporting the defenders makes it go down
 
     
     <div class="description">
-        The attacking faction
+        Get the name of attacking faction
     </div>
     
 
@@ -1025,6 +1189,15 @@ supporting the defenders makes it go down
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1082,7 +1255,7 @@ supporting the defenders makes it go down
 
     
     <div class="description">
-        The defending faction
+        Get the name of defending faction
     </div>
     
 
@@ -1123,6 +1296,15 @@ supporting the defenders makes it go down
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1180,7 +1362,7 @@ supporting the defenders makes it go down
 
     
     <div class="description">
-        The ETA string
+        Get a string estimating how much time is left before the invasion ends
     </div>
     
 
@@ -1221,6 +1403,15 @@ supporting the defenders makes it go down
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1278,7 +1469,7 @@ supporting the defenders makes it go down
 
     
     <div class="description">
-        Returns the estimated remaining time in milliseconds
+        Get an estimation of how much time is left before the invasion ends in milliseconds
     </div>
     
 
@@ -1319,6 +1510,15 @@ supporting the defenders makes it go down
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1376,7 +1576,7 @@ supporting the defenders makes it go down
 
     
     <div class="description">
-        The types of the items being rewarded in the invasion
+        Get the types of the items being rewarded in the invasion
     </div>
     
 
@@ -1417,6 +1617,15 @@ supporting the defenders makes it go down
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1517,6 +1726,15 @@ This is always false when the infestation is attacking
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1614,6 +1832,15 @@ This is always false when the infestation is attacking
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	

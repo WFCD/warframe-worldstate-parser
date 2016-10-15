@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Parser.html">Parser</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Parser.html">Parser</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
@@ -93,7 +93,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="DarkSector"><span class="type-signature"></span>new DarkSector(data)</h4>
+    <h4 class="name" id="DarkSector"><span class="type-signature"></span>new DarkSector(data, deps)</h4>
     
     
 </dt>
@@ -156,13 +156,80 @@
 
         <tr>
             
-                <td class="name"><code>options.translator</code></td>
+                <td class="name"><code>deps</code></td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The dependencies object
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mdConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#MarkdownSettings">MarkdownSettings</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The markdown settings</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>translator</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Translator">Translator</a></span>
 
 
 
@@ -180,13 +247,13 @@
 
         <tr>
             
-                <td class="name"><code>options.Mission</code></td>
+                <td class="name"><code>Mission</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">function</span>
 
 
 
@@ -204,13 +271,13 @@
 
         <tr>
             
-                <td class="name"><code>options.DarkSectorHistory</code></td>
+                <td class="name"><code>DarkSectorBattle</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">function</span>
 
 
 
@@ -222,6 +289,37 @@
             
 
             <td class="description last">The dark sector battle parser</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Reward</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The reward parser</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -261,6 +359,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -287,6 +394,17 @@
 
     
     </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="WorldstateObject.html">WorldstateObject</a></li>
+    </ul>
+
 
     
 
@@ -360,6 +478,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -430,6 +557,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -502,6 +638,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -572,6 +717,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -644,6 +798,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -714,6 +877,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -786,6 +958,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -856,6 +1037,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -928,6 +1118,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -999,6 +1198,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1015,7 +1223,7 @@
             
 <hr>
 <dt class="name" id="history">
-    <h4 id="history"><span class="type-signature"></span>history<span class="type-signature"> :Array.&lt;DarkSectorHistory></span></h4>
+    <h4 id="history"><span class="type-signature"></span>history<span class="type-signature"> :Array.&lt;<a href="DarkSectorBattle.html">DarkSectorBattle</a>></span></h4>
 
     
 </dt>
@@ -1031,7 +1239,7 @@
         <ul>
             <li>
                 
-<span class="param-type">Array.&lt;DarkSectorHistory></span>
+<span class="param-type">Array.&lt;<a href="DarkSectorBattle.html">DarkSectorBattle</a>></span>
 
 
 
@@ -1069,6 +1277,104 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="id">
+    <h4 id="id"><span class="type-signature"></span>id<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The object's id field
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="WorldstateObject.html#id">WorldstateObject#id</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldstateObject.js.html">WorldstateObject.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1141,6 +1447,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1211,6 +1526,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1283,6 +1607,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1353,6 +1686,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1425,6 +1767,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1495,6 +1846,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1567,6 +1927,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1637,6 +2006,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1709,6 +2087,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="DarkSector.js.html">DarkSector.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1724,6 +2111,126 @@
         </dl>
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Returns a string representation of the object
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="WorldstateObject.html#toString">WorldstateObject#toString</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldstateObject.js.html">WorldstateObject.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        </dl>
     
 
     

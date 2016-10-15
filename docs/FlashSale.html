@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Parser.html">Parser</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Parser.html">Parser</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
@@ -93,7 +93,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="FlashSale"><span class="type-signature"></span>new FlashSale(data)</h4>
+    <h4 class="name" id="FlashSale"><span class="type-signature"></span>new FlashSale(data, deps)</h4>
     
     
 </dt>
@@ -156,7 +156,7 @@
 
         <tr>
             
-                <td class="name"><code>options.translator</code></td>
+                <td class="name"><code>deps</code></td>
             
 
             <td class="type">
@@ -173,20 +173,39 @@
 
             
 
-            <td class="description last">The string translator</td>
-        </tr>
+            <td class="description last">The dependencies object
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
 
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>options.mdConfig</code></td>
+                <td class="name"><code>mdConfig</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type"><a href="global.html#MarkdownSettings">MarkdownSettings</a></span>
 
 
 
@@ -204,13 +223,37 @@
 
         <tr>
             
-                <td class="name"><code>options.timeDate</code></td>
+                <td class="name"><code>translator</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type"><a href="global.html#Translator">Translator</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The string translator</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeDate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#TimeDateFunctions">TimeDateFunctions</a></span>
 
 
 
@@ -222,6 +265,13 @@
             
 
             <td class="description last">The time and date functions</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -260,6 +310,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="FlashSale.js.html">FlashSale.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -360,6 +419,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="FlashSale.js.html">FlashSale.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -431,6 +499,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="FlashSale.js.html">FlashSale.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -447,7 +524,7 @@
             
 <hr>
 <dt class="name" id="isFeatured">
-    <h4 id="isFeatured"><span class="type-signature"></span>isFeatured<span class="type-signature"> :Boolean</span></h4>
+    <h4 id="isFeatured"><span class="type-signature"></span>isFeatured<span class="type-signature"> :boolean</span></h4>
 
     
 </dt>
@@ -463,7 +540,7 @@
         <ul>
             <li>
                 
-<span class="param-type">Boolean</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -501,6 +578,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="FlashSale.js.html">FlashSale.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -518,7 +604,7 @@
             
 <hr>
 <dt class="name" id="isPopular">
-    <h4 id="isPopular"><span class="type-signature"></span>isPopular<span class="type-signature"> :Boolean</span></h4>
+    <h4 id="isPopular"><span class="type-signature"></span>isPopular<span class="type-signature"> :boolean</span></h4>
 
     
 </dt>
@@ -534,7 +620,7 @@
         <ul>
             <li>
                 
-<span class="param-type">Boolean</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -572,6 +658,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="FlashSale.js.html">FlashSale.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -644,6 +739,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="FlashSale.js.html">FlashSale.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -715,6 +819,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="FlashSale.js.html">FlashSale.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -745,7 +858,7 @@
 
     
     <div class="description">
-        Returns how much time is left before the deal expires
+        Get how much time is left before the deal expires
     </div>
     
 
@@ -786,6 +899,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="FlashSale.js.html">FlashSale.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -884,6 +1006,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="FlashSale.js.html">FlashSale.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	

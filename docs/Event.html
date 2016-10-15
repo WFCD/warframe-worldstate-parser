@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Parser.html">Parser</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Parser.html">Parser</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
@@ -93,7 +93,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="Event"><span class="type-signature"></span>new Event(data)</h4>
+    <h4 class="name" id="Event"><span class="type-signature"></span>new Event(data, deps)</h4>
     
     
 </dt>
@@ -156,7 +156,7 @@
 
         <tr>
             
-                <td class="name"><code>options.translator</code></td>
+                <td class="name"><code>deps</code></td>
             
 
             <td class="type">
@@ -173,20 +173,39 @@
 
             
 
-            <td class="description last">The string translator</td>
-        </tr>
+            <td class="description last">The dependencies object
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
 
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>options.md</code></td>
+                <td class="name"><code>mdConfig</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object.&lt;string, string></span>
+<span class="param-type"><a href="global.html#MarkdownSettings">MarkdownSettings</a></span>
 
 
 
@@ -204,13 +223,37 @@
 
         <tr>
             
-                <td class="name"><code>options.timeDate</code></td>
+                <td class="name"><code>translator</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type"><a href="global.html#Translator">Translator</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The string translator</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeDate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#TimeDateFunctions">TimeDateFunctions</a></span>
 
 
 
@@ -228,13 +271,13 @@
 
         <tr>
             
-                <td class="name"><code>options.Reward</code></td>
+                <td class="name"><code>Reward</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">function</span>
 
 
 
@@ -246,6 +289,13 @@
             
 
             <td class="description last">The Reward parser</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -284,6 +334,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -395,6 +454,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -466,76 +534,14 @@
 
 
 	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="expired">
-    <h4 id="expired"><span class="type-signature">&lt;readonly> </span>expired<span class="type-signature"> :boolean</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        Whether or not the event has expired
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">boolean</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -560,7 +566,7 @@
 <dd>
     
     <div class="description">
-        The expiry date and time
+        The date and time at which the event ends
     </div>
     
 
@@ -608,6 +614,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -631,7 +646,7 @@
 <dd>
     
     <div class="description">
-        The faction that the players must fight
+        The faction that the players must fight in the event
     </div>
     
 
@@ -678,6 +693,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -759,6 +783,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldstateObject.js.html">WorldstateObject.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -782,7 +815,7 @@
 <dd>
     
     <div class="description">
-        The second intermediate goal
+        The second intermediate score goal
     </div>
     
 
@@ -829,6 +862,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -853,7 +895,7 @@
 <dd>
     
     <div class="description">
-        The score goal
+        The event's main score goal
     </div>
     
 
@@ -900,6 +942,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -972,6 +1023,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -995,7 +1055,7 @@
 <dd>
     
     <div class="description">
-        The event rewards
+        The event's rewards
     </div>
     
 
@@ -1042,6 +1102,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1114,6 +1183,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1137,7 +1215,7 @@
 <dd>
     
     <div class="description">
-        The first intermediate goal
+        The first intermediate score goal
     </div>
     
 
@@ -1185,6 +1263,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1201,7 +1288,7 @@
             
 <hr>
 <dt class="name" id="timeDate">
-    <h4 id="timeDate"><span class="type-signature"></span>timeDate<span class="type-signature"> :Object</span></h4>
+    <h4 id="timeDate"><span class="type-signature"></span>timeDate<span class="type-signature"> :<a href="global.html#TimeDateFunctions">TimeDateFunctions</a></span></h4>
 
     
 </dt>
@@ -1217,7 +1304,7 @@
         <ul>
             <li>
                 
-<span class="param-type">Object</span>
+<span class="param-type"><a href="global.html#TimeDateFunctions">TimeDateFunctions</a></span>
 
 
 
@@ -1255,6 +1342,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
@@ -1327,6 +1423,15 @@
 
 
 	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
+	
 
 	
 
@@ -1346,6 +1451,113 @@
         <h3 class="subsection-title">Methods</h3>
 
         <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="getExpired"><span class="type-signature"></span>getExpired()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Get whether or not the event has expired
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
             
 <hr>
 <dt>
@@ -1403,6 +1615,15 @@
 
 
 
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Event.js.html">Event.js</a>
+			</li>
+		</ul>
+	</dd>
 	
 
 	
