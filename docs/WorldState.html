@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>warframe-worldstate-parser Class: Alert</title>
+	<title>warframe-worldstate-parser Class: WorldState</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,16 +72,16 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: Alert</h1>
+	<h1 class="page-title">Class: WorldState</h1>
 <section>
 
 <header>
     
         <h2>
-        Alert
+        WorldState
         </h2>
         
-            <div class="class-description">Represents an alert</div>
+            <div class="class-description">Parses Warframe Worldstate JSON</div>
         
     
 </header>
@@ -93,7 +93,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="Alert"><span class="type-signature"></span>new Alert(data, deps)</h4>
+    <h4 class="name" id="WorldState"><span class="type-signature"></span>new WorldState(json [, deps])</h4>
     
     
 </dt>
@@ -120,6 +120,8 @@
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
         
 
@@ -132,13 +134,13 @@
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>json</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">string</span>
 
 
 
@@ -146,10 +148,18 @@
             </td>
 
             
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
 
             
 
-            <td class="description last">The alert data</td>
+            <td class="description last">The worldstate JSON string</td>
         </tr>
 
     
@@ -170,156 +180,20 @@
             </td>
 
             
-
-            
-
-            <td class="description last">The dependencies object
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                <td class="attributes">
+                
+                    &lt;optional><br>
                 
 
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>mdConfig</code></td>
-            
-
-            <td class="type">
-            
                 
-<span class="param-type"><a href="global.html#MarkdownSettings">MarkdownSettings</a></span>
 
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The markdown settings</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>translator</code></td>
-            
-
-            <td class="type">
-            
                 
-<span class="param-type"><a href="global.html#Translator">Translator</a></span>
-
-
-
-            
-            </td>
-
+                </td>
             
 
             
 
-            <td class="description last">The string translator</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>timeDate</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#TimeDateFunctions">TimeDateFunctions</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The time and date functions</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Mission</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The Mission parser</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Reward</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The Reward parser</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last">The options object</td>
         </tr>
 
     
@@ -363,7 +237,7 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Alert.js.html">Alert.js</a>
+				<a href="WorldState.js.html">WorldState.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -394,17 +268,6 @@
 
     
     </div>
-
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="WorldstateObject.html">WorldstateObject</a></li>
-    </ul>
-
 
     
 
@@ -422,15 +285,1135 @@
         <dl>
             
 <hr>
-<dt class="name" id="activation">
-    <h4 id="activation"><span class="type-signature"></span>activation<span class="type-signature"> :Date</span></h4>
+<dt class="name" id="alerts">
+    <h4 id="alerts"><span class="type-signature"></span>alerts<span class="type-signature"> :Array.&lt;<a href="Alert.html">Alert</a>></span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        The date and time at which the alert starts
+        The current alerts
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="Alert.html">Alert</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="conclaveChallenges">
+    <h4 id="conclaveChallenges"><span class="type-signature"></span>conclaveChallenges<span class="type-signature"> :Array.&lt;<a href="ConclaveChallenge.html">ConclaveChallenge</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The current conclave challenges
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="ConclaveChallenge.html">ConclaveChallenge</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="dailyDeals">
+    <h4 id="dailyDeals"><span class="type-signature"></span>dailyDeals<span class="type-signature"> :Array.&lt;<a href="DailyDeal.html">DailyDeal</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The current daily deals
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="DailyDeal.html">DailyDeal</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="darkSectors">
+    <h4 id="darkSectors"><span class="type-signature"></span>darkSectors<span class="type-signature"> :Array.&lt;<a href="DarkSector.html">DarkSector</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The state of the dark sectors
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="DarkSector.html">DarkSector</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="events">
+    <h4 id="events"><span class="type-signature"></span>events<span class="type-signature"> :Array.&lt;<a href="Event.html">Event</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The current events
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="Event.html">Event</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="fissures">
+    <h4 id="fissures"><span class="type-signature"></span>fissures<span class="type-signature"> :Array.&lt;<a href="News.html">News</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The current fissures
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="News.html">News</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="flashSales">
+    <h4 id="flashSales"><span class="type-signature"></span>flashSales<span class="type-signature"> :Array.&lt;<a href="FlashSale.html">FlashSale</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The current flash sales
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="FlashSale.html">FlashSale</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="globalUpgrades">
+    <h4 id="globalUpgrades"><span class="type-signature"></span>globalUpgrades<span class="type-signature"> :Array.&lt;<a href="GlobalUpgrade.html">GlobalUpgrade</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The current global upgrades
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="GlobalUpgrade.html">GlobalUpgrade</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="invasions">
+    <h4 id="invasions"><span class="type-signature"></span>invasions<span class="type-signature"> :Array.&lt;<a href="Invasion.html">Invasion</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The current invasions
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="Invasion.html">Invasion</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="news">
+    <h4 id="news"><span class="type-signature"></span>news<span class="type-signature"> :Array.&lt;<a href="News.html">News</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The in-game news
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="News.html">News</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="persistentEnemies">
+    <h4 id="persistentEnemies"><span class="type-signature"></span>persistentEnemies<span class="type-signature"> :Array.&lt;<a href="PersistentEnemy.html">PersistentEnemy</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The currently active persistent enemies
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="PersistentEnemy.html">PersistentEnemy</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="simaris">
+    <h4 id="simaris"><span class="type-signature"></span>simaris<span class="type-signature"> :<a href="Simaris.html">Simaris</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The state of the sanctuary synthesis targets
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Simaris.html">Simaris</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="sortie">
+    <h4 id="sortie"><span class="type-signature"></span>sortie<span class="type-signature"> :<a href="Sortie.html">Sortie</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The current sortie
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Sortie.html">Sortie</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="syndicateMissions">
+    <h4 id="syndicateMissions"><span class="type-signature"></span>syndicateMissions<span class="type-signature"> :Array.&lt;<a href="SyndicateMission.html">SyndicateMission</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The current syndicate missions
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="SyndicateMission.html">SyndicateMission</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="timestamp">
+    <h4 id="timestamp"><span class="type-signature"></span>timestamp<span class="type-signature"> :Date</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The date and time at which the World State was generated
     </div>
     
 
@@ -482,7 +1465,7 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Alert.js.html">Alert.js</a>
+				<a href="WorldState.js.html">WorldState.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -502,15 +1485,15 @@
         
             
 <hr>
-<dt class="name" id="expiry">
-    <h4 id="expiry"><span class="type-signature"></span>expiry<span class="type-signature"> :Date</span></h4>
+<dt class="name" id="voidTrader">
+    <h4 id="voidTrader"><span class="type-signature"></span>voidTrader<span class="type-signature"> :<a href="VoidTrader.html">VoidTrader</a></span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        The date and time at which the alert expires
+        The state of the Void Trader
     </div>
     
 
@@ -519,7 +1502,7 @@
         <ul>
             <li>
                 
-<span class="param-type">Date</span>
+<span class="param-type"><a href="VoidTrader.html">VoidTrader</a></span>
 
 
 
@@ -562,176 +1545,7 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Alert.js.html">Alert.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="id">
-    <h4 id="id"><span class="type-signature"></span>id<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        The object's id field
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="WorldstateObject.html#id">WorldstateObject#id</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="WorldstateObject.js.html">WorldstateObject.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="mission">
-    <h4 id="mission"><span class="type-signature"></span>mission<span class="type-signature"> :<a href="Mission.html">Mission</a></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        The mission that the players have to complete
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type"><a href="Mission.html">Mission</a></span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Alert.js.html">Alert.js</a>
+				<a href="WorldState.js.html">WorldState.js</a>
 			</li>
 		</ul>
 	</dd>
@@ -751,657 +1565,6 @@
         </dl>
     
 
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-            
-<hr>
-<dt>
-    <h4 class="name" id="getDescription"><span class="type-signature"></span>getDescription()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Get the alert's description text
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Alert.js.html">Alert.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="getETAString"><span class="type-signature"></span>getETAString()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Get a string indicating how much time is left before the alert expires
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Alert.js.html">Alert.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="getExpired"><span class="type-signature"></span>getExpired()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Get whether or not this alert has expired
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Alert.js.html">Alert.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="getReward"><span class="type-signature"></span>getReward()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Get the alert's reward
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Alert.js.html">Alert.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Reward.html">Reward</a></span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="getRewardTypes"><span class="type-signature"></span>getRewardTypes()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Get an array containing the types of all of the alert's rewards
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Alert.js.html">Alert.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;string></span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="toString"><span class="type-signature"></span>toString()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        The alert's string representation
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="WorldstateObject.html#toString">WorldstateObject#toString</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Alert.js.html">Alert.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        </dl>
     
 
     

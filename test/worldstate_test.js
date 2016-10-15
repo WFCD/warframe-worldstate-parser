@@ -8,28 +8,28 @@ const rewire = require('rewire');
 chai.should();
 chai.use(sinonChai);
 
-const Parser = rewire('../lib/Parser.js');
+const WorldState = rewire('../lib/WorldState.js');
 
-describe('Parser', function () {
+describe('WorldState', function () {
   describe('#constructor()', function () {
     it('requires one string argument', function () {
       (function () {
-        new Parser();
+        new WorldState();
       }).should.throw(TypeError);
     });
     it('requires valid JSON', function () {
       (function () {
-        new Parser('{');
+        new WorldState('{');
       }).should.throw(SyntaxError);
     });
     it('requires a valid WorldState', function () {
       (function () {
-        new Parser('{}');
+        new WorldState('{}');
       }).should.throw(TypeError);
     });
   });
   describe('parseArray()', function () {
-    const parseArray = Parser.__get__('parseArray');
+    const parseArray = WorldState.__get__('parseArray');
     it('uses the provided class to parse each element of the array', function () {
       const spy = sinon.spy();
       const testArray = ['test'];
