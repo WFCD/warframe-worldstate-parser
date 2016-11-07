@@ -1,0 +1,20 @@
+{
+  "_id": {
+    "$id": 123
+  },
+  "Expiry": {
+    "sec": 1
+  },
+  "Goal": 1000,
+  "GoalInterim": 250, 
+  "GoalInterim2": 500,
+  "Faction": "testFaction",
+  "Desc": "testDesc",
+  "Node": "testNode",
+  "ConcurrentNodes": [
+  	"testNode1",
+  	"testNode2"
+  ],
+  "VictimNode": "testVictimNode",
+  "ScoreLocTag": "testScoreLocTag"
+}

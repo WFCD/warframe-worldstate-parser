@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>warframe-worldstate-parser Source: Reward.js</title>
+
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link type="text/css" rel="stylesheet" href="styles/sunlight.default.css">
+
+	<link type="text/css" rel="stylesheet" href="styles/site.cosmo.css">
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+<div class="container">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.html">warframe-worldstate-parser</a>
+		<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+        </button>
+	</div>
+	<div class="navbar-collapse collapse" id="topNavigation">
+		<ul class="nav navbar-nav">
+			
+			<li class="dropdown">
+				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+				</ul>
+			</li>
+			
+			<li class="dropdown">
+				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
+				<ul class="dropdown-menu ">
+					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+				</ul>
+			</li>
+			
+		</ul>
+        
+            <div class="col-sm-3 col-md-3">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" id="search-submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+	</div>
+
+</div>
+</div>
+
+
+<div class="container" id="toc-content">
+<div class="row">
+
+	
+	<div class="col-md-12">
+	
+		<div id="main">
+			
+
+		<h1 class="page-title">Source: Reward.js</h1>
+    
+<section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript ">'use strict';
+
+// Resource names
+const resources = [
+  'Neural Sensors',
+  'Orokin Cell',
+  'Neurodes',
+  'Alloy Plate',
+  'Circuits',
+  'Control Module',
+  'Ferrite',
+  'Gallium',
+  'Morphics',
+  'Nano Spores',
+  'Oxium',
+  'Rubedo',
+  'Salvage',
+  'Plastids',
+  'Polymer Bundle',
+  'Argon Crystal',
+  'Cryotic',
+  'Oxium',
+  'Tellurium',
+];
+
+// Aura names
+const auras = [
+  'Corrosive Projection',
+  'Dead Eye',
+  'EMP Aura',
+  'Enemy Radar',
+  'Energy Siphon',
+  'Infested Impedance',
+  'Loot Detector',
+  'Physique',
+  'Pistol Scavenger',
+  'Rejuvenation',
+  'Rifle Amp',
+  'Rifle Scavenger',
+  'Shield Disruption',
+  'Shotgun Scavenger',
+  'Sniper Scavenger',
+  'Speed Holster',
+  'Sprint Boost',
+  'Stand United',
+  'Steel Charge',
+];
+
+// Nightmare mod names
+const nightmare = [
+  'Accelerated Blast',
+  'Animal Instinct',
+  'Armored Agility',
+  'Blaze',
+  'Constitution',
+  'Focus Energy',
+  'Fortitude',
+  'Hammer Shot',
+  'Ice Storm',
+  'Lethal Torrent',
+  'Rending Strike',
+  'Stunning Speed',
+  'Wildfire',
+  'Seeking Fury',
+  'Shred',
+  'Vigor',
+];
+
+// Reward types
+const rewardTypes = [
+  {
+    name: 'vauban',
+    description: 'Vauban parts',
+    test: s => /^vauban/i.test(s),
+  },
+  {
+    name: 'skin',
+    description: 'Weapon skins',
+    test: s => /skin/i.test(s),
+  },
+  {
+    name: 'helmet',
+    description: 'Alternative helmets',
+    test: s => /helmet/i.test(s),
+  },
+  {
+    name: 'nitain',
+    description: 'Nitain extract',
+    test: s => /nitain/i.test(s),
+  },
+  {
+    name: 'mutalistCoordinate',
+    description: 'Mutalist Alad V coordinates',
+    test: s => /mutalist/i.test(s),
+  },
+  {
+    name: 'weapon',
+    description: 'Weapons',
+    test: s => /dagger|sword|glaive/i.test(s),
+  },
+  {
+    name: 'clantech',
+    description: 'Clantech resources',
+    test: s => /fieldron|detonite|mutagen/i.test(s),
+  },
+  {
+    name: 'aura',
+    description: 'Auras',
+    test: s => auras.includes(s),
+  },
+  {
+    name: 'resource',
+    description: 'Resources',
+    test: s => resources.includes(s),
+  },
+  {
+    name: 'nightmare',
+    description: 'Nightmare mods',
+    test: s => nightmare.includes(s),
+  },
+  {
+    name: 'endo',
+    description: 'Endo',
+    test: s => /\d+\sendo/i.test(s),
+  },
+  {
+    name: 'potato',
+    description: 'Orokin Catalysts/Reactors',
+    test: s => /catalyst|reactor/i.test(s),
+  },
+  {
+    name: 'forma',
+    description: 'Forma',
+    test: s => /forma/i.test(s),
+  },
+  {
+    name: 'exilus',
+    description: 'Exilus',
+    test: s => /exilus/i.test(s),
+  },
+
+  // Catch-all
+  {
+    name: 'other',
+    description: 'Other',
+    test: () => true,
+  },
+];
+
+/**
+ * Returns the type of a given item
+ * @param   {string}          item The item whose type needs to be determined
+ * @param   {Array.&lt;Object>}  [types] The possible types
+ * @returns {string}          The type name
+ */
+function getItemType(item, types = rewardTypes) {
+  return types.find(t => t.test(item)).name;
+}
+
+/**
+ * Represents a mission reward
+ */
+class Reward {
+  /**
+   * @param   {Object} data                 The mission data
+   * @param   {Object}             deps            The dependencies object
+   * @param   {Translator}         deps.translator The string translator
+   */
+  constructor(data, { translator }) {
+    /**
+     * The items being rewarded
+     * @type {Array.&lt;string>}
+     */
+    this.items = data.items ? data.items.map(i => translator.languageString(i)) : [];
+
+    /**
+     * The counted items being rewarded
+     * @type {Array.&lt;Object>}
+     */
+    this.countedItems = data.countedItems ? data.countedItems.map(i => ({
+      count: i.ItemCount,
+      type: translator.languageString(i.ItemType),
+    })) : [];
+
+    /**
+     * The credits being rewarded
+     * @type {number}
+     */
+    this.credits = data.credits || 0;
+  }
+
+  /**
+   * The types of all items that are being rewarded
+   * @returns {Array.&lt;string>}
+   */
+  getTypes() {
+    return this.items.concat(this.countedItems.map(i => i.type)).map(getItemType);
+  }
+
+  /**
+   * The reward's string representation
+   * @returns {string}
+   */
+  toString() {
+    const tokens = this.items.concat(
+      this.countedItems.map(i => `${i.count} ${i.type}`));
+
+    if (this.credits) {
+      tokens.push(`${this.credits}cr`);
+    }
+
+    return tokens.join(' + ');
+  }
+}
+
+module.exports = Reward;
+</pre>
+    </article>
+</section>
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	
+
+</div>
+</div>
+
+
+    <div class="modal fade" id="searchResults">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Search results</h4>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div>
+
+
+<footer>
+
+
+<span class="jsdoc-message">
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a>
+	
+	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
+</span>
+</footer>
+
+<script src="scripts/docstrap.lib.js"></script>
+<script src="scripts/toc.js"></script>
+
+    <script type="text/javascript" src="scripts/fulltext-search-ui.js"></script>
+
+
+<script>
+$( function () {
+	$( "[id*='$']" ).each( function () {
+		var $this = $( this );
+
+		$this.attr( "id", $this.attr( "id" ).replace( "$", "__" ) );
+	} );
+
+	$( ".tutorial-section pre, .readme-section pre, pre.prettyprint.source" ).each( function () {
+		var $this = $( this );
+
+		var example = $this.find( "code" );
+		exampleText = example.html();
+		var lang = /{@lang (.*?)}/.exec( exampleText );
+		if ( lang && lang[1] ) {
+			exampleText = exampleText.replace( lang[0], "" );
+			example.html( exampleText );
+			lang = lang[1];
+		} else {
+			var langClassMatch = example.parent()[0].className.match(/lang\-(\S+)/);
+			lang = langClassMatch ? langClassMatch[1] : "javascript";
+		}
+
+		if ( lang ) {
+
+			$this
+			.addClass( "sunlight-highlight-" + lang )
+			.addClass( "linenums" )
+			.html( example.html() );
+
+		}
+	} );
+
+	Sunlight.highlightAll( {
+		lineNumbers : false,
+		showMenu : true,
+		enableDoclinks : true
+	} );
+
+	$.catchAnchorLinks( {
+        navbarOffset: 10
+	} );
+	$( "#toc" ).toc( {
+		anchorName  : function ( i, heading, prefix ) {
+			return $( heading ).attr( "id" ) || ( prefix + i );
+		},
+		selectors   : "#toc-content h1,#toc-content h2,#toc-content h3,#toc-content h4",
+		showAndHide : false,
+		smoothScrolling: true
+	} );
+
+	$( "#main span[id^='toc']" ).addClass( "toc-shim" );
+	$( '.dropdown-toggle' ).dropdown();
+
+    $( "table" ).each( function () {
+      var $this = $( this );
+      $this.addClass('table');
+    } );
+
+} );
+</script>
+
+
+
+<!--Navigation and Symbol Display-->
+
+
+<!--Google Analytics-->
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            SearcherDisplay.init();
+        });
+    </script>
+
+
+</body>
+</html>

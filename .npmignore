@@ -23,14 +23,11 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directory
-node_modules
-
 # Optional npm cache directory
 .npm
 
 # Optional REPL history
 .node_repl_history
 
-# WebStorm files
-.idea
+# Compiled docs
+docs/
