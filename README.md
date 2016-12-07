@@ -1,7 +1,7 @@
 # Warframe Worldstate Parser
+[![Supported by Warframe Community Developers](https://github.com/Warframe-Community-Developers/banner/blob/master/banner.png)](https://github.com/Warframe-Community-Developers "Supported by Warframe Community Developers")
 ### Parse the Warframe worldstate into useable javascript objects.
 
-[![Supported by Warframe Community Developers](https://github.com/Warframe-Community-Developers/banner/blob/master/banner.png)](https://github.com/Warframe-Community-Developers "Supported by Warframe Community Developers")
 
 ## GitHub
 [![GitHub issues](https://img.shields.io/github/issues/aliasfalse/warframe-worldstate-parser.svg)](https://github.com/aliasfalse/warframe-worldstate-parser/issues)
