@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "node-md-config": "^2.0.1",
+    "right-pad": "^1.0.1",
     "warframe-worldstate-data": "aliasfalse/warframe-worldstate-data"
   },
   "devDependencies": {
