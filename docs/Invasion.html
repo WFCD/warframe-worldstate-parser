@@ -271,30 +271,6 @@
 
         <tr>
             
-                <td class="name"><code>Mission</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The Mission parser</td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>Reward</code></td>
             
 
@@ -491,15 +467,15 @@
         
             
 <hr>
-<dt class="name" id="attackerMission">
-    <h4 id="attackerMission"><span class="type-signature"></span>attackerMission<span class="type-signature"> :<a href="Mission.html">Mission</a></span></h4>
+<dt class="name" id="attackerReward">
+    <h4 id="attackerReward"><span class="type-signature"></span>attackerReward<span class="type-signature"> :<a href="Reward.html">Reward</a></span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        The attacker's mission
+        The attacker's reward
     </div>
     
 
@@ -508,7 +484,87 @@
         <ul>
             <li>
                 
-<span class="param-type"><a href="Mission.html">Mission</a></span>
+<span class="param-type"><a href="Reward.html">Reward</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="attackingFaction">
+    <h4 id="attackingFaction"><span class="type-signature"></span>attackingFaction<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The attacking faction
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
 
 
 
@@ -579,8 +635,7 @@
 <dd>
     
     <div class="description">
-        The invasion's completion percentage. Defenders win if it gets to 0
-Grineer vs. Corpus invasions start at 50, Infested invasions start at 100
+        The invasion's completion percentage. Defenders win if it gets to 0Grineer vs. Corpus invasions start at 50, Infested invasions start at 100
     </div>
     
 
@@ -660,8 +715,7 @@ Grineer vs. Corpus invasions start at 50, Infested invasions start at 100
 <dd>
     
     <div class="description">
-        The signed count of completed runs. Supporting the attackers makes the count go up,
-supporting the defenders makes it go down
+        The signed count of completed runs. Supporting the attackers makes the count go up,supporting the defenders makes it go down
     </div>
     
 
@@ -733,15 +787,15 @@ supporting the defenders makes it go down
         
             
 <hr>
-<dt class="name" id="defenderMission">
-    <h4 id="defenderMission"><span class="type-signature"></span>defenderMission<span class="type-signature"> :<a href="Mission.html">Mission</a></span></h4>
+<dt class="name" id="defenderReward">
+    <h4 id="defenderReward"><span class="type-signature"></span>defenderReward<span class="type-signature"> :<a href="Reward.html">Reward</a></span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        The defender's mission
+        The defender's reward
     </div>
     
 
@@ -750,7 +804,87 @@ supporting the defenders makes it go down
         <ul>
             <li>
                 
-<span class="param-type"><a href="Mission.html">Mission</a></span>
+<span class="param-type"><a href="Reward.html">Reward</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Invasion.js.html">Invasion.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="defendingFaction">
+    <h4 id="defendingFaction"><span class="type-signature"></span>defendingFaction<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The defending faction
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
 
 
 
@@ -1140,220 +1274,6 @@ supporting the defenders makes it go down
             
 <hr>
 <dt>
-    <h4 class="name" id="getAttackingFaction"><span class="type-signature"></span>getAttackingFaction()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Get the name of attacking faction
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Invasion.js.html">Invasion.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="getDefendingFaction"><span class="type-signature"></span>getDefendingFaction()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Get the name of defending faction
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Invasion.js.html">Invasion.js</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
     <h4 class="name" id="getETAString"><span class="type-signature"></span>getETAString()</h4>
     
     
@@ -1675,7 +1595,7 @@ supporting the defenders makes it go down
             
 <hr>
 <dt>
-    <h4 class="name" id="isAttackerWinning"><span class="type-signature"></span>isAttackerWinning()</h4>
+    <h4 class="name" id="itsAttackerWinning"><span class="type-signature"></span>itsAttackerWinning()</h4>
     
     
 </dt>
@@ -1683,8 +1603,7 @@ supporting the defenders makes it go down
 
     
     <div class="description">
-        Whether or not the attackers are winning.
-This is always false when the infestation is attacking
+        Whether or not the attackers are winning.This is always false when the infestation is attacking
     </div>
     
 
@@ -1934,7 +1853,7 @@ This is always false when the infestation is attacking
 
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
