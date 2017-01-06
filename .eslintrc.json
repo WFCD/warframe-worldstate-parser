@@ -21,6 +21,7 @@
       }
     }],
     "no-underscore-dangle": "off",
-    "strict": ["error", "safe"]
+    "strict": ["error", "safe"],
+    "linebreak-style": "off"
 	}
 }
