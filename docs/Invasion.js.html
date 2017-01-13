@@ -130,8 +130,7 @@ class Invasion extends WorldstateObject {
      * The attacker's reward
      * @type {Reward}
      */
-    // NOT A TYPO
-    this.attackerReward = new Reward(data.DefenderReward, opts);
+    this.attackerReward = new Reward(data.AttackerReward, opts);
 
     /**
      * The attacking faction
@@ -143,8 +142,7 @@ class Invasion extends WorldstateObject {
      * The defender's reward
      * @type {Reward}
      */
-    // NOT A TYPO
-    this.defenderReward = new Reward(data.AttackerReward, opts);
+    this.defenderReward = new Reward(data.DefenderReward, opts);
 
     /**
      * The defending faction
@@ -183,6 +181,12 @@ class Invasion extends WorldstateObject {
      * @type {number}
      */
     this.completion = (1 + (data.Count / data.Goal)) * (this.vsInfestation ? 100 : 50);
+
+    /**
+     * Whether the invasion has finished
+     * @type {boolean}
+     */
+    this.completed = data.Completed;
   }
 
   /**
@@ -190,7 +194,7 @@ class Invasion extends WorldstateObject {
    * This is always false when the infestation is attacking
    * @returns {boolean}
    */
-  itsAttackerWinning() {
+  isAttackerWinning() {
     return this.count > 0;
   }
 
