@@ -2,3 +2,10 @@ language: node_js
 node_js:
   - "node"
   - "6"
+
+notifications:
+    webhooks:
+        urls:
+          - https://canary.discordapp.com/api/webhooks/269749214056022026/gAcQ73cvYzR4y4lFjwS2tCUuszI8T7jnpbnq74cvPKYT5kYBgz6zY-rxKVzmdc_3E1Dv/slack
+        on_success: always
+        on_failure: always
