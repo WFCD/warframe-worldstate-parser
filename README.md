@@ -1,5 +1,7 @@
 # Warframe Worldstate Parser
-[![Supported by Warframe Community Developers](https://github.com/Warframe-Community-Developers/banner/blob/master/banner.png)](https://github.com/Warframe-Community-Developers "Supported by Warframe Community Developers")
+
+[![Supported by Warframe Community Developers](https://raw.githubusercontent.com/Warframe-Community-Developers/banner/master/banner.png)](https://github.com/Warframe-Community-Developers "Supported by Warframe Community Developers")
+
 ### Parse the Warframe worldstate into useable javascript objects.
 
 
@@ -16,7 +18,7 @@
 
 
 ## Installation
-`npm install --save warframe-worldstate-parser`
+`npm i -S warframe-worldstate-parser`
 
 ## Documentation
 You can find the documentation [here](https://aliasfalse.github.io/warframe-worldstate-parser/)
