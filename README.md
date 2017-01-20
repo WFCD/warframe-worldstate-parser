@@ -6,11 +6,11 @@
 
 
 ## GitHub
-[![GitHub issues](https://img.shields.io/github/issues/aliasfalse/warframe-worldstate-parser.svg)](https://github.com/aliasfalse/warframe-worldstate-parser/issues)
-[![GitHub forks](https://img.shields.io/github/forks/aliasfalse/warframe-worldstate-parser.svg)](https://github.com/aliasfalse/warframe-worldstate-parser/network)
-[![GitHub stars](https://img.shields.io/github/stars/aliasfalse/warframe-worldstate-parser.svg)](https://github.com/aliasfalse/warframe-worldstate-parser/stargazers)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/aliasfalse/warframe-worldstate-parser/master/LICENSE)
-[![Stories in Ready](https://badge.waffle.io/aliasfalse/warframe-worldstate-parser.png?label=ready&title=Ready)](http://waffle.io/aliasfalse/warframe-worldstate-parser) 
+[![GitHub issues](https://img.shields.io/github/issues/Warframe-Community-Developers/warframe-worldstate-parser.svg)](https://github.com/aliasfalse/warframe-worldstate-parser/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Warframe-Community-Developers/warframe-worldstate-parser.svg)](https://github.com/aliasfalse/warframe-worldstate-parser/network)
+[![GitHub stars](https://img.shields.io/github/stars/Warframe-Community-Developers/warframe-worldstate-parser.svg)](https://github.com/aliasfalse/warframe-worldstate-parser/stargazers)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Warframe-Community-Developers/warframe-worldstate-parser/master/LICENSE)
+[![Stories in Ready](https://badge.waffle.io/Warframe-Community-Developers/warframe-worldstate-parser.png?label=ready&title=Ready)](http://waffle.io/Warframe-Community-Developers/warframe-worldstate-parser) 
 
 ## Contact
 
@@ -21,7 +21,7 @@
 `npm i -S warframe-worldstate-parser`
 
 ## Documentation
-You can find the documentation [here](https://aliasfalse.github.io/warframe-worldstate-parser/)
+You can find the documentation [here](https://Warframe-Community-Developers.github.io/warframe-worldstate-parser/)
 
 ## Example usage
 
