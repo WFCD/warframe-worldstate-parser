@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
 				</ul>
 			</li>
 			
@@ -80,6 +80,9 @@
             class="sunlight-highlight-javascript ">'use strict';
 
 const WorldstateObject = require('./WorldstateObject.js');
+
+const updateReg = new RegExp('(update|hotfix)', 'i');
+const primeAccessReg = new RegExp('(access)', 'i');
 
 /**
  * Represents a game news item
@@ -177,7 +180,7 @@ class News extends WorldstateObject {
    * @returns {boolean}
    */
   isUpdate() {
-    return this.message.test(/update/i);
+    return updateReg.test(this.link);
   }
 
   /**
@@ -185,7 +188,7 @@ class News extends WorldstateObject {
    * @returns {boolean}
    */
   isPrimeAccess() {
-    return this.message.test(/access/i);
+    return primeAccessReg.test(this.link);
   }
 
   /**

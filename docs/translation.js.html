@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
 				</ul>
 			</li>
 			
@@ -94,6 +94,8 @@
  * @property {function} syndicate        - Converts syndicate names
  * @property {function} upgrade          - Converts upgrade types
  * @property {function} operation        - Converts operation types
+ * @property {function} sortieBoss       - Converts sortie boss names
+ * @property {function} sortieModifer    - Converts sortie modifier types
  */
 
 const data = require('warframe-worldstate-data');
@@ -202,6 +204,27 @@ function operation(key) {
   return key;
 }
 
+function sortieBoss(key) {
+  if (key in data.sortie.bosses) {
+    return data.sortie.bosses[key].name;
+  }
+  return key;
+}
+
+function sortieFaction(key) {
+  if (key in data.sortie.bosses) {
+    return data.sortie.bosses[key].faction;
+  }
+  return key;
+}
+
+function sortieModifier(key) {
+  if (key in data.sortie.modifierTypes) {
+    return data.sortie.modifierTypes[key];
+  }
+  return key;
+}
+
 module.exports = {
   faction,
   node,
@@ -216,6 +239,9 @@ module.exports = {
   syndicate,
   upgrade,
   operation,
+  sortieBoss,
+  sortieModifier,
+  sortieFaction
 };
 </pre>
     </article>
