@@ -29,6 +29,7 @@ describe('Sortie', function () {
     };
     const translator = {
       languageString: s => s,
+      sortieBoss: s => s,
     };
     it('should format the string correctly according to the data', function () {
       const s = new Sortie(testData, { mdConfig, timeDate, translator });
