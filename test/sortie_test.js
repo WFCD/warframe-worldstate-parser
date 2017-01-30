@@ -32,7 +32,7 @@ describe('Sortie', function () {
     it('should format the string correctly according to the data', function () {
       const s = new Sortie(testData, { mdConfig, timeDate, translator });
       s.variants[0] = { boss: 'theBoss' };
-
+      console.log(s.toString());
       s.toString().should.contain('no sortie');
 
       timeDate.fromNow = () => 1;
