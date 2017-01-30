@@ -21,6 +21,7 @@ describe('Sortie', function () {
       Activation: { sec: 1000 },
       Expiry: { sec: 123124 },
       Variants: [],
+      Boss: 'theBoss',
     };
     const timeDate = {
       fromNow: () => -1,
@@ -31,7 +32,6 @@ describe('Sortie', function () {
     };
     it('should format the string correctly according to the data', function () {
       const s = new Sortie(testData, { mdConfig, timeDate, translator });
-      s.variants[0] = { boss: 'theBoss' };
       console.log(s.toString());
       s.toString().should.contain('no sortie');
 
