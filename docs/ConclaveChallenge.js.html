@@ -122,7 +122,7 @@ class ConclaveChallenge extends WorldstateObject {
      * The time and date at which the challenge expires
      * @type {Date}
      */
-    this.expiry = new Date(1000 * data.endDate.sec);
+    this.expiry = new Date(data.endDate.$date ? Number(data.endDate.$date.$numberLong) : 1000 * data.endDate.sec);
 
     /**
      * The number of times that the challenge's objective needs to be completed

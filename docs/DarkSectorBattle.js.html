@@ -115,19 +115,19 @@ class DarkSectorBattle {
      * The winner of the battle
      * @type {string}
      */
-    this.winner = data.DefId.$id === data.WinId.$id ? this.defender : this.attacker;
+    this.winner = data.DefId.$oid === data.WinId.$oid ? this.defender : this.attacker;
 
     /**
      * The date and time at which the battle started
      * @type {Date}
      */
-    this.start = new Date(1000 * data.Start.sec);
+    this.start = new Date(data.Start.$date ? Number(data.Start.$date.$numberLong) : 1000 * data.Start.sec);
 
     /**
      * The date and time at which the battle ended
      * @type {Date}
      */
-    this.end = new Date(1000 * data.End.sec);
+    this.end = new Date(data.End.$date ? Number(data.End.$date.$numberLong) : 1000 * data.End.sec);
   }
 }
 

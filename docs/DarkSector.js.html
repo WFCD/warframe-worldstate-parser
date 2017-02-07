@@ -153,7 +153,7 @@ class DarkSector extends WorldstateObject {
      * @type {Date}
      */
     this.defenderDeployemntActivation =
-      new Date(1000 * data.DefenderInfo.DeploymentActivationTime.sec);
+      new Date(data.DefenderInfo.DeploymentActivationTime.$date ? Number(data.DefenderInfo.DeploymentActivationTime.$date.$numberLong) : 1000 * data.DefenderInfo.DeploymentActivationTime.sec);
 
     /**
      * The solar rail type

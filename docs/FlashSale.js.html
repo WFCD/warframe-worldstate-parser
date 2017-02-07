@@ -117,7 +117,7 @@ class FlashSale {
      * The date and time at which the sale will end
      * @type {Date}
      */
-    this.expiry = new Date(1000 * data.EndDate.sec);
+    this.expiry = new Date(data.EndDate.$date ? Number(data.EndDate.$date.$numberLong) : 1000 * data.EndDate.sec);
 
     /**
      * The item's discount percentage
