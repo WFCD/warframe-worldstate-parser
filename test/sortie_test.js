@@ -17,7 +17,7 @@ describe('Sortie', function () {
 
   describe('#toString()', function () {
     const testData = {
-      _id: { $id: '1235sdgas' },
+      _id: { $oid: '1235sdgas' },
       Activation: { sec: 1000 },
       Expiry: { sec: 123124 },
       Variants: [],

@@ -18,7 +18,7 @@ describe('VoidTrader', function () {
   describe('#toString()', function () {
     it('should format the string correctly according to the data', function () {
       const testData = {
-        _id: { $id: '1234sg' },
+        _id: { $oid: '1234sg' },
         Activation: { sec: 1 },
         Expiry: { sec: 3 },
         Character: 'Baro',
