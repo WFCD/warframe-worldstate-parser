@@ -142,14 +142,14 @@ class News extends WorldstateObject {
      * The date at which the post was published
      * @type {Date}
      */
-    this.date = new Date(1000 * data.Date.sec);
+    this.date = new Date(data.Date.$date ? Number(data.Date.$date.$numberLong) : 1000 * data.Date.sec);
 
     /**
      * The date at which the event starts
      * @type {?Date}
      */
     this.startDate = data.EventStartDate
-      ? new Date(1000 * data.EventStartDate.sec)
+      ? new Date(data.EventStartDate.$date ? Number(data.EventStartDate.$date.$numberLong) : 1000 * data.EventStartDate.sec)
       : null;
 
     /**
@@ -157,7 +157,7 @@ class News extends WorldstateObject {
      * @type {?Date}
      */
     this.endDate = data.EventEndDate
-      ? new Date(1000 * data.EventEndDate.sec)
+      ? new Date(data.EventEndDate.$date ? Number(data.EventEndDate.$date.$numberLong) : 1000 * data.EventEndDate.sec)
       : null;
   }
 

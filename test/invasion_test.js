@@ -9,7 +9,7 @@ const mdConfig = require('./data/markdown.json');
 
 describe('Invasion', function () {
   const testData = {
-    _id: { $id: 'testID' },
+    _id: { $oid: 'testID' },
     Node: 'node',
     Activation: { sec: 1000 },
     Count: 0,

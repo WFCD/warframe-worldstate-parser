@@ -8,7 +8,7 @@ const News = require('../lib/News.js');
 const mdConfig = require('./data/markdown.json');
 
 const testData = {
-  _id: { $id: '1234sg' },
+  _id: { $oid: '1234sg' },
   Activation: { sec: 1 },
   Expiry: { sec: 3 },
   Messages: [{ Message: 'test' }],

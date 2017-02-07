@@ -17,7 +17,7 @@ describe('Sortie', function () {
 
   describe('#toString()', function () {
     const testData = {
-      _id: { $id: '1235sdgas' },
+      _id: { $oid: '1235sdgas' },
       Activation: { sec: 1000 },
       Expiry: { sec: 123124 },
       Variants: [],
@@ -33,7 +33,6 @@ describe('Sortie', function () {
     };
     it('should format the string correctly according to the data', function () {
       const s = new Sortie(testData, { mdConfig, timeDate, translator });
-      console.log(s.toString());
       s.toString().should.contain('no sortie');
 
       timeDate.fromNow = () => 1;

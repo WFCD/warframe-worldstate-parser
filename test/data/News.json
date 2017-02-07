@@ -1,5 +1,5 @@
 {
-	"_id": { "$id": "testID" },
+	"_id": { "$oid": "testID" },
 	"Messages": [{ "Message": "Test Message" }],
 	"Prop": "http://example.com",
 	"ImageURL": "http://example.com/image",
