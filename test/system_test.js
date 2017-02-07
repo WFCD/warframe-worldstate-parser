@@ -21,7 +21,7 @@ const httpGet = function httpGet(url) {
   });
 };
 
-const checkToString = function checkToString (worldState) {
+const checkToString = function checkToString(worldState) {
   Object.getOwnPropertyNames(worldState).forEach((p) => {
     if (Array.isArray(worldState[p])) {
       worldState[p].forEach(m => m.toString());
