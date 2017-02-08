@@ -6,6 +6,7 @@ chai.should();
 
 const News = require('../lib/News.js');
 const mdConfig = require('./data/markdown.json');
+const timeDate = require('./mocks/timeDate.js');
 
 const testData = {
   _id: { $oid: '1234sg' },
@@ -14,11 +15,6 @@ const testData = {
   Messages: [{ Message: 'test' }],
   Date: { sec: 1000 },
   Prop: 'https://forums.warframe.com/',
-};
-const timeDate = {
-  timeDeltaToString: () => 'timeDelta',
-  fromNow: n => n.getTime() - 2000,
-  toNow: n => n.getTime() - 2000,
 };
 const translator = {
   node: () => 'node',

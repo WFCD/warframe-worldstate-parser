@@ -6,6 +6,7 @@ chai.should();
 
 const SyndicateMission = require('../lib/SyndicateMission.js');
 const mdConfig = require('./data/markdown.json');
+const timeDate = require('./mocks/timeDate.js');
 
 describe('SyndicateMission', function () {
   describe('#constructor()', function () {
@@ -23,10 +24,6 @@ describe('SyndicateMission', function () {
         Expiry: { sec: 35156 },
         Tag: 'syndicate',
         Nodes: [],
-      };
-      const timeDate = {
-        timeDeltaToString: () => 'timeDelta',
-        fromNow: () => 1234,
       };
       const translator = {
         syndicate: () => 'syndicate',

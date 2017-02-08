@@ -6,6 +6,7 @@ chai.should();
 
 const VoidTrader = require('../lib/VoidTrader.js');
 const mdConfig = require('./data/markdown.json');
+const timeDate = require('./mocks/timeDate.js');
 
 describe('VoidTrader', function () {
   describe('#constructor()', function () {
@@ -24,19 +25,15 @@ describe('VoidTrader', function () {
         Character: 'Baro',
         Manifest: [],
       };
-      const timeDate = {
-        timeDeltaToString: () => 'timeDelta',
-        fromNow: n => n.getTime() - 2000,
-      };
       const translator = {
         node: () => 'node',
       };
       const v = new VoidTrader(testData, { mdConfig, timeDate, translator });
 
+      v.isActive = () => true;
       v.toString().should.contain('Trader at');
 
-      timeDate.fromNow = () => 0;
-
+      v.isActive = () => false;
       v.toString().should.contain('not here');
     });
   });
