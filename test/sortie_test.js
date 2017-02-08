@@ -6,6 +6,7 @@ chai.should();
 
 const Sortie = require('../lib/Sortie.js');
 const mdConfig = require('./data/markdown.json');
+const timeDate = require('./mocks/timeDate.js');
 
 describe('Sortie', function () {
   describe('#constructor()', function () {
@@ -23,15 +24,14 @@ describe('Sortie', function () {
       Variants: [],
       Boss: 'theBoss',
     };
-    const timeDate = {
-      fromNow: () => -1,
-      timeDeltaToString: () => 'timeDelta',
-    };
     const translator = {
       languageString: s => s,
       sortieBoss: s => s,
+      sortieFaction: s => s,
     };
     it('should format the string correctly according to the data', function () {
+      timeDate.fromNow = () => -1;
+
       const s = new Sortie(testData, { mdConfig, timeDate, translator });
       s.toString().should.contain('no sortie');
 

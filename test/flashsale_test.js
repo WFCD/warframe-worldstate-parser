@@ -6,6 +6,7 @@ chai.should();
 
 const FlashSale = require('../lib/FlashSale.js');
 const mdConfig = require('./data/markdown.json');
+const timeDate = require('./mocks/timeDate.js');
 
 describe('FlashSale', function () {
   describe('#constructor()', function () {
@@ -28,10 +29,6 @@ describe('FlashSale', function () {
 
       const translator = {
         languageString: s => s,
-      };
-      const timeDate = {
-        timeDeltaToString: () => 'timeDelta',
-        fromNow: () => 123124,
       };
       const fs = new FlashSale(exampleData, { translator, mdConfig, timeDate });
 

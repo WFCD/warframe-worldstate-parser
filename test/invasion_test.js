@@ -6,6 +6,7 @@ chai.should();
 
 const Invasion = require('../lib/Invasion.js');
 const mdConfig = require('./data/markdown.json');
+const timeDate = require('./mocks/timeDate.js');
 
 describe('Invasion', function () {
   const testData = {
@@ -25,10 +26,6 @@ describe('Invasion', function () {
     languageString: n => n,
     node: n => n,
     faction: n => n,
-  };
-  const timeDate = {
-    toNow: () => 12312,
-    timeDeltaToString: () => 'timeDelta',
   };
   const Reward = function () { this.reward = 'reward'; };
 
