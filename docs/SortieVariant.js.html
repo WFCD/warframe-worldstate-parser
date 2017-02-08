@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
 				</ul>
 			</li>
 			
@@ -78,6 +78,7 @@
     <article>
         <pre
             class="sunlight-highlight-javascript ">'use strict';
+
 const rPad = require('right-pad');
 
 /**
@@ -100,7 +101,7 @@ class SortieVariant {
     this.mdConfig = mdConfig;
     Object.defineProperty(this, 'mdConfig', { enumerable: false, configurable: false });
 
-    if(data.modifierType) {
+    if (data.modifierType) {
       /**
        * The variant's boss
        * @type {string}

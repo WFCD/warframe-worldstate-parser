@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
 				</ul>
 			</li>
 			
@@ -86,7 +86,7 @@ class DarkSectorBattle {
   /**
    * @param   {Object} data The battle data
    */
-  constructor(data) {
+  constructor(data, { timeDate }) {
     /**
      * The defenders of the dark sector
      * @type {string}
@@ -124,13 +124,13 @@ class DarkSectorBattle {
      * The date and time at which the battle started
      * @type {Date}
      */
-    this.start = new Date(data.Start.$date ? Number(data.Start.$date.$numberLong) : 1000 * data.Start.sec);
+    this.start = timeDate.parseDate(data.Start);
 
     /**
      * The date and time at which the battle ended
      * @type {Date}
      */
-    this.end = new Date(data.End.$date ? Number(data.End.$date.$numberLong) : 1000 * data.End.sec);
+    this.end = timeDate.parseDate(data.End);
   }
 }
 

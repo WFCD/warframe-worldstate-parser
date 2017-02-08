@@ -40,7 +40,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
 				</ul>
 			</li>
 			
@@ -126,7 +126,7 @@ class Fissure extends WorldstateObject {
      * @type {string}
      */
     this.tier = translator.fissureModifier(data.Modifier);
-    
+
     /**
      * The fissure's tier as a number
      * @type {number}
@@ -137,13 +137,13 @@ class Fissure extends WorldstateObject {
      * The date and time at which the fissure appeared
      * @type {Date}
      */
-    this.activation = new Date(data.Activation.$date ? Number(data.Activation.$date.$numberLong) : 1000 * data.Activation.sec);
+    this.activation = timeDate.parseDate(data.Activation);
 
     /**
      * The date and time at which the fissure will disappear
      * @type {Date}
      */
-    this.expiry = new Date(data.Expiry.$date ? Number(data.Expiry.$date.$numberLong) : 1000 * data.Expiry.sec);
+    this.expiry = timeDate.parseDate(data.Expiry);
   }
 
   /**
