@@ -37,7 +37,7 @@
     "main.js",
     "LICENSE"
   ],
-  "repository": "aliasfalse/warframe-worldstate-parser",
+  "repository": "warframe-community-developers/warframe-worldstate-parser",
   "keywords": [
     "warframe-worldstate",
     "warframe"
@@ -48,7 +48,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aliasfalse/warframe-worldstate-parser/issues"
+    "url": "https://github.com/warframe-community-developers/warframe-worldstate-parser/issues"
   },
-  "homepage": "https://github.com/aliasfalse/warframe-worldstate-parser#readme"
+  "homepage": "https://github.com/warframe-community-developers/warframe-worldstate-parser#readme"
 }
