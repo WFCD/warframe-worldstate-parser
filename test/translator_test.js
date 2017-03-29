@@ -17,18 +17,19 @@ describe('Translator', function () {
   });
   describe('en_US translation', () => {
     const translator = new Translator('en_US');
-    describe('#toTitleCase()', function () {
+    describe('toTitleCase()', function () {
+      const toTitleCase = Translator.__get__('toTitleCase');
       it('requires one string argument', function () {
         (() => {
-          translator.toTitleCase();
+          toTitleCase();
         }).should.throw(TypeError);
         (() => {
-          translator.toTitleCase('test');
+          toTitleCase('test');
         }).should.not.throw();
       });
       it('converts the first letter of every word to uppercase and the others to lowercase', function () {
-        translator.toTitleCase('test').should.equal('Test');
-        translator.toTitleCase('test teST').should.equal('Test Test');
+        toTitleCase('test').should.equal('Test');
+        toTitleCase('test teST').should.equal('Test Test');
       });
     });
 
