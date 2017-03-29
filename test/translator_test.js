@@ -9,10 +9,10 @@ const Translator = rewire('../lib/Translator.js');
 
 describe('Translator', function () {
   describe('#constructor()', function () {
-    it('should throw TypeError when called with an invalid argument', function () {
+    it('should work regardless argument', function () {
       (() => { new Translator(); }).should.not.throw();
       (() => { new Translator('en_US'); }).should.not.throw();
-      (() => { new Translator('foobar_lang'); }).should.throw(TypeError);
+      (() => { new Translator('foobar_lang'); }).should.not.throw();
     });
   });
   describe('en_US translation', () => {
