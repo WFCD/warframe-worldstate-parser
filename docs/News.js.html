@@ -150,7 +150,7 @@ class News extends WorldstateObject {
      */
     this.startDate = data.EventStartDate
       ? timeDate.parseDate(data.EventStartDate)
-      : null;
+      : undefined;
 
     /**
      * The date at which the event ends
@@ -158,7 +158,7 @@ class News extends WorldstateObject {
      */
     this.endDate = data.EventEndDate
       ? timeDate.parseDate(data.EventEndDate)
-      : null;
+      : undefined;
   }
 
   /**

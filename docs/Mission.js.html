@@ -105,9 +105,7 @@ class Mission {
      * The mission's description
      * @type {?string}
      */
-    this.description = data.descText
-      ? translator.languageString(data.descText)
-      : null;
+    this.description = translator.languageString(data.descText);
 
     /**
      * The node where the mission takes place
@@ -133,7 +131,7 @@ class Mission {
      */
     this.reward = data.missionReward
       ? new Reward(data.missionReward, deps)
-      : null;
+      : undefined;
 
     /**
      * The minimum level of the enemies in the mission
@@ -148,10 +146,10 @@ class Mission {
     this.maxEnemyLevel = data.maxEnemyLevel;
 
     /**
-     * The number of waves that the players need to complete (null if not applicable)
+     * The number of waves that the players need to complete (undefined if not applicable)
      * @type {?number}
      */
-    this.maxWaveNum = data.maxWaveNum || null;
+    this.maxWaveNum = data.maxWaveNum;
 
     /**
      * The Mission's nightmare boolean

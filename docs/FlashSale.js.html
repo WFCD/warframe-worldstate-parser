@@ -142,6 +142,12 @@ class FlashSale {
      * @type {boolean}
      */
     this.isPopular = data.Popular;
+
+    /**
+     * Unique identifier for this sale built from the end time and reward
+     * @type {string}
+     */
+    this.id = `${this.expiry.getTime()}${this.item}`;
   }
 
   /**
@@ -151,6 +157,14 @@ class FlashSale {
   getETAString() {
     const timeDelta = this.timeDate.fromNow(this.expiry);
     return this.timeDate.timeDeltaToString(timeDelta);
+  }
+
+  /**
+   * Get whether or not this deal has expired
+   * @returns {boolean}
+   */
+  getExpired() {
+    return this.timeDate.fromNow(this.expiry) &lt; 0;
   }
 
   /**

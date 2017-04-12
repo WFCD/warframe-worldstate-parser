@@ -135,6 +135,12 @@ class SyndicateMission extends WorldstateObject {
      * @type {Array.&lt;string>}
      */
     this.nodes = data.Nodes.map(n => translator.node(n));
+
+    /**
+     * Unique identifier for this mission set built from the end time and syndicate
+     * @type {string}
+     */
+    this.id = `${this.expiry.getTime()}${this.syndicate.replace(/\\s/i, '')}`;
   }
 
   /**

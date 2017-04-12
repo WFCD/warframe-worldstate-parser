@@ -96,12 +96,17 @@
  * @property {function} operation        - Converts operation types
  * @property {function} sortieBoss       - Converts sortie boss names
  * @property {function} sortieModifer    - Converts sortie modifier types
+ * @property {function} region           - Converts persistent enemy region indicies
  */
 
 const data = require('warframe-worldstate-data');
 
 function toTitleCase(str) {
   return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+}
+
+function splitResourceName(str) {
+  return str.split(/([A-Z]?[^A-Z]*)/g).filter(item => item).join(' ');
 }
 
 function faction(key) {
@@ -141,9 +146,9 @@ function nodeEnemy(key) {
 function languageString(key) {
   const lowerKey = String(key).toLowerCase();
   if (lowerKey in data.languages) {
-    return data.languages[lowerKey].value;
+    return toTitleCase(data.languages[lowerKey].value);
   } else if (key) {
-    return toTitleCase(lowerKey.split('/').slice(-1)[0]);
+    return splitResourceName(String(key).split('/').slice(-1)[0]);
   }
   return key;
 }
@@ -225,6 +230,13 @@ function sortieModifier(key) {
   return key;
 }
 
+function region(key) {
+  if (key &amp;&amp; data.persistentEnemy[key]) {
+    return data.persistentEnemy[key];
+  }
+  return key;
+}
+
 module.exports = {
   faction,
   node,
@@ -242,6 +254,7 @@ module.exports = {
   sortieBoss,
   sortieModifier,
   sortieFaction,
+  region,
 };
 </pre>
     </article>

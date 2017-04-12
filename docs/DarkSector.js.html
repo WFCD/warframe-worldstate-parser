@@ -191,7 +191,7 @@ class DarkSector extends WorldstateObject {
      * @type {?Mission}
      */
     this.mission =
-      data.DefenderInfo.MissionInfo ? new Mission(data.DefenderInfo.MissionInfo, deps) : null;
+      data.DefenderInfo.MissionInfo ? new Mission(data.DefenderInfo.MissionInfo, deps) : undefined;
 
     this.battlePayReserve = data.DefenderInfo.BattlePayReserve;
 
