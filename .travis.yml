@@ -6,6 +6,6 @@ node_js:
 notifications:
     webhooks:
         urls:
-          - https://canary.discordapp.com/api/webhooks/269749214056022026/gAcQ73cvYzR4y4lFjwS2tCUuszI8T7jnpbnq74cvPKYT5kYBgz6zY-rxKVzmdc_3E1Dv/slack
+          - https://warframestat.us/parser/travis-ci.php
         on_success: always
         on_failure: always
