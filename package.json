@@ -29,8 +29,8 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "test": "node_modules/.bin/eslint src/ test/ && node_modules/.bin/mocha",
-    "build-docs": "node_modules/.bin/jsdoc -c jsdoc-config.json -d docs"
+    "test": "eslint src/ test/ && mocha",
+    "build-docs": "jsdoc -c jsdoc-config.json -d docs"
   },
   "files": [
     "lib",
