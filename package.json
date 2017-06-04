@@ -9,7 +9,7 @@
   "dependencies": {
     "node-md-config": "^2.0.1",
     "right-pad": "^1.0.1",
-    "warframe-worldstate-data": "Warframe-Community-Developers/warframe-worldstate-data"
+    "warframe-worldstate-data": "wfcd/warframe-worldstate-data"
   },
   "devDependencies": {
     "chai": "^3.5.0",
