@@ -1,6 +1,6 @@
 {
   "name": "warframe-worldstate-parser",
-  "version": "1.7.5",
+  "version": "1.7.6",
   "description": "An Open parser for Warframe's Worldstate in Javascript",
   "main": "main.js",
   "directories": {
@@ -9,7 +9,7 @@
   "dependencies": {
     "node-md-config": "^2.0.1",
     "right-pad": "^1.0.1",
-    "warframe-worldstate-data": "wfcd/warframe-worldstate-data"
+    "warframe-worldstate-data": "git://github.com/wfcd/warframe-worldstate-data.git"
   },
   "devDependencies": {
     "chai": "^3.5.0",
