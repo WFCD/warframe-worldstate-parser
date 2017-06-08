@@ -21,7 +21,7 @@
 `npm i -S warframe-worldstate-parser`
 
 ## Documentation
-You can find the documentation [here](https://Warframe-Community-Developers.github.io/warframe-worldstate-parser/)
+You can find the documentation [here](https://wfcd.github.io/warframe-worldstate-parser//)
 
 ## Example usage
 
