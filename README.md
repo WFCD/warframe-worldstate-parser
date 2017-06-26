@@ -33,6 +33,9 @@ const ws = new WorldState(json-data);
 console.log(ws.alerts[0].toString());
 ```
 
+## Live version
+See the parser in action here: [PC](https://ws.warframestat.us/pc) [PS4](https://ws.warframestat.us/ps4) [XB1](https://ws.warframestat.us/xb1)
+
 
 ## NPM
 [![NPM](https://nodei.co/npm/warframe-worldstate-parser.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/warframe-worldstate-parser/)
