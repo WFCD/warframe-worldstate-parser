@@ -27,7 +27,7 @@ describe('Invasion', function () {
     node: n => n,
     faction: n => n,
   };
-  const Reward = function () { this.reward = 'reward'; };
+  const Reward = function () { this.reward = 'reward'; this.getTypes = function () { return []; }; };
 
   describe('#constructor()', function () {
     it('should throw TypeError when called with no arguments or an invalid argument', function () {
