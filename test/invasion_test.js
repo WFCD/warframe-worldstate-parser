@@ -8,7 +8,7 @@ const Invasion = require('../lib/Invasion.js');
 const mdConfig = require('./data/markdown.json');
 const timeDate = require('./mocks/timeDate.js');
 
-describe('Invasion', () => {
+describe('Invasion', function describeInvasion() {
   const testData = {
     _id: { $oid: 'testID' },
     Node: 'node',
@@ -27,17 +27,22 @@ describe('Invasion', () => {
     node: n => n,
     faction: n => n,
   };
-  const Reward = () => { this.reward = 'reward'; this.getTypes = () => []; };
+  const Reward = function CreateReward() {
+    this.reward = 'reward';
+    this.getTypes = function getTypes() {
+      return [];
+    };
+  };
 
-  describe('#constructor()', function () {
-    it('should throw TypeError when called with no arguments or an invalid argument', function () {
+  describe('#constructor()', function describeConstructor() {
+    it('should throw TypeError when called with no arguments or an invalid argument', function reuireConstructor() {
       (() => { new Invasion(); }).should.throw(TypeError);
       (() => { new Invasion({}); }).should.throw(TypeError);
     });
   });
 
-  describe('#toString()', () => {
-    it('should choose the right format according to the factions that are fighting', () => {
+  describe('#toString()', function describeToString() {
+    it('should choose the right format according to the factions that are fighting', function requireToString() {
       const i = new Invasion(testData, { Reward, translator, timeDate, mdConfig });
       i.toString().should.match(/vs\./);
       i.vsInfestation = true;
