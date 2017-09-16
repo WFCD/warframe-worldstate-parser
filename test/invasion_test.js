@@ -15,7 +15,7 @@ function Reward() {
   };
 }
 
-describe('Invasion', function describeInvasion() {
+describe('Invasion', () => {
   const testData = {
     _id: { $oid: 'testID' },
     Node: 'node',
@@ -36,14 +36,14 @@ describe('Invasion', function describeInvasion() {
   };
 
 
-  describe('#constructor()', function describeConstructor() {
+  describe('#constructor()', () => {
     it('should throw TypeError when called with no arguments or an invalid argument', () => {
       (() => { new Invasion(); }).should.throw(TypeError);
       (() => { new Invasion({}); }).should.throw(TypeError);
     });
   });
 
-  describe('#toString()', function describeToString() {
+  describe('#toString()', () => {
     it('should choose the right format according to the factions that are fighting', () => {
       const i = new Invasion(testData, { Reward, translator, timeDate, mdConfig });
       i.toString().should.match(/vs\./);
