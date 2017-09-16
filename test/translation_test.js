@@ -54,7 +54,7 @@ describe('translation', function () {
       translator.missionType('MT_EXCAVATE').should.equal('Excavation');
     });
     it('should return the key if it\'s not found in the data', function () {
-      translator.missionType('notfound').should.equal('notfound');
+      translator.missionType('notfound').should.equal('Notfound');
     });
   });
   describe('conclaveMode()', function () {

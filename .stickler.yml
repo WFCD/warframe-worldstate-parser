@@ -1,7 +1,7 @@
 linters:
     eslint:
-        config: './.eslintrc.json
+        config: './.eslintrc.json'
     flake8:
         enable: false
 files:
-    ignore: ['docs/*', 'package.json']
+    ignore: ['docs', 'package.json']
