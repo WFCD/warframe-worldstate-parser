@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
@@ -81,8 +81,9 @@
 
 const WorldstateObject = require('./WorldstateObject.js');
 
-const updateReg = new RegExp('(update|hotfix)', 'i');
-const primeAccessReg = new RegExp('(access)', 'i');
+const updateReg = /(update|hotfix)/i;
+const primeAccessReg = /(access)/i;
+const streamReg = /(devstream|prime-time|warframeinternational)/i;
 
 /**
  * Represents a game news item
@@ -130,7 +131,7 @@ class News extends WorldstateObject {
      * The news's image link
      * @type {string}
      */
-    this.imageLink = data.ImageUrl;
+    this.imageLink = data.ImageUrl || 'https://i.imgur.com/CNrsc7V.png';
 
     /**
      * Whether this has priority over other news or not
@@ -159,6 +160,36 @@ class News extends WorldstateObject {
     this.endDate = data.EventEndDate
       ? timeDate.parseDate(data.EventEndDate)
       : undefined;
+
+    /**
+     * ETA string (at time of object creation)
+     * @type {String}
+     */
+    this.eta = this.getETAString();
+
+    /**
+     * Whther or not this is an update news item
+     * @type {boolean}
+     */
+    this.update = this.isUpdate();
+
+    /**
+     * Whther or not this is a prime access news item
+     * @type {boolean}
+     */
+    this.primeAccess = this.isPrimeAccess();
+
+    /**
+     * Whether or not this is a stream
+     * @type {boolean}
+     */
+    this.stream = this.isStream();
+
+    /**
+     * The string representation of this object at creation
+     * @type {string}
+     */
+    this.asString = this.toString();
   }
 
   /**
@@ -189,6 +220,14 @@ class News extends WorldstateObject {
    */
   isPrimeAccess() {
     return primeAccessReg.test(this.link);
+  }
+
+  /**
+   * Whether or not this is about a new Prime Access
+   * @returns {boolean}
+   */
+  isStream() {
+    return streamReg.test(this.link);
   }
 
   /**
