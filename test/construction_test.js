@@ -23,8 +23,10 @@ const ProjectPctWithOID = {
 describe('Construction', () => {
   describe('#constructor()', () => {
     it('should throw TypeError when called with no arguments or an invalid argument', () => {
+      /* eslint-disable no-new */
       (() => { new Construction(); }).should.throw(TypeError);
       (() => { new Construction({}); }).should.throw(TypeError);
+      /* eslint-enable no-new */
     });
   });
 
