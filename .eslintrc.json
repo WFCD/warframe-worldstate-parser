@@ -22,6 +22,7 @@
     }],
     "no-underscore-dangle": "off",
     "strict": ["error", "safe"],
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+		"import/no-unresolved": 0
 	}
 }
