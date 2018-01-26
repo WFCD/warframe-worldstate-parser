@@ -18,21 +18,27 @@ describe('Event', function () {
   describe('#toString()', function () {
     const translator = { faction: f => f, languageString: l => l, node: n => n };
     it('should only include the rewards if the event has any', function () {
-      const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } }, { timeDate, RewardParser: {}, translator, mdConfig });
+      const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } }, {
+        timeDate, RewardParser: {}, translator, mdConfig,
+      });
       e.toString().should.not.match(/Rewards/);
 
       e.rewards = ['reward1'];
       e.toString().should.match(/Rewards/);
     });
     it('should not include the node if the event has one', function () {
-      const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } }, { timeDate, RewardParser: {}, translator, mdConfig });
+      const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } }, {
+        timeDate, RewardParser: {}, translator, mdConfig,
+      });
       e.toString().should.not.match(/Battle on/);
 
       e.node = 'Node';
       e.toString().should.match(/Battle on/);
     });
     it('should only include the victim node if the event has one', function () {
-      const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } }, { timeDate, RewardParser: {}, translator, mdConfig });
+      const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } }, {
+        timeDate, RewardParser: {}, translator, mdConfig,
+      });
       e.toString().should.not.match(/Protect/);
 
       e.victim = 'Victim Node';

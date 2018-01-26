@@ -45,7 +45,9 @@ describe('Invasion', () => {
 
   describe('#toString()', () => {
     it('should choose the right format according to the factions that are fighting', () => {
-      const i = new Invasion(testData, { Reward, translator, timeDate, mdConfig });
+      const i = new Invasion(testData, {
+        Reward, translator, timeDate, mdConfig,
+      });
       i.toString().should.match(/vs\./);
       i.vsInfestation = true;
       i.toString().should.not.match(/vs\./);

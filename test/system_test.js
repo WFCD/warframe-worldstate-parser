@@ -50,19 +50,19 @@ before(function () {
 
 describe('The parser', function () {
   it('Should parse the PC data without throwing', function () {
-    (function () {
+    (() => {
       const w = new WorldState(pcData);
       checkToString(w);
     }).should.not.throw();
   });
   it('Should parse the PS4 data without throwing', function () {
-    (function () {
+    (() => {
       const w = new WorldState(ps4Data);
       checkToString(w);
     }).should.not.throw();
   });
   it('Should parse the XB1 data without throwing', function () {
-    (function () {
+    (() => {
       const w = new WorldState(xb1Data);
       checkToString(w);
     }).should.not.throw();
