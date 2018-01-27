@@ -31,31 +31,30 @@ const checkToString = function checkToString(worldState) {
   });
 };
 
+
 let pcData;
 let ps4Data;
 let xb1Data;
-before(function () {
-  return Promise.all([
-    httpGet('http://content.warframe.com/dynamic/worldState.php').then((d) => {
-      pcData = d;
-    }),
-    httpGet('http://content.ps4.warframe.com/dynamic/worldState.php').then((d) => {
-      ps4Data = d;
-    }),
-    httpGet('http://content.xb1.warframe.com/dynamic/worldState.php').then((d) => {
-      xb1Data = d;
-    }),
-  ]);
-});
+before(() => Promise.all([
+  httpGet('http://content.warframe.com/dynamic/worldState.php').then((d) => {
+    pcData = d;
+  }),
+  httpGet('http://content.ps4.warframe.com/dynamic/worldState.php').then((d) => {
+    ps4Data = d;
+  }),
+  httpGet('http://content.xb1.warframe.com/dynamic/worldState.php').then((d) => {
+    xb1Data = d;
+  }),
+]));
 
 describe('The parser', function () {
-  it('Should parse the PC data without throwing', function () {
+  it('Should parse the PC data without throwing', () => {
     (() => {
       const w = new WorldState(pcData);
       checkToString(w);
     }).should.not.throw();
   });
-  it('Should parse the PS4 data without throwing', function () {
+  it('Should parse the PS4 data without throwing', () => {
     (() => {
       const w = new WorldState(ps4Data);
       checkToString(w);
