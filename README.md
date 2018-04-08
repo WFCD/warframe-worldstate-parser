@@ -22,7 +22,7 @@ You can find the documentation [here](https://wfcd.github.io/warframe-worldstate
 ## Example usage
 
 ```javascript
-const worldstateData = await (require('request-promise))('http://content.warframe.com/dynamic/worldState.php');
+const worldstateData = await (require('request-promise'))('http://content.warframe.com/dynamic/worldState.php');
 
 const WorldState = require('warframe-worldstate-parser');
 
