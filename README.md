@@ -1,5 +1,7 @@
 # Warframe Worldstate Parser
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/WFCD/warframe-worldstate-parser.svg)](https://greenkeeper.io/)
+
 [![Supported by Warframe Community Developers](https://warframestat.us/wfcd.png)](https://github.com/WFCD "Supported by Warframe Community Developers")
 
 ### Parse the Warframe worldstate into useable javascript objects.
