@@ -1,10 +1,10 @@
 {
-	"extends": "airbnb",
-	"parserOptions": {
-		"sourceType": "script"
-	},
-	"rules": {
-		"valid-jsdoc": ["error", {
+  "extends": "airbnb",
+  "parserOptions": {
+    "sourceType": "script"
+  },
+  "rules": {
+    "valid-jsdoc": ["error", {
       "requireReturn": false,
       "requireReturnDescription": false,
       "preferType": {
@@ -23,6 +23,6 @@
     "no-underscore-dangle": "off",
     "strict": ["error", "safe"],
     "linebreak-style": "off",
-		"import/no-unresolved": 0
-	}
+    "import/no-unresolved": 0
+  }
 }
