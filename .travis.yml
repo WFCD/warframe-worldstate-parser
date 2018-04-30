@@ -5,9 +5,18 @@ node_js:
 
 before_script:
   - export AUTHOR_NAME="$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
+  - greenkeeper-lockfile-update
+before_install:
+- npm install -g npm
+- npm install -g greenkeeper-lockfile@1
+
+after_script: greenkeeper-lockfile-upload
+
 after_success:
   - chmod +x success.sh
   - ./success.sh
 after_failure:
   - chmod +x fail.sh
   - ./fail.sh
+
+
