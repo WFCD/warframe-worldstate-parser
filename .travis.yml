@@ -25,3 +25,6 @@ after_failure:
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
+
+#override npm ci for now
+install: npm install
