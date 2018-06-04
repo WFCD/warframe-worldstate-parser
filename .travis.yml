@@ -1,22 +1,27 @@
 language: node_js
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: false
 node_js:
-  - "node"
-  - "lts/*"
-
+  - 'node'
+  - '9'
+  - '8'
 before_script:
   - export AUTHOR_NAME="$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
   - greenkeeper-lockfile-update
-before_install:
-- npm install -g npm
-- npm install -g greenkeeper-lockfile@1
 
 after_script: greenkeeper-lockfile-upload
 
 after_success:
-  - chmod +x success.sh
-  - ./success.sh
+  - npm run travis-deploy-once "npm run semantic-release"
+  - chmod +x .travis/success.sh
+  - ./.travis/success.sh
+
 after_failure:
-  - chmod +x fail.sh
-  - ./fail.sh
-
-
+  - chmod +x .travis/fail.sh
+  - ./.travis/fail.sh
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
