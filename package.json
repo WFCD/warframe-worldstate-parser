@@ -10,7 +10,7 @@
     "chai": "^4.1.2",
     "node-md-config": "^2.0.1",
     "right-pad": "^1.0.1",
-    "warframe-worldstate-data": "0.0.329"
+    "warframe-worldstate-data": "0.0.337"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
