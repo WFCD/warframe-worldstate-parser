@@ -4,7 +4,9 @@
   "description": "An Open parser for Warframe's Worldstate in Javascript",
   "main": "main.js",
   "directories": {
-    "test": "test"
+    "test": "test",
+    "version": "git add -A dist",
+    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "chai": "^4.1.2",
