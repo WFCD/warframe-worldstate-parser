@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "chai": "^4.1.2",
+    "node-fetch": "^2.2.0",
     "node-md-config": "^2.0.1",
     "right-pad": "^1.0.1",
     "warframe-worldstate-data": "0.0.440"
