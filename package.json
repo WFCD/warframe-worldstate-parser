@@ -1,6 +1,6 @@
 {
   "name": "warframe-worldstate-parser",
-  "version": "2.1.11",
+  "version": "2.1.12",
   "description": "An Open parser for Warframe's Worldstate in Javascript",
   "main": "main.js",
   "directories": {
