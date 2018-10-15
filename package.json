@@ -53,7 +53,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/warframe-community-developers/warframe-worldstate-parser/issues"
+    "url": "https://github.com/wfcd/warframe-worldstate-parser/issues"
   },
-  "homepage": "https://github.com/warframe-community-developers/warframe-worldstate-parser#readme"
+  "homepage": "https://github.com/wfcd/warframe-worldstate-parser#readme"
 }
