@@ -34,7 +34,7 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "test": "node_modules/.bin/eslint src/ test/ && node_modules/.bin/mocha",
+    "test": "npx eslint src/ test/ && npx mocha",
     "build-docs": "node_modules/.bin/jsdoc -c jsdoc-config.json -d docs"
   },
   "files": [
