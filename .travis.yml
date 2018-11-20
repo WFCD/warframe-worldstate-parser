@@ -6,8 +6,7 @@ notifications:
   email: false
 node_js:
   - 'node'
-  - '9'
-  - '8'
+
 before_script:
   - export AUTHOR_NAME="$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
   - greenkeeper-lockfile-update
