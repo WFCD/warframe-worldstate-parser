@@ -34,8 +34,10 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "test": "npx eslint main.js lib/ test/ && npx mocha",
-    "build-docs": "node_modules/.bin/jsdoc -c jsdoc-config.json -d docs"
+    "test": "npm run lint && npx mocha",
+    "build-docs": "node_modules/.bin/jsdoc -c jsdoc-config.json -d docs",
+    "lint": "npx eslint main.js lib/ test/",
+    "lint:fix": "npx eslint main.js lib/ test/ --fix"
   },
   "files": [
     "lib",
