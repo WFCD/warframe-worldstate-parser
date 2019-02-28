@@ -35,6 +35,7 @@ const checkToString = function checkToString(worldState) {
 let pcData;
 let ps4Data;
 let xb1Data;
+let swiData;
 before(() => Promise.all([
   httpGet('http://content.warframe.com/dynamic/worldState.php').then((d) => {
     pcData = d;
@@ -44,6 +45,9 @@ before(() => Promise.all([
   }),
   httpGet('http://content.xb1.warframe.com/dynamic/worldState.php').then((d) => {
     xb1Data = d;
+  }),
+  httpGet('http://content.swi.warframe.com/dynamic/worldState.php').then((d) => {
+    swiData = d;
   }),
 ]));
 
@@ -63,6 +67,12 @@ describe('The parser', function () {
   it('Should parse the XB1 data without throwing', function () {
     (() => {
       const w = new WorldState(xb1Data);
+      checkToString(w);
+    }).should.not.throw();
+  });
+  it('Should parse the Switch data without throwing', function () {
+    (() => {
+      const w = new WorldState(swiData);
       checkToString(w);
     }).should.not.throw();
   });
