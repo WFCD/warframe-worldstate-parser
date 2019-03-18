@@ -31,4 +31,4 @@ See the parser in action here:
 [![PC API](https://img.shields.io/badge/API-PC-red.svg)](https://api.warframestat.us/pc)
 [![PS4 API](https://img.shields.io/badge/API-PS4-blue.svg)](https://api.warframestat.us/ps4)
 [![XB1 API](https://img.shields.io/badge/API-XB1-brightgreen.svg)](https://api.warframestat.us/xb1)
-[![Switch API](https://img.shields.io/badge/API-Switch-orange.svg)](https://api.warframestat.us/swi)
+[![Switch API](https://img.shields.io/badge/API-Switch-orange.svg)](https://api.warframestat.us/swi) [![Greenkeeper badge](https://badges.greenkeeper.io/WFCD/warframe-worldstate-parser.svg)](https://greenkeeper.io/)
