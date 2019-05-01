@@ -62,8 +62,6 @@ describe('The parser', function () {
     (() => {
       const w = new WorldState(pcData, { locale: 'es' });
       checkToString(w);
-      // eslint-disable-next-line
-      console.log(JSON.stringify(w));
     }).should.not.throw();
   });
 
