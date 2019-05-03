@@ -58,21 +58,48 @@ describe('The parser', function () {
       checkToString(w);
     }).should.not.throw();
   });
+  it('Should parse the PC data to Spanish without throwing', () => {
+    (() => {
+      const w = new WorldState(pcData, { locale: 'es' });
+      checkToString(w);
+    }).should.not.throw();
+  });
+
   it('Should parse the PS4 data without throwing', () => {
     (() => {
       const w = new WorldState(ps4Data);
       checkToString(w);
     }).should.not.throw();
   });
+  it('Should parse the PS4 data to Spanish without throwing', () => {
+    (() => {
+      const w = new WorldState(ps4Data, { locale: 'es' });
+      checkToString(w);
+    }).should.not.throw();
+  });
+
   it('Should parse the XB1 data without throwing', function () {
     (() => {
       const w = new WorldState(xb1Data);
       checkToString(w);
     }).should.not.throw();
   });
+  it('Should parse the XB1 data to Spanish without throwing', function () {
+    (() => {
+      const w = new WorldState(xb1Data, { locale: 'es' });
+      checkToString(w);
+    }).should.not.throw();
+  });
+
   it('Should parse the Switch data without throwing', function () {
     (() => {
       const w = new WorldState(swiData);
+      checkToString(w);
+    }).should.not.throw();
+  });
+  it('Should parse the Switch data to Spanish without throwing', function () {
+    (() => {
+      const w = new WorldState(swiData, { locale: 'es' });
       checkToString(w);
     }).should.not.throw();
   });
