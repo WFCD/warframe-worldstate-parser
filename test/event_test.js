@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const Event = require('../lib/Event.js');
+const Event = require('../lib/WorldEvent.js');
 const mdConfig = require('./data/markdown.json');
 const timeDate = require('./mocks/timeDate.js');
 
