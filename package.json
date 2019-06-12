@@ -14,7 +14,7 @@
     "node-fetch": "^2.3.0",
     "node-md-config": "^2.0.1",
     "right-pad": "^1.0.1",
-    "warframe-worldstate-data": "^1.0.0"
+    "warframe-worldstate-data": "^1.0.3"
   },
   "devDependencies": {
     "eslint": "^5.14.1",
