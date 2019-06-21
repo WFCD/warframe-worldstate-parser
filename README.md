@@ -6,6 +6,8 @@ Parse the Warframe worldstate into useable javascript objects.
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/wfcd/warframe-worldstate-parser/master/LICENSE)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/genesis-parser/localized.svg)](https://crowdin.com/project/genesis-parser)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/f873ee96e28b4568828c297bebe053b4)](https://www.codacy.com/app/aliasfalse/warframe-worldstate-parser?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=WFCD/warframe-worldstate-parser&amp;utm_campaign=Badge_Grade)
+[![Greenkeeper badge](https://badges.greenkeeper.io/WFCD/warframe-worldstate-parser.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.com/WFCD/warframe-worldstate-parser.svg?branch=master)](https://travis-ci.com/WFCD/warframe-worldstate-parser)
 [![Discord](https://img.shields.io/discord/256087517353213954.svg?logo=discord)](https://discord.gg/jGZxH9f)
 
 ## Documentation
@@ -31,7 +33,3 @@ See the parser in action here:
 [![XB1 API](https://img.shields.io/badge/API-XB1-brightgreen.svg)](https://api.warframestat.us/xb1)
 [![Switch API](https://img.shields.io/badge/API-Switch-orange.svg)](https://api.warframestat.us/swi) 
 
-## Extra info
-[![Contact me on Discord](https://img.shields.io/badge/discord-Tobiah%230001-7289DA.svg)](https://discord.gg/jGZxH9f "Contact me on Discord: Tobiah#0001")
-[![Greenkeeper badge](https://badges.greenkeeper.io/WFCD/warframe-worldstate-parser.svg)](https://greenkeeper.io/)
-[![Build Status](https://travis-ci.com/WFCD/warframe-worldstate-parser.svg?branch=master)](https://travis-ci.com/WFCD/warframe-worldstate-parser)
