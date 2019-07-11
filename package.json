@@ -1,6 +1,6 @@
 {
   "name": "warframe-worldstate-parser",
-  "version": "2.7.3",
+  "version": "2.7.4",
   "description": "An Open parser for Warframe's Worldstate in Javascript",
   "types": "./types/worldstate.d.ts",
   "main": "main.js",
@@ -14,7 +14,7 @@
     "node-fetch": "^2.3.0",
     "node-md-config": "^2.0.1",
     "right-pad": "^1.0.1",
-    "warframe-worldstate-data": "^1.0.3"
+    "warframe-worldstate-data": "^1.0.4"
   },
   "devDependencies": {
     "eslint": "^6.0.0",
