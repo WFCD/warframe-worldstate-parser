@@ -10,7 +10,7 @@
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "json-fetch-cache": "^1.0.0",
+    "json-fetch-cache": "^1.0.1",
     "node-fetch": "^2.3.0",
     "node-md-config": "^2.0.1",
     "right-pad": "^1.0.1",
