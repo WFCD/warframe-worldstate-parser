@@ -41,7 +41,9 @@ before(() => {
 });
 
 afterEach(() => {
-  if (!w) return;
+  if (!w) {
+    return;
+  }
   w.stopKuva();
 });
 
