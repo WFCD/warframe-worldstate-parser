@@ -1,25 +1,11 @@
 'use strict';
 
-const http = require('http');
+const fetch = require('node-fetch');
 const chai = require('chai');
 
 const WorldState = require('../main.js');
 
 chai.should();
-
-const httpGet = function httpGet(url) {
-  return new Promise((resolve, reject) => {
-    const request = http.get(url, (response) => {
-      if (response.statusCode < 200 || response.statusCode > 299) {
-        reject(new Error(`Request failed with code + ${response.statusCode}`));
-      }
-      const body = [];
-      response.on('data', data => body.push(data));
-      response.on('end', () => resolve(body.join('')));
-    });
-    request.on('error', err => reject(err));
-  });
-};
 
 const checkToString = function checkToString(worldState) {
   Object.getOwnPropertyNames(worldState).forEach((p) => {
@@ -31,76 +17,40 @@ const checkToString = function checkToString(worldState) {
   });
 };
 
+const data = {};
+const platforms = ['pc', 'ps4', 'xb1', 'swi'];
+let w;
 
-let pcData;
-let ps4Data;
-let xb1Data;
-let swiData;
-before(() => Promise.all([
-  httpGet('http://content.warframe.com/dynamic/worldState.php').then((d) => {
-    pcData = d;
-  }),
-  httpGet('http://content.ps4.warframe.com/dynamic/worldState.php').then((d) => {
-    ps4Data = d;
-  }),
-  httpGet('http://content.xb1.warframe.com/dynamic/worldState.php').then((d) => {
-    xb1Data = d;
-  }),
-  httpGet('http://content.swi.warframe.com/dynamic/worldState.php').then((d) => {
-    swiData = d;
-  }),
-]));
+const getPData = p => fetch(`http://content${p !== 'pc' ? `.${p}` : ''}.warframe.com/dynamic/worldState.php`)
+  .then(d => d.text())
+  .then((d) => { data[p] = d; });
 
-describe('The parser', function () {
-  it('Should parse the PC data without throwing', () => {
-    (() => {
-      const w = new WorldState(pcData);
-      checkToString(w);
-    }).should.not.throw();
-  });
-  it('Should parse the PC data to Spanish without throwing', () => {
-    (() => {
-      const w = new WorldState(pcData, { locale: 'es' });
-      checkToString(w);
-    }).should.not.throw();
-  });
+before(() => {
+  const ps = platforms.map(getPData);
+  return Promise.all(ps);
+});
 
-  it('Should parse the PS4 data without throwing', () => {
-    (() => {
-      const w = new WorldState(ps4Data);
-      checkToString(w);
-    }).should.not.throw();
-  });
-  it('Should parse the PS4 data to Spanish without throwing', () => {
-    (() => {
-      const w = new WorldState(ps4Data, { locale: 'es' });
-      checkToString(w);
-    }).should.not.throw();
-  });
+afterEach(() => {
+  if (!w) {
+    return;
+  }
+  w.stopKuva();
+});
 
-  it('Should parse the XB1 data without throwing', function () {
-    (() => {
-      const w = new WorldState(xb1Data);
-      checkToString(w);
-    }).should.not.throw();
-  });
-  it('Should parse the XB1 data to Spanish without throwing', function () {
-    (() => {
-      const w = new WorldState(xb1Data, { locale: 'es' });
-      checkToString(w);
-    }).should.not.throw();
-  });
+describe('The parser', () => {
+  platforms.forEach((platform) => {
+    it(`Should parse the ${platform.toUpperCase()} data without throwing`, () => {
+      (() => {
+        w = new WorldState(data[platform]);
+        checkToString(w);
+      }).should.not.throw();
+    });
 
-  it('Should parse the Switch data without throwing', function () {
-    (() => {
-      const w = new WorldState(swiData);
-      checkToString(w);
-    }).should.not.throw();
-  });
-  it('Should parse the Switch data to Spanish without throwing', function () {
-    (() => {
-      const w = new WorldState(swiData, { locale: 'es' });
-      checkToString(w);
-    }).should.not.throw();
+    it(`Should parse the ${platform.toUpperCase()} data to Spanish without throwing`, () => {
+      (() => {
+        w = new WorldState(data[platform], { locale: 'es' });
+        checkToString(w);
+      }).should.not.throw();
+    });
   });
 });
