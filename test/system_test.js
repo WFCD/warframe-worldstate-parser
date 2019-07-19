@@ -1,25 +1,12 @@
 'use strict';
 
-const http = require('http');
+const fetch = require('node-fetch');
 const chai = require('chai');
 
 const WorldState = require('../main.js');
 
 chai.should();
 
-const httpGet = function httpGet(url) {
-  return new Promise((resolve, reject) => {
-    const request = http.get(url, (response) => {
-      if (response.statusCode < 200 || response.statusCode > 299) {
-        reject(new Error(`Request failed with code + ${response.statusCode}`));
-      }
-      const body = [];
-      response.on('data', data => body.push(data));
-      response.on('end', () => resolve(body.join('')));
-    });
-    request.on('error', err => reject(err));
-  });
-};
 const checkToString = function checkToString(worldState) {
   Object.getOwnPropertyNames(worldState).forEach((p) => {
     if (Array.isArray(worldState[p])) {
@@ -36,7 +23,8 @@ let w;
 
 before(() => {
   Promise.all(platforms
-    .map(p => httpGet(`http://content${p !== 'pc' ? `.${p}` : ''}.warframe.com/dynamic/worldState.php`)
+    .map(p => fetch(`http://content${p !== 'pc' ? `.${p}` : ''}.warframe.com/dynamic/worldState.php`)
+      .then(d => d.text())
       .then((d) => { data[p] = d; })));
 });
 
