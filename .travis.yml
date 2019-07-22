@@ -6,23 +6,38 @@ notifications:
   email: false
 node_js:
   - node
+  - "lts/*"
+  - "8.9.0"
+  - "8.16.0"
+  - "9.11.2"
+  - "10.16.0"
 
 before_script:
-  - export AUTHOR_NAME="$(git log -1 $TRAVIS_COMMIT --pretty="%aN")"
   - greenkeeper-lockfile-update
 
 after_script: greenkeeper-lockfile-upload
 
-after_success:
-  - chmod +x .travis/success.sh
-  - ./.travis/success.sh
-
-after_failure:
-  - chmod +x .travis/fail.sh
-  - ./.travis/fail.sh
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
 
-#override npm ci for now
+stages:
+  - lint
+  - test
+  - release
+
+jobs:
+  include:
+    - stage: lint
+      script: npm run lint
+    - stage: test
+      script: npm test
+    - stage: release
+      node_js: node
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
+
 install: npm install
