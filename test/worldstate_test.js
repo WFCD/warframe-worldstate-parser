@@ -24,7 +24,7 @@ describe('WorldState', function () {
     });
     it('requires a valid WorldState', function () {
       (function () {
-        new WorldState('{}');
+        new WorldState({});
       }).should.throw(TypeError);
     });
   });
