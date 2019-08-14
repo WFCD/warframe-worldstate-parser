@@ -19,7 +19,7 @@ describe('Reward', function () {
   });
   describe('#toString()', function () {
     it('should only include credits if the reward has any', function () {
-      const translator = { languageString: s => s };
+      const translator = { languageString: (s) => s };
       const r = new Reward({ items: [], countedItems: [] }, { translator });
       r.toString().should.not.match(/cr/);
 
@@ -43,7 +43,7 @@ describe('Reward', function () {
         },
       ];
       getItemType('test', types).should.equal('type2');
-      types.forEach(t => t.test.should.have.been.called);
+      types.forEach((t) => t.test.should.have.been.called);
     });
   });
 });

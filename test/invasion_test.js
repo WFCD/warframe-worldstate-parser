@@ -30,9 +30,9 @@ describe('Invasion', () => {
     },
   };
   const translator = {
-    languageString: n => n,
-    node: n => n,
-    faction: n => n,
+    languageString: (n) => n,
+    node: (n) => n,
+    faction: (n) => n,
   };
 
 

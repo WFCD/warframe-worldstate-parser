@@ -16,7 +16,7 @@ describe('Event', function () {
     });
   });
   describe('#toString()', function () {
-    const translator = { faction: f => f, languageString: l => l, node: n => n };
+    const translator = { faction: (f) => f, languageString: (l) => l, node: (n) => n };
     it('should only include the rewards if the event has any', function () {
       const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } }, {
         timeDate, RewardParser: {}, translator, mdConfig,

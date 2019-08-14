@@ -10,7 +10,7 @@ chai.should();
 const checkToString = function checkToString(worldState) {
   Object.getOwnPropertyNames(worldState).forEach((p) => {
     if (Array.isArray(worldState[p])) {
-      worldState[p].forEach(m => m.toString());
+      worldState[p].forEach((m) => m.toString());
     } else {
       worldState[p].toString();
     }
@@ -21,8 +21,8 @@ const data = {};
 const platforms = ['pc', 'ps4', 'xb1', 'swi'];
 let w;
 
-const getPData = p => fetch(`http://content${p !== 'pc' ? `.${p}` : ''}.warframe.com/dynamic/worldState.php`)
-  .then(d => d.text())
+const getPData = (p) => fetch(`http://content${p !== 'pc' ? `.${p}` : ''}.warframe.com/dynamic/worldState.php`)
+  .then((d) => d.text())
   .then((d) => { data[p] = d; });
 
 before(() => {

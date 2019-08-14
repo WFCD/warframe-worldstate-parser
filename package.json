@@ -18,7 +18,7 @@
     "@types/chai": "^4.2.0",
     "chai": "^4.2.0",
     "eslint": "^6.1.0",
-    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-config-airbnb-base": "^14.0.0",
     "eslint-import-resolver-node": "^0.3.2",
     "eslint-plugin-import": "^2.18.2",
     "greenkeeper-lockfile": "^1.15.1",
@@ -26,7 +26,7 @@
     "jsdoc": "^3.6.3",
     "mocha": "^6.2.0",
     "rewire": "^4.0.0",
-    "sinon": "7.4.0",
+    "sinon": "^7.4.1",
     "sinon-chai": "3.3.0",
     "tsd-jsdoc": "^2.3.1"
   },

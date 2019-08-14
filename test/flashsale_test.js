@@ -28,7 +28,7 @@ describe('FlashSale', function () {
       };
 
       const translator = {
-        languageString: s => s,
+        languageString: (s) => s,
       };
       const fs = new FlashSale(exampleData, { translator, mdConfig, timeDate });
 

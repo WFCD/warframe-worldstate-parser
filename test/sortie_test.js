@@ -25,9 +25,9 @@ describe('Sortie', function () {
       Boss: 'theBoss',
     };
     const translator = {
-      languageString: s => s,
-      sortieBoss: s => s,
-      sortieFaction: s => s,
+      languageString: (s) => s,
+      sortieBoss: (s) => s,
+      sortieFaction: (s) => s,
     };
     it('should format the string correctly according to the data', function () {
       timeDate.fromNow = () => -1;
