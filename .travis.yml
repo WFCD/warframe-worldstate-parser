@@ -24,6 +24,7 @@ branches:
 stages:
   - lint
   - test
+  - coverage
   - release
 
 jobs:
@@ -32,6 +33,8 @@ jobs:
       script: npm run lint
     - stage: test
       script: npm test
+    - stage: coverage
+      script: npm run coverage
     - stage: release
       node_js: node
       deploy:
