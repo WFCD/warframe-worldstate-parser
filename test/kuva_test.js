@@ -6,7 +6,7 @@ chai.should();
 
 const Kuva = require('../lib/Kuva.js');
 
-const real = new Kuva({ translator: { nodeMissionType: () => {}}, locale: 'en' });
+const real = new Kuva({ translator: { nodeMissionType: () => {} }, locale: 'en' });
 
 describe('Kuva', () => {
   describe('#constructor()', () => {
