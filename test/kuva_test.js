@@ -6,7 +6,7 @@ chai.should();
 
 const Kuva = require('../lib/Kuva.js');
 
-const real = new Kuva();
+const real = new Kuva({ translator: { nodeMissionType: () => {}}, locale: 'en' });
 
 describe('Kuva', () => {
   describe('#constructor()', () => {
@@ -14,8 +14,8 @@ describe('Kuva', () => {
       real.cache.stopUpdating();
     });
 
-    it('should not throw TypeError when called with no argument', () => {
-      (() => { new Kuva(); }).should.not.throw(TypeError);
+    it('should throw TypeError when called with no argument', () => {
+      (() => { new Kuva(); }).should.throw(TypeError);
     });
 
     it('should have real data', () => {
