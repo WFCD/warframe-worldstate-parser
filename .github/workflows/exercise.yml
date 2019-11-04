@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [12.x]
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -21,10 +21,11 @@ jobs:
       env:
         CI: true
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [latest, node, 'lts/*', stable, 8.x, 10.x, 12.x]
+        os: [ubuntu-latest, macOS-latest, windows-latest]
     needs: [lint]
     steps:
     - uses: actions/checkout@v1
@@ -42,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [12.x]
     needs: [test]
     steps:
     - uses: actions/checkout@v1
@@ -71,7 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [12.x]
     needs: [coverage]
     steps:
     - uses: actions/checkout@v1
