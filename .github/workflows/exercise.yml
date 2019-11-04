@@ -30,12 +30,9 @@ jobs:
           - 8.x
           - 10.x
           - 12.x
-        os: [ubuntu-latest, macOS-10.14, windows-latest]
-        exclude:
-          - os: windows-latest
-            node: 8.x
-          - os: macOS-10.14
-            node: 8.x
+        os:
+          - ubuntu-latest
+          # windows and macOS don't work well right now. Don't add them for now.
     needs: [lint]
     steps:
     - uses: actions/checkout@v1
