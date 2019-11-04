@@ -1,6 +1,6 @@
 name: Exercise (npm)
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -26,3 +26,8 @@ jobs:
         npm test
       env:
         CI: true
+    - name: Coveralls
+      uses: coverallsapp/github-action@v1.0.1
+      with:
+          github-token: ${{ secrets.github_token }}
+
