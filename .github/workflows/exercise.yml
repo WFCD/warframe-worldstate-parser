@@ -32,7 +32,8 @@ jobs:
           - 12.x
         os: [ubuntu-latest, macOS-10.14, windows-latest]
         include:
-          - node: 8.x
+          - os: windows-latest
+            node: 8.x
             npm: 6.4.1
     needs: [lint]
     steps:
