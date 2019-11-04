@@ -14,12 +14,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Lint
-      run: |
-        npm ci
-        npm run lint
-      env:
-        CI: true
+    - name: ESLint Action
+      uses: hallee/eslint-action@1.0.1
+      with:
+        github-token: ${{ secrets.github_token }}
     - name: Test
       run: |
         npm ci
@@ -46,4 +44,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+    - name: Check if released
+      if: steps.semantic.outputs.new_release_published == 'true'
+      run: |
+        echo "Released!"
