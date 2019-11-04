@@ -34,7 +34,7 @@
   },
   "scripts": {
     "test": "npx nyc --reporter=html --reporter=text --reporter=lcovonly mocha --exit",
-    "coverage": "npm test && cat ./coverage/lcov.info",
+    "coverage": "npm test && cat ./coverage/lcov.info | npx coveralls",
     "build-docs": "npx jsdoc -c jsdoc-config.json -d docs",
     "lint": "npx eslint main.js lib/ test/",
     "lint:fix": "npx eslint main.js lib/ test/ --fix"
