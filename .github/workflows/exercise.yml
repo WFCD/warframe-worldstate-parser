@@ -30,7 +30,10 @@ jobs:
           - 8.x
           - 10.x
           - 12.x
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+        os: [ubuntu-latest, macOS-10.14, windows-latest]
+        include:
+          - node: 8.x
+            npm: 6.4.1
     needs: [lint]
     steps:
     - uses: actions/checkout@v1
