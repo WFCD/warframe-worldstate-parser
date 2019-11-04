@@ -1,6 +1,6 @@
 name: Exercise (npm)
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   lint:
