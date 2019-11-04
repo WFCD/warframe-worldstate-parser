@@ -1,4 +1,4 @@
-name: Run Tests (npm)
+name: Exercise (npm)
 
 on: [push]
 
@@ -14,9 +14,21 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+    - name: Lint
+      run: |
+        npm ci
+        npm run lint
+      env:
+        CI: true
+    - name: Test
       run: |
         npm ci
         npm test
+      env:
+        CI: true
+    - name: Coverage
+      run: |
+        npm ci
+        npm run coverage
       env:
         CI: true
