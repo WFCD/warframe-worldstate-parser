@@ -31,10 +31,11 @@ jobs:
           - 10.x
           - 12.x
         os: [ubuntu-latest, macOS-10.14, windows-latest]
-        include:
+        exclude:
           - os: windows-latest
             node: 8.x
-            npm: 6.4.1
+          - os: macOS-10.14
+            node: 8.x
     needs: [lint]
     steps:
     - uses: actions/checkout@v1
