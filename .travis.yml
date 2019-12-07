@@ -12,9 +12,9 @@ node_js:
   - "lts/*"
   - node
 
-before_script:
-  - greenkeeper-lockfile-update
-
+before_install: npm install -g greenkeeper-lockfile
+install: npm install
+before_script: greenkeeper-lockfile-update
 after_script: greenkeeper-lockfile-upload
 
 branches:
@@ -42,5 +42,3 @@ jobs:
         skip_cleanup: true
         script:
           - npx semantic-release
-
-install: npm install
