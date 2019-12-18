@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="CetusCycle.html">CetusCycle</a></li><li><a href="ChallengeInstance.html">ChallengeInstance</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="ConstructionProgress.html">ConstructionProgress</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Kuva.html">Kuva</a></li><li><a href="global.html#Mission">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Nightwave.html">Nightwave</a></li><li><a href="NightwaveChallenge.html">NightwaveChallenge</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="SentientOutpost.html">SentientOutpost</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateJob.html">SyndicateJob</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VallisCycle.html">VallisCycle</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="VoidTraderItem.html">VoidTraderItem</a></li><li><a href="WeeklyChallenge.html">WeeklyChallenge</a></li><li><a href="WorldEvent.html">WorldEvent</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+					<li><a href="global.html#defaultDeps">defaultDeps</a></li><li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#rewardTypes">rewardTypes</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
 				</ul>
 			</li>
 			
@@ -79,8 +79,11 @@
         <pre
             class="sunlight-highlight-javascript ">'use strict';
 
+const mdConfig = require('node-md-config');
+const sortieData = require('warframe-worldstate-data').sortie;
+
 const News = require('./News.js');
-const Event = require('./Event.js');
+const WorldEvent = require('./WorldEvent.js');
 const Alert = require('./Alert.js');
 const Sortie = require('./Sortie.js');
 const SortieVariant = require('./SortieVariant.js');
@@ -100,9 +103,17 @@ const ConclaveChallenge = require('./ConclaveChallenge.js');
 const PersistentEnemy = require('./PersistentEnemy.js');
 const timeDate = require('./timeDate.js');
 const translator = require('./translation.js');
-const sortieData = require('warframe-worldstate-data').sortie;
 const EarthCycle = require('./EarthCycle.js');
-const mdConfig = require('node-md-config');
+const CetusCycle = require('./CetusCycle.js');
+const ConstructionProgress = require('./ConstructionProgress');
+const VallisCycle = require('./VallisCycle');
+const WeeklyChallenge = require('./WeeklyChallenge');
+const Nightwave = require('./Nightwave');
+const Kuva = require('./Kuva');
+const SyndicateOutpost = require('./SentientOutpost');
+
+const safeArray = (arr) => (arr || []);
+const safeObj = (obj) => (obj || {});
 
 /**
  * A collection of strings that are used by the parser to produce markdown-formatted text
@@ -121,9 +132,24 @@ const mdConfig = require('node-md-config');
  * @property {string} codeBlock    - String for denoting multi-line code blocks
  */
 
+/**
+ * Dependency Object
+ * @typedef {Object} Dependency
+ * @property   {MarkdownSettings}   mdConfig   The markdown settings
+ * @property   {Translator}         translator The string translator
+ * @property   {TimeDateFunctions}  timeDate   The time and date functions
+ * @property   {Mission}            Mission    The Mission parser
+ * @property   {Reward}             Reward     The Reward parser
+ * @property   {string}             locale     Locale to use for translations
+ */
+
+/**
+ * Default Dependency object
+ * @type {Dependency}
+ */
 const defaultDeps = {
   News,
-  Event,
+  WorldEvent,
   Alert,
   Sortie,
   SortieVariant,
@@ -145,10 +171,29 @@ const defaultDeps = {
   translator,
   sortieData,
   mdConfig,
+  locale: 'en',
+  WeeklyChallenge,
 };
 
-function parseArray(ParserClass, dataArray, deps) {
-  return dataArray.map(d => new ParserClass(d, deps));
+function parseArray(ParserClass, dataArray, deps, uniqueField) {
+  const arr = (dataArray || []).map((d) => new ParserClass(d, deps));
+  if (uniqueField) {
+    const utemp = {};
+    arr.sort((a, b) => a.id.localeCompare((b.id)));
+    arr.forEach((obj) => {
+      utemp[obj[uniqueField]] = obj;
+    });
+    return Array.from(arr).filter((obj) => {
+      if (Object.prototype.hasOwnProperty.call(obj, 'active')) {
+        return obj.active;
+      }
+      if (Object.prototype.hasOwnProperty.call(obj, 'expired')) {
+        return obj.expired;
+      }
+      return true;
+    });
+  }
+  return arr;
 }
 
 /**
@@ -161,9 +206,15 @@ class WorldState {
    */
   constructor(json, deps = defaultDeps) {
     if (typeof json !== 'string') {
-      throw new TypeError('json needs to be a string');
+      throw new TypeError(`json needs to be a string, provided ${typeof json} : ${JSON.stringify(json)}`);
     }
     const data = JSON.parse(json);
+
+    // eslint-disable-next-line no-param-reassign
+    deps = {
+      ...defaultDeps,
+      ...deps,
+    };
 
     /**
      * The date and time at which the World State was generated
@@ -175,13 +226,15 @@ class WorldState {
      * The in-game news
      * @type {Array.&lt;News>}
      */
-    this.news = parseArray(deps.News, data.Events, deps);
+    this.news = parseArray(deps.News, (data.Events
+      ? data.Events.filter((e) => typeof e.Messages.find((msg) => msg.LanguageCode === deps.locale) !== 'undefined')
+      : []), deps);
 
     /**
      * The current events
      * @type {Array.&lt;Event>}
      */
-    this.events = parseArray(deps.Event, data.Goals, deps);
+    this.events = parseArray(deps.WorldEvent, data.Goals, deps);
 
     /**
      * The current alerts
@@ -193,13 +246,13 @@ class WorldState {
      * The current sortie
      * @type {Sortie}
      */
-    this.sortie = parseArray(deps.Sortie, data.Sorties, deps)[0];
+    [this.sortie] = parseArray(deps.Sortie, data.Sorties, deps);
 
     /**
      * The current syndicate missions
      * @type {Array.&lt;SyndicateMission>}
      */
-    this.syndicateMissions = parseArray(deps.SyndicateMission, data.SyndicateMissions, deps);
+    this.syndicateMissions = parseArray(deps.SyndicateMission, data.SyndicateMissions, deps, 'syndicate');
 
     /**
      * The current fissures
@@ -235,7 +288,7 @@ class WorldState {
      * The state of the Void Trader
      * @type {VoidTrader}
      */
-    this.voidTrader = parseArray(deps.VoidTrader, data.VoidTraders, deps)[0];
+    [this.voidTrader] = parseArray(deps.VoidTrader, data.VoidTraders, deps);
 
     /**
      * The current daily deals
@@ -247,7 +300,7 @@ class WorldState {
      * The state of the sanctuary synthesis targets
      * @type {Simaris}
      */
-    this.simaris = new deps.Simaris(data.LibraryInfo, deps);
+    this.simaris = new deps.Simaris(safeObj(data.LibraryInfo), deps);
 
     /**
      * The current conclave challenges
@@ -266,6 +319,70 @@ class WorldState {
      * @type {EarthCycle}
      */
     this.earthCycle = new EarthCycle(deps);
+
+    const cetusSynd = safeArray(data.SyndicateMissions)
+      .filter((syndicate) => syndicate.Tag === 'CetusSyndicate');
+    const cetusBountyEnd = timeDate
+      .parseDate(cetusSynd.length > 0 ? cetusSynd[0].Expiry : { $date: 0 });
+
+    /**
+     * The current Cetus cycle
+     * @type {CetusCycle}
+     */
+    this.cetusCycle = new CetusCycle(cetusBountyEnd, deps);
+
+    this.weeklyChallenges = data.WeeklyChallenges
+      ? new deps.WeeklyChallenge(data.WeeklyChallenges, deps)
+      : [];
+
+    const projectPCTwithOid = data.ProjectPct ? {
+      ProjectPct: data.ProjectPct,
+      _id: {
+        $oid: `${Date.now()}${data.ProjectPct[0]}`,
+      },
+    } : undefined;
+
+    /**
+     * The Current construction progress for Fomorians/Razorback/etc.
+     * @type {ConstructionProgress}
+     */
+    this.constructionProgress = projectPCTwithOid
+      ? new ConstructionProgress(projectPCTwithOid, deps)
+      : {};
+
+    /**
+     * The current Orb Vallis cycle state
+     * @type {VallisCycle}
+     */
+    this.vallisCycle = new VallisCycle(deps);
+
+    /**
+     * The current nightwave season
+     * @type {Nightwave}
+     */
+    if (data.SeasonInfo) {
+      this.nightwave = new Nightwave(data.SeasonInfo, deps);
+    }
+
+    // kuva &amp; arbies
+    this.externalMissions = new Kuva(deps);
+    Object.defineProperty(this, 'externalMissions', { enumerable: false, configurable: false });
+    setTimeout((self) => {
+      /* eslint-disable no-param-reassign */
+      self.kuva = this.externalMissions.kuva;
+      self.arbitration = this.externalMissions.arbitration;
+      /* eslint-enable no-param-reassign */
+    }, 1000, this);
+
+    /**
+     * Current syndicate outposts
+     * @type {SyndicateOutpost}
+     */
+    this.sentientOutposts = new SyndicateOutpost(data.Tmp, deps);
+  }
+
+  stopKuva() {
+    this.externalMissions.cache.stopUpdating();
   }
 }
 
@@ -309,7 +426,7 @@ module.exports = WorldState;
 
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

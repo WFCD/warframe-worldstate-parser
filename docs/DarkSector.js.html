@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="CetusCycle.html">CetusCycle</a></li><li><a href="ChallengeInstance.html">ChallengeInstance</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="ConstructionProgress.html">ConstructionProgress</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Kuva.html">Kuva</a></li><li><a href="global.html#Mission">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Nightwave.html">Nightwave</a></li><li><a href="NightwaveChallenge.html">NightwaveChallenge</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="SentientOutpost.html">SentientOutpost</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateJob.html">SyndicateJob</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VallisCycle.html">VallisCycle</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="VoidTraderItem.html">VoidTraderItem</a></li><li><a href="WeeklyChallenge.html">WeeklyChallenge</a></li><li><a href="WorldEvent.html">WorldEvent</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+					<li><a href="global.html#defaultDeps">defaultDeps</a></li><li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#rewardTypes">rewardTypes</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
 				</ul>
 			</li>
 			
@@ -92,14 +92,19 @@ class DarkSector extends WorldstateObject {
    * @param   {MarkdownSettings}   deps.mdConfig         The markdown settings
    * @param   {Translator}         deps.translator       The string translator
    * @param   {TimeDateFunctions}  deps.timeDate         The time and date functions
-   * @param   {function}           deps.Mission          The mission parser
-   * @param   {function}           deps.DarkSectorBattle The dark sector battle parser
-   * @param   {function}           deps.Reward           The reward parser
+   * @param   {Mission}            deps.Mission          The mission parser
+   * @param   {DarkSectorBattle}   deps.DarkSectorBattle The dark sector battle parser
+   * @param   {Reward}             deps.Reward           The reward parser
+   * @param   {string}             deps.locale           Locale to use for translations
    */
-  constructor(data, { mdConfig, translator, timeDate, Mission, DarkSectorBattle, Reward }) {
-    super(data);
+  constructor(data, {
+    mdConfig, translator, timeDate, Mission, DarkSectorBattle, Reward, locale,
+  }) {
+    super(data, { timeDate });
 
-    const deps = { translator, Mission, DarkSectorBattle, mdConfig, Reward, timeDate };
+    const deps = {
+      translator, Mission, DarkSectorBattle, mdConfig, Reward, timeDate, locale,
+    };
 
     /**
      * The dark sector credit tax rate
@@ -141,26 +146,26 @@ class DarkSector extends WorldstateObject {
      * The remaining health of the current solar rail
      * @type {number}
      */
-    this.defenderPoolRemaining = data.DefenderInfo.StrengthRemaining;
+    this.defenderPoolRemaining = Number.parseFloat(data.DefenderInfo.StrengthRemaining);
 
     /**
      * The maximum health of the solar rail
      * @type {number}
      */
-    this.defenderMaxPool = data.DefenderInfo.MaxStrength;
+    this.defenderMaxPool = Number.parseFloat(data.DefenderInfo.MaxStrength);
 
     /**
      * The date and time at which the rail was deployed
      * @type {Date}
      */
-    this.defenderDeployemntActivation = data.DefenderInfo.DeploymentActivationTime ?
-      timeDate.parseDate(data.DefenderInfo.DeploymentActivationTime) : 0;
+    this.defenderDeployemntActivation = data.DefenderInfo.DeploymentActivationTime
+      ? timeDate.parseDate(data.DefenderInfo.DeploymentActivationTime) : 0;
 
     /**
      * The solar rail type
      * @type {string}
      */
-    this.railType = translator.languageString(data.DefenderInfo.RailType);
+    this.railType = translator.languageString(data.DefenderInfo.RailType, locale);
 
     /**
      * The MOTD set by the dark sector holder
@@ -182,7 +187,7 @@ class DarkSector extends WorldstateObject {
 
     this.defenderRailHealReserve = data.DefenderInfo.RailHealReserve;
 
-    this.healRate = data.DefenderInfo.healRate;
+    this.healRate = Number.parseFloat(data.DefenderInfo.healRate);
 
     this.damagePerMission = data.DefenderInfo.DamagePerMission;
 
@@ -190,8 +195,9 @@ class DarkSector extends WorldstateObject {
      * The dark sector's mission
      * @type {?Mission}
      */
-    this.mission =
-      data.DefenderInfo.MissionInfo ? new Mission(data.DefenderInfo.MissionInfo, deps) : undefined;
+    this.mission = data.DefenderInfo.MissionInfo
+      ? new Mission(data.DefenderInfo.MissionInfo, deps)
+      : undefined;
 
     this.battlePayReserve = data.DefenderInfo.BattlePayReserve;
 
@@ -229,7 +235,7 @@ class DarkSector extends WorldstateObject {
      * The history of the dark sector
      * @type {Array.&lt;DarkSectorBattle>}
      */
-    this.history = data.History ? data.History.map(b => new DarkSectorBattle(b, deps)) : [];
+    this.history = data.History ? data.History.map((b) => new DarkSectorBattle(b, deps)) : [];
   }
 }
 
@@ -273,7 +279,7 @@ module.exports = DarkSector;
 
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

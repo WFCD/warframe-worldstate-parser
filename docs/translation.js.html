@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="CetusCycle.html">CetusCycle</a></li><li><a href="ChallengeInstance.html">ChallengeInstance</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="ConstructionProgress.html">ConstructionProgress</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Kuva.html">Kuva</a></li><li><a href="global.html#Mission">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Nightwave.html">Nightwave</a></li><li><a href="NightwaveChallenge.html">NightwaveChallenge</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="SentientOutpost.html">SentientOutpost</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateJob.html">SyndicateJob</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VallisCycle.html">VallisCycle</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="VoidTraderItem.html">VoidTraderItem</a></li><li><a href="WeeklyChallenge.html">WeeklyChallenge</a></li><li><a href="WorldEvent.html">WorldEvent</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+					<li><a href="global.html#defaultDeps">defaultDeps</a></li><li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#rewardTypes">rewardTypes</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
 				</ul>
 			</li>
 			
@@ -87,6 +87,8 @@
  * @property {function} nodeMissionType  - Returns the mission type of a given node
  * @property {function} nodeEnemy        - Returns the faction that controls a given node
  * @property {function} languageString   - Converts generic language strings
+ * @property {function} languageDesc     - Converts generic language strings
+ *                                          and retrieves the description
  * @property {function} missionType      - Converts mission types
  * @property {function} conclaveMode     - Converts conclave modes
  * @property {function} conclaveCategory - Converts conclave challenge categories
@@ -103,146 +105,166 @@
 const data = require('warframe-worldstate-data');
 
 function toTitleCase(str) {
-  return str.replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+  return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
 }
 
 function splitResourceName(str) {
-  return str.split(/([A-Z]?[^A-Z]*)/g).filter(item => item).join(' ');
+  return str.split(/([A-Z]?[^A-Z]*)/g).filter((item) => item).join(' ');
 }
 
-function faction(key) {
-  if (key in data.factions) {
-    return data.factions[key].value;
+const i18n = (locale = 'en') => data[locale] || data;
+
+function faction(key, dataOverride) {
+  if (key in i18n(dataOverride).factions) {
+    return i18n(dataOverride).factions[key].value;
   }
   return key;
 }
 
-function node(key) {
-  if (key in data.solNodes) {
-    return data.solNodes[key].value;
-  } else if (key) {
+function node(key, dataOverride) {
+  if (key in i18n(dataOverride).solNodes) {
+    return i18n(dataOverride).solNodes[key].value;
+  } if (key) {
     return key.split('/').slice(-1)[0];
   }
   return key;
 }
 
-function nodeMissionType(key) {
-  if (key in data.solNodes) {
-    return data.solNodes[key].type;
-  } else if (key) {
+function nodeMissionType(key, dataOverride) {
+  if (key in i18n(dataOverride).solNodes) {
+    return i18n(dataOverride).solNodes[key].type;
+  } if (key) {
     return key.split('/').slice(-1)[0];
   }
   return key;
 }
 
-function nodeEnemy(key) {
-  if (key in data.solNodes) {
-    return data.solNodes[key].enemy;
-  } else if (key) {
+function nodeEnemy(key, dataOverride) {
+  if (key in i18n(dataOverride).solNodes) {
+    return i18n(dataOverride).solNodes[key].enemy;
+  } if (key) {
     return key.split('/').slice(-1)[0];
   }
   return key;
 }
 
-function languageString(key) {
+function languageString(key, dataOverride) {
   const lowerKey = String(key).toLowerCase();
-  if (lowerKey in data.languages) {
-    return toTitleCase(data.languages[lowerKey].value);
-  } else if (key) {
-    return splitResourceName(String(key).split('/').slice(-1)[0]);
+  if (lowerKey in i18n(dataOverride).languages) {
+    return i18n(dataOverride).languages[lowerKey].value;
+  } if (key) {
+    return toTitleCase(splitResourceName(String(key).split('/').slice(-1)[0]));
   }
   return key;
 }
 
-function missionType(key) {
-  if (key in data.missionTypes) {
-    return data.missionTypes[key].value;
-  } else if (key) {
+function languageDesc(key, dataOverride) {
+  const lowerKey = String(key).toLowerCase();
+  if (lowerKey in i18n(dataOverride).languages) {
+    return i18n(dataOverride).languages[lowerKey].desc;
+  } if (key) {
+    return `[PH] ${toTitleCase(splitResourceName(String(key).split('/').slice(-1)[0]))} Desc`;
+  }
+  return key;
+}
+
+function missionType(key, dataOverride) {
+  if (key in i18n(dataOverride).missionTypes) {
+    return i18n(dataOverride).missionTypes[key].value;
+  } if (key) {
     return toTitleCase(key.replace(/^MT_/, ''));
   }
   return key;
 }
 
-function conclaveMode(key) {
-  if (key in data.conclave.modes) {
-    return data.conclave.modes[key].value;
+function conclaveMode(key, dataOverride) {
+  if (key in i18n(dataOverride).conclave.modes) {
+    return i18n(dataOverride).conclave.modes[key].value;
   }
   return key;
 }
 
-function conclaveCategory(key) {
-  if (key in data.conclave.categories) {
-    return data.conclave.categories[key].value;
+function conclaveCategory(key, dataOverride) {
+  if (key in i18n(dataOverride).conclave.categories) {
+    return i18n(dataOverride).conclave.categories[key].value;
   }
   return key;
 }
 
-function fissureModifier(key) {
-  if (key in data.fissureModifiers) {
-    return data.fissureModifiers[key].value;
+function fissureModifier(key, dataOverride) {
+  if (key in i18n(dataOverride).fissureModifiers) {
+    return i18n(dataOverride).fissureModifiers[key].value;
   }
   return key;
 }
 
-function fissureTier(key) {
-  if (key in data.fissureModifiers) {
-    return data.fissureModifiers[key].num;
+function fissureTier(key, dataOverride) {
+  if (key in i18n(dataOverride).fissureModifiers) {
+    return i18n(dataOverride).fissureModifiers[key].num;
   }
   return key;
 }
 
-function syndicate(key) {
-  if (key in data.syndicates) {
-    return data.syndicates[key].name;
+function syndicate(key, dataOverride) {
+  if (key in i18n(dataOverride).syndicates) {
+    return i18n(dataOverride).syndicates[key].name;
   }
   return key;
 }
 
-function upgrade(key) {
-  if (key in data.upgradeTypes) {
-    return data.upgradeTypes[key].value;
+function upgrade(key, dataOverride) {
+  if (key in i18n(dataOverride).upgradeTypes) {
+    return i18n(dataOverride).upgradeTypes[key].value;
   }
   return key;
 }
 
-function operation(key) {
-  if (key in data.operationTypes) {
-    return data.operationTypes[key].value;
+function operation(key, dataOverride) {
+  if (key in i18n(dataOverride).operationTypes) {
+    return i18n(dataOverride).operationTypes[key].value;
   }
   return key;
 }
 
-function sortieBoss(key) {
-  if (key in data.sortie.bosses) {
-    return data.sortie.bosses[key].name;
+function operationSymbol(key, dataOverride) {
+  if (key in i18n(dataOverride).operationTypes) {
+    return (i18n(dataOverride).operationTypes[key].symbol || 'x');
   }
   return key;
 }
 
-function sortieFaction(key) {
-  if (key in data.sortie.bosses) {
-    return data.sortie.bosses[key].faction;
+function sortieBoss(key, dataOverride) {
+  if (key in i18n(dataOverride).sortie.bosses) {
+    return i18n(dataOverride).sortie.bosses[key].name;
   }
   return key;
 }
 
-function sortieModifier(key) {
-  if (key in data.sortie.modifierTypes) {
-    return data.sortie.modifierTypes[key];
+function sortieFaction(key, dataOverride) {
+  if (key in i18n(dataOverride).sortie.bosses) {
+    return i18n(dataOverride).sortie.bosses[key].faction;
   }
   return key;
 }
 
-function sortieModDesc(key) {
-  if (data.sortie.modifierDescriptions &amp;&amp; key in data.sortie.modifierDescriptions) {
-    return data.sortie.modifierDescriptions[key];
+function sortieModifier(key, dataOverride) {
+  if (key in i18n(dataOverride).sortie.modifierTypes) {
+    return i18n(dataOverride).sortie.modifierTypes[key];
   }
   return key;
 }
 
-function region(key) {
-  if (key &amp;&amp; data.persistentEnemy[key]) {
-    return data.persistentEnemy[key];
+function sortieModDesc(key, dataOverride) {
+  if (i18n(dataOverride).sortie.modifierDescriptions
+    &amp;&amp; key in i18n(dataOverride).sortie.modifierDescriptions) {
+    return i18n(dataOverride).sortie.modifierDescriptions[key];
+  }
+  return key;
+}
+
+function region(key, dataOverride) {
+  if (key &amp;&amp; i18n(dataOverride).persistentEnemy[key]) {
+    return i18n(dataOverride).persistentEnemy[key];
   }
   return key;
 }
@@ -253,6 +275,7 @@ module.exports = {
   nodeMissionType,
   nodeEnemy,
   languageString,
+  languageDesc,
   missionType,
   conclaveMode,
   conclaveCategory,
@@ -261,6 +284,7 @@ module.exports = {
   syndicate,
   upgrade,
   operation,
+  operationSymbol,
   sortieBoss,
   sortieModifier,
   sortieModDesc,
@@ -306,7 +330,7 @@ module.exports = {
 
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="CetusCycle.html">CetusCycle</a></li><li><a href="ChallengeInstance.html">ChallengeInstance</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="ConstructionProgress.html">ConstructionProgress</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Kuva.html">Kuva</a></li><li><a href="global.html#Mission">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Nightwave.html">Nightwave</a></li><li><a href="NightwaveChallenge.html">NightwaveChallenge</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="SentientOutpost.html">SentientOutpost</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateJob.html">SyndicateJob</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VallisCycle.html">VallisCycle</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="VoidTraderItem.html">VoidTraderItem</a></li><li><a href="WeeklyChallenge.html">WeeklyChallenge</a></li><li><a href="WorldEvent.html">WorldEvent</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+					<li><a href="global.html#defaultDeps">defaultDeps</a></li><li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#rewardTypes">rewardTypes</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
 				</ul>
 			</li>
 			
@@ -244,6 +244,54 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>mdConfig</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#MarkdownSettings">MarkdownSettings</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The markdown settings</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>locale</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Locale to use for translations</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -337,6 +385,86 @@
         <h3 class="subsection-title">Members</h3>
 
         <dl>
+            
+<hr>
+<dt class="name" id="desc">
+    <h4 id="desc"><span class="type-signature"></span>desc<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Plaintext description of upgrade
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="GlobalUpgrade.js.html">GlobalUpgrade.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
             
 <hr>
 <dt class="name" id="end">
@@ -659,6 +787,86 @@
         
             
 <hr>
+<dt class="name" id="operationSymbol">
+    <h4 id="operationSymbol"><span class="type-signature"></span>operationSymbol<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Symbol for operation
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="GlobalUpgrade.js.html">GlobalUpgrade.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
 <dt class="name" id="start">
     <h4 id="start"><span class="type-signature"></span>start<span class="type-signature"> :Date</span></h4>
 
@@ -820,7 +1028,7 @@
             
 <hr>
 <dt class="name" id="upgradeOperationValue">
-    <h4 id="upgradeOperationValue"><span class="type-signature"></span>upgradeOperationValue<span class="type-signature"></span></h4>
+    <h4 id="upgradeOperationValue"><span class="type-signature"></span>upgradeOperationValue<span class="type-signature"> :string</span></h4>
 
     
 </dt>
@@ -831,6 +1039,17 @@
     </div>
     
 
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
     
 
     
@@ -892,6 +1111,117 @@
         <h3 class="subsection-title">Methods</h3>
 
         <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="compileDesription"><span class="type-signature"></span>compileDesription()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Turn the global upgrade into a plain text description
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="GlobalUpgrade.js.html">GlobalUpgrade.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Descriptio
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
             
 <hr>
 <dt>
@@ -986,6 +1316,113 @@
     <dd>
         
 <span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getExpired"><span class="type-signature"></span>getExpired()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Get whether or not the event has expired
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="GlobalUpgrade.js.html">GlobalUpgrade.js</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
 
 
 
@@ -1153,7 +1590,7 @@
 
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

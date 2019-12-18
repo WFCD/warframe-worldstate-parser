@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="CetusCycle.html">CetusCycle</a></li><li><a href="ChallengeInstance.html">ChallengeInstance</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="ConstructionProgress.html">ConstructionProgress</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Kuva.html">Kuva</a></li><li><a href="global.html#Mission">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Nightwave.html">Nightwave</a></li><li><a href="NightwaveChallenge.html">NightwaveChallenge</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="SentientOutpost.html">SentientOutpost</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateJob.html">SyndicateJob</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VallisCycle.html">VallisCycle</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="VoidTraderItem.html">VoidTraderItem</a></li><li><a href="WeeklyChallenge.html">WeeklyChallenge</a></li><li><a href="WorldEvent.html">WorldEvent</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+					<li><a href="global.html#defaultDeps">defaultDeps</a></li><li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#rewardTypes">rewardTypes</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
 				</ul>
 			</li>
 			
@@ -92,12 +92,13 @@ const streamReg = /(devstream|prime-time|warframeinternational)/i;
 class News extends WorldstateObject {
   /**
    * @param   {Object}             data            The news data
-   * @param   {Object}             deps            The dependencies object
+   * @param   {Dependency}         deps            The dependencies object
    * @param   {MarkdownSettings}   deps.mdConfig   The markdown settings
    * @param   {TimeDateFunctions}  deps.timeDate   The time and date functions
+   * @param   {locale}             deps.locale     Locale to use for determining language
    */
-  constructor(data, { mdConfig, timeDate }) {
-    super(data);
+  constructor(data, { mdConfig, timeDate, locale }) {
+    super(data, { timeDate });
 
     /**
      * The markdown settings
@@ -119,7 +120,7 @@ class News extends WorldstateObject {
      * The news message
      * @type {string}
      */
-    this.message = data.Messages[0].Message;
+    this.message = (data.Messages.find((msg) => msg.LanguageCode === locale) || { Message: '' }).Message;
 
     /**
      * The link to the forum post
@@ -131,7 +132,10 @@ class News extends WorldstateObject {
      * The news's image link
      * @type {string}
      */
-    this.imageLink = data.ImageUrl || 'https://i.imgur.com/CNrsc7V.png';
+    this.imageLink = (data.ImageUrl || 'https://i.imgur.com/CNrsc7V.png')
+      .replace('https://forums.warframe.com/applications/core/interface/imageproxy/imageproxy.php?img=', '')
+      .replace(/&amp;key=\w*/ig, '')
+      .replace('http://', 'https://');
 
     /**
      * Whether this has priority over other news or not
@@ -186,6 +190,15 @@ class News extends WorldstateObject {
     this.stream = this.isStream();
 
     /**
+     * Translation of the news item
+     * @type {Object.&lt;string, string>}
+     */
+    this.translations = {};
+    data.Messages.forEach((message) => {
+      this.translations[message.LanguageCode] = message.Message;
+    });
+
+    /**
      * The string representation of this object at creation
      * @type {string}
      */
@@ -235,8 +248,17 @@ class News extends WorldstateObject {
    * @returns {string}
    */
   toString() {
-    return `[${this.getETAString()}] ${this.mdConfig.linkBegin}${this.message}` +
-      `${this.mdConfig.linkMid}${this.link}${this.mdConfig.linkEnd}`;
+    return `[${this.getETAString()}] ${this.mdConfig.linkBegin}${this.message}`
+      + `${this.mdConfig.linkMid}${this.link}${this.mdConfig.linkEnd}`;
+  }
+
+  /**
+  * The title of the new in the specified language
+  * @param {string} langCode Ex. 'es', 'de', 'fr'
+  * @returns {string}
+  */
+  getTitle(langCode) {
+    return (langCode in this.translations) ? this.translations[langCode] : this.message;
   }
 }
 
@@ -280,7 +302,7 @@ module.exports = News;
 
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

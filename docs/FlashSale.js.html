@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="CetusCycle.html">CetusCycle</a></li><li><a href="ChallengeInstance.html">ChallengeInstance</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="ConstructionProgress.html">ConstructionProgress</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Kuva.html">Kuva</a></li><li><a href="global.html#Mission">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Nightwave.html">Nightwave</a></li><li><a href="NightwaveChallenge.html">NightwaveChallenge</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="SentientOutpost.html">SentientOutpost</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateJob.html">SyndicateJob</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VallisCycle.html">VallisCycle</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="VoidTraderItem.html">VoidTraderItem</a></li><li><a href="WeeklyChallenge.html">WeeklyChallenge</a></li><li><a href="WorldEvent.html">WorldEvent</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+					<li><a href="global.html#defaultDeps">defaultDeps</a></li><li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#rewardTypes">rewardTypes</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
 				</ul>
 			</li>
 			
@@ -89,8 +89,11 @@ class FlashSale {
    * @param   {MarkdownSettings}   deps.mdConfig   The markdown settings
    * @param   {Translator}         deps.translator The string translator
    * @param   {TimeDateFunctions}  deps.timeDate   The time and date functions
+   * @param   {string}             deps.locale     Locale to use for translations
    */
-  constructor(data, { translator, mdConfig, timeDate }) {
+  constructor(data, {
+    translator, mdConfig, timeDate, locale,
+  }) {
     /**
      * The markdown settings
      * @type {MarkdownSettings}
@@ -111,7 +114,7 @@ class FlashSale {
      * The item being offered in the flash sale
      * @type {string}
      */
-    this.item = translator.languageString(data.TypeName);
+    this.item = translator.languageString(data.TypeName, locale);
 
     /**
      * The date and time at which the sale will end
@@ -120,16 +123,34 @@ class FlashSale {
     this.expiry = timeDate.parseDate(data.EndDate);
 
     /**
+     * The date and time at which the sale will or did start
+     * @type {Date}
+     */
+    this.activation = timeDate.parseDate(data.StartDate);
+
+    /**
      * The item's discount percentage
      * @type {number}
      */
     this.discount = data.Discount;
 
     /**
+     * The item's discounted credit price
+     * @type {number}
+     */
+    this.regularOverride = data.RegularOverride;
+
+    /**
      * The item's discounted platinum price
      * @type {number}
      */
     this.premiumOverride = data.PremiumOverride;
+
+    /**
+     * Whether this item is show in the in-game market
+     * @type {boolean}
+     */
+    this.isShownInMarket = data.ShowInMarket;
 
     /**
      * Whether this item is featured in the in-game market
@@ -147,7 +168,7 @@ class FlashSale {
      * Unique identifier for this sale built from the end time and reward
      * @type {string}
      */
-    this.id = `${this.expiry.getTime()}${this.item}`;
+    this.id = `${data.TypeName.split('/').slice(-1)[0]}${this.expiry.getTime()}`;
 
     /**
      * Whether or not this is expired (at time of object creation)
@@ -191,6 +212,8 @@ class FlashSale {
 
     if (this.discount) {
       lines.unshift(`${this.discount}% off!`);
+    } else if (this.isShownInMarket) {
+      lines.unshift('**ShowInMarket**');
     } else if (this.isPopular) {
       lines.unshift('**Popular**');
     } else if (this.isFeatured) {
@@ -241,7 +264,7 @@ module.exports = FlashSale;
 
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

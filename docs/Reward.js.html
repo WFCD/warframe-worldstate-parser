@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Event.html">Event</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Mission.html">Mission</a></li><li><a href="News.html">News</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="CetusCycle.html">CetusCycle</a></li><li><a href="ChallengeInstance.html">ChallengeInstance</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="ConstructionProgress.html">ConstructionProgress</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="Kuva.html">Kuva</a></li><li><a href="global.html#Mission">Mission</a></li><li><a href="News.html">News</a></li><li><a href="Nightwave.html">Nightwave</a></li><li><a href="NightwaveChallenge.html">NightwaveChallenge</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="SentientOutpost.html">SentientOutpost</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateJob.html">SyndicateJob</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VallisCycle.html">VallisCycle</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="VoidTraderItem.html">VoidTraderItem</a></li><li><a href="WeeklyChallenge.html">WeeklyChallenge</a></li><li><a href="WorldEvent.html">WorldEvent</a></li><li><a href="WorldState.html">WorldState</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
+					<li><a href="global.html#defaultDeps">defaultDeps</a></li><li><a href="global.html#fromNow">fromNow</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#parseDate">parseDate</a></li><li><a href="global.html#rewardTypes">rewardTypes</a></li><li><a href="global.html#timeDeltaToString">timeDeltaToString</a></li><li><a href="global.html#toNow">toNow</a></li>
 				</ul>
 			</li>
 			
@@ -81,23 +81,23 @@
 
 // Resource names
 const resources = [
-  'Neural Sensors',
-  'Orokin Cell',
-  'Neurodes',
   'Alloy Plate',
+  'Argon Crystal',
   'Circuits',
   'Control Module',
+  'Cryotic',
   'Ferrite',
   'Gallium',
   'Morphics',
   'Nano Spores',
+  'Neural Sensors',
+  'Neurodes',
+  'Orokin Cell',
   'Oxium',
-  'Rubedo',
-  'Salvage',
   'Plastids',
   'Polymer Bundle',
-  'Argon Crystal',
-  'Cryotic',
+  'Rubedo',
+  'Salvage',
   'Tellurium',
 ];
 
@@ -135,7 +135,9 @@ const nightmare = [
   'Animal Instinct',
   'Armored Agility',
   'Blaze',
+  'Chilling Reload',
   'Constitution',
+  'Drifting Contact',
   'Focus Energy',
   'Fortitude',
   'Hammer Shot',
@@ -145,6 +147,7 @@ const nightmare = [
   'Stunning Speed',
   'Wildfire',
   'Seeking Fury',
+  'Streamlined Form',
   'Shred',
   'Vigor',
 ];
@@ -158,304 +161,320 @@ const nightmare = [
  * @property {string} test          - Function for testing the return type against a string
  * @property {string} thumbnail     - Thumbnail url for this reward type
  * @property {string} color         - Summary color representing this reward type
-
  */
 
-// Reward types
+/**
+ * All possible RewardTypes
+ * @type {Array.&lt;RewardType>}
+ */
 const rewardTypes = [
   {
     name: 'vauban',
     description: 'Vauban parts',
-    test: s => /^vauban(?!.*helmet)/i.test(s),
+    test: (s) => /^vauban(?!.*helmet)/i.test(s),
     thumbnail: 'https://i.imgur.com/r5x0owi.png',
     color: 0x5C5A53,
   },
   {
     name: 'vandal',
     description: 'Vandal Weapon Parts',
-    test: s => /vandal/i.test(s),
+    test: (s) => /vandal/i.test(s),
     thumbnail: 'https://i.imgur.com/kPQcg5B.png',
     color: 0x5C5A53,
   },
   {
     name: 'wraith',
     description: 'Wraith Weapon Parts',
-    test: s => /wraith/i.test(s),
+    test: (s) => /wraith/i.test(s),
     thumbnail: 'https://i.imgur.com/B5sv3mQ.png',
     color: 0x5C5A53,
   },
   {
     name: 'skin',
     description: 'Weapon skins',
-    test: s => /skin/i.test(s),
+    test: (s) => /skin/i.test(s),
     thumbnail: 'https://raw.githubusercontent.com/Warframe-Community-Developers/warframe-worldstate-parser/master/resources/weapon_skin_thumb.png',
     color: 0x4F4C33,
   },
   {
     name: 'helmet',
     description: 'Alternative helmets',
-    test: s => /helmet/i.test(s),
+    test: (s) => /helmet/i.test(s),
     thumbnail: 'https://raw.githubusercontent.com/Warframe-Community-Developers/warframe-worldstate-parser/master/resources/alt_helmet_thumb.png',
     color: 0x567677,
   },
   {
     name: 'nitain',
     description: 'Nitain extract',
-    test: s => /nitain/i.test(s),
+    test: (s) => /nitain/i.test(s),
     thumbnail: 'https://i.imgur.com/3Db4PHh.png',
     color: 0xAEADA4,
   },
   {
     name: 'mutalist',
     description: 'Mutalist Alad V coordinates',
-    test: s => /mutalist/i.test(s),
+    test: (s) => /mutalist/i.test(s),
     thumbnail: 'https://i.imgur.com/96AWqr8.png',
     color: 0x26B37,
   },
   {
     name: 'weapon',
     description: 'Weapons',
-    test: s => /dagger|sword|glaive/i.test(s),
-    thumbnail: 'https://i.imgur.com/WRhGSMI.png',
+    test: (s) => /dagger|sword|glaive/i.test(s),
+    thumbnail: 'https://i.imgur.com/A2gbH8k.png',
     color: 0xA3A097,
   },
   {
     name: 'fieldron',
     description: 'Fieldron',
-    test: s => /fieldron/i.test(s),
+    test: (s) => /fieldron/i.test(s),
     thumbnail: 'https://i.imgur.com/qlrlfft.png',
     color: 0x4D5556,
   },
   {
     name: 'detonite',
     description: 'Detonite Injector',
-    test: s => /detonite/i.test(s),
+    test: (s) => /detonite/i.test(s),
     thumbnail: 'https://i.imgur.com/rV6lN4W.png',
     color: 0x4D5556,
   },
   {
     name: 'mutagen',
     description: 'Mutagen Mass',
-    test: s => /mutagen/i.test(s),
+    test: (s) => /mutagen/i.test(s),
     thumbnail: 'https://i.imgur.com/vV7kzub.png',
     color: 0x4D5556,
   },
   {
     name: 'clantech',
     description: 'Clantech resources',
-    test: s => /fieldron|detonite|mutagen/i.test(s),
+    test: (s) => /fieldron|detonite|mutagen/i.test(s),
     thumbnail: 'https://github.com/Warframe-Community-Developers/warframe-worldstate-parser/raw/master/resources/clantech_thmb.png',
     color: 0x4D5556,
   },
   {
     name: 'aura',
     description: 'Auras',
-    test: s => auras.includes(s),
+    test: (s) => auras.includes(s),
     thumbnail: 'https://github.com/Warframe-Community-Developers/warframe-worldstate-parser/raw/master/resources/aura_thumb.png',
     color: 0xC8F8FF,
   },
   {
     name: 'neuralSensors',
     description: 'Neural Sensors',
-    test: s => /neural/i.test(s),
+    test: (s) => /neural/i.test(s),
     thumbnail: 'https://i.imgur.com/Gq6cz9p.png',
+    color: 0xC8F8FF,
+  },
+  {
+    name: 'neurodes',
+    description: 'Neurodes',
+    test: (s) => /neurode/i.test(s),
+    thumbnail: 'https://cdn.warframestat.us/img/component-neurode.png',
     color: 0xC8F8FF,
   },
   {
     name: 'orokinCell',
     description: 'Orokin Cell',
-    test: s => /orokin\scell/i.test(s),
+    test: (s) => /orokin\scell/i.test(s),
     thumbnail: 'https://i.imgur.com/tEQdoDE.png',
     color: 0xC8F8FF,
   },
   {
     name: 'alloyPlate',
     description: 'Alloy Plate',
-    test: s => /alloy\splate/i.test(s),
+    test: (s) => /alloy\splate/i.test(s),
     thumbnail: 'https://i.imgur.com/E8K3fOI.png',
     color: 0xC8F8FF,
   },
   {
     name: 'circuits',
     description: 'Circuits',
-    test: s => /circuits/i.test(s),
+    test: (s) => /circuits/i.test(s),
     thumbnail: 'https://i.imgur.com/OxJvWIx.png',
     color: 0xC8F8FF,
   },
   {
     name: 'controlModule',
     description: 'Control Module',
-    test: s => /control\smodule/i.test(s),
+    test: (s) => /control\smodule/i.test(s),
     thumbnail: 'https://i.imgur.com/F1UUub1.png',
     color: 0xC8F8FF,
   },
   {
     name: 'ferrite',
     description: 'Ferrite',
-    test: s => /ferrite/i.test(s),
+    test: (s) => /ferrite/i.test(s),
     thumbnail: 'https://i.imgur.com/h93eVLr.png',
     color: 0xC8F8FF,
   },
   {
     name: 'gallium',
     description: 'Gallium',
-    test: s => /gallium/i.test(s),
+    test: (s) => /gallium/i.test(s),
     thumbnail: 'https://i.imgur.com/pvpc73S.png',
     color: 0xA1ADBA,
   },
   {
     name: 'morphics',
     description: 'Morphics',
-    test: s => /morphics/i.test(s),
+    test: (s) => /morphics/i.test(s),
     thumbnail: 'https://i.imgur.com/SF3XWd6.png',
     color: 0xC8F8FF,
   },
   {
     name: 'nanoSpores',
     description: 'Nano Spores',
-    test: s => /nano\sspores/i.test(s),
+    test: (s) => /nano\sspores/i.test(s),
     thumbnail: 'https://i.imgur.com/bb71Cy7.png',
     color: 0x533F36,
   },
   {
     name: 'oxium',
     description: 'Oxium',
-    test: s => /oxium/i.test(s),
+    test: (s) => /oxium/i.test(s),
     thumbnail: 'https://i.imgur.com/hY8NCjk.png',
     color: 0x92713B,
   },
   {
     name: 'rubedo',
     description: 'Rubedo',
-    test: s => /rubedo/i.test(s),
+    test: (s) => /rubedo/i.test(s),
     thumbnail: 'https://i.imgur.com/gSO9ILf.png',
     color: 0xCE3E36,
   },
   {
     name: 'salvage',
     description: 'Salvage',
-    test: s => /salvage/i.test(s),
+    test: (s) => /salvage/i.test(s),
     thumbnail: 'https://i.imgur.com/3L7xLYg.png',
     color: 0x8B8E8D,
   },
   {
     name: 'plastids',
     description: 'Plastids',
-    test: s => /plastids/i.test(s),
+    test: (s) => /plastids/i.test(s),
     thumbnail: 'https://i.imgur.com/5yVfTEF.png',
     color: 0xCEAE88,
   },
   {
     name: 'polymerBundle',
     description: 'Polymer Bundle',
-    test: s => /polymer\sbundle/i.test(s),
+    test: (s) => /polymer\sbundle/i.test(s),
     thumbnail: 'https://i.imgur.com/pg8asnC.png',
     color: 0x6B4DA4,
   },
   {
     name: 'argonCrystal',
     description: 'Argon Crystal',
-    test: s => /argon\scrystal/i.test(s),
+    test: (s) => /argon\scrystal/i.test(s),
     thumbnail: 'https://i.imgur.com/DdJJYSB.png',
     color: 0xC8F8FF,
   },
   {
     name: 'cryotic',
     description: 'Cryotic',
-    test: s => /cryotic/i.test(s),
+    test: (s) => /cryotic/i.test(s),
     thumbnail: 'https://i.imgur.com/yqPgj21.png',
     color: 0x78A2B3,
   },
   {
     name: 'tellurium',
     description: 'Tellurium',
-    test: s => /tellurium/i.test(s),
+    test: (s) => /tellurium/i.test(s),
     thumbnail: 'https://i.imgur.com/ocjnGU8.png',
     color: 0xE72E18,
   },
   {
     name: 'resource',
     description: 'Resources',
-    test: s => resources.includes(s),
+    test: (s) => resources.includes(s),
     thumbnail: 'https://i.imgur.com/Bq5TEPo.png',
     color: 0xFFEE9C,
   },
   {
     name: 'nightmare',
     description: 'Nightmare mods',
-    test: s => nightmare.includes(s),
-    thumbnail: 'https://github.com/Warframe-Community-Developers/warframe-worldstate-parser/raw/master/resources/nightmare_thumb.png',
+    test: (s) => nightmare.includes(s),
+    thumbnail: 'https://i.imgur.com/cAYNH7j.png',
     color: 0xB22E2C,
   },
   {
     name: 'endo',
     description: 'Endo',
-    test: s => /\d+\sendo/i.test(s),
+    test: (s) => /\d+\sendo/i.test(s),
     thumbnail: 'https://i.imgur.com/mS8oSwx.png',
     color: 0xC2A24C,
   },
   {
     name: 'reactor',
     description: 'Orokin Reactors',
-    test: s => /reactor/i.test(s),
+    test: (s) => /reactor/i.test(s),
     thumbnail: 'https://i.imgur.com/6Hm1BEq.png',
     color: 0xD7C37D,
   },
   {
     name: 'catalyst',
     description: 'Orokin Catalyst',
-    test: s => /catalyst/i.test(s),
+    test: (s) => /catalyst/i.test(s),
     thumbnail: 'https://i.imgur.com/C4X9NWm.png',
     color: 0x689ADD,
   },
   {
     name: 'potato',
     description: 'Orokin Catalysts/Reactors',
-    test: s => /catalyst|reactor/i.test(s),
+    test: (s) => /catalyst|reactor/i.test(s),
     thumbnail: 'https://i.imgur.com/6Hm1BEq.png',
     color: 0x689ADD,
   },
   {
     name: 'forma',
     description: 'Forma',
-    test: s => /forma/i.test(s),
+    test: (s) => /forma/i.test(s),
     thumbnail: 'https://i.imgur.com/2b0FT3D.png',
     color: 0xB19547,
   },
   {
     name: 'exilus',
     description: 'Exilus',
-    test: s => /exilus/i.test(s),
+    test: (s) => /exilus/i.test(s),
     thumbnail: 'https://i.imgur.com/eQNeNpY.png',
     color: 0x88332D,
   },
   {
     name: 'synthula',
     description: 'Synthula',
-    test: s => /synthula/i.test(s),
+    test: (s) => /synthula/i.test(s),
     thumbnail: 'https://i.imgur.com/X0Lvfc9.png',
     color: 0x9FA19F,
   },
   {
     name: 'kavatGene',
     description: 'Kavat Genetic Code',
-    test: s => /Kavat Ge/i.test(s),
+    test: (s) => /Kavat Ge/i.test(s),
     thumbnail: 'https://i.imgur.com/ijVUmQV.png',
     color: 0x76A8AD,
   },
   {
     name: 'kubrowEgg',
     description: 'Kubrow Egg',
-    test: s => /kubrow\segg/i.test(s),
+    test: (s) => /kubrow\segg/i.test(s),
     thumbnail: 'https://i.imgur.com/Vv3LXnz.png',
     color: 0xA5937F,
   },
   {
     name: 'traces',
     description: 'Void Traces',
-    test: s => /trace/i.test(s),
+    test: (s) => /trace/i.test(s),
     thumbnail: 'https://i.imgur.com/vvZGMPv.png',
     color: 0x69A4DD,
+  },
+  {
+    name: 'riven',
+    description: 'Riven Mod',
+    test: (s) => /riven/i.test(s),
+    thumbnail: 'https://i.imgur.com/LoficZr.png',
+    color: 0xA183BD,
   },
   // Catch-all
   {
@@ -470,21 +489,21 @@ const rewardTypes = [
 /**
  * Returns the type of a given item
  * @param   {string}          item The item whose type needs to be determined
- * @param   {Array.&lt;Object>}  [types] The possible types
+ * @param   {Array.&lt;RewardType>}  [types] The possible types
  * @returns {string}          The type name
  */
 function getItemType(item, types = rewardTypes) {
-  return types.find(t => t.test(item)).name;
+  return types.find((t) => t.test(item)).name;
 }
 
 /**
  * Returns the full type of a given item
  * @param   {string}          item The item whose type needs to be determined
- * @param   {Array.&lt;Object>}  [types] The possible types
+ * @param   {Array.&lt;RewardType>}  [types] The possible types
  * @returns {RewardType}      The type
  */
 function getItemTypeFull(item, types = rewardTypes) {
-  return types.find(t => t.test(item));
+  return types.find((t) => t.test(item));
 }
 
 /**
@@ -495,21 +514,22 @@ class Reward {
    * @param   {Object} data                 The mission data
    * @param   {Object}             deps            The dependencies object
    * @param   {Translator}         deps.translator The string translator
+   * @param   {string}             deps.locale     Locale to use for translations
    */
-  constructor(data, { translator }) {
+  constructor(data, { translator, locale }) {
     /**
      * The items being rewarded
      * @type {Array.&lt;string>}
      */
-    this.items = data.items ? data.items.map(i => translator.languageString(i)) : [];
+    this.items = data.items ? data.items.map((i) => translator.languageString(i), locale) : [];
 
     /**
      * The counted items being rewarded
      * @type {Array.&lt;Object>}
      */
-    this.countedItems = data.countedItems ? data.countedItems.map(i => ({
+    this.countedItems = data.countedItems ? data.countedItems.map((i) => ({
       count: i.ItemCount,
-      type: translator.languageString(i.ItemType),
+      type: translator.languageString(i.ItemType, locale),
     })) : [];
 
     /**
@@ -521,9 +541,10 @@ class Reward {
     this.asString = this.toString();
 
     this.itemString = this.items.concat(
-      this.countedItems.map(i => `${i.count > 1 ? i.count : ''} ${i.type}`.trim())).join(' + ');
+      this.countedItems.map((i) => `${i.count > 1 ? i.count : ''} ${i.type}`.trim()),
+    ).join(' + ');
 
-    this.thumbnail = this.getTypesFull()[0] ? this.getTypesFull()[0].thumbnail : 'http://i.imgur.com/KQ7f9l7.png';
+    this.thumbnail = this.getTypesFull()[0] ? this.getTypesFull()[0].thumbnail : 'https://i.imgur.com/JCKyUXJ.png';
 
     this.color = this.getTypesFull()[0] ? this.getTypesFull()[0].color : 0xF1C40F;
   }
@@ -533,7 +554,7 @@ class Reward {
    * @returns {Array.&lt;string>}
    */
   getTypes() {
-    return this.items.concat(this.countedItems.map(i => i.type)).map(t => getItemType(t));
+    return this.items.concat(this.countedItems.map((i) => i.type)).map((t) => getItemType(t));
   }
 
   /**
@@ -541,7 +562,7 @@ class Reward {
    * @returns {Array.&lt;RewardType>}
    */
   getTypesFull() {
-    return this.items.concat(this.countedItems.map(i => i.type)).map(t => getItemTypeFull(t));
+    return this.items.concat(this.countedItems.map((i) => i.type)).map((t) => getItemTypeFull(t));
   }
 
   /**
@@ -550,7 +571,8 @@ class Reward {
    */
   toString() {
     const tokens = this.items.concat(
-      this.countedItems.map(i => `${i.count > 1 ? i.count : ''} ${i.type}`.trim()));
+      this.countedItems.map((i) => `${i.count > 1 ? i.count : ''} ${i.type}`.trim()),
+    );
 
     if (this.credits) {
       tokens.push(`${this.credits}cr`);
@@ -600,7 +622,7 @@ module.exports = Reward;
 
 
 <span class="jsdoc-message">
-	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a>
+	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
