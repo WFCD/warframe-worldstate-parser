@@ -10,27 +10,27 @@ chai.use(sinonChai);
 
 const WorldState = rewire('../lib/WorldState.js');
 
-describe('WorldState', function () {
-  describe('#constructor()', function () {
-    it('requires one string argument', function () {
-      (function () {
+describe('WorldState', () => {
+  describe('#constructor()', () => {
+    it('requires one string argument', () => {
+      (() => {
         new WorldState();
       }).should.throw(TypeError);
     });
-    it('requires valid JSON', function () {
-      (function () {
+    it('requires valid JSON', () => {
+      (() => {
         new WorldState('{');
       }).should.throw(SyntaxError);
     });
-    it('requires a valid WorldState', function () {
-      (function () {
+    it('requires a valid WorldState', () => {
+      (() => {
         new WorldState({});
       }).should.throw(TypeError);
     });
   });
-  describe('parseArray()', function () {
+  describe('parseArray()', () => {
     const parseArray = WorldState.__get__('parseArray');
-    it('uses the provided class to parse each element of the array', function () {
+    it('uses the provided class to parse each element of the array', () => {
       const spy = sinon.spy();
       const testArray = ['test'];
 

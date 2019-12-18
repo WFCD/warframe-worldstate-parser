@@ -33,7 +33,7 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "test": "npx nyc --reporter=html --reporter=text mocha --exit",
+    "test": "npx nyc --reporter=text mocha --exit",
     "coverage": "npm test && npx nyc report --reporter=text-lcov | npx coveralls",
     "build-docs": "npx jsdoc -c jsdoc-config.json -d docs",
     "lint": "npx eslint main.js lib/ test/",
