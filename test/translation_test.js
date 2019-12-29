@@ -420,7 +420,7 @@ describe('translation', () => {
     });
     describe('region()', () => {
       it('should return a translation of the key if it\'s found in the data', () => {
-        translator.region(3, 'es').should.equal('Mars');
+        translator.region(3, 'es').should.equal('Marte');
       });
       it('should return the key if it\'s not found in the data', () => {
         translator.region('notfound', 'es').should.equal('notfound');
