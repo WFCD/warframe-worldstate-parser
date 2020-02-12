@@ -3,7 +3,16 @@
 const fetch = require('node-fetch');
 const chai = require('chai');
 
+const Cache = require('json-fetch-cache');
 const WorldState = require('../main.js');
+
+const kuvaCache = new Cache('https://10o.io/kuvalog.json', 300000, {
+  useEmitter: false,
+});
+const sentientCache = new Cache('https://semlar.com/anomaly.json', 300000, {
+  useEmitter: false,
+});
+
 
 chai.should();
 
@@ -41,14 +50,14 @@ describe('The parser', () => {
   platforms.forEach((platform) => {
     it(`Should parse the ${platform.toUpperCase()} data without throwing`, () => {
       (() => {
-        w = new WorldState(data[platform]);
+        w = new WorldState(data[platform], { kuvaCache, sentientCache });
         checkToString(w);
       }).should.not.throw();
     });
 
     it(`Should parse the ${platform.toUpperCase()} data to Spanish without throwing`, () => {
       (() => {
-        w = new WorldState(data[platform], { locale: 'es' });
+        w = new WorldState(data[platform], { locale: 'es', kuvaCache, sentientCache });
         checkToString(w);
       }).should.not.throw();
     });
