@@ -3,16 +3,10 @@
 const fetch = require('node-fetch');
 const chai = require('chai');
 
-const Cache = require('json-fetch-cache');
 const WorldState = require('../main.js');
 
-const kuvaCache = new Cache('https://10o.io/kuvalog.json', 300000, {
-  useEmitter: false,
-});
-const sentientCache = new Cache('https://semlar.com/anomaly.json', 300000, {
-  useEmitter: false,
-});
-
+const kuvaMock = require('./data/kuvalog.json');
+const sentientMock = require('./data/anomaly.json');
 
 chai.should();
 
@@ -39,25 +33,31 @@ before(() => {
   return Promise.all(ps);
 });
 
-afterEach(() => {
-  if (!w) {
-    return;
-  }
-  w.stopKuva();
-});
-
 describe('The parser', () => {
   platforms.forEach((platform) => {
     it(`Should parse the ${platform.toUpperCase()} data without throwing`, () => {
+      const deps = {
+        kuvaData: kuvaMock,
+        sentientData: sentientMock,
+        logger: console,
+      };
+
       (() => {
-        w = new WorldState(data[platform], { kuvaCache, sentientCache });
+        w = new WorldState(data[platform], deps);
         checkToString(w);
       }).should.not.throw();
     });
 
     it(`Should parse the ${platform.toUpperCase()} data to Spanish without throwing`, () => {
+      const deps = {
+        locale: 'es',
+        kuvaData: kuvaMock,
+        sentientData: sentientMock,
+        logger: console,
+      };
+
       (() => {
-        w = new WorldState(data[platform], { locale: 'es', kuvaCache, sentientCache });
+        w = new WorldState(data[platform], deps);
         checkToString(w);
       }).should.not.throw();
     });

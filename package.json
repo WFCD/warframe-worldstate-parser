@@ -8,7 +8,6 @@
     "test": "test"
   },
   "dependencies": {
-    "json-fetch-cache": "^1.2.1",
     "node-fetch": "^2.6.0",
     "node-md-config": "^2.0.1",
     "right-pad": "^1.0.1",
