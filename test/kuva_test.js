@@ -8,7 +8,7 @@ const Kuva = require('../lib/Kuva.js');
 const mockKuva = require('./data/kuvalog.json');
 
 const minDeps = {
-  translator: { nodeMissionType: () => {} },
+  translator: { nodeMissionType: () => {}, node: () => {} },
   locale: 'en',
   logger: console,
 };
