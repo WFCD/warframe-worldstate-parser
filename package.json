@@ -8,18 +8,17 @@
     "test": "test"
   },
   "dependencies": {
-    "json-fetch-cache": "^1.2.1",
     "node-fetch": "^2.6.0",
     "node-md-config": "^2.0.1",
     "right-pad": "^1.0.1",
     "warframe-worldstate-data": "^1.3.0"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.3",
+    "@types/chai": "^4.2.8",
     "chai": "^4.2.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-import": "^2.20.1",
     "greenkeeper-lockfile": "^1.15.1",
     "ink-docstrap": "^1.3.2",
     "jsdoc": "^3.6.3",
