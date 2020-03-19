@@ -1,23 +1,25 @@
 language: node_js
 os: linux
-cache:
-  directories:
-    - ~/.npm
+dist: bionic
+cache: npm
 notifications:
   email: false
 node_js:
-  - node
-  - "lts/*"
-  - "10.16.0"
-  - "9.11.2"
-  - "8.16.0"
-  - "8.9.0"
+  - 'node'
+  - 'lts/*'
+  - 13
+  - 12
+  - 11
+  - 10
+  - 9
+  - 8
 
 install: npm install
 
 stages:
-  - name: lint
-  - name: coverage
+  - lint
+  - test
+  - coverage
   - name: release
     if: branch = master && type NOT IN (pull_request)
   - name: docs
@@ -27,8 +29,6 @@ jobs:
   include:
     - stage: lint
       script: npm run lint
-    - stage: test
-      script: npm test
     - stage: coverage
       script: npm run coverage
     - stage: release
@@ -36,8 +36,7 @@ jobs:
       deploy:
         provider: script
         cleanup: false
-        script:
-          - npx semantic-release
+        script: npx semantic-release
     - stage: docs
       script:
         - chmod +x ./.github/update_docs.sh
