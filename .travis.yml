@@ -17,6 +17,7 @@ node_js:
 install: npm install
 
 stages:
+  - clint
   - lint
   - test
   - coverage
@@ -27,7 +28,11 @@ stages:
 
 jobs:
   include:
+    - stage: clint
+      name: Lint Commit
+      script: npx commitlint-travis
     - stage: lint
+      name: Lint Source
       script: npm run lint
     - stage: coverage
       script: npm run coverage
