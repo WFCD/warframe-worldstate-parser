@@ -17,7 +17,7 @@ node_js:
 install: npm install
 
 stages:
-  - clint
+  - Lint Commit
   - lint
   - test
   - coverage
