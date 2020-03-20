@@ -17,7 +17,8 @@ node_js:
 install: npm install
 
 stages:
-  - Lint Commit
+  - name: Lint Commit
+    if: branch = master && type NOT IN (pull_request)
   - lint
   - test
   - coverage
