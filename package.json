@@ -2,7 +2,7 @@
   "name": "warframe-worldstate-parser",
   "version": "2.8.0",
   "description": "An Open parser for Warframe's Worldstate in Javascript",
-  "types": "./types/worldstate.d.ts",
+  "types": "./types/main.d.ts",
   "main": "main.js",
   "directories": {
     "test": "test"
@@ -36,7 +36,8 @@
     "coverage": "npm test && npx nyc report --reporter=text-lcov | npx coveralls",
     "build-docs": "npx jsdoc -c jsdoc-config.json -d docs",
     "lint": "npx eslint main.js lib/ test/",
-    "lint:fix": "npx eslint main.js lib/ test/ --fix"
+    "lint:fix": "npx eslint main.js lib/ test/ --fix",
+    "build:types": "tsc -d --declarationDir types --declarationMap --emitDeclarationOnly main.js  --allowJs -m ES6 --newLine lf --strict --inlineSourceMap --inlineSources"
   },
   "files": [
     "lib",
