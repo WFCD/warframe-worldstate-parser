@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>warframe-worldstate-parser Class: SentientOutpost</title>
+	<title>warframe-worldstate-parser Class: Kuva</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,17 +72,16 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: SentientOutpost</h1>
+	<h1 class="page-title">Class: Kuva</h1>
 <section>
 
 <header>
     
         <h2>
-        SentientOutpost
+        Kuva
         </h2>
         
-            <div class="class-description">Represents a set of sentient outposts that are present
-Parsed source is combined data from DE's worldstate and semlar.com/anomaly.json</div>
+            <div class="class-description">Stores and parses kuva data from https://10o.io/kuvalog.json</div>
         
     
 </header>
@@ -94,7 +93,7 @@ Parsed source is combined data from DE's worldstate and semlar.com/anomaly.json<
         
 <hr>
 <dt>
-    <h4 class="name" id="SentientOutpost"><span class="type-signature"></span>new SentientOutpost()</h4>
+    <h4 class="name" id="Kuva"><span class="type-signature"></span>new Kuva()</h4>
     
     
 </dt>
@@ -139,13 +138,13 @@ Parsed source is combined data from DE's worldstate and semlar.com/anomaly.json<
 
         <tr>
             
-                <td class="name"><code>mission</code></td>
+                <td class="name"><code>kuva</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#Mission">Mission</a></span>
+<span class="param-type">Array.&lt;<a href="global.html#ExternalMission">ExternalMission</a>></span>
 
 
 
@@ -156,20 +155,20 @@ Parsed source is combined data from DE's worldstate and semlar.com/anomaly.json<
 
             
 
-            <td class="description last">List of current missions</td>
+            <td class="description last">currently active kuva missions</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>arbitration</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type"><a href="global.html#ExternalMission">ExternalMission</a></span>
 
 
 
@@ -180,177 +179,7 @@ Parsed source is combined data from DE's worldstate and semlar.com/anomaly.json<
 
             
 
-            <td class="description last">Identifier for the mission node with active indicator</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>active</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Whether or not the mission is active</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>activation</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">When the mission became or becomes active</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>expiry</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">When the mission became or becomes inactive</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>previous</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Estimation data for the last mission that was active.
-                               Could also be the current.
-                <h6>Properties</h6>
-
-<table class="props table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>activation</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">When the mission became or becomes active</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>expiry</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Date</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">When the mission became or becomes inactive</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last">current arbitration</td>
         </tr>
 
     
@@ -391,8 +220,8 @@ Parsed source is combined data from DE's worldstate and semlar.com/anomaly.json<
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="SentientOutpost.js.html">SentientOutpost.js</a>,
-				 <a href="SentientOutpost.js.html#sunlight-1-line-43">line 43</a>
+				<a href="Kuva.js.html">Kuva.js</a>,
+				 <a href="Kuva.js.html#sunlight-1-line-96">line 96</a>
 			</li>
 		</ul>
 	</dd>
