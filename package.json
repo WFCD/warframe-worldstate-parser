@@ -14,7 +14,7 @@
     "warframe-worldstate-data": "^1.5.5"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.8",
+    "@types/chai": "^4.2.11",
     "chai": "^4.2.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -22,7 +22,7 @@
     "greenkeeper-lockfile": "^1.15.1",
     "ink-docstrap": "^1.3.2",
     "jsdoc": "^3.6.3",
-    "mocha": "^7.0.1",
+    "mocha": "^7.2.0",
     "rewire": "^4.0.0",
     "sinon": "^9.0.0",
     "sinon-chai": "^3.3.0",
@@ -37,7 +37,8 @@
     "build-docs": "npx jsdoc -c jsdoc-config.json -d docs",
     "lint": "npx eslint main.js lib/ test/",
     "lint:fix": "npx eslint main.js lib/ test/ --fix",
-    "build:types": "tsc -d --declarationDir types --declarationMap --emitDeclarationOnly main.js  --allowJs -m ES6 --newLine lf --strict --inlineSourceMap --inlineSources"
+    "prepublishOnly": "npm run build:types",
+    "build:types": "npx -p typescript tsc -p tsconfig.declaration.json"
   },
   "files": [
     "lib",
