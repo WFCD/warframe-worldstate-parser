@@ -1,0 +1,324 @@
+[
+    {
+      "_id": {
+        "$oid": "5ed0ea05efa6207303ad8046"
+      },
+      "challengeTypeRefID": "/Lotus/PVPChallengeTypes/PVPTimedChallengeOtherChallengeCompleteANY",
+      "startDate": {
+        "$date": {
+          "$numberLong": "1590749701922"
+        }
+      },
+      "endDate": {
+        "$date": {
+          "$numberLong": "1591354501922"
+        }
+      },
+      "params": [
+        {
+          "n": "ScriptParamValue",
+          "v": 10
+        }
+      ],
+      "isGenerated": true,
+      "PVPMode": "PVPMODE_ALL",
+      "subChallenges": [],
+      "Category": "PVPChallengeTypeCategory_WEEKLY"
+    },
+    {
+      "_id": {
+        "$oid": "5ed0ea05efa6207303ad8047"
+      },
+      "challengeTypeRefID": "/Lotus/PVPChallengeTypes/PVPTimedChallengeWeeklyStandardSet",
+      "startDate": {
+        "$date": {
+          "$numberLong": "1590749701922"
+        }
+      },
+      "endDate": {
+        "$date": {
+          "$numberLong": "1591354501922"
+        }
+      },
+      "params": [
+        {
+          "n": "ScriptParamValue",
+          "v": 0
+        }
+      ],
+      "isGenerated": true,
+      "PVPMode": "PVPMODE_NONE",
+      "subChallenges": [
+        {
+          "$oid": "5ed0ea05efa6207303ad8044"
+        },
+        {
+          "$oid": "5ed0ea05efa6207303ad8045"
+        },
+        {
+          "$oid": "5ed0ea05efa6207303ad8046"
+        }
+      ],
+      "Category": "PVPChallengeTypeCategory_WEEKLY_ROOT"
+    },
+    {
+      "_id": {
+        "$oid": "5ed0ea05efa6207303ad8044"
+      },
+      "challengeTypeRefID": "/Lotus/PVPChallengeTypes/PVPTimedChallengeGameModeWins",
+      "startDate": {
+        "$date": {
+          "$numberLong": "1590749701922"
+        }
+      },
+      "endDate": {
+        "$date": {
+          "$numberLong": "1591354501922"
+        }
+      },
+      "params": [
+        {
+          "n": "ScriptParamValue",
+          "v": 6
+        }
+      ],
+      "isGenerated": true,
+      "PVPMode": "PVPMODE_ALL",
+      "subChallenges": [],
+      "Category": "PVPChallengeTypeCategory_WEEKLY"
+    },
+    {
+      "_id": {
+        "$oid": "5ed0ea05efa6207303ad8045"
+      },
+      "challengeTypeRefID": "/Lotus/PVPChallengeTypes/PVPTimedChallengeGameModeComplete",
+      "startDate": {
+        "$date": {
+          "$numberLong": "1590749701922"
+        }
+      },
+      "endDate": {
+        "$date": {
+          "$numberLong": "1591354501922"
+        }
+      },
+      "params": [
+        {
+          "n": "ScriptParamValue",
+          "v": 20
+        }
+      ],
+      "isGenerated": true,
+      "PVPMode": "PVPMODE_ALL",
+      "subChallenges": [],
+      "Category": "PVPChallengeTypeCategory_WEEKLY"
+    },
+    {
+      "_id": {
+        "$oid": "5ed617695db200110dd66449"
+      },
+      "challengeTypeRefID": "/Lotus/PVPChallengeTypes/PVPTimedChallengeKillsHeadShotsMEDIUM",
+      "startDate": {
+        "$date": {
+          "$numberLong": "1591089001424"
+        }
+      },
+      "endDate": {
+        "$date": {
+          "$numberLong": "1591175401424"
+        }
+      },
+      "params": [
+        {
+          "n": "ScriptParamValue",
+          "v": 4
+        }
+      ],
+      "isGenerated": true,
+      "PVPMode": "PVPMODE_TEAMDEATHMATCH",
+      "subChallenges": [],
+      "Category": "PVPChallengeTypeCategory_DAILY"
+    },
+    {
+      "_id": {
+        "$oid": "5ed617695db200110dd6644b"
+      },
+      "challengeTypeRefID": "/Lotus/PVPChallengeTypes/PVPTimedChallengeKillsMeleeHARD",
+      "startDate": {
+        "$date": {
+          "$numberLong": "1591089001424"
+        }
+      },
+      "endDate": {
+        "$date": {
+          "$numberLong": "1591175401424"
+        }
+      },
+      "params": [
+        {
+          "n": "ScriptParamValue",
+          "v": 3
+        }
+      ],
+      "isGenerated": true,
+      "PVPMode": "PVPMODE_DEATHMATCH",
+      "subChallenges": [],
+      "Category": "PVPChallengeTypeCategory_DAILY"
+    },
+    {
+      "_id": {
+        "$oid": "5ed617695db200110dd66447"
+      },
+      "challengeTypeRefID": "/Lotus/PVPChallengeTypes/PVPTimedChallengeFlagCaptureMEDIUM",
+      "startDate": {
+        "$date": {
+          "$numberLong": "1591089001424"
+        }
+      },
+      "endDate": {
+        "$date": {
+          "$numberLong": "1591175401424"
+        }
+      },
+      "params": [
+        {
+          "n": "ScriptParamValue",
+          "v": 4
+        }
+      ],
+      "isGenerated": true,
+      "PVPMode": "PVPMODE_CAPTURETHEFLAG",
+      "subChallenges": [],
+      "Category": "PVPChallengeTypeCategory_DAILY"
+    },
+    {
+      "_id": {
+        "$oid": "5ed617695db200110dd66446"
+      },
+      "challengeTypeRefID": "/Lotus/PVPChallengeTypes/PVPTimedChallengeMatchCompleteEASY",
+      "startDate": {
+        "$date": {
+          "$numberLong": "1591089001424"
+        }
+      },
+      "endDate": {
+        "$date": {
+          "$numberLong": "1591175401424"
+        }
+      },
+      "params": [
+        {
+          "n": "ScriptParamValue",
+          "v": 1
+        }
+      ],
+      "isGenerated": true,
+      "PVPMode": "PVPMODE_CAPTURETHEFLAG",
+      "subChallenges": [],
+      "Category": "PVPChallengeTypeCategory_DAILY"
+    },
+    {
+      "_id": {
+        "$oid": "5ed617695db200110dd6644a"
+      },
+      "challengeTypeRefID": "/Lotus/PVPChallengeTypes/PVPTimedChallengeKillsPayback_MEDIUM",
+      "startDate": {
+        "$date": {
+          "$numberLong": "1591089001424"
+        }
+      },
+      "endDate": {
+        "$date": {
+          "$numberLong": "1591175401424"
+        }
+      },
+      "params": [
+        {
+          "n": "ScriptParamValue",
+          "v": 3
+        }
+      ],
+      "isGenerated": true,
+      "PVPMode": "PVPMODE_DEATHMATCH",
+      "subChallenges": [],
+      "Category": "PVPChallengeTypeCategory_DAILY"
+    },
+    {
+      "_id": {
+        "$oid": "5ed617695db200110dd6644c"
+      },
+      "challengeTypeRefID": "/Lotus/PVPChallengeTypes/PVPTimedChallengeSpeedballCatchesMEDIUM",
+      "startDate": {
+        "$date": {
+          "$numberLong": "1591089001424"
+        }
+      },
+      "endDate": {
+        "$date": {
+          "$numberLong": "1591175401424"
+        }
+      },
+      "params": [
+        {
+          "n": "ScriptParamValue",
+          "v": 10
+        }
+      ],
+      "isGenerated": true,
+      "PVPMode": "PVPMODE_SPEEDBALL",
+      "subChallenges": [],
+      "Category": "PVPChallengeTypeCategory_DAILY"
+    },
+    {
+      "_id": {
+        "$oid": "5ed617695db200110dd66448"
+      },
+      "challengeTypeRefID": "/Lotus/PVPChallengeTypes/PVPTimedChallengeKillsMeleeHARD",
+      "startDate": {
+        "$date": {
+          "$numberLong": "1591089001424"
+        }
+      },
+      "endDate": {
+        "$date": {
+          "$numberLong": "1591175401424"
+        }
+      },
+      "params": [
+        {
+          "n": "ScriptParamValue",
+          "v": 3
+        }
+      ],
+      "isGenerated": true,
+      "PVPMode": "PVPMODE_TEAMDEATHMATCH",
+      "subChallenges": [],
+      "Category": "PVPChallengeTypeCategory_DAILY"
+    },
+    {
+      "_id": {
+        "$oid": "5ed617695db200110dd6644d"
+      },
+      "challengeTypeRefID": "/Lotus/PVPChallengeTypes/PVPTimedChallengeSpeedballStealsEASY",
+      "startDate": {
+        "$date": {
+          "$numberLong": "1591089001424"
+        }
+      },
+      "endDate": {
+        "$date": {
+          "$numberLong": "1591175401424"
+        }
+      },
+      "params": [
+        {
+          "n": "ScriptParamValue",
+          "v": 3
+        }
+      ],
+      "isGenerated": true,
+      "PVPMode": "PVPMODE_SPEEDBALL",
+      "subChallenges": [],
+      "Category": "PVPChallengeTypeCategory_DAILY"
+    }
+  ]
