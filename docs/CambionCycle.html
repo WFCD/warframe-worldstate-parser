@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>warframe-worldstate-parser Class: SyndicateMission</title>
+	<title>warframe-worldstate-parser Class: CambionCycle</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,16 +72,16 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: SyndicateMission</h1>
+	<h1 class="page-title">Class: CambionCycle</h1>
 <section>
 
 <header>
     
         <h2>
-        SyndicateMission
+        CambionCycle
         </h2>
         
-            <div class="class-description">Represents a syndicate daily mission</div>
+            <div class="class-description">Represents the current Cambion Drift Fass/Vome Cycle</div>
         
     
 </header>
@@ -93,7 +93,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="SyndicateMission"><span class="type-signature"></span>new SyndicateMission(data, deps)</h4>
+    <h4 class="name" id="CambionCycle"><span class="type-signature"></span>new CambionCycle(cetusCycle, deps)</h4>
     
     
 </dt>
@@ -132,13 +132,13 @@
 
         <tr>
             
-                <td class="name"><code>data</code></td>
+                <td class="name"><code>cetusCycle</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type"><a href="CetusCycle.html">CetusCycle</a></span>
 
 
 
@@ -149,7 +149,7 @@
 
             
 
-            <td class="description last">The syndicate mission data</td>
+            <td class="description last">Match data from cetus cycle for data</td>
         </tr>
 
     
@@ -199,54 +199,6 @@
 
         <tr>
             
-                <td class="name"><code>mdConfig</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="MarkdownSettings.html">MarkdownSettings</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The markdown settings</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>translator</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Translator">Translator</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The string translator</td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>timeDate</code></td>
             
 
@@ -265,30 +217,6 @@
             
 
             <td class="description last">The time and date functions</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>locale</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Locale to use for translations</td>
         </tr>
 
     
@@ -339,8 +267,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="SyndicateMission.js.html">SyndicateMission.js</a>,
-				 <a href="SyndicateMission.js.html#sunlight-1-line-19">line 19</a>
+				<a href="CambionCycle.js.html">CambionCycle.js</a>,
+				 <a href="CambionCycle.js.html#sunlight-1-line-15">line 15</a>
 			</li>
 		</ul>
 	</dd>
@@ -407,7 +335,7 @@
 <dd>
     
     <div class="description">
-        The date and time at which the syndicate mission starts
+        The date and time at which the void trader arrives
     </div>
     
 
@@ -432,6 +360,15 @@
 
 	
 
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="WorldstateObject.html#activation">WorldstateObject#activation</a>
+			</li>
+		</ul>
+	</dd>
 	
 
     
@@ -464,8 +401,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="SyndicateMission.js.html">SyndicateMission.js</a>,
-				 <a href="SyndicateMission.js.html#sunlight-1-line-56">line 56</a>
+				<a href="WorldstateObject.js.html">WorldstateObject.js</a>,
+				 <a href="WorldstateObject.js.html#sunlight-1-line-31">line 31</a>
 			</li>
 		</ul>
 	</dd>
@@ -580,87 +517,6 @@
         
             
 <hr>
-<dt class="name" id="eta">
-    <h4 id="eta"><span class="type-signature"></span>eta<span class="type-signature"> :String</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        ETA string (at time of object creation)
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">String</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="SyndicateMission.js.html">SyndicateMission.js</a>,
-				 <a href="SyndicateMission.js.html#sunlight-1-line-92">line 92</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
 <dt class="name" id="expiry">
     <h4 id="expiry"><span class="type-signature"></span>expiry<span class="type-signature"> :Date</span></h4>
 
@@ -669,7 +525,7 @@
 <dd>
     
     <div class="description">
-        The date and time at which the syndicate mission ends
+        The date and time at which the void trader leaves
     </div>
     
 
@@ -694,6 +550,15 @@
 
 	
 
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="WorldstateObject.html#expiry">WorldstateObject#expiry</a>
+			</li>
+		</ul>
+	</dd>
 	
 
     
@@ -726,8 +591,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="SyndicateMission.js.html">SyndicateMission.js</a>,
-				 <a href="SyndicateMission.js.html#sunlight-1-line-62">line 62</a>
+				<a href="WorldstateObject.js.html">WorldstateObject.js</a>,
+				 <a href="WorldstateObject.js.html#sunlight-1-line-46">line 46</a>
 			</li>
 		</ul>
 	</dd>
@@ -755,7 +620,7 @@
 <dd>
     
     <div class="description">
-        Unique identifier for this mission set built from the end time and syndicate
+        The object's id field
     </div>
     
 
@@ -780,6 +645,15 @@
 
 	
 
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="WorldstateObject.html#id">WorldstateObject#id</a>
+			</li>
+		</ul>
+	</dd>
 	
 
     
@@ -812,170 +686,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="SyndicateMission.js.html">SyndicateMission.js</a>,
-				 <a href="SyndicateMission.js.html#sunlight-1-line-86">line 86</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="jobs">
-    <h4 id="jobs"><span class="type-signature"></span>jobs<span class="type-signature"> :Array.&lt;<a href="SyndicateJob.html">SyndicateJob</a>></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        The jobs for this syndicate. Will normally be []
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Array.&lt;<a href="SyndicateJob.html">SyndicateJob</a>></span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="SyndicateMission.js.html">SyndicateMission.js</a>,
-				 <a href="SyndicateMission.js.html#sunlight-1-line-80">line 80</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="nodes">
-    <h4 id="nodes"><span class="type-signature"></span>nodes<span class="type-signature"> :Array.&lt;string></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        The nodes on which the missions are taking place
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">Array.&lt;string></span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="SyndicateMission.js.html">SyndicateMission.js</a>,
-				 <a href="SyndicateMission.js.html#sunlight-1-line-74">line 74</a>
+				<a href="WorldstateObject.js.html">WorldstateObject.js</a>,
+				 <a href="WorldstateObject.js.html#sunlight-1-line-16">line 16</a>
 			</li>
 		</ul>
 	</dd>
@@ -1072,87 +784,6 @@
 			<li>
 				<a href="WorldstateObject.js.html">WorldstateObject.js</a>,
 				 <a href="WorldstateObject.js.html#sunlight-1-line-38">line 38</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt class="name" id="syndicate">
-    <h4 id="syndicate"><span class="type-signature"></span>syndicate<span class="type-signature"> :string</span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        The syndicate that is offering the mission
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type">string</span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="SyndicateMission.js.html">SyndicateMission.js</a>,
-				 <a href="SyndicateMission.js.html#sunlight-1-line-68">line 68</a>
 			</li>
 		</ul>
 	</dd>
@@ -1301,7 +932,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="getETAString"><span class="type-signature"></span>getETAString()</h4>
+    <h4 class="name" id="getExpired"><span class="type-signature"></span>getExpired()</h4>
     
     
 </dt>
@@ -1309,7 +940,7 @@
 
     
     <div class="description">
-        Get a string indicating how much time is left before the syndicate mission expries
+        Get whether or not the event has expired
     </div>
     
 
@@ -1355,8 +986,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="SyndicateMission.js.html">SyndicateMission.js</a>,
-				 <a href="SyndicateMission.js.html#sunlight-1-line-99">line 99</a>
+				<a href="CambionCycle.js.html">CambionCycle.js</a>,
+				 <a href="CambionCycle.js.html#sunlight-1-line-32">line 32</a>
 			</li>
 		</ul>
 	</dd>
@@ -1392,7 +1023,7 @@
     </dt>
     <dd>
         
-<span class="param-type">string</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -1661,7 +1292,7 @@
 
     
     <div class="description">
-        Returns a string representation of the syndicate mission
+        Returns a string representation of the object
     </div>
     
 
@@ -1680,6 +1311,15 @@
 
 	
 
+	
+	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
+	<dd class="inherited-from">
+		<ul class="dummy">
+			<li>
+				<a href="WorldstateObject.html#toString">WorldstateObject#toString</a>
+			</li>
+		</ul>
+	</dd>
 	
 
     
@@ -1712,8 +1352,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="SyndicateMission.js.html">SyndicateMission.js</a>,
-				 <a href="SyndicateMission.js.html#sunlight-1-line-107">line 107</a>
+				<a href="WorldstateObject.js.html">WorldstateObject.js</a>,
+				 <a href="WorldstateObject.js.html#sunlight-1-line-62">line 62</a>
 			</li>
 		</ul>
 	</dd>
