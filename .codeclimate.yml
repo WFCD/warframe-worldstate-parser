@@ -10,4 +10,8 @@ checks:
     enabled: false
 plugins:
   eslint:
-    enabled: false
+    enabled: true
+    
+excluded_patterns:
+  - "docs/"
+  - "types/"
