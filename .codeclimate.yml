@@ -10,9 +10,7 @@ checks:
     enabled: false
 plugins:
   eslint:
-    enabled: true
-    config:
-      config: ./.eslintrc.json
+    enabled: false
   duplication:
     enabled: false
   fixme:
