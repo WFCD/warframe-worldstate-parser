@@ -11,7 +11,13 @@ checks:
 plugins:
   eslint:
     enabled: true
-    
+    config:
+      config: ./.eslintrc.json
+  duplication:
+    enabled: false
+  fixme:
+      enabled: true
+
 excluded_patterns:
   - "docs/"
   - "types/"
