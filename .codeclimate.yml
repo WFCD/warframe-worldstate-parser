@@ -15,3 +15,7 @@ plugins:
     enabled: false
   fixme:
       enabled: true
+
+excluded_patterns:
+  - "docs/"
+  - "types/"
