@@ -2,10 +2,10 @@ version: 2
 checks:
   method-lines:
     config:
-      threshold: 45
+      threshold: 100
   method-complexity:
     config:
-      threshold: 10
+      threshold: 20
   similar-code:
     enabled: false
 plugins:
@@ -14,8 +14,9 @@ plugins:
   duplication:
     enabled: false
   fixme:
-      enabled: true
+    enabled: true
 
 exclude_patterns:
   - "docs/"
   - "types/"
+  - "test/"
