@@ -1,0 +1,22 @@
+version: 2
+checks:
+  method-lines:
+    config:
+      threshold: 100
+  method-complexity:
+    config:
+      threshold: 20
+  similar-code:
+    enabled: false
+plugins:
+  eslint:
+    enabled: false
+  duplication:
+    enabled: false
+  fixme:
+    enabled: true
+
+exclude_patterns:
+  - "docs/"
+  - "types/"
+  - "test/"
