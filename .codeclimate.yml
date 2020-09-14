@@ -1,0 +1,13 @@
+version: 2
+checks:
+  method-lines:
+    config:
+      threshold: 45
+  method-complexity:
+    config:
+      threshold: 10
+  similar-code:
+    enabled: false
+plugins:
+  eslint:
+    enabled: false
