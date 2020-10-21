@@ -45,7 +45,7 @@
     "main.js",
     "LICENSE"
   ],
-  "repository": "warframe-community-developers/warframe-worldstate-parser",
+  "repository": "wfcd/warframe-worldstate-parser",
   "keywords": [
     "warframe-worldstate",
     "warframe"
