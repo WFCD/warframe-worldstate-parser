@@ -36,7 +36,7 @@
   },
   "scripts": {
     "test": "nyc --reporter=text --reporter=text-lcov mocha --exit",
-    "coverage": "npm test && nyc report --reporter=text-lcov | coveralls",
+    "coverage": "npm test && nyc report --reporter=lcov | coveralls",
     "build-docs": "jsdoc -c jsdoc-config.json -d docs",
     "lint": "eslint main.js lib/ test/",
     "lint:fix": "eslint main.js lib/ test/ --fix",
