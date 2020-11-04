@@ -53,6 +53,9 @@ jobs:
   report-coverage:
     needs: [lint, test]
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [15.x]
     steps:
     - name: Coveralls Finished
       uses: coverallsapp/github-action@master
