@@ -44,24 +44,28 @@ jobs:
     - run: npm test
       env:
         CI: true
-    - name: Coveralls Parallel
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.github_token }}
-        flag-name: run-${{ matrix.node-version }}
         parallel: true
-  report-coverage:
-    needs: [lint, test]
+  coverage:
+    name: Coverage
     runs-on: ubuntu-latest
+    needs: lint
     strategy:
       matrix:
         node-version: [15.x]
     steps:
-    - name: Coveralls Finished
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: npm test 
+      env:
+        CI: true
+    - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
-        github-token: ${{ secrets.github_token }}
-        parallel-finished: true
+        github-token: ${{ secrets.GITHUB_TOKEN }}
   release:
     name: Release
     runs-on: ubuntu-latest
