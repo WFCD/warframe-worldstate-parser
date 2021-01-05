@@ -1,4 +1,4 @@
-daysUntilStale: 60
+daysUntilStale: 2
 daysUntilClose: 7
 exemptLabels:
   - greenkeeper
