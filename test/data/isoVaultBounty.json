@@ -1,0 +1,14 @@
+{
+  "rewards": "/Lotus/Types/Game/MissionDecks/DeimosMissionRewards/VaultBountyTierCTableBRewards",
+  "masteryReq": 5,
+  "minEnemyLevel": 50,
+  "maxEnemyLevel": 60,
+  "xpAmounts": [
+    5,
+    5,
+    5,
+    7
+  ],
+  "locationTag": "ChamberC",
+  "isVault": true
+}
