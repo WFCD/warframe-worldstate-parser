@@ -47,7 +47,8 @@
   "files": [
     "lib",
     "main.js",
-    "LICENSE"
+    "LICENSE",
+    "types"
   ],
   "repository": "wfcd/warframe-worldstate-parser",
   "keywords": [

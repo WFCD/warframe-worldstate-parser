@@ -8,7 +8,8 @@
     "types/**/*.*",
     "resources/**/*.*",
     "docs/**/*.*",
-    "node_modules/**/*.*"
+    "node_modules/**/*.*",
+    "coverage/**/*.*"
   ],
   "compilerOptions": {
     "outDir": "./types",
