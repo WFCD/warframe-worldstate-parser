@@ -4,11 +4,11 @@ const chai = require('chai');
 
 chai.should();
 
-const SyndicateJob = require('../lib/SyndicateJob');
-const timeDate = require('./mocks/timeDate');
-const translator = require('./mocks/translation');
+const SyndicateJob = require('../../lib/SyndicateJob');
+const timeDate = require('../mocks/timeDate');
+const translator = require('../mocks/translation');
 
-const isoVault = require('./data/isoVaultBounty');
+const isoVault = require('../data/isoVaultBounty');
 
 const locale = 'en';
 

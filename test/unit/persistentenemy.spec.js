@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const PersistentEnemy = require('../lib/PersistentEnemy.js');
+const PersistentEnemy = require('../../lib/PersistentEnemy.js');
 
 describe('PersistentEnemy', function () {
   describe('#constructor()', function () {

@@ -8,7 +8,7 @@ const rewire = require('rewire');
 chai.should();
 chai.use(sinonChai);
 
-const Reward = rewire('../lib/Reward.js');
+const Reward = rewire('../../lib/Reward.js');
 
 describe('Reward', function () {
   describe('#constructor()', function () {

@@ -4,8 +4,8 @@ const chai = require('chai');
 
 chai.should();
 
-const Construction = require('../lib/ConstructionProgress.js');
-const mdConfig = require('./data/markdown.json');
+const Construction = require('../../lib/ConstructionProgress.js');
+const mdConfig = require('../data/markdown.json');
 
 const ProjectPct = [
   3.0047668038409,

@@ -8,7 +8,7 @@ const rewire = require('rewire');
 chai.should();
 chai.use(sinonChai);
 
-const WorldState = rewire('../lib/WorldState.js');
+const WorldState = rewire('../../lib/WorldState.js');
 
 describe('WorldState', () => {
   describe('#constructor()', () => {

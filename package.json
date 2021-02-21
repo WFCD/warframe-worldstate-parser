@@ -35,7 +35,7 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "test": "nyc --reporter=lcov mocha --exit",
+    "test": "nyc --reporter=lcov mocha test/**/*.spec.js --exit",
     "printcov": "nyc report --reporter=text",
     "coverage": "npm test && nyc report --reporter=text-lcov | coveralls",
     "build-docs": "jsdoc -c jsdoc-config.json -d docs",

@@ -5,12 +5,12 @@ const mdConfig = require('node-md-config');
 
 chai.should();
 
-const Alert = require('../lib/Alert');
-const Mission = require('../lib/Mission');
-const Alerts = require('./data/Alerts');
+const Alert = require('../../lib/Alert');
+const Mission = require('../../lib/Mission');
+const Alerts = require('../data/Alerts');
 
-const translator = require('./mocks/translation');
-const timeDate = require('./mocks/timeDate');
+const translator = require('../mocks/translation');
+const timeDate = require('../mocks/timeDate');
 
 describe('Alert', function () {
   describe('#constructor()', function () {

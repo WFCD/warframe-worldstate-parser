@@ -4,12 +4,12 @@ const chai = require('chai');
 
 chai.should();
 
-const Event = require('../lib/WorldEvent.js');
-const mdConfig = require('./data/markdown.json');
-const timeDate = require('./mocks/timeDate.js');
-const translation = require('./mocks/translation.js');
+const Event = require('../../lib/WorldEvent.js');
+const mdConfig = require('../data/markdown.json');
+const timeDate = require('../mocks/timeDate.js');
+const translation = require('../mocks/translation.js');
 
-const events = require('./data/Goals.json');
+const events = require('../data/Goals.json');
 
 describe('Event', () => {
   describe('#constructor()', () => {

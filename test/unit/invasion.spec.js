@@ -4,9 +4,9 @@ const chai = require('chai');
 
 chai.should();
 
-const Invasion = require('../lib/Invasion.js');
-const mdConfig = require('./data/markdown.json');
-const timeDate = require('./mocks/timeDate.js');
+const Invasion = require('../../lib/Invasion.js');
+const mdConfig = require('../data/markdown.json');
+const timeDate = require('../mocks/timeDate.js');
 
 function Reward() {
   this.reward = 'reward';
