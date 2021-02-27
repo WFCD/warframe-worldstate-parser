@@ -14,11 +14,6 @@
     "warframe-worldstate-data": "^1.13.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.1",
-    "@babel/eslint-parser": "^7.13.4",
-    "@babel/plugin-proposal-class-properties": "^7.13.0",
-    "@babel/plugin-proposal-private-methods": "^7.13.0",
-    "@babel/preset-env": "^7.13.5",
     "@types/chai": "^4.2.11",
     "chai": "^4.2.0",
     "coveralls": "^3.1.0",
@@ -35,15 +30,6 @@
     "sinon-chai": "^3.5.0",
     "tsd-jsdoc": "^2.4.0",
     "typescript": "^4.0.5"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-proposal-private-methods"
-    ]
   },
   "engines": {
     "node": ">=8.9.0"
@@ -89,15 +75,8 @@
   ],
   "eslintConfig": {
     "extends": "airbnb-base",
-    "parser": "@babel/eslint-parser",
     "parserOptions": {
-      "sourceType": "script",
-      "babelOptions": {
-        "plugins": [
-          "@babel/plugin-proposal-class-properties",
-          "@babel/plugin-proposal-private-methods"
-        ]
-      }
+      "sourceType": "script"
     },
     "rules": {
       "valid-jsdoc": [
