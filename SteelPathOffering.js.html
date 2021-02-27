@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>warframe-worldstate-parser Class: VoidTraderItem</title>
+	<title>warframe-worldstate-parser Source: SteelPathOffering.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -67,488 +67,71 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: VoidTraderItem</h1>
+		<h1 class="page-title">Source: SteelPathOffering.js</h1>
+    
 <section>
-
-<header>
-    
-        <h2>
-        VoidTraderItem
-        </h2>
-        
-            <div class="class-description">A void trader inventory item</div>
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-<hr>
-<dt>
-    <h4 class="name" id="VoidTraderItem"><span class="type-signature"></span>new VoidTraderItem(data, deps)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>data</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The challenge instance data
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
-                
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>ItemType</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Worldstate Item i18n path</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>PrimePrice</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Ducat cost of the item</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>RegularPrice</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Credit price of the item</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>deps</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Dependency.html">Dependency</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The dependencies object
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
-                
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>translator</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Translator">Translator</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The string translator</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>locale</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Locale to use for translations</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    <dl>
-
-<table class="props table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>item</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The name of the inventory item</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>ducats</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Ducat cost of the item</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>credits</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-|
-
-<span class="param-type">string</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Credit cost of the item</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-</dl>
-
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="VoidTraderItem.js.html">VoidTraderItem.js</a>,
-				 <a href="VoidTraderItem.js.html#sunlight-1-line-19">line 19</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">'use strict';
+
+const endOfWeek = () => {
+  const expiry = new Date();
+  expiry.setUTCHours(23);
+  expiry.setUTCMinutes(59);
+  expiry.setUTCSeconds(59);
+  expiry.setUTCDate(expiry.getUTCDate() + (7 - expiry.getUTCDay()));
+  return expiry;
+};
+
+const startOfWeek = () => {
+  const activation = new Date();
+  activation.setUTCHours(0);
+  activation.setUTCMinutes(0);
+  activation.setUTCSeconds(0);
+  activation.setUTCDate(activation.getUTCDate() - (activation.getUTCDay() - 1));
+  return activation;
+};
+
+/**
+ * Start of Steel Path cycle calculations
+ * @type {Date}
+ */
+const start = new Date('2020-11-16T00:00:00.000Z');
+
+/**
+ * Array of rewards
+ * @type {string[]}
+ */
+const rewards = ['Umbra Forma Blueprint', '50,000 Kuva', 'Kitgun Riven Mod', '3x Forma', 'Zaw Riven Mod', '30,000 Endo', 'Rifle Riven Mod', 'Shotgun Riven Mod'];
+
+module.exports = class SteelPathOffering {
+  constructor({ timeDate }) {
+    const sSinceStart = (Date.now() - start.getTime()) / 1000;
+    const eightWeeks = 4838400;
+    const sevenDays = 604800;
+
+    const ind = Math.floor((sSinceStart % eightWeeks) / sevenDays);
+
+    this.currentReward = rewards[ind];
+
+    this.activation = startOfWeek();
+
+    this.expiry = endOfWeek();
+
+    this.remaining = timeDate.timeDeltaToString(this.expiry.getTime() - Date.now());
+
+    this.rotation = rewards;
+  }
+};
+</pre>
+    </article>
 </section>
+
 
 
 
@@ -558,10 +141,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>
