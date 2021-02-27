@@ -35,7 +35,6 @@ describe('Invasion', () => {
     faction: (n) => n,
   };
 
-
   describe('#constructor()', () => {
     it('should throw TypeError when called with no arguments or an invalid argument', () => {
       (() => { new Invasion(); }).should.throw(TypeError);
