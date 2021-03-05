@@ -3,6 +3,7 @@
 const chai = require('chai');
 const sinonChai = require('sinon-chai');
 const rewire = require('rewire');
+const fs = require('fs');
 
 const fetch = require('node-fetch');
 
@@ -35,6 +36,11 @@ describe('WorldState (integration)', () => {
             article.should.include({ stream: true });
           }
         });
+
+        /* Easy debugging! */
+        // setTimeout(() => {
+        //   fs.writeFileSync(`./data.${platform}.json`, JSON.stringify(wsl.syndicateMissions));
+        // }, 1000);
       });
     });
   });

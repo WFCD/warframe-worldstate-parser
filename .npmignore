@@ -31,3 +31,6 @@ build/Release
 
 # Compiled docs
 docs/
+
+# Test debugging files
+data.*.json

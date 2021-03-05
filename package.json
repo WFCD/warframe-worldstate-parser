@@ -15,6 +15,9 @@
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
+    "@types/node-fetch": "^2.5.8",
+    "@types/rewire": "^2.5.28",
+    "@types/sinon-chai": "^3.2.5",
     "chai": "^4.2.0",
     "coveralls": "^3.1.0",
     "eslint": "^7.20.0",
@@ -36,6 +39,7 @@
   },
   "scripts": {
     "test": "nyc --reporter=lcov mocha test/**/*.spec.js --exit",
+    "test:integration": "npm run test -- -g 'should parse live worldstate data'",
     "printcov": "nyc report --reporter=text",
     "coverage": "npm test && nyc report --reporter=text-lcov | coveralls",
     "build-docs": "jsdoc -c jsdoc-config.json -d docs",
