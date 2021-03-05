@@ -3,7 +3,7 @@
 const chai = require('chai');
 const sinonChai = require('sinon-chai');
 const rewire = require('rewire');
-const fs = require('fs');
+// const fs = require('fs');
 
 const fetch = require('node-fetch');
 
