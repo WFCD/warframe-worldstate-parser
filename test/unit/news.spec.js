@@ -11,6 +11,8 @@ const timeDate = require('../mocks/timeDate.js');
 const testData = require('../data/News.json');
 const realTestData = require('../data/RealNews.json');
 
+const locale = 'en';
+
 const translator = {
   node: () => 'node',
 };
@@ -25,7 +27,7 @@ describe('News', () => {
 
   describe('#getETAString()', () => {
     it('should format the string correctly according to the data', () => {
-      const n = new News(testData, { mdConfig, timeDate, translator });
+      const n = new News(testData, { mdConfig, timeDate, translator, locale });
 
       n.toString().should.contain('ago');
 
@@ -37,7 +39,7 @@ describe('News', () => {
 
   describe('#isUpdate()', () => {
     it('should return true if the news is an update or a hotfix', () => {
-      const n = new News(testData, { mdConfig, timeDate, translator });
+      const n = new News(testData, { mdConfig, timeDate, translator, locale });
       n.isUpdate().should.be.false;
       n.link = `${testData.Prop}update-1960`;
       n.isUpdate().should.be.true;
@@ -45,10 +47,24 @@ describe('News', () => {
       n.isUpdate().should.be.true;
     });
   });
+  
+  describe('#isStream()', () => {
+    it('should return true if the message indicates a stream', () => {
+      const n = new News(realTestData[1], { mdConfig, timeDate, translator, locale });
+      n.isStream().should.be.true;
+    });
+  });
+  
+  describe('.link', () => {
+    it('should resolve a url from Links if Prop is empty', () => {
+      const n = new News(realTestData[1], { mdConfig, timeDate, translator, locale });
+      n.link.should.not.be.empty;
+    });
+  });
 
   describe('#isPrimeAccess()', () => {
     it('should return true if the news is an update or a hotfix', () => {
-      const n = new News(testData, { mdConfig, timeDate, translator });
+      const n = new News(testData, { mdConfig, timeDate, translator, locale });
       n.isPrimeAccess().should.be.false;
       n.link = `${testData.Prop}valkyr-prime-access`;
       n.isPrimeAccess().should.be.true;
@@ -62,7 +78,7 @@ describe('News', () => {
     });
 
     it('should return the localized message when a translation is present', () => {
-      const n = new News(realTestData, { mdConfig, timeDate, translator });
+      const n = new News(realTestData[0], { mdConfig, timeDate, translator, locale });
       n.getTitle('en').should.equal('Oberon Prime & Nekros Prime Are Back!');
       n.getTitle('zh').should.equal('Oberon Prime & Nekros Prime 回来了！');
     });
