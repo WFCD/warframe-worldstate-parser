@@ -28,6 +28,7 @@
     "jsdoc": "^3.6.6",
     "mocha": "^7.2.0",
     "nyc": "^15.1.0",
+    "precommit-hook": "^3.0.0",
     "rewire": "^4.0.0",
     "sinon": "^9.0.0",
     "sinon-chai": "^3.5.0",
@@ -46,7 +47,8 @@
     "lint": "eslint main.js lib/ test/",
     "lint:fix": "eslint main.js lib/ test/ --fix",
     "prepublishOnly": "npm run build:types",
-    "build:types": "tsc -p tsconfig.declaration.json"
+    "build:types": "tsc -p tsconfig.declaration.json",
+    "validate": "npm run lint:fix && git add -u ."
   },
   "files": [
     "lib",
@@ -110,5 +112,8 @@
       "linebreak-style": "off",
       "import/no-unresolved": 0
     }
-  }
+  },
+  "pre-commit": [
+    "validate"
+  ]
 }
