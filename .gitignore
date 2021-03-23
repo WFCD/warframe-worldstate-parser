@@ -40,3 +40,7 @@ warframe-worldstate-parser-*.tgz
 
 # Test debugging files
 data.*.json
+
+# unwanted configs from plugins
+.jshintignore
+.jshintrc
