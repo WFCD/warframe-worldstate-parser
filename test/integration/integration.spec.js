@@ -39,7 +39,7 @@ describe('WorldState (integration)', () => {
 
         /* Easy debugging! */
         // setTimeout(() => {
-        //   fs.writeFileSync(`./data.${platform}.json`, JSON.stringify(wsl.syndicateMissions));
+        //   fs.writeFileSync(`./data.${platform}.json`, JSON.stringify(wsl.fissures));
         // }, 1000);
       });
     });
