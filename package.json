@@ -26,7 +26,7 @@
     "greenkeeper-lockfile": "^1.15.1",
     "ink-docstrap": "^1.3.2",
     "jsdoc": "^3.6.6",
-    "mocha": "^7.2.0",
+    "mocha": "^9.0.2",
     "nyc": "^15.1.0",
     "precommit-hook": "^3.0.0",
     "rewire": "^4.0.0",
