@@ -4,9 +4,9 @@ const chai = require('chai');
 
 chai.should();
 
-const VoidTrader = require('../../lib/VoidTrader.js');
+const VoidTrader = require('../../lib/VoidTrader');
 const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate.js');
+const timeDate = require('../mocks/timeDate');
 
 describe('VoidTrader', function () {
   describe('#constructor()', function () {

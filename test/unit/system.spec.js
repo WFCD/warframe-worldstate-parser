@@ -3,7 +3,7 @@
 const fetch = require('node-fetch');
 const chai = require('chai');
 
-const WorldState = require('../../main.js');
+const WorldState = require('../../main');
 
 const kuvaMock = require('../data/kuvalog.json');
 const sentientMock = require('../data/anomaly.json');

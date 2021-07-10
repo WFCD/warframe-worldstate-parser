@@ -4,12 +4,12 @@ const chai = require('chai');
 
 const should = chai.should();
 
-const challenges = require('../data/PVPChallengeInstances');
+const challenges = require('../data/PVPChallengeInstances.json');
 
 const translator = require('../../lib/translation');
 const timeDate = require('../../lib/timeDate');
 
-const ConclaveChallenge = require('../../lib/ConclaveChallenge.js');
+const ConclaveChallenge = require('../../lib/ConclaveChallenge');
 
 describe('ConclaveChallenge', () => {
   describe('#constructor()', () => {

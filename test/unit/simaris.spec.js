@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const Simaris = require('../../lib/Simaris.js');
+const Simaris = require('../../lib/Simaris');
 
 describe('Simaris', function () {
   describe('#constructor()', function () {

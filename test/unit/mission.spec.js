@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const Mission = require('../../lib/Mission.js');
+const Mission = require('../../lib/Mission');
 
 describe('Mission', function () {
   describe('#constructor()', function () {

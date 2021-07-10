@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const DarkSector = require('../../lib/DarkSector.js');
+const DarkSector = require('../../lib/DarkSector');
 
 describe('DarkSector', function () {
   describe('#constructor()', function () {
