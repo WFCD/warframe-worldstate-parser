@@ -10,7 +10,7 @@ const deps = {
   mdConfig: require('node-md-config'),
 };
 
-const EarthCycle = require('../../lib/EarthCycle.js');
+const EarthCycle = require('../../lib/EarthCycle');
 
 describe('EarthCycle', () => {
   describe('#constructor()', () => {

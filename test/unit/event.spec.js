@@ -4,10 +4,10 @@ const chai = require('chai');
 
 chai.should();
 
-const Event = require('../../lib/WorldEvent.js');
+const Event = require('../../lib/WorldEvent');
 const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate.js');
-const translation = require('../mocks/translation.js');
+const timeDate = require('../mocks/timeDate');
+const translation = require('../mocks/translation');
 
 const events = require('../data/Goals.json');
 

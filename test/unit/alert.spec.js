@@ -7,7 +7,7 @@ chai.should();
 
 const Alert = require('../../lib/Alert');
 const Mission = require('../../lib/Mission');
-const Alerts = require('../data/Alerts');
+const Alerts = require('../data/Alerts.json');
 
 const translator = require('../mocks/translation');
 const timeDate = require('../mocks/timeDate');

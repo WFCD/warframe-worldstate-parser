@@ -4,9 +4,9 @@ const chai = require('chai');
 
 chai.should();
 
-const Sortie = require('../../lib/Sortie.js');
+const Sortie = require('../../lib/Sortie');
 const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate.js');
+const timeDate = require('../mocks/timeDate');
 
 describe('Sortie', function () {
   describe('#constructor()', function () {

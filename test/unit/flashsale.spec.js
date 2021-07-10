@@ -4,9 +4,9 @@ const chai = require('chai');
 
 chai.should();
 
-const FlashSale = require('../../lib/FlashSale.js');
+const FlashSale = require('../../lib/FlashSale');
 const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate.js');
+const timeDate = require('../mocks/timeDate');
 
 describe('FlashSale', function () {
   describe('#constructor()', function () {

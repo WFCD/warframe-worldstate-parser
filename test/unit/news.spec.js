@@ -4,9 +4,9 @@ const chai = require('chai');
 
 chai.should();
 
-const News = require('../../lib/News.js');
+const News = require('../../lib/News');
 const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate.js');
+const timeDate = require('../mocks/timeDate');
 
 const testData = require('../data/News.json');
 const realTestData = require('../data/RealNews.json');

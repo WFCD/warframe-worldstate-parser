@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const GlobalUpgrade = require('../../lib/GlobalUpgrade.js');
+const GlobalUpgrade = require('../../lib/GlobalUpgrade');
 
 describe('GlobalUpgrade', function () {
   describe('#constructor()', function () {
