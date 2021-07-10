@@ -28,6 +28,12 @@ describe('Construction', () => {
       (() => { new Construction({}); }).should.throw(TypeError);
       /* eslint-enable no-new */
     });
+
+    it('should handle 0s', () => {
+      (() => {
+        new Construction({ ProjectPct: [0, 0, 0], _id: { $oid: `${Date.now()}${ProjectPct[0]}` } }, { mdConfig });
+      }).should.not.throw();
+    });
   });
 
   describe('#toString()', () => {

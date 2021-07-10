@@ -32,9 +32,7 @@ describe('News', () => {
       });
 
       n.toString().should.contain('ago');
-
       n.endDate = new Date(123);
-
       n.toString().should.contain('in');
     });
   });
@@ -67,6 +65,43 @@ describe('News', () => {
         mdConfig, timeDate, translator, locale,
       });
       n.link.should.not.be.empty;
+    });
+    it('should default link if none matching is found', () => {
+      const n = new News({
+        _id: {
+          $oid: '5e42fe4010c8e45f053e6d41',
+        },
+        Messages: [{
+          LanguageCode: 'tc',
+          Message: 'Oberon Prime & Nekros Prime 凱旋回歸了！',
+        }],
+        Links: [{
+          LanguageCode: 'tc',
+          Link: 'https://forums.warframe.com/topic/1253647-community-stream-schedule-march-22-26/?utm_medium=in-game&utm_source=in-game&utm_campaign=2021-03-Community-Streams',
+        }],
+        Date: {
+          $date: {
+            $numberLong: '1581448380000',
+          },
+        },
+        EventStartDate: {
+          $date: {
+            $numberLong: '1581448380000',
+          },
+        },
+        EventEndDate: {
+          $date: {
+            $numberLong: '1581448380000',
+          },
+        },
+        ImageUrl: 'https://n9e5v4d8.ssl.hwcdn.net/uploads/d933d8519ba49d5dab9636adeebeca84.jpg',
+        Priority: false,
+        MobileOnly: false,
+      }, {
+        mdConfig, timeDate, translator, locale: 'en',
+      });
+      n.link.should.not.be.empty;
+      n.link.should.equal('https://www.warframe.com/');
     });
   });
 
