@@ -38,6 +38,8 @@ describe('Sortie', function () {
       timeDate.fromNow = () => 1;
 
       s.toString().should.contain('ends in');
+
+      s.getFaction().should.equal('theBoss');
     });
   });
 });

@@ -39,9 +39,9 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "test": "nyc --reporter=lcov mocha test/**/*.spec.js --exit",
+    "test": "nyc mocha",
     "test:integration": "npm run test -- -g 'should parse live worldstate data'",
-    "printcov": "nyc report --reporter=text",
+    "printcov": "nyc report",
     "coverage": "npm test && nyc report --reporter=text-lcov | coveralls",
     "build-docs": "jsdoc -c jsdoc-config.json -d docs",
     "lint": "eslint main.js lib/ test/",
@@ -115,5 +115,26 @@
   },
   "pre-commit": [
     "validate"
-  ]
+  ],
+  "mocha": {
+    "exit": true,
+    "spec": "test/**/*.spec.js",
+    "reporter": "min"
+  },
+  "nyc": {
+    "exclude": [
+      "test/**",
+      "lib/DarkSector*.js",
+      "lib/Alert.js",
+      "lib/PersistentEnemy.js",
+      "lib/GlobalUpgrade.js",
+      "lib/ChallengeInstance.js",
+      "lib/WeeklyChallenge.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "skip-full": true
+  }
 }

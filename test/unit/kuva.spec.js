@@ -2,7 +2,7 @@
 
 const chai = require('chai');
 
-chai.should();
+const should = chai.should();
 
 const Kuva = require('../../lib/Kuva');
 const mockKuva = require('../data/kuvalog.json');
@@ -43,6 +43,23 @@ describe('Kuva', () => {
       (() => {
         (() => { new Kuva(minDeps); }).should.not.throw();
       });
+    });
+  });
+
+  describe('parse', () => {
+    it('should handle dates vastly away from now', () => {
+      let k;
+      (() => {
+        k = new Kuva({
+          ...minDeps,
+          kuvaData: [{
+            activation: new Date(0).getTime(),
+            expiry: new Date(0).getTime(),
+            solnode: 'CrewBattleNode501',
+          }],
+        });
+      }).should.not.throw();
+      should.exist(k);
     });
   });
 });

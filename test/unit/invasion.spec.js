@@ -2,7 +2,7 @@
 
 const chai = require('chai');
 
-chai.should();
+const should = chai.should();
 
 const Invasion = require('../../lib/Invasion');
 const mdConfig = require('../data/markdown.json');
@@ -50,6 +50,17 @@ describe('Invasion', () => {
       i.toString().should.match(/vs\./);
       i.vsInfestation = true;
       i.toString().should.not.match(/vs\./);
+    });
+
+    it('should set the attacker victory status correctly', () => {
+      const i = new Invasion(testData, {
+        Reward, translator, timeDate, mdConfig,
+      });
+      i.count = -1;
+      should.equal(i.isAttackerWinning(), false);
+
+      i.count = 5;
+      should.equal(i.isAttackerWinning(), true);
     });
   });
 });

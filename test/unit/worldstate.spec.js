@@ -5,6 +5,9 @@ const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 const rewire = require('rewire');
 
+const timeDate = require('../mocks/timeDate');
+const WorldStateObject = require('../../lib/WorldstateObject');
+
 chai.should();
 chai.use(sinonChai);
 
@@ -38,5 +41,43 @@ describe('WorldState', () => {
       spy.should.have.been.calledWithNew;
       spy.should.have.been.calledWith(testArray[0]);
     });
+  });
+});
+
+describe('WorldStateObject', () => {
+  describe('#constructor()', () => {
+    it('requires some data', () => {
+      (() => {
+        new WorldStateObject();
+      }).should.throw();
+    });
+  });
+
+  it('should make the end string correctly', () => {
+    const mock = {
+      _id: { $oid: 'testID' },
+      Activation: {
+        $date: {
+          $numberLong: '1586372400000',
+        },
+      },
+      Expiry: {
+        $date: {
+          $numberLong: '1586977200000',
+        },
+      },
+    };
+
+    const wso = new WorldStateObject(mock, { timeDate });
+    wso.getEndString().should.exist;
+  });
+
+  it('should honor _id.$id', () => {
+    const mock = {
+      _id: { $id: 'testID' },
+    };
+
+    const wso = new WorldStateObject(mock, { timeDate });
+    wso.id.should.equal('testID');
   });
 });
