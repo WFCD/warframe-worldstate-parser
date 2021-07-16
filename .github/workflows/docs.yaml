@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install Supplemental Dependencies
-        run: npm i
+      - run: npm i
+      - run: npm install jsdoc ink-docstrap tsd-jsdoc
       - name: Build
         uses: andstor/jsdoc-action@v1
         with:
