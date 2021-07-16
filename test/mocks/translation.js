@@ -23,4 +23,5 @@ module.exports = {
   sortieModDesc: dummy,
   sortieFaction: dummy,
   region: dummy,
+  steelPath: () => ({ rotation: [], evergreen: [] }),
 };
