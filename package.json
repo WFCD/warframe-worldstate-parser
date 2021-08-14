@@ -116,7 +116,7 @@
   "mocha": {
     "exit": true,
     "spec": "test/**/*.spec.js",
-    "reporter": "min"
+    "timeout": 10000
   },
   "nyc": {
     "exclude": [
