@@ -1,13 +1,12 @@
 'use strict';
 
 const chai = require('chai');
-const mdConfig = require('node-md-config');
+const CetusCycle = require('../../lib/CetusCycle');
+const timeDate = require('../mocks/timeDate');
+const MarkdownSettings = require('../../lib/supporting/MarkdownSettings');
 
 const should = chai.should();
-
-const CetusCycle = require('../../lib/CetusCycle');
-
-const timeDate = require('../mocks/timeDate');
+const mdConfig = new MarkdownSettings();
 
 describe('CambionCycle', function () {
   describe('#constructor()', function () {

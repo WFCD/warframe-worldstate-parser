@@ -1,7 +1,6 @@
 'use strict';
 
 const chai = require('chai');
-const mdConfig = require('node-md-config');
 
 chai.should();
 
@@ -11,6 +10,9 @@ const Alerts = require('../data/Alerts.json');
 
 const translator = require('../mocks/translation');
 const timeDate = require('../mocks/timeDate');
+const MarkdownSettings = require('../../lib/supporting/MarkdownSettings');
+
+const mdConfig = new MarkdownSettings();
 
 describe('Alert', function () {
   describe('#constructor()', function () {

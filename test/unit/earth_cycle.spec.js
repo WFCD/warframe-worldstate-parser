@@ -7,7 +7,7 @@ chai.should();
 /* eslint-disable global-require */
 const deps = {
   timeDate: require('../../lib/timeDate'),
-  mdConfig: require('node-md-config'),
+  mdConfig: new (require('../../lib/supporting/MarkdownSettings'))(),
 };
 
 const EarthCycle = require('../../lib/EarthCycle');
