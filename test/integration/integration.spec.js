@@ -3,7 +3,7 @@
 const chai = require('chai');
 const sinonChai = require('sinon-chai');
 const rewire = require('rewire');
-// const fs = require('fs');
+const fs = require('fs');
 
 const fetch = require('node-fetch');
 
@@ -29,7 +29,7 @@ describe('WorldState (integration)', () => {
 
         let wsl;
         (() => {
-          wsl = new WorldState(ws, { logger });
+          wsl = new WorldState(ws, { logger, locale: 'zh' });
         }).should.not.throw();
 
         wsl.news.forEach((article) => {
@@ -39,9 +39,9 @@ describe('WorldState (integration)', () => {
         });
 
         /* Easy debugging! */
-        // setTimeout(() => {
-        //   fs.writeFileSync(`./data.${platform}.json`, JSON.stringify(wsl.fissures));
-        // }, 1000);
+        setTimeout(() => {
+          fs.writeFileSync(`./data.${platform}.json`, JSON.stringify(wsl));
+        }, 1000);
       });
     });
   });
