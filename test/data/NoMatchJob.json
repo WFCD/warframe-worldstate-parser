@@ -1,0 +1,12 @@
+{
+  "jobType": "/Lotus/Types/Gameplay/Eidolon/Jobs/Events/InfestedPlainsBounty",
+  "rewards": "/Lotus/Types/Game/MissionDecks/EidolonJobMissionRewards/TierFTableZRewards",
+  "minEnemyLevel": 99,
+  "maxEnemyLevel": 121,
+  "xpAmounts": [
+    125,
+    200,
+    200,
+    475
+  ]
+}

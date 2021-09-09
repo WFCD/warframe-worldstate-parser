@@ -24,8 +24,8 @@ describe('Mission', () => {
       (() => {
         new Mission(mockMission, {
           mdConfig, translator: translation, Reward, locale: 'en',
-        }).should.not.throw();
-      });
+        });
+      }).should.not.throw();
     });
   });
 });

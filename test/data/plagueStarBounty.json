@@ -1,0 +1,12 @@
+{
+  "jobType": "/Lotus/Types/Gameplay/Eidolon/Jobs/Events/InfestedPlainsBounty",
+  "rewards": "/Lotus/Types/Game/MissionDecks/EidolonJobMissionRewards/PlagueStarTableRewards",
+  "minEnemyLevel": 15,
+  "maxEnemyLevel": 25,
+  "xpAmounts": [
+    125,
+    200,
+    200,
+    475
+  ]
+}
