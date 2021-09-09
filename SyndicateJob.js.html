@@ -84,95 +84,17 @@ const fetch = require('node-fetch');
 const WorldstateObject = require('./WorldstateObject');
 
 const apiBase = process.env.API_BASE_URL || 'https://api.warframestat.us';
-const bountyRewardRegex = /Tier(A|B|C|D|E)Table(A|B|C)Rewards/i;
-const ghoulRewardRegex = /GhoulBountyTable(A|B)Rewards/i;
+const bountyRewardRegex = /Tier([ABCDE])Table([ABC])Rewards/i;
+const ghoulRewardRegex = /GhoulBountyTable([AB])Rewards/i;
 
 /**
  * Determine the level string for the bounty
- * @param  {string[]} bountyMatches list of bounty matches
- * @param  {string} tier          bounty tier identifier
- * @param  {boolean} cambion      whether or not the bounty is a cambion bounty
- * @param  {boolean} isVault      whether or not the bounty is a vault run
+ * @param  {Object} job Original raw job data
  * @returns {string}               level range string
  */
-const getLevelString = (bountyMatches, tier, cambion, isVault) => {
-  let levelString = '';
-  if (bountyMatches &amp;&amp; bountyMatches.length) {
-    if (!cambion) {
-      switch (tier) {
-        case 'A':
-          levelString = '5 - 15';
-          break;
-        case 'B':
-          levelString = '10 - 30';
-          break;
-        case 'C':
-          levelString = '20 - 40';
-          break;
-        case 'D':
-          levelString = '30 - 50';
-          break;
-        case 'E':
-          levelString = '40 - 60';
-          break;
-        default:
-          break;
-      }
-    } else if (isVault) {
-      switch (tier) {
-        case 'A':
-          levelString = '30 - 40';
-          break;
-        case 'B':
-          levelString = '40 - 50';
-          break;
-        case 'C':
-          levelString = '50 - 60';
-          break;
-        default:
-          break;
-      }
-    } else {
-      switch (tier) {
-        case 'A':
-          levelString = '5 - 15';
-          break;
-        case 'B':
-          levelString = '15 - 25';
-          break;
-        case 'C':
-          levelString = '25 - 30';
-          break;
-        case 'D':
-          levelString = '30 - 40';
-          break;
-        case 'E':
-          levelString = '40 - 60';
-          break;
-        case 'F':
-          levelString = '100 - 100';
-          break;
-        default:
-          break;
-      }
-    }
-  } else {
-    switch (tier) {
-      case 'A':
-        levelString = '15 - 25';
-        break;
-      case 'B':
-        levelString = '40 - 50';
-        break;
-      default:
-        break;
-    }
-  }
+const getLevelString = (job) => `${job.minEnemyLevel} - ${job.maxEnemyLevel}`;
 
-  return levelString;
-};
-
-const determineLocation = (i18n, isVault) => {
+const determineLocation = (i18n, isVault, raw) => {
   const last = String(i18n).split('/').slice(-1)[0];
 
   const bountyMatches = last.match(bountyRewardRegex);
@@ -183,11 +105,8 @@ const determineLocation = (i18n, isVault) => {
   const isCetus = /eidolonjob/i.test(i18n);
   const isVallis = /venusjob/i.test(i18n);
   const isDeimos = /deimosmissionrewards/i.test(i18n);
-
-  // eslint-disable-next-line no-nested-ternary
-  const tier = isBounty ? bountyMatches[1] : (isGhoul ? ghoulMatches[1] : '');
   const rotation = isBounty ? bountyMatches[2] : '';
-  const levelString = getLevelString(bountyMatches, tier, isDeimos, isVault);
+  const levelString = getLevelString(raw);
 
   let location;
   let levelClause;
@@ -212,32 +131,26 @@ const determineLocation = (i18n, isVault) => {
   return { location, locationWRot };
 };
 
-const getBountyRewards = async (i18n, isVault) => {
+const getBountyRewards = async (i18n, isVault, raw) => {
   let location;
   let locationWRot;
   if (i18n.endsWith('PlagueStarTableRewards')) {
     location = 'plague star';
     locationWRot = 'Earth/Cetus (Level 15 - 25 Plague Star), Rot A';
   }
-  try {
-    if (!location || !locationWRot) {
-      ({ location, locationWRot } = determineLocation(i18n, isVault));
-    }
-    const url = `${apiBase}/drops/search/${encodeURIComponent(location)}?grouped_by=location`;
-    const reply = await fetch(url).then((res) => res.json()).catch(() => {}); // swallow errors
-    const pool = (reply || {})[locationWRot];
-    if (!pool) {
-      return ['Pattern Mismatch. Results inaccurate.'];
-    }
-    const results = pool.rewards;
-    if (results) {
-      return Array.from(new Set(results.map((result) => result.item)));
-    }
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error(e);
+  if (!location || !locationWRot) {
+    ({ location, locationWRot } = determineLocation(i18n, isVault, raw));
   }
-
+  const url = `${apiBase}/drops/search/${encodeURIComponent(location)}?grouped_by=location`;
+  const reply = await fetch(url).then((res) => res.json()).catch(() => {}); // swallow errors
+  const pool = (reply || {})[locationWRot];
+  if (!pool) {
+    return ['Pattern Mismatch. Results inaccurate.'];
+  }
+  const results = pool.rewards;
+  if (results) {
+    return Array.from(new Set(results.map((result) => result.item)));
+  }
   return [];
 };
 
@@ -261,7 +174,7 @@ class SyndicateJob extends WorldstateObject {
      * @type {Array.&lt;String>}
      */
     this.rewardPool = [];
-    getBountyRewards(data.rewards, data.isVault)
+    getBountyRewards(data.rewards, data.isVault, data)
       .then((rewards) => {
         this.rewardPool = rewards;
       });
@@ -356,7 +269,7 @@ module.exports = SyndicateJob;
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a>
 	
-		on Thursday, September 9th 2021, 00:26:53
+		on Thursday, September 9th 2021, 02:30:42
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
