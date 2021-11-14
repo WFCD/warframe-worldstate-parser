@@ -30,7 +30,7 @@ describe('timeDateUtils', () => {
     it('should parse even if date provided is undefined', () => {
       (() => utils.parseDate()).should.not.throw();
       (() => utils.parseDate(0)).should.not.throw();
-      (() => utils.parseDate(234098579034789053490568)).should.not.throw();
+      (() => utils.parseDate(2340985790347890)).should.not.throw();
     });
   });
 });
