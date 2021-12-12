@@ -1,0 +1,181 @@
+{
+  "Activation": {
+    "$date": {
+      "$numberLong": "1628100000000"
+    }
+  },
+  "Expiry": {
+    "$date": {
+      "$numberLong": "1644796800000"
+    }
+  },
+  "AffiliationTag": "RadioLegionIntermission4Syndicate",
+  "Season": 6,
+  "Phase": 0,
+  "Params": "",
+  "ActiveChallenges": [
+    {
+      "_id": {
+        "$oid": "000700190000000000000264"
+      },
+      "Daily": true,
+      "Activation": {
+        "$date": {
+          "$numberLong": "1639094400000"
+        }
+      },
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1639353600000"
+        }
+      },
+      "Challenge": "/Lotus/Types/Challenges/Seasons/Daily/SeasonDailyKillEnemiesWithRadiation"
+    },
+    {
+      "_id": {
+        "$oid": "000700190000000000000265"
+      },
+      "Daily": true,
+      "Activation": {
+        "$date": {
+          "$numberLong": "1639180800000"
+        }
+      },
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1639440000000"
+        }
+      },
+      "Challenge": "/Lotus/Types/Challenges/Seasons/Daily/SeasonDailyKillEnemiesWithCorrosive"
+    },
+    {
+      "_id": {
+        "$oid": "000700190000000000000266"
+      },
+      "Daily": true,
+      "Activation": {
+        "$date": {
+          "$numberLong": "1639267200000"
+        }
+      },
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1639526400000"
+        }
+      },
+      "Challenge": "/Lotus/Types/Challenges/Seasons/Daily/SeasonDailyKillEnemiesWithAbilities"
+    },
+    {
+      "_id": {
+        "$oid": "000700190000000000000253"
+      },
+      "Activation": {
+        "$date": {
+          "$numberLong": "1638748800000"
+        }
+      },
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1639353600000"
+        }
+      },
+      "Challenge": "/Lotus/Types/Challenges/Seasons/Weekly/SeasonWeeklyCompleteTreasures"
+    },
+    {
+      "_id": {
+        "$oid": "000700190000000000000254"
+      },
+      "Activation": {
+        "$date": {
+          "$numberLong": "1638748800000"
+        }
+      },
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1639353600000"
+        }
+      },
+      "Challenge": "/Lotus/Types/Challenges/Seasons/Weekly/SeasonWeeklyCatchRarePlainsFish"
+    },
+    {
+      "_id": {
+        "$oid": "000700190000000000000255"
+      },
+      "Activation": {
+        "$date": {
+          "$numberLong": "1638748800000"
+        }
+      },
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1639353600000"
+        }
+      },
+      "Challenge": "/Lotus/Types/Challenges/Seasons/Weekly/SeasonWeeklyCompleteSabotage"
+    },
+    {
+      "_id": {
+        "$oid": "000700190000000000000256"
+      },
+      "Activation": {
+        "$date": {
+          "$numberLong": "1638748800000"
+        }
+      },
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1639353600000"
+        }
+      },
+      "Challenge": "/Lotus/Types/Challenges/Seasons/Weekly/SeasonWeeklyCompleteClemMission"
+    },
+    {
+      "_id": {
+        "$oid": "000700190000000000000257"
+      },
+      "Activation": {
+        "$date": {
+          "$numberLong": "1638748800000"
+        }
+      },
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1639353600000"
+        }
+      },
+      "Challenge": "/Lotus/Types/Challenges/Seasons/Weekly/SeasonWeeklyFeedHelminth"
+    },
+    {
+      "_id": {
+        "$oid": "000700190000000000000258"
+      },
+      "Activation": {
+        "$date": {
+          "$numberLong": "1638748800000"
+        }
+      },
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1639353600000"
+        }
+      },
+      "Challenge": "/Lotus/Types/Challenges/Seasons/WeeklyHard/SeasonWeeklyHardKillEnemies"
+    },
+    {
+      "_id": {
+        "$oid": "000700190000000000000259"
+      },
+      "Activation": {
+        "$date": {
+          "$numberLong": "1638748800000"
+        }
+      },
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1639353600000"
+        }
+      },
+      "Challenge": "/Lotus/Types/Challenges/Seasons/WeeklyHard/SeasonWeeklyHardKuvaSurvivalNoCapsules"
+    }
+  ]
+}

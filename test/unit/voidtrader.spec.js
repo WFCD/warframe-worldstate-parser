@@ -6,27 +6,34 @@ chai.should();
 
 const VoidTrader = require('../../lib/VoidTrader');
 const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
+const VaultTrader = require('../data/VaultTrader.json');
 
-describe('VoidTrader', function () {
-  describe('#constructor()', function () {
-    it('should throw TypeError when called with no arguments or an invalid argument', function () {
+const translator = require('../../lib/translation');
+const timeDate = require('../../lib/timeDate');
+
+const deps = {
+  translator, timeDate, locale: 'en', mdConfig,
+};
+
+describe('VoidTrader', () => {
+  describe('#constructor()', () => {
+    it('should throw TypeError when called with no arguments or an invalid argument', () => {
       (() => { new VoidTrader(); }).should.throw(TypeError);
       (() => { new VoidTrader({}); }).should.throw(TypeError);
     });
+    it('should parse PrimeVaultTrader', () => {
+      (() => { new VoidTrader(VaultTrader, deps); }).should.not.throw();
+    });
   });
 
-  describe('#toString()', function () {
-    it('should format the string correctly according to the data', function () {
+  describe('#toString()', () => {
+    it('should format the string correctly according to the data', () => {
       const testData = {
         _id: { $oid: '1234sg' },
         Activation: { sec: 1 },
         Expiry: { sec: 3 },
         Character: 'Baro',
         Manifest: [],
-      };
-      const translator = {
-        node: () => 'node',
       };
       const v = new VoidTrader(testData, { mdConfig, timeDate, translator });
 

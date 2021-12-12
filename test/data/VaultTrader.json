@@ -1,0 +1,298 @@
+{
+  "_id": {
+    "$oid": "5d1e07a0a38e4a4fdd7cefca"
+  },
+  "Activation": {
+    "$date": {
+      "$numberLong": "1638903600000"
+    }
+  },
+  "Node": "TradeHUB1",
+  "InitialStartDate": {
+    "$date": {
+      "$numberLong": "1637089200000"
+    }
+  },
+  "Completed": false,
+  "Manifest": [
+    {
+      "ItemType": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVLokiPrimeSinglePack",
+      "PrimePrice": 6
+    },
+    {
+      "ItemType": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVVoltLokiPrimeDualPack",
+      "PrimePrice": 10
+    },
+    {
+      "ItemType": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVVoltPrimeSinglePack",
+      "PrimePrice": 6
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Powersuits/Volt/VoltPrime",
+      "PrimePrice": 3
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Powersuits/Loki/LokiPrime",
+      "PrimePrice": 3
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Weapons/Tenno/Melee/Staff/PrimeBo/PrimeBoWeapon",
+      "PrimePrice": 2
+    },
+    {
+      "ItemType": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVEdoPrimeArmorSet",
+      "PrimePrice": 2
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Upgrades/Skins/MeleeDangles/KazeruPrimeMeleeDangle",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVSummusPrimeSentAccessories",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Upgrades/Skins/MeleeDangles/PrimeMeleeDangle",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Sentinels/SentinelPowersuits/PrimeWyrmPowerSuit",
+      "PrimePrice": 2
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Powersuits/Archwing/PrimeJetPack/PrimeJetPack",
+      "PrimePrice": 2
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Game/Projections/T2VoidProjectionLokiVoltVaultABronze",
+      "RegularPrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Game/Projections/T1VoidProjectionLokiVoltVaultABronze",
+      "RegularPrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Game/Projections/T3VoidProjectionLokiVoltVaultABronze",
+      "RegularPrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Game/Projections/T4VoidProjectionLokiVoltVaultABronze",
+      "RegularPrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Weapons/Tenno/LongGuns/PrimeBurston/PrimeBurston",
+      "PrimePrice": 2
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Weapons/Tenno/Melee/DualDagger/FangPrimeDagger",
+      "PrimePrice": 2
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Weapons/Tenno/Pistols/PrimeLex/PrimeLex",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Weapons/Tenno/Rifle/BratonPrime",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Upgrades/Skins/Scarves/PrimeTwitchScarf",
+      "PrimePrice": 2
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Upgrades/Skins/Scarves/TwitchPrimeScarf",
+      "PrimePrice": 2
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Upgrades/Skins/MeleeDangles/TwitchPrimeMeleeDangle",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Game/ShipScenes/PrimeLisetFiligreeScene",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Upgrades/Skins/Sigils/TwitchPrimeSigil",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVAviaPrimeArmorSet",
+      "PrimePrice": 2
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Upgrades/Skins/Scarves/PrimeAviaSyandana",
+      "PrimePrice": 2
+    },
+    {
+      "ItemType": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVVayasPrimeAccessories",
+      "PrimePrice": 2
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/MagPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/NovaPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/LimboPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/TrinityPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/MesaPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/HydroidPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/VoltPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/LokiPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/VaubanPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/AshPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/OberonPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/NekrosPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/SarynPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/ValkyrPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/EmberPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/ShipDecos/FrostPrimeBobbleHead",
+      "PrimePrice": 1
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Upgrades/Skins/Liset/LisetSkinTwitchPrime",
+      "RegularPrice": 10
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Upgrades/Skins/Scarves/InfMembraneCape",
+      "RegularPrice": 10
+    },
+    {
+      "ItemType": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVNecraloidBundle",
+      "RegularPrice": 10
+    },
+    {
+      "ItemType": "/Lotus/StoreItems/Types/Items/MiscItems/PrimeBucks",
+      "RegularPrice": 1
+    }
+  ],
+  "Expiry": {
+    "$date": {
+      "$numberLong": "1639508400000"
+    }
+  },
+  "ScheduleInfo": [
+    {
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1637694000000"
+        }
+      },
+      "FeaturedItem": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVMagNovaPrimeDualPack"
+    },
+    {
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1638298800000"
+        }
+      },
+      "FeaturedItem": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVLimboTrinityPrimeDualPack"
+    },
+    {
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1638903600000"
+        }
+      },
+      "FeaturedItem": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVMesaHydroidPrimeDualPack"
+    },
+    {
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1639508400000"
+        }
+      },
+      "FeaturedItem": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVVoltLokiPrimeDualPack"
+    },
+    {
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1640113200000"
+        }
+      },
+      "FeaturedItem": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVAshVaubanPrimeDualPack"
+    },
+    {
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1640718000000"
+        }
+      },
+      "FeaturedItem": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVNekrosOberonPrimeDualPack"
+    },
+    {
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1641322800000"
+        }
+      },
+      "FeaturedItem": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVValkyrSarynPrimeDualPack"
+    },
+    {
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1641927600000"
+        }
+      },
+      "FeaturedItem": "/Lotus/Types/StoreItems/Packages/MegaPrimeVault/MPVEmberFrostPrimeDualPack"
+    },
+    {
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1642532400000"
+        }
+      },
+      "FeaturedItem": "/Lotus/StoreItems/Types/StoreItems/Packages/MegaPrimeVault/LastChanceItemA"
+    },
+    {
+      "Expiry": {
+        "$date": {
+          "$numberLong": "1643137200000"
+        }
+      },
+      "FeaturedItem": "/Lotus/StoreItems/Types/StoreItems/Packages/MegaPrimeVault/LastChanceItemB"
+    }
+  ]
+}

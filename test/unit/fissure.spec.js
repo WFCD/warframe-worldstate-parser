@@ -6,9 +6,9 @@ chai.should();
 
 const Fissure = require('../../lib/Fissure');
 
-describe('Fissure', function () {
-  describe('#constructor()', function () {
-    it('should throw TypeError when called with no arguments or an invalid argument', function () {
+describe('Fissure', () => {
+  describe('#constructor()', () => {
+    it('should throw TypeError when called with no arguments or an invalid argument', () => {
       (() => { new Fissure(); }).should.throw(TypeError);
       (() => { new Fissure({}); }).should.throw(TypeError);
     });

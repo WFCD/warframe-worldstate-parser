@@ -8,8 +8,10 @@
     "test": "test"
   },
   "dependencies": {
-    "node-fetch": "^2.6.1",
-    "warframe-worldstate-data": "^1.19.5"
+    "node-fetch": "^2.6.1"
+  },
+  "peerDependencies": {
+    "warframe-worldstate-data": ">=1.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
@@ -131,5 +133,19 @@
       "text"
     ],
     "skip-full": true
+  },
+  "clean-package": {
+    "remove": [
+      "devDependencies",
+      "scripts",
+      "release",
+      "eslintIgnore",
+      "eslintConfig",
+      "pre-commit",
+      "nyc",
+      "mocha",
+      "clean-package",
+      "directories"
+    ]
   }
 }
