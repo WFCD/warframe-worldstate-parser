@@ -37,6 +37,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
+    - run: npm i -D warframe-worldstate-data@latest
     - run: npm test
       env:
         CI: true
