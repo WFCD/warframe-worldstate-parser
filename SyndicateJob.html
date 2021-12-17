@@ -93,7 +93,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="SyndicateJob"><span class="type-signature"></span>new SyndicateJob(data, expiry, deps)</h4>
+    <h4 class="name" id="SyndicateJob"><span class="type-signature"></span>new SyndicateJob(data, expiry, deps, timeDate, translator, locale)</h4>
     
     
 </dt>
@@ -197,28 +197,33 @@
 
             
 
-            <td class="description last">The dependencies object
-                <h6 class="method-params-label method-subparams-label">Properties</h6>
+            <td class="description last">The dependencies object</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>timeDate</code></td>
+            
+
+            <td class="type">
+            
                 
+<span class="param-type">Object</span>
 
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
 
-        <th>Type</th>
 
-        
+            
+            </td>
 
-        
+            
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
+            
 
-    <tbody>
+            <td class="description last">Time/Date functions</td>
+        </tr>
+
     
 
         <tr>
@@ -271,13 +276,6 @@
     </tbody>
 </table>
 
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
     
 
     
@@ -316,7 +314,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="SyndicateJob.js.html">SyndicateJob.js</a>,
-				 <a href="SyndicateJob.js.html#sunlight-1-line-82">line 82</a>
+				 <a href="SyndicateJob.js.html#sunlight-1-line-84">line 84</a>
 			</li>
 		</ul>
 	</dd>
@@ -626,7 +624,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="SyndicateJob.js.html">SyndicateJob.js</a>,
-				 <a href="SyndicateJob.js.html#sunlight-1-line-118">line 118</a>
+				 <a href="SyndicateJob.js.html#sunlight-1-line-121">line 121</a>
 			</li>
 		</ul>
 	</dd>
@@ -654,7 +652,8 @@
 <dd>
     
     <div class="description">
-        The date and time at which the void trader leaves
+        End time for the syndicate mission.
+Should be inherited from the Syndicate, but some are timebound.
     </div>
     
 
@@ -679,15 +678,6 @@
 
 	
 
-	
-	<dt class="inherited-from method-doc-label method-doc-details-label">Inherited From:</dt>
-	<dd class="inherited-from">
-		<ul class="dummy">
-			<li>
-				<a href="WorldstateObject.html#expiry">WorldstateObject#expiry</a>
-			</li>
-		</ul>
-	</dd>
 	
 
     
@@ -720,8 +710,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="WorldstateObject.js.html">WorldstateObject.js</a>,
-				 <a href="WorldstateObject.js.html#sunlight-1-line-45">line 45</a>
+				<a href="SyndicateJob.js.html">SyndicateJob.js</a>,
+				 <a href="SyndicateJob.js.html#sunlight-1-line-153">line 153</a>
 			</li>
 		</ul>
 	</dd>
@@ -898,7 +888,7 @@ No indication for difference of normal vs arcana vaults.
 		<ul class="dummy">
 			<li>
 				<a href="SyndicateJob.js.html">SyndicateJob.js</a>,
-				 <a href="SyndicateJob.js.html#sunlight-1-line-137">line 137</a>
+				 <a href="SyndicateJob.js.html#sunlight-1-line-140">line 140</a>
 			</li>
 		</ul>
 	</dd>
@@ -982,7 +972,7 @@ No indication for difference of normal vs arcana vaults.
 		<ul class="dummy">
 			<li>
 				<a href="SyndicateJob.js.html">SyndicateJob.js</a>,
-				 <a href="SyndicateJob.js.html#sunlight-1-line-143">line 143</a>
+				 <a href="SyndicateJob.js.html#sunlight-1-line-146">line 146</a>
 			</li>
 		</ul>
 	</dd>
@@ -1063,7 +1053,7 @@ No indication for difference of normal vs arcana vaults.
 		<ul class="dummy">
 			<li>
 				<a href="SyndicateJob.js.html">SyndicateJob.js</a>,
-				 <a href="SyndicateJob.js.html#sunlight-1-line-130">line 130</a>
+				 <a href="SyndicateJob.js.html#sunlight-1-line-133">line 133</a>
 			</li>
 		</ul>
 	</dd>
@@ -1144,7 +1134,7 @@ No indication for difference of normal vs arcana vaults.
 		<ul class="dummy">
 			<li>
 				<a href="SyndicateJob.js.html">SyndicateJob.js</a>,
-				 <a href="SyndicateJob.js.html#sunlight-1-line-97">line 97</a>
+				 <a href="SyndicateJob.js.html#sunlight-1-line-100">line 100</a>
 			</li>
 		</ul>
 	</dd>
@@ -1225,7 +1215,7 @@ No indication for difference of normal vs arcana vaults.
 		<ul class="dummy">
 			<li>
 				<a href="SyndicateJob.js.html">SyndicateJob.js</a>,
-				 <a href="SyndicateJob.js.html#sunlight-1-line-124">line 124</a>
+				 <a href="SyndicateJob.js.html#sunlight-1-line-127">line 127</a>
 			</li>
 		</ul>
 	</dd>
@@ -1341,6 +1331,87 @@ No indication for difference of normal vs arcana vaults.
         
             
 <hr>
+<dt class="name" id="timeBound">
+    <h4 id="timeBound"><span class="type-signature"></span>timeBound<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        What time phase this bounty is bound to
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="SyndicateJob.js.html">SyndicateJob.js</a>,
+				 <a href="SyndicateJob.js.html#sunlight-1-line-159">line 159</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
 <dt class="name" id="type">
     <h4 id="type"><span class="type-signature"></span>type<span class="type-signature"> :String</span></h4>
 
@@ -1402,7 +1473,7 @@ No indication for difference of normal vs arcana vaults.
 		<ul class="dummy">
 			<li>
 				<a href="SyndicateJob.js.html">SyndicateJob.js</a>,
-				 <a href="SyndicateJob.js.html#sunlight-1-line-111">line 111</a>
+				 <a href="SyndicateJob.js.html#sunlight-1-line-114">line 114</a>
 			</li>
 		</ul>
 	</dd>
@@ -1967,7 +2038,7 @@ No indication for difference of normal vs arcana vaults.
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
 	
-		on Tuesday, December 14th 2021, 16:21:18
+		on Friday, December 17th 2021, 15:16:07
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
