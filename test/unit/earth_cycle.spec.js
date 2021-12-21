@@ -1,16 +1,15 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import MarkdownSettings from '../../lib/supporting/MarkdownSettings.js';
+import EarthCycle from '../../lib/EarthCycle.js';
+import timeDate from '../mocks/timeDate.js';
 
 chai.should();
 
 /* eslint-disable global-require */
 const deps = {
-  timeDate: require('../../lib/timeDate'),
-  mdConfig: new (require('../../lib/supporting/MarkdownSettings'))(),
+  timeDate,
+  mdConfig: new MarkdownSettings(),
 };
-
-const EarthCycle = require('../../lib/EarthCycle');
 
 describe('EarthCycle', () => {
   describe('#constructor()', () => {

@@ -1,15 +1,11 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import Event from '../../lib/WorldEvent.js';
+import timeDate from '../mocks/timeDate.js';
+import * as translation from '../mocks/translation.js';
+import mdConfig from '../mocks/mdConfig.js';
+import events from '../data/Goals.json' assert { type: 'json' };
 
 chai.should();
-
-const Event = require('../../lib/WorldEvent');
-const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
-const translation = require('../mocks/translation');
-
-const events = require('../data/Goals.json');
 
 describe('Event', () => {
   describe('#constructor()', () => {

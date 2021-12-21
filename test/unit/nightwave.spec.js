@@ -1,15 +1,12 @@
-'use strict';
+import chai from 'chai';
+import Nightwave from '../../lib/Nightwave.js';
+import mdConfig from '../mocks/mdConfig.js';
+import * as translator from '../mocks/translation.js';
+import timeDate from '../mocks/timeDate.js';
 
-const chai = require('chai');
+import nwdata from '../data/Nightwave.json' assert { type: 'json' };
 
 chai.should();
-
-const Nightwave = require('../../lib/Nightwave');
-const mdConfig = require('../data/markdown.json');
-const nwdata = require('../data/Nightwave.json');
-
-const translator = require('../../lib/translation');
-const timeDate = require('../../lib/timeDate');
 
 const deps = {
   translator,

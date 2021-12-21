@@ -1,15 +1,11 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import Mission from '../../lib/Mission.js';
+import Reward from '../../lib/Reward.js';
+import mdConfig from '../mocks/mdConfig.js';
+import * as translation from '../mocks/translation.js';
+import Alerts from '../data/Alerts.json' assert { type: 'json' };
 
 chai.should();
-
-const Mission = require('../../lib/Mission');
-const Reward = require('../../lib/Reward');
-
-const Alerts = require('../data/Alerts.json');
-const mdConfig = require('../data/markdown.json');
-const translation = require('../mocks/translation');
 
 const mockMission = Alerts[0].MissionInfo;
 

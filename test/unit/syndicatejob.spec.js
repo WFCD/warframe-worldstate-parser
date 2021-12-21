@@ -1,12 +1,16 @@
-'use strict';
+import chai from 'chai';
+import SyndicateJob from '../../lib/SyndicateJob.js';
+import * as timeDate from '../../lib/timeDate.js';
+import * as translator from '../mocks/translation.js';
 
-const chai = require('chai');
+// JSON Files
+import isoVaultBounty from '../data/isoVaultBounty.json' assert { type: 'json' };
+import plagueStarBounty from '../data/plagueStarBounty.json' assert { type: 'json' };
+import CetusFTier from '../data/CetusFTier.json' assert { type: 'json' };
+import CambionFTier from '../data/CambionFTier.json' assert { type: 'json' };
+import NoMatchJob from '../data/NoMatchJob.json' assert { type: 'json' };
 
 chai.should();
-
-const SyndicateJob = require('../../lib/SyndicateJob');
-const timeDate = require('../mocks/timeDate');
-const translator = require('../mocks/translation');
 
 const locale = 'en';
 
@@ -41,10 +45,10 @@ describe('SyndicateJob', () => {
       }, 10000);
     };
 
-    it('should exist when requested', poolTest(require('../data/isoVaultBounty.json')));
-    it('should support plague star', poolTest(require('../data/plagueStarBounty.json')));
-    it('should support Cetus F Tier', poolTest(require('../data/CetusFTier.json')));
-    it('should support Deimos F Tier', poolTest(require('../data/CambionFTier.json')));
-    it('should support Unmatched tiers', poolTest(require('../data/NoMatchJob.json')));
+    it('should exist when requested', poolTest(isoVaultBounty));
+    it('should support plague star', poolTest(plagueStarBounty));
+    it('should support Cetus F Tier', poolTest(CetusFTier));
+    it('should support Deimos F Tier', poolTest(CambionFTier));
+    it('should support Unmatched tiers', poolTest(NoMatchJob));
   });
 });

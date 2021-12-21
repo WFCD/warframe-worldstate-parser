@@ -1,15 +1,12 @@
-'use strict';
+import chai from 'chai';
+import News from '../../lib/News.js';
+import mdConfig from '../mocks/mdConfig.js';
+import timeDate from '../mocks/timeDate.js';
 
-const chai = require('chai');
+import testData from '../data/News.json' assert { type: 'json' };
+import realTestData from '../data/RealNews.json' assert { type: 'json' };
 
 chai.should();
-
-const News = require('../../lib/News');
-const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
-
-const testData = require('../data/News.json');
-const realTestData = require('../data/RealNews.json');
 
 const locale = 'en';
 

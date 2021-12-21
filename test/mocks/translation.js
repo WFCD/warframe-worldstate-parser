@@ -1,27 +1,17 @@
-'use strict';
-
 const dummy = (key) => key;
+const steelPath = () => ({ rotation: [], evergreen: [] });
+const conclaveChallenge = () => ({ title: '', description: '', standing: 0 });
 
-module.exports = {
-  faction: dummy,
-  node: dummy,
-  nodeMissionType: dummy,
-  nodeEnemy: dummy,
-  languageString: dummy,
-  languageDesc: dummy,
-  missionType: dummy,
-  conclaveMode: dummy,
-  conclaveCategory: dummy,
-  fissureModifier: dummy,
-  fissureTier: dummy,
-  syndicate: dummy,
-  upgrade: dummy,
-  operation: dummy,
-  operationSymbol: dummy,
-  sortieBoss: dummy,
-  sortieModifier: dummy,
-  sortieModDesc: dummy,
-  sortieFaction: dummy,
-  region: dummy,
-  steelPath: () => ({ rotation: [], evergreen: [] }),
+export {
+  dummy as syndicate,
+  dummy as node,
+  dummy as faction,
+  dummy as conclaveMode,
+  dummy as conclaveType,
+  dummy as conclaveCategory,
+  dummy as languageString,
+  dummy as languageDesc,
+  dummy as missionType,
+  conclaveChallenge,
+  steelPath,
 };

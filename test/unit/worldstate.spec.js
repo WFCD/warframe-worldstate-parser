@@ -1,17 +1,16 @@
-'use strict';
+import chai from 'chai';
+import sinonChai from 'sinon-chai';
+import WorldState from '../../lib/WorldState.js';
 
-const chai = require('chai');
-const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
-const rewire = require('rewire');
+// Deprecated
+// const rewire = require('rewire');
+// const WorldState = rewire('../../lib/WorldState.js');
 
-const timeDate = require('../mocks/timeDate');
-const WorldStateObject = require('../../lib/WorldstateObject');
+import * as timeDate from '../../lib/timeDate.js';
+import WorldstateObject from '../../lib/WorldstateObject.js';
 
 chai.should();
 chai.use(sinonChai);
-
-const WorldState = rewire('../../lib/WorldState.js');
 
 describe('WorldState', () => {
   describe('#constructor()', () => {
@@ -31,24 +30,25 @@ describe('WorldState', () => {
       }).should.throw(TypeError);
     });
   });
-  describe('parseArray()', () => {
-    const parseArray = WorldState.__get__('parseArray');
-    it('uses the provided class to parse each element of the array', () => {
-      const spy = sinon.spy();
-      const testArray = ['test'];
-
-      parseArray(spy, testArray);
-      spy.should.have.been.calledWithNew;
-      spy.should.have.been.calledWith(testArray[0]);
-    });
-  });
+  // Deprecated
+  // describe('parseArray()', () => {
+  //   const parseArray = WorldState.__get__('parseArray');
+  //   it('uses the provided class to parse each element of the array', () => {
+  //     const spy = sinon.spy();
+  //     const testArray = ['test'];
+  //
+  //     parseArray(spy, testArray);
+  //     spy.should.have.been.calledWithNew;
+  //     spy.should.have.been.calledWith(testArray[0]);
+  //   });
+  // });
 });
 
 describe('WorldStateObject', () => {
   describe('#constructor()', () => {
     it('requires some data', () => {
       (() => {
-        new WorldStateObject();
+        new WorldstateObject();
       }).should.throw();
     });
   });
@@ -68,7 +68,7 @@ describe('WorldStateObject', () => {
       },
     };
 
-    const wso = new WorldStateObject(mock, { timeDate });
+    const wso = new WorldstateObject(mock, { timeDate });
     wso.getEndString().should.exist;
   });
 
@@ -77,7 +77,7 @@ describe('WorldStateObject', () => {
       _id: { $id: 'testID' },
     };
 
-    const wso = new WorldStateObject(mock, { timeDate });
+    const wso = new WorldstateObject(mock, { timeDate });
     wso.id.should.equal('testID');
   });
 });

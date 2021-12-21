@@ -1,15 +1,11 @@
-'use strict';
+import chai from 'chai';
+import * as translator from '../mocks/translation.js';
+import timeDate from '../mocks/timeDate.js';
+import ConclaveChallenge from '../../lib/ConclaveChallenge.js';
 
-const chai = require('chai');
+import challenges from '../data/PVPChallengeInstances.json' assert { type: 'json' };
 
 const should = chai.should();
-
-const challenges = require('../data/PVPChallengeInstances.json');
-
-const translator = require('../../lib/translation');
-const timeDate = require('../../lib/timeDate');
-
-const ConclaveChallenge = require('../../lib/ConclaveChallenge');
 
 describe('ConclaveChallenge', () => {
   describe('#constructor()', () => {

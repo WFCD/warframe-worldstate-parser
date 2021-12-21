@@ -1,16 +1,16 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import { createRequire } from 'module';
+import Alert from '../../lib/Alert.js';
+import Mission from '../../lib/Mission.js';
+
+import * as translator from '../mocks/translation.js';
+import timeDate from '../mocks/timeDate.js';
+import MarkdownSettings from '../../lib/supporting/MarkdownSettings.js';
 
 chai.should();
-
-const Alert = require('../../lib/Alert');
-const Mission = require('../../lib/Mission');
-const Alerts = require('../data/Alerts.json');
-
-const translator = require('../mocks/translation');
-const timeDate = require('../mocks/timeDate');
-const MarkdownSettings = require('../../lib/supporting/MarkdownSettings');
+const req = createRequire(import.meta.url);
+const Alerts = req('../data/Alerts.json');
 
 const mdConfig = new MarkdownSettings();
 

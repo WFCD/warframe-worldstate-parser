@@ -1,12 +1,9 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import FlashSale from '../../lib/FlashSale.js';
+import mdConfig from '../mocks/mdConfig.js';
+import timeDate from '../mocks/timeDate.js';
 
 chai.should();
-
-const FlashSale = require('../../lib/FlashSale');
-const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
 
 describe('FlashSale', function () {
   describe('#constructor()', function () {

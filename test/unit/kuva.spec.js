@@ -1,11 +1,8 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import Kuva from '../../lib/Kuva.js';
+import mockKuva from '../data/kuvalog.json' assert { type: 'json' };
 
 const should = chai.should();
-
-const Kuva = require('../../lib/Kuva');
-const mockKuva = require('../data/kuvalog.json');
 
 const minDeps = {
   translator: { nodeMissionType: () => {}, node: () => {} },

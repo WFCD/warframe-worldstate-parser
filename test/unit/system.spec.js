@@ -1,12 +1,9 @@
-'use strict';
+import fetch from 'node-fetch';
+import chai from 'chai';
+import WorldState from '../../main.js';
 
-const fetch = require('node-fetch');
-const chai = require('chai');
-
-const WorldState = require('../../main');
-
-const kuvaMock = require('../data/kuvalog.json');
-const sentientMock = require('../data/anomaly.json');
+import kuvaMock from '../data/kuvalog.json' assert { type: 'json' };
+import sentientMock from '../data/anomaly.json' assert { type: 'json' };
 
 chai.should();
 

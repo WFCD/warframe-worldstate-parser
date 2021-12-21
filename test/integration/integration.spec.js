@@ -1,11 +1,9 @@
-'use strict';
+import chai from 'chai';
+import sinonChai from 'sinon-chai';
+import fs from 'fs';
+import fetch from 'node-fetch';
 
-const chai = require('chai');
-const sinonChai = require('sinon-chai');
-const rewire = require('rewire');
-const fs = require('fs');
-
-const fetch = require('node-fetch');
+import WorldState from '../../main.js';
 
 const logger = {
   error: () => {},
@@ -16,8 +14,6 @@ const logger = {
 
 chai.should();
 chai.use(sinonChai);
-
-const WorldState = rewire('../../lib/WorldState.js');
 
 describe('WorldState (integration)', () => {
   describe('#constructor()', async () => {

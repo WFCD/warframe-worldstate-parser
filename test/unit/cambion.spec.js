@@ -1,13 +1,9 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import CambionCycle from '../../lib/CambionCycle.js';
+import timeDate from '../mocks/timeDate.js';
 
 const should = chai.should();
-
-const CambionCycle = require('../../lib/CambionCycle');
-
-const timeDate = require('../mocks/timeDate');
-
 describe('CambionCycle', function () {
   describe('#constructor()', function () {
     it('should throw TypeError when called with no argument or an invalid argument', function () {

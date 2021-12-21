@@ -1,14 +1,12 @@
-'use strict';
-
-const chai = require('chai');
-const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
-const rewire = require('rewire');
+import chai from 'chai';
+import sinonChai from 'sinon-chai';
+import Reward from '../../lib/Reward.js';
+// DEPRECATED
+// const rewire = require('rewire')
+// const Reward = rewire("../../lib/Reward.js")
 
 chai.should();
 chai.use(sinonChai);
-
-const Reward = rewire('../../lib/Reward.js');
 
 describe('Reward', function () {
   describe('#constructor()', function () {
@@ -27,23 +25,24 @@ describe('Reward', function () {
       r.toString().should.match(/cr/);
     });
   });
-  describe('getItemType', function () {
-    const getItemType = Reward.__get__('getItemType');
-    it('should categorize the items using the provided functions', function () {
-      const types = [
-        {
-          name: 'type1',
-          description: 'test1',
-          test: sinon.stub().returns(false),
-        },
-        {
-          name: 'type2',
-          description: 'test2',
-          test: sinon.stub().returns(true),
-        },
-      ];
-      getItemType('test', types).should.equal('type2');
-      types.forEach((t) => t.test.should.have.been.called);
-    });
-  });
+  // Deprecated
+  // describe('getItemType', function () {
+  //   const getItemType = Reward.__get__('getItemType');
+  //   it('should categorize the items using the provided functions', function () {
+  //     const types = [
+  //       {
+  //         name: 'type1',
+  //         description: 'test1',
+  //         test: sinon.stub().returns(false),
+  //       },
+  //       {
+  //         name: 'type2',
+  //         description: 'test2',
+  //         test: sinon.stub().returns(true),
+  //       },
+  //     ];
+  //     getItemType('test', types).should.equal('type2');
+  //     types.forEach((t) => t.test.should.have.been.called);
+  //   });
+  // });
 });

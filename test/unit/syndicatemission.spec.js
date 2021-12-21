@@ -1,12 +1,9 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import SyndicateMission from '../../lib/SyndicateMission.js';
+import mdConfig from '../mocks/mdConfig.js';
+import * as timeDate from '../../lib/timeDate.js';
 
 chai.should();
-
-const SyndicateMission = require('../../lib/SyndicateMission');
-const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
 
 describe('SyndicateMission', function () {
   describe('#constructor()', function () {

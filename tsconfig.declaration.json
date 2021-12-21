@@ -17,6 +17,8 @@
     "noEmit": false,
     "allowJs": true,
     "emitDeclarationOnly": true,
-    "lib": ["es6"]
+    "lib": ["es6"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   }
 }

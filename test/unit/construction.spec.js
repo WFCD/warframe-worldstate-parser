@@ -1,11 +1,9 @@
-'use strict';
+import chai from 'chai';
+import Construction from '../../lib/ConstructionProgress.js';
 
-const chai = require('chai');
+import mdConfig from '../data/markdown.json' assert { type: 'json' };
 
 chai.should();
-
-const Construction = require('../../lib/ConstructionProgress');
-const mdConfig = require('../data/markdown.json');
 
 const ProjectPct = [
   3.0047668038409,

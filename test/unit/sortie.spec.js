@@ -1,12 +1,9 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import Sortie from '../../lib/Sortie.js';
+import mdConfig from '../mocks/mdConfig.js';
+import * as timeDate from '../mocks/timeDate.js';
 
 chai.should();
-
-const Sortie = require('../../lib/Sortie');
-const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
 
 describe('Sortie', function () {
   describe('#constructor()', function () {
@@ -30,12 +27,12 @@ describe('Sortie', function () {
       sortieFaction: (s) => s,
     };
     it('should format the string correctly according to the data', function () {
-      timeDate.fromNow = () => -1;
+      timeDate.setFromNowNeg();
 
       const s = new Sortie(testData, { mdConfig, timeDate, translator });
       s.toString().should.contain('no sortie');
 
-      timeDate.fromNow = () => 1;
+      timeDate.setFromNowPos();
 
       s.toString().should.contain('ends in');
 

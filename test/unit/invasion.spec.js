@@ -1,12 +1,9 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import Invasion from '../../lib/Invasion.js';
+import mdConfig from '../mocks/mdConfig.js';
+import timeDate from '../mocks/timeDate.js';
 
 const should = chai.should();
-
-const Invasion = require('../../lib/Invasion');
-const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
 
 function Reward() {
   this.reward = 'reward';

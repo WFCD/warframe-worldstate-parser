@@ -1,10 +1,7 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import DarkSector from '../../lib/DarkSector.js';
 
 chai.should();
-
-const DarkSector = require('../../lib/DarkSector');
 
 describe('DarkSector', function () {
   describe('#constructor()', function () {

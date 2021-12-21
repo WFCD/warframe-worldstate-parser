@@ -1,10 +1,7 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import Fissure from '../../lib/Fissure.js';
 
 chai.should();
-
-const Fissure = require('../../lib/Fissure');
 
 describe('Fissure', () => {
   describe('#constructor()', () => {

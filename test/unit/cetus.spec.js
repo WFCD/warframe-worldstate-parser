@@ -1,9 +1,7 @@
-'use strict';
-
-const chai = require('chai');
-const CetusCycle = require('../../lib/CetusCycle');
-const timeDate = require('../mocks/timeDate');
-const MarkdownSettings = require('../../lib/supporting/MarkdownSettings');
+import chai from 'chai';
+import CetusCycle from '../../lib/CetusCycle.js';
+import timeDate from '../mocks/timeDate.js';
+import MarkdownSettings from '../../lib/supporting/MarkdownSettings.js';
 
 const should = chai.should();
 const mdConfig = new MarkdownSettings();

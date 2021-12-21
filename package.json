@@ -4,7 +4,9 @@
   "description": "An Open parser for Warframe's Worldstate in Javascript",
   "types": "./types/main.d.ts",
   "main": "main.js",
+  "type": "module",
   "directories": {
+    "lib": "./lib",
     "test": "test"
   },
   "dependencies": {
@@ -14,18 +16,20 @@
     "warframe-worldstate-data": ">=1.0"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.16.5",
+    "@babel/plugin-syntax-import-assertions": "^7.16.5",
     "@types/chai": "^4.2.11",
     "@types/node-fetch": "^2.5.8",
     "@types/rewire": "^2.5.28",
     "@types/sinon-chai": "^3.2.5",
+    "c8": "^7.10.0",
     "chai": "^4.2.0",
     "coveralls": "^3.1.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-import": "^2.25.3",
     "greenkeeper-lockfile": "^1.15.1",
     "mocha": "^9.0.2",
-    "nyc": "^15.1.0",
     "precommit-hook": "^3.0.0",
     "rewire": "^6.0.0",
     "sinon": "^13.0.0",
@@ -33,17 +37,17 @@
     "typescript": "^4.0.5"
   },
   "engines": {
-    "node": ">=8.9.0"
+    "node": ">=17.1.0"
   },
   "scripts": {
-    "test": "nyc mocha",
+    "test": "c8 mocha --experimental-json-modules",
     "test:integration": "npm run test -- -g 'should parse live worldstate data'",
-    "printcov": "nyc report",
-    "coverage": "npm test && nyc report --reporter=text-lcov | coveralls",
+    "printcov": "c8 report",
+    "coverage": "npm test && c8 report --reporter=text-lcov | coveralls",
     "build-docs": "jsdoc -c jsdoc-config.json -d docs",
     "lint": "eslint main.js lib/ test/",
     "lint:fix": "eslint main.js lib/ test/ --fix",
-    "prepublishOnly": "npm run build:types",
+    "prepublishOnly": "npm run build:types --experimental-json-modules",
     "build:types": "tsc -p tsconfig.declaration.json",
     "validate": "npm run lint:fix && git add -u ."
   },
@@ -76,11 +80,22 @@
     "resources/**",
     "types/**"
   ],
+  "babel": {
+    "plugins": [
+      "@babel/plugin-syntax-import-assertions"
+    ]
+  },
   "eslintConfig": {
     "extends": "airbnb-base",
+    "parser": "@babel/eslint-parser",
     "parserOptions": {
-      "sourceType": "script"
+      "requireConfigFile": false,
+      "sourceType": "module",
+      "ecmaVersion": 2021
     },
+    "plugins": [
+      "import"
+    ],
     "rules": {
       "valid-jsdoc": [
         "error",
@@ -107,7 +122,14 @@
         "safe"
       ],
       "linebreak-style": "off",
-      "import/no-unresolved": 0
+      "import/no-unresolved": 2,
+      "import/no-commonjs": 2,
+      "import/extensions": [
+        2,
+        "ignorePackages"
+      ],
+      "import/no-named-as-default": "off",
+      "import/no-named-as-default-member": "off"
     }
   },
   "pre-commit": [

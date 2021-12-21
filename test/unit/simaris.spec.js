@@ -1,15 +1,10 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import mdConfig from '../mocks/mdConfig.js';
+import * as translator from '../mocks/translation.js';
+import Simaris from '../../lib/Simaris.js';
 
 chai.should();
-
-const mdConfig = require('../data/markdown.json');
-const translator = require('../mocks/translation');
-
 const locale = 'en';
-
-const Simaris = require('../../lib/Simaris');
 
 describe('Simaris', function () {
   describe('#constructor()', function () {

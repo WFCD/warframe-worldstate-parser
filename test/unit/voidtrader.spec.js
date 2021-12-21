@@ -1,15 +1,12 @@
-'use strict';
+import chai from 'chai';
+import VoidTrader from '../../lib/VoidTrader.js';
+import mdConfig from '../mocks/mdConfig.js';
+import * as translator from '../mocks/translation.js';
+import * as timeDate from '../../lib/timeDate.js';
 
-const chai = require('chai');
+import VaultTrader from '../data/VaultTrader.json' assert { type: 'json' };
 
 chai.should();
-
-const VoidTrader = require('../../lib/VoidTrader');
-const mdConfig = require('../data/markdown.json');
-const VaultTrader = require('../data/VaultTrader.json');
-
-const translator = require('../../lib/translation');
-const timeDate = require('../../lib/timeDate');
 
 const deps = {
   translator, timeDate, locale: 'en', mdConfig,
