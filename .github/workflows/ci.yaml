@@ -1,6 +1,5 @@
 name: Actions
 on:
-  push:
   pull_request:
     branches:
       - master
@@ -11,15 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: ['lts/*']
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install Dependencies
-      run: npm install
+      run: npm ci
     - name: Run linters
       run: npm run lint
   test:
@@ -28,14 +27,14 @@ jobs:
     needs: lint
     strategy:
       matrix:
-        node-version: [12.x, 13.x, 14.x, 15.x, 16.x]
+        node-version: [12, 14, 16, 'lts/*']
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
+    - run: npm ci
     - run: npm i -D warframe-worldstate-data@latest
     - run: npm test
       env:
@@ -47,14 +46,14 @@ jobs:
     needs: lint
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: ['lts/*']
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
+    - run: npm ci
     - run: npm test
       env:
         CI: true
@@ -62,28 +61,3 @@ jobs:
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-  release:
-    name: Release
-    if: ${{ github.ref == 'refs/heads/master' }}
-    runs-on: ubuntu-latest
-    needs: [lint, test, coverage]
-    strategy:
-      matrix:
-        node-version: [16.x]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v2.7.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        with:
-          semantic_version: 17
-          branches: |
-            ['master']
