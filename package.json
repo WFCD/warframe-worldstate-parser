@@ -70,7 +70,19 @@
   },
   "homepage": "https://github.com/wfcd/warframe-worldstate-parser#readme",
   "release": {
-    "branch": "master"
+    "branch": "master",
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      ["@semantic-release/exec", {
+        "prepareCmd": "mv package.json.backup package.json"
+      }],
+      ["@semantic-release/git", {
+        "assets": ["package.json"]
+      }]
+    ]
   },
   "eslintIgnore": [
     ".github/**",
@@ -132,7 +144,8 @@
       "nyc",
       "mocha",
       "clean-package",
-      "directories"
+      "directories",
+      "prettier"
     ]
   }
 }
