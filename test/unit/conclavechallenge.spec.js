@@ -14,11 +14,16 @@ const ConclaveChallenge = require('../../lib/ConclaveChallenge');
 describe('ConclaveChallenge', () => {
   describe('#constructor()', () => {
     it('should throw TypeError when called with no argument or an invalid argument', () => {
-      (() => { new ConclaveChallenge(); }).should.throw(TypeError);
-      (() => { new ConclaveChallenge({}); }).should.throw(TypeError);
+      (() => {
+        new ConclaveChallenge();
+      }).should.throw(TypeError);
+      (() => {
+        new ConclaveChallenge({});
+      }).should.throw(TypeError);
     });
 
-    challenges.filter((challenge) => !challenge.Category.includes('_ROOT'))
+    challenges
+      .filter((challenge) => !challenge.Category.includes('_ROOT'))
       .forEach((challenge) => {
         it('should construct a valid challenge when provided with data', () => {
           (() => new ConclaveChallenge(challenge, { translator, timeDate })).should.not.throw;

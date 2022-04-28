@@ -12,17 +12,26 @@ const translator = require('../../lib/translation');
 const timeDate = require('../../lib/timeDate');
 
 const deps = {
-  translator, timeDate, locale: 'en', mdConfig,
+  translator,
+  timeDate,
+  locale: 'en',
+  mdConfig,
 };
 
 describe('VoidTrader', () => {
   describe('#constructor()', () => {
     it('should throw TypeError when called with no arguments or an invalid argument', () => {
-      (() => { new VoidTrader(); }).should.throw(TypeError);
-      (() => { new VoidTrader({}); }).should.throw(TypeError);
+      (() => {
+        new VoidTrader();
+      }).should.throw(TypeError);
+      (() => {
+        new VoidTrader({});
+      }).should.throw(TypeError);
     });
     it('should parse PrimeVaultTrader', () => {
-      (() => { new VoidTrader(VaultTrader, deps); }).should.not.throw();
+      (() => {
+        new VoidTrader(VaultTrader, deps);
+      }).should.not.throw();
     });
   });
 

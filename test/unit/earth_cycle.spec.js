@@ -15,7 +15,9 @@ const EarthCycle = require('../../lib/EarthCycle');
 describe('EarthCycle', () => {
   describe('#constructor()', () => {
     it('should not throw when called with valid deps', () => {
-      (() => { new EarthCycle(deps); }).should.not.throw();
+      (() => {
+        new EarthCycle(deps);
+      }).should.not.throw();
     });
   });
   describe('#getExpired()', () => {

@@ -11,8 +11,12 @@ const timeDate = require('../mocks/timeDate');
 describe('SyndicateMission', function () {
   describe('#constructor()', function () {
     it('should throw TypeError when called with no arguments or an invalid argument', function () {
-      (() => { new SyndicateMission(); }).should.throw(TypeError);
-      (() => { new SyndicateMission({}); }).should.throw(TypeError);
+      (() => {
+        new SyndicateMission();
+      }).should.throw(TypeError);
+      (() => {
+        new SyndicateMission({});
+      }).should.throw(TypeError);
     });
   });
 

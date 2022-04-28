@@ -9,7 +9,9 @@ const utils = require('../../lib/timeDate');
 describe('timeDateUtils', () => {
   describe('timeDeltaToString()', () => {
     it('should throw TypeError when called without arguments', () => {
-      (() => { utils.timeDeltaToString(); }).should.throw(TypeError);
+      (() => {
+        utils.timeDeltaToString();
+      }).should.throw(TypeError);
     });
     it('only shows seconds if the difference is less than a minute', () => {
       utils.timeDeltaToString(30000).should.match(/^\d{1,2}s$/);
@@ -18,12 +20,10 @@ describe('timeDateUtils', () => {
       utils.timeDeltaToString(120000).should.match(/^\d{1,2}m \d{1,2}s$/);
     });
     it('shows seconds, minutes, and hours if the difference is between an hour and a day', () => {
-      utils.timeDeltaToString(4000000)
-        .should.match(/^\d{1,2}h \d{1,2}m \d{1,2}s$/);
+      utils.timeDeltaToString(4000000).should.match(/^\d{1,2}h \d{1,2}m \d{1,2}s$/);
     });
     it('shows seconds, minutes, hours and days if the difference is more than a day', () => {
-      utils.timeDeltaToString(120000000)
-        .should.match(/^\d+d \d{1,2}h \d{1,2}m \d{1,2}s$/);
+      utils.timeDeltaToString(120000000).should.match(/^\d+d \d{1,2}h \d{1,2}m \d{1,2}s$/);
     });
   });
   describe('parseDate()', () => {

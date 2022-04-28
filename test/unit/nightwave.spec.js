@@ -21,11 +21,17 @@ const deps = {
 describe('Nightwave', () => {
   describe('#constructor', () => {
     it('should throw TypeError when called with no arguments or an invalid argument', () => {
-      (() => { new Nightwave(); }).should.throw(TypeError);
-      (() => { new Nightwave({}); }).should.throw(TypeError);
+      (() => {
+        new Nightwave();
+      }).should.throw(TypeError);
+      (() => {
+        new Nightwave({});
+      }).should.throw(TypeError);
     });
     it('should parse nightwave data', () => {
-      (() => { new Nightwave(nwdata, deps); }).should.not.throw();
+      (() => {
+        new Nightwave(nwdata, deps);
+      }).should.not.throw();
     });
   });
 });

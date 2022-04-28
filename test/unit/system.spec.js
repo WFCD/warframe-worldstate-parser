@@ -24,9 +24,12 @@ const data = {};
 const platforms = ['pc', 'ps4', 'xb1', 'swi'];
 let w;
 
-const getPData = (p) => fetch(`http://content${p !== 'pc' ? `.${p}` : ''}.warframe.com/dynamic/worldState.php`)
-  .then((d) => d.text())
-  .then((d) => { data[p] = d; });
+const getPData = (p) =>
+  fetch(`http://content${p !== 'pc' ? `.${p}` : ''}.warframe.com/dynamic/worldState.php`)
+    .then((d) => d.text())
+    .then((d) => {
+      data[p] = d;
+    });
 
 before(() => {
   const ps = platforms.map(getPData);
