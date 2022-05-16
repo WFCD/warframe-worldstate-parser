@@ -115,13 +115,15 @@ class WorldEvent extends WorldstateObject {
    * @param   {Reward}            deps.Reward     The Reward parser
    * @param   {string}            deps.locale     Locale to use for translations
    */
-  constructor(data, {
-    mdConfig, translator, timeDate, Reward, locale,
-  }) {
+  constructor(data, { mdConfig, translator, timeDate, Reward, locale }) {
     super(data, { timeDate });
 
     const opts = {
-      translator, mdConfig, Reward, timeDate, locale,
+      translator,
+      mdConfig,
+      Reward,
+      timeDate,
+      locale,
     };
 
     /**
@@ -197,9 +199,7 @@ class WorldEvent extends WorldstateObject {
      * The other nodes where the event takes place
      * @type {string[]}
      */
-    this.concurrentNodes = data.ConcurrentNodes
-      ? data.ConcurrentNodes.map((n) => translator.node(n), locale)
-      : [];
+    this.concurrentNodes = data.ConcurrentNodes ? data.ConcurrentNodes.map((n) => translator.node(n), locale) : [];
 
     /**
      * The victim node
@@ -211,16 +211,14 @@ class WorldEvent extends WorldstateObject {
      * The score description
      * @type {?string}
      */
-    this.scoreLocTag = data.Fomorian
-      ? 'Fomorian Assault Score'
-      : translator.languageString(data.ScoreLocTag, locale);
+    this.scoreLocTag = data.Fomorian ? 'Fomorian Assault Score' : translator.languageString(data.ScoreLocTag, locale);
 
     /**
      * The event's rewards
      * @type {Reward[]}
      */
     this.rewards = Object.keys(data)
-      .filter((k) => (k.includes('Reward') || k.includes('reward')))
+      .filter((k) => k.includes('Reward') || k.includes('reward'))
       .map((k) => new Reward(data[k], opts));
 
     /**
@@ -233,16 +231,14 @@ class WorldEvent extends WorldstateObject {
      * Health remaining for the target
      * @type {Number}
      */
-    this.health = typeof data.HealthPct !== 'undefined'
-      ? Number.parseFloat(((data.HealthPct || 0.00) * 100).toFixed(2))
-      : undefined;
+    this.health =
+      typeof data.HealthPct !== 'undefined' ? Number.parseFloat(((data.HealthPct || 0.0) * 100).toFixed(2)) : undefined;
 
     if (data.JobAffiliationTag) {
       this.affiliatedWith = translator.syndicate(data.JobAffiliationTag, locale);
       if (data.Jobs) {
         this.jobs = (data.Jobs || []).map((j) => new SyndicateJob(j, this.expiry, opts));
-        this.previousJobs = (data.PreviousJobs || [])
-          .map((j) => new SyndicateJob(j, this.expiry, opts));
+        this.previousJobs = (data.PreviousJobs || []).map((j) => new SyndicateJob(j, this.expiry, opts));
       }
     }
 
@@ -259,7 +255,7 @@ class WorldEvent extends WorldstateObject {
     this.interimSteps = [];
 
     (data.InterimRewards || []).forEach((reward, index) => {
-      const msg = ((data.InterimRewardMessages || [])[index] || {});
+      const msg = (data.InterimRewardMessages || [])[index] || {};
       this.interimSteps[index] = {
         goal: Number.parseInt(data.InterimGoals[index], 10),
         reward: reward ? new Reward(reward, opts) : undefined,
@@ -270,13 +266,14 @@ class WorldEvent extends WorldstateObject {
           senderIcon: msg.senderIcon,
           attachments: msg.attachments,
         },
+        // eslint-disable-next-line no-underscore-dangle
         winnerCount: (data._interimWinnerCounts || [])[index],
       };
     });
 
     /**
      * Progress Steps, if any are present
-     * @type {ProgessStep[]}
+     * @type {ProgressStep[]}
      */
     this.progressSteps = [];
 
@@ -292,8 +289,7 @@ class WorldEvent extends WorldstateObject {
        * Total of all MultiProgress
        * @type {Number}
        */
-      this.progressTotal = Number.parseFloat(data.MultiProgress
-        .reduce((accumulator, val) => accumulator + val));
+      this.progressTotal = Number.parseFloat(data.MultiProgress.reduce((accumulator, val) => accumulator + val));
     }
 
     /**
@@ -316,15 +312,13 @@ class WorldEvent extends WorldstateObject {
      * Affectors for this mission
      * @type {string[]}
      */
-    this.regionDrops = (data.RegionDrops || [])
-      .map((drop) => translator.languageString(drop, locale));
+    this.regionDrops = (data.RegionDrops || []).map((drop) => translator.languageString(drop, locale));
 
     /**
      * Archwing Drops in effect while this event is active
      * @type {string[]}
      */
-    this.archwingDrops = (data.ArchwingDrops || [])
-      .map((drop) => translator.languageString(drop, locale));
+    this.archwingDrops = (data.ArchwingDrops || []).map((drop) => translator.languageString(drop, locale));
 
     this.asString = this.toString();
 
@@ -364,9 +358,7 @@ class WorldEvent extends WorldstateObject {
    * @returns {string}
    */
   toString() {
-    let lines = [
-      `${this.description} : ${this.faction}`,
-    ];
+    let lines = [`${this.description} : ${this.faction}`];
 
     if (this.scoreLocTag &amp;&amp; this.maximumScore) {
       lines.push(`${this.scoreLocTag} : ${this.maximumScore}`);
@@ -387,8 +379,10 @@ class WorldEvent extends WorldstateObject {
     }
 
     if (this.affiliatedWith &amp;&amp; this.jobs) {
-      lines.push(`${this.affiliatedWith} will reward you for performing `
-        + `${this.jobs.map((job) => job.type).join(', ')} job${this.jobs.length > 1 ? 's' : ''}`);
+      lines.push(
+        `${this.affiliatedWith} will reward you for performing ` +
+          `${this.jobs.map((job) => job.type).join(', ')} job${this.jobs.length > 1 ? 's' : ''}`
+      );
     }
 
     return lines.join(this.mdConfig.lineEnd);
@@ -441,7 +435,7 @@ module.exports = WorldEvent;
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
 	
-		on Saturday, May 14th 2022, 16:23:18
+		on Monday, May 16th 2022, 00:34:28
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

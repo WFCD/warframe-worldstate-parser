@@ -173,34 +173,36 @@ const rewardTypes = [
     description: 'Vauban parts',
     test: (s) => /^vauban(?!.*helmet)/i.test(s),
     thumbnail: 'https://i.imgur.com/r5x0owi.png',
-    color: 0x5C5A53,
+    color: 0x5c5a53,
   },
   {
     name: 'vandal',
     description: 'Vandal Weapon Parts',
     test: (s) => /vandal/i.test(s),
     thumbnail: 'https://i.imgur.com/kPQcg5B.png',
-    color: 0x5C5A53,
+    color: 0x5c5a53,
   },
   {
     name: 'wraith',
     description: 'Wraith Weapon Parts',
     test: (s) => /wraith/i.test(s),
     thumbnail: 'https://i.imgur.com/B5sv3mQ.png',
-    color: 0x5C5A53,
+    color: 0x5c5a53,
   },
   {
     name: 'skin',
     description: 'Weapon skins',
     test: (s) => /skin/i.test(s),
-    thumbnail: 'https://raw.githubusercontent.com/Warframe-Community-Developers/warframe-worldstate-parser/master/resources/weapon_skin_thumb.png',
-    color: 0x4F4C33,
+    thumbnail:
+      'https://raw.githubusercontent.com/Warframe-Community-Developers/warframe-worldstate-parser/master/resources/weapon_skin_thumb.png',
+    color: 0x4f4c33,
   },
   {
     name: 'helmet',
     description: 'Alternative helmets',
     test: (s) => /helmet/i.test(s),
-    thumbnail: 'https://raw.githubusercontent.com/Warframe-Community-Developers/warframe-worldstate-parser/master/resources/alt_helmet_thumb.png',
+    thumbnail:
+      'https://raw.githubusercontent.com/Warframe-Community-Developers/warframe-worldstate-parser/master/resources/alt_helmet_thumb.png',
     color: 0x567677,
   },
   {
@@ -208,273 +210,275 @@ const rewardTypes = [
     description: 'Nitain extract',
     test: (s) => /nitain/i.test(s),
     thumbnail: 'https://i.imgur.com/3Db4PHh.png',
-    color: 0xAEADA4,
+    color: 0xaeada4,
   },
   {
     name: 'mutalist',
     description: 'Mutalist Alad V coordinates',
     test: (s) => /mutalist/i.test(s),
     thumbnail: 'https://i.imgur.com/96AWqr8.png',
-    color: 0x26B37,
+    color: 0x26b37,
   },
   {
     name: 'weapon',
     description: 'Weapons',
     test: (s) => /dagger|sword|glaive/i.test(s),
     thumbnail: 'https://i.imgur.com/A2gbH8k.png',
-    color: 0xA3A097,
+    color: 0xa3a097,
   },
   {
     name: 'fieldron',
     description: 'Fieldron',
     test: (s) => /fieldron/i.test(s),
     thumbnail: 'https://i.imgur.com/qlrlfft.png',
-    color: 0x4D5556,
+    color: 0x4d5556,
   },
   {
     name: 'detonite',
     description: 'Detonite Injector',
     test: (s) => /detonite/i.test(s),
     thumbnail: 'https://i.imgur.com/rV6lN4W.png',
-    color: 0x4D5556,
+    color: 0x4d5556,
   },
   {
     name: 'mutagen',
     description: 'Mutagen Mass',
     test: (s) => /mutagen/i.test(s),
     thumbnail: 'https://i.imgur.com/vV7kzub.png',
-    color: 0x4D5556,
+    color: 0x4d5556,
   },
   {
     name: 'clantech',
     description: 'Clantech resources',
     test: (s) => /fieldron|detonite|mutagen/i.test(s),
-    thumbnail: 'https://github.com/Warframe-Community-Developers/warframe-worldstate-parser/raw/master/resources/clantech_thmb.png',
-    color: 0x4D5556,
+    thumbnail:
+      'https://github.com/Warframe-Community-Developers/warframe-worldstate-parser/raw/master/resources/clantech_thmb.png',
+    color: 0x4d5556,
   },
   {
     name: 'aura',
     description: 'Auras',
     test: (s) => auras.includes(s),
-    thumbnail: 'https://github.com/Warframe-Community-Developers/warframe-worldstate-parser/raw/master/resources/aura_thumb.png',
-    color: 0xC8F8FF,
+    thumbnail:
+      'https://github.com/Warframe-Community-Developers/warframe-worldstate-parser/raw/master/resources/aura_thumb.png',
+    color: 0xc8f8ff,
   },
   {
     name: 'neuralSensors',
     description: 'Neural Sensors',
     test: (s) => /neural/i.test(s),
     thumbnail: 'https://i.imgur.com/Gq6cz9p.png',
-    color: 0xC8F8FF,
+    color: 0xc8f8ff,
   },
   {
     name: 'neurodes',
     description: 'Neurodes',
     test: (s) => /neurode/i.test(s),
     thumbnail: 'https://cdn.warframestat.us/img/component-neurode.png',
-    color: 0xC8F8FF,
+    color: 0xc8f8ff,
   },
   {
     name: 'orokinCell',
     description: 'Orokin Cell',
     test: (s) => /orokin\scell/i.test(s),
     thumbnail: 'https://i.imgur.com/tEQdoDE.png',
-    color: 0xC8F8FF,
+    color: 0xc8f8ff,
   },
   {
     name: 'alloyPlate',
     description: 'Alloy Plate',
     test: (s) => /alloy\splate/i.test(s),
     thumbnail: 'https://i.imgur.com/E8K3fOI.png',
-    color: 0xC8F8FF,
+    color: 0xc8f8ff,
   },
   {
     name: 'circuits',
     description: 'Circuits',
     test: (s) => /circuits/i.test(s),
     thumbnail: 'https://i.imgur.com/OxJvWIx.png',
-    color: 0xC8F8FF,
+    color: 0xc8f8ff,
   },
   {
     name: 'controlModule',
     description: 'Control Module',
     test: (s) => /control\smodule/i.test(s),
     thumbnail: 'https://i.imgur.com/F1UUub1.png',
-    color: 0xC8F8FF,
+    color: 0xc8f8ff,
   },
   {
     name: 'ferrite',
     description: 'Ferrite',
     test: (s) => /ferrite/i.test(s),
     thumbnail: 'https://i.imgur.com/h93eVLr.png',
-    color: 0xC8F8FF,
+    color: 0xc8f8ff,
   },
   {
     name: 'gallium',
     description: 'Gallium',
     test: (s) => /gallium/i.test(s),
     thumbnail: 'https://i.imgur.com/pvpc73S.png',
-    color: 0xA1ADBA,
+    color: 0xa1adba,
   },
   {
     name: 'morphics',
     description: 'Morphics',
     test: (s) => /morphics/i.test(s),
     thumbnail: 'https://i.imgur.com/SF3XWd6.png',
-    color: 0xC8F8FF,
+    color: 0xc8f8ff,
   },
   {
     name: 'nanoSpores',
     description: 'Nano Spores',
     test: (s) => /nano\sspores/i.test(s),
     thumbnail: 'https://i.imgur.com/bb71Cy7.png',
-    color: 0x533F36,
+    color: 0x533f36,
   },
   {
     name: 'oxium',
     description: 'Oxium',
     test: (s) => /oxium/i.test(s),
     thumbnail: 'https://i.imgur.com/hY8NCjk.png',
-    color: 0x92713B,
+    color: 0x92713b,
   },
   {
     name: 'rubedo',
     description: 'Rubedo',
     test: (s) => /rubedo/i.test(s),
     thumbnail: 'https://i.imgur.com/gSO9ILf.png',
-    color: 0xCE3E36,
+    color: 0xce3e36,
   },
   {
     name: 'salvage',
     description: 'Salvage',
     test: (s) => /salvage/i.test(s),
     thumbnail: 'https://i.imgur.com/3L7xLYg.png',
-    color: 0x8B8E8D,
+    color: 0x8b8e8d,
   },
   {
     name: 'plastids',
     description: 'Plastids',
     test: (s) => /plastids/i.test(s),
     thumbnail: 'https://i.imgur.com/5yVfTEF.png',
-    color: 0xCEAE88,
+    color: 0xceae88,
   },
   {
     name: 'polymerBundle',
     description: 'Polymer Bundle',
     test: (s) => /polymer\sbundle/i.test(s),
     thumbnail: 'https://i.imgur.com/pg8asnC.png',
-    color: 0x6B4DA4,
+    color: 0x6b4da4,
   },
   {
     name: 'argonCrystal',
     description: 'Argon Crystal',
     test: (s) => /argon\scrystal/i.test(s),
     thumbnail: 'https://i.imgur.com/DdJJYSB.png',
-    color: 0xC8F8FF,
+    color: 0xc8f8ff,
   },
   {
     name: 'cryotic',
     description: 'Cryotic',
     test: (s) => /cryotic/i.test(s),
     thumbnail: 'https://i.imgur.com/yqPgj21.png',
-    color: 0x78A2B3,
+    color: 0x78a2b3,
   },
   {
     name: 'tellurium',
     description: 'Tellurium',
     test: (s) => /tellurium/i.test(s),
     thumbnail: 'https://i.imgur.com/ocjnGU8.png',
-    color: 0xE72E18,
+    color: 0xe72e18,
   },
   {
     name: 'resource',
     description: 'Resources',
     test: (s) => resources.includes(s),
     thumbnail: 'https://i.imgur.com/Bq5TEPo.png',
-    color: 0xFFEE9C,
+    color: 0xffee9c,
   },
   {
     name: 'nightmare',
     description: 'Nightmare mods',
     test: (s) => nightmare.includes(s),
     thumbnail: 'https://i.imgur.com/cAYNH7j.png',
-    color: 0xB22E2C,
+    color: 0xb22e2c,
   },
   {
     name: 'endo',
     description: 'Endo',
     test: (s) => /\d+\sendo/i.test(s),
     thumbnail: 'https://i.imgur.com/mS8oSwx.png',
-    color: 0xC2A24C,
+    color: 0xc2a24c,
   },
   {
     name: 'reactor',
     description: 'Orokin Reactors',
     test: (s) => /reactor/i.test(s),
     thumbnail: 'https://i.imgur.com/6Hm1BEq.png',
-    color: 0xD7C37D,
+    color: 0xd7c37d,
   },
   {
     name: 'catalyst',
     description: 'Orokin Catalyst',
     test: (s) => /catalyst/i.test(s),
     thumbnail: 'https://i.imgur.com/C4X9NWm.png',
-    color: 0x689ADD,
+    color: 0x689add,
   },
   {
     name: 'potato',
     description: 'Orokin Catalysts/Reactors',
     test: (s) => /catalyst|reactor/i.test(s),
     thumbnail: 'https://i.imgur.com/6Hm1BEq.png',
-    color: 0x689ADD,
+    color: 0x689add,
   },
   {
     name: 'forma',
     description: 'Forma',
     test: (s) => /forma/i.test(s),
     thumbnail: 'https://i.imgur.com/2b0FT3D.png',
-    color: 0xB19547,
+    color: 0xb19547,
   },
   {
     name: 'exilus',
     description: 'Exilus',
     test: (s) => /exilus/i.test(s),
     thumbnail: 'https://i.imgur.com/eQNeNpY.png',
-    color: 0x88332D,
+    color: 0x88332d,
   },
   {
     name: 'synthula',
     description: 'Synthula',
     test: (s) => /synthula/i.test(s),
     thumbnail: 'https://i.imgur.com/X0Lvfc9.png',
-    color: 0x9FA19F,
+    color: 0x9fa19f,
   },
   {
     name: 'kavatGene',
     description: 'Kavat Genetic Code',
     test: (s) => /Kavat Ge/i.test(s),
     thumbnail: 'https://i.imgur.com/ijVUmQV.png',
-    color: 0x76A8AD,
+    color: 0x76a8ad,
   },
   {
     name: 'kubrowEgg',
     description: 'Kubrow Egg',
     test: (s) => /kubrow\segg/i.test(s),
     thumbnail: 'https://i.imgur.com/Vv3LXnz.png',
-    color: 0xA5937F,
+    color: 0xa5937f,
   },
   {
     name: 'traces',
     description: 'Void Traces',
     test: (s) => /trace/i.test(s),
     thumbnail: 'https://i.imgur.com/vvZGMPv.png',
-    color: 0x69A4DD,
+    color: 0x69a4dd,
   },
   {
     name: 'riven',
     description: 'Riven Mod',
     test: (s) => /riven/i.test(s),
     thumbnail: 'https://i.imgur.com/LoficZr.png',
-    color: 0xA183BD,
+    color: 0xa183bd,
   },
   // Catch-all
   {
@@ -482,7 +486,7 @@ const rewardTypes = [
     description: 'Other',
     test: () => true,
     thumbnail: '',
-    color: 0x4F545C,
+    color: 0x4f545c,
   },
 ];
 
@@ -527,11 +531,13 @@ class Reward {
      * The counted items being rewarded
      * @type {Array.&lt;Object>}
      */
-    this.countedItems = data.countedItems ? data.countedItems.map((i) => ({
-      count: i.ItemCount,
-      type: translator.languageString(i.ItemType, locale),
-      key: translator.languageString(i.ItemType),
-    })) : [];
+    this.countedItems = data.countedItems
+      ? data.countedItems.map((i) => ({
+          count: i.ItemCount,
+          type: translator.languageString(i.ItemType, locale),
+          key: translator.languageString(i.ItemType),
+        }))
+      : [];
 
     /**
      * The credits being rewarded
@@ -541,13 +547,13 @@ class Reward {
 
     this.asString = this.toString();
 
-    this.itemString = this.items.concat(
-      this.countedItems.map((i) => `${i.count > 1 ? i.count : ''} ${i.type}`.trim()),
-    ).join(' + ');
+    this.itemString = this.items
+      .concat(this.countedItems.map((i) => `${i.count > 1 ? i.count : ''} ${i.type}`.trim()))
+      .join(' + ');
 
     this.thumbnail = this.getTypesFull()[0] ? this.getTypesFull()[0].thumbnail : 'https://i.imgur.com/JCKyUXJ.png';
 
-    this.color = this.getTypesFull()[0] ? this.getTypesFull()[0].color : 0xF1C40F;
+    this.color = this.getTypesFull()[0] ? this.getTypesFull()[0].color : 0xf1c40f;
   }
 
   /**
@@ -571,9 +577,7 @@ class Reward {
    * @returns {string}
    */
   toString() {
-    const tokens = this.items.concat(
-      this.countedItems.map((i) => `${i.count > 1 ? i.count : ''} ${i.type}`.trim()),
-    );
+    const tokens = this.items.concat(this.countedItems.map((i) => `${i.count > 1 ? i.count : ''} ${i.type}`.trim()));
 
     if (this.credits) {
       tokens.push(`${this.credits}cr`);
@@ -629,7 +633,7 @@ module.exports = Reward;
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
 	
-		on Saturday, May 14th 2022, 16:23:18
+		on Monday, May 16th 2022, 00:34:28
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
