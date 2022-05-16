@@ -13,8 +13,12 @@ const Reward = rewire('../../lib/Reward.js');
 describe('Reward', function () {
   describe('#constructor()', function () {
     it('should throw TypeError when called with no argument or an invalid argument', function () {
-      (() => { new Reward(); }).should.throw(TypeError);
-      (() => { new Reward({}); }).should.throw(TypeError);
+      (() => {
+        new Reward();
+      }).should.throw(TypeError);
+      (() => {
+        new Reward({});
+      }).should.throw(TypeError);
     });
   });
   describe('#toString()', function () {

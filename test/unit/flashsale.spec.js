@@ -11,8 +11,12 @@ const timeDate = require('../mocks/timeDate');
 describe('FlashSale', function () {
   describe('#constructor()', function () {
     it('should throw TypeError when called with no arguments or an invalid argument', function () {
-      (() => { new FlashSale(); }).should.throw(TypeError);
-      (() => { new FlashSale({}); }).should.throw(TypeError);
+      (() => {
+        new FlashSale();
+      }).should.throw(TypeError);
+      (() => {
+        new FlashSale({});
+      }).should.throw(TypeError);
     });
   });
 

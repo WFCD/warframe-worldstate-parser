@@ -37,15 +37,22 @@ describe('Invasion', () => {
 
   describe('#constructor()', () => {
     it('should throw TypeError when called with no arguments or an invalid argument', () => {
-      (() => { new Invasion(); }).should.throw(TypeError);
-      (() => { new Invasion({}); }).should.throw(TypeError);
+      (() => {
+        new Invasion();
+      }).should.throw(TypeError);
+      (() => {
+        new Invasion({});
+      }).should.throw(TypeError);
     });
   });
 
   describe('#toString()', () => {
     it('should choose the right format according to the factions that are fighting', () => {
       const i = new Invasion(testData, {
-        Reward, translator, timeDate, mdConfig,
+        Reward,
+        translator,
+        timeDate,
+        mdConfig,
       });
       i.toString().should.match(/vs\./);
       i.vsInfestation = true;
@@ -54,7 +61,10 @@ describe('Invasion', () => {
 
     it('should set the attacker victory status correctly', () => {
       const i = new Invasion(testData, {
-        Reward, translator, timeDate, mdConfig,
+        Reward,
+        translator,
+        timeDate,
+        mdConfig,
       });
       i.count = -1;
       should.equal(i.isAttackerWinning(), false);

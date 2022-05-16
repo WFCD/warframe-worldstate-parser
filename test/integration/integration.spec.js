@@ -41,8 +41,10 @@ describe('WorldState (integration)', () => {
 
             /* Easy debugging! */
             setTimeout(() => {
-              fs.writeFileSync(`./data.${platform}.json`, JSON.stringify(wsl.syndicateMissions
-                .find((m) => m.syndicateKey === 'Ostrons')));
+              fs.writeFileSync(
+                `./data.${platform}.json`,
+                JSON.stringify(wsl.syndicateMissions.find((m) => m.syndicateKey === 'Ostrons'))
+              );
               done();
             }, 1000);
           });
