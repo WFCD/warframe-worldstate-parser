@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="Alert.html">Alert</a></li><li><a href="CetusCycle.html">CetusCycle</a></li><li><a href="ChallengeInstance.html">ChallengeInstance</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="ConstructionProgress.html">ConstructionProgress</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Dependency.html">Dependency</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="global.html#Kuva">Kuva</a></li><li><a href="global.html#Mission">Mission</a></li><li><a href="module.exports.html">module.exports</a></li><li><a href="News.html">News</a></li><li><a href="Nightwave.html">Nightwave</a></li><li><a href="NightwaveChallenge.html">NightwaveChallenge</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="SentientOutpost.html">SentientOutpost</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateJob.html">SyndicateJob</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VallisCycle.html">VallisCycle</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="VoidTraderItem.html">VoidTraderItem</a></li><li><a href="WeeklyChallenge.html">WeeklyChallenge</a></li><li><a href="WorldEvent.html">WorldEvent</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
+					<li><a href="Alert.html">Alert</a></li><li><a href="CetusCycle.html">CetusCycle</a></li><li><a href="ChallengeInstance.html">ChallengeInstance</a></li><li><a href="ConclaveChallenge.html">ConclaveChallenge</a></li><li><a href="ConstructionProgress.html">ConstructionProgress</a></li><li><a href="DailyDeal.html">DailyDeal</a></li><li><a href="DarkSector.html">DarkSector</a></li><li><a href="DarkSectorBattle.html">DarkSectorBattle</a></li><li><a href="Dependency.html">Dependency</a></li><li><a href="EarthCycle.html">EarthCycle</a></li><li><a href="Fissure.html">Fissure</a></li><li><a href="FlashSale.html">FlashSale</a></li><li><a href="GlobalUpgrade.html">GlobalUpgrade</a></li><li><a href="Invasion.html">Invasion</a></li><li><a href="module.exports.html">module.exports</a></li><li><a href="News.html">News</a></li><li><a href="Nightwave.html">Nightwave</a></li><li><a href="NightwaveChallenge.html">NightwaveChallenge</a></li><li><a href="PersistentEnemy.html">PersistentEnemy</a></li><li><a href="Reward.html">Reward</a></li><li><a href="SentientOutpost.html">SentientOutpost</a></li><li><a href="Simaris.html">Simaris</a></li><li><a href="Sortie.html">Sortie</a></li><li><a href="SortieVariant.html">SortieVariant</a></li><li><a href="SyndicateJob.html">SyndicateJob</a></li><li><a href="SyndicateMission.html">SyndicateMission</a></li><li><a href="VallisCycle.html">VallisCycle</a></li><li><a href="VoidTrader.html">VoidTrader</a></li><li><a href="VoidTraderItem.html">VoidTraderItem</a></li><li><a href="WeeklyChallenge.html">WeeklyChallenge</a></li><li><a href="WorldEvent.html">WorldEvent</a></li><li><a href="WorldstateObject.html">WorldstateObject</a></li>
 				</ul>
 			</li>
 			
@@ -127,6 +127,8 @@ const scrub = (mission) => {
   /* eslint-enable no-param-reassign */
 };
 
+const hash = (str) => require('crypto').createHash('sha256').update(str, 'utf8').digest('hex');
+
 /**
  * Parse kuva &amp; arbitration data
  * @param  {Object} data       Data to split for kuva/arbitration
@@ -143,9 +145,14 @@ const parse = (data, translator, locale) => {
       expiry: new Date(mission.end),
       ...mission.solnodedata,
       node: translator.node(mission.solnode, locale),
+      nodeKey: translator.node(mission.solnode, 'en'),
       type: translator.nodeMissionType(mission.solnode, locale),
+      typeKey: translator.nodeMissionType(mission.solnode, 'en'),
     };
     truncateTime(p);
+    p.id = hash(JSON.stringify(p));
+    p.expired = Date.now() - p.expiry.getTime() &lt; 0;
+
     if (
       p.activation &lt; now &amp;&amp;
       now &lt; p.expiry &amp;&amp;
@@ -170,7 +177,7 @@ const parse = (data, translator, locale) => {
  * @property {ExternalMission[]} kuva currently active kuva missions
  * @property {ExternalMission} arbitration current arbitration
  */
-class Kuva {
+module.exports = class Kuva {
   constructor({ kuvaData, translator, locale, logger }) {
     /**
      * The translation functions
@@ -196,9 +203,7 @@ class Kuva {
       ({ kuva: this.kuva, arbitration: this.arbitration } = parsed);
     }
   }
-}
-
-module.exports = Kuva;
+};
 </pre>
     </article>
 </section>
@@ -244,7 +249,7 @@ module.exports = Kuva;
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
 	
-		on Saturday, June 4th 2022, 02:49:44
+		on Thursday, June 9th 2022, 18:56:49
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
