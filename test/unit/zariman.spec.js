@@ -31,17 +31,26 @@ describe('ZarimanCycle', function () {
       cycle.toString().should.include('Operator, Zariman Ten Zero is currently occupied by');
     });
 
-    // it('should show correct cycle string', () => {
-    //   // the zariman cycle logic depends on current time
-    //   const confirmedCorpus = 1654725600000;
-    //   const now = Date.now();
+    it('should show corpus cycle string', () => {
+      // the zariman cycle logic depends on current time
+      const confirmedCorpus = 1654725600001;
 
-    //   const cycle = new ZarimanCycle(new Date(1654718401), {
-    //     timeDate,
-    //     mdConfig,
-    //   });
-    //   console.log(cycle.toString());
-    //   cycle.toString().should.include('occupied by corpus');
-    // });
+      const cycle = new ZarimanCycle(new Date(confirmedCorpus), {
+        timeDate,
+        mdConfig,
+      });
+      cycle.toString().should.include('occupied by corpus');
+    });
+
+    it('should show grineer cycle string', () => {
+      // the zariman cycle logic depends on current time
+      const confirmedCorpus = 1654725600001;
+
+      const cycle = new ZarimanCycle(new Date(confirmedCorpus + 14400000), {
+        timeDate,
+        mdConfig,
+      });
+      cycle.toString().should.include('occupied by grineer');
+    });
   });
 });
