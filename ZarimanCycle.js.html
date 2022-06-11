@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>warframe-worldstate-parser Source: DailyDeal.js</title>
+	<title>warframe-worldstate-parser Source: ZarimanCycle.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,26 +72,36 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: DailyDeal.js</h1>
+		<h1 class="page-title">Source: ZarimanCycle.js</h1>
     
 <section>
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">'use strict';
 
+const WorldstateObject = require('./WorldstateObject');
+
+// This is a confirmed starting time for Corpus (in millis)
+// All faction operation should use this as a calculation point
+// Unless there's a better logic
+const corpusTimeMillis = 1654725600000;
+const fullCycle = 28800000;
+const stateMaximum = 14400000;
+
 /**
- * Represents a daily deal
+ * Represents the current Zariman Corpus/Grineer Cycle
+ * @extends {WorldstateObject}
  */
-class DailyDeal {
+module.exports = class ZarimanCycle extends WorldstateObject {
   /**
-   * @param   {Object}            data            The deal data
+   * @param   {Date}              currentTime     The current time to calculate Zariman cycle for
    * @param   {Object}            deps            The dependencies object
    * @param   {MarkdownSettings}  deps.mdConfig   The markdown settings
-   * @param   {Translator}        deps.translator The string translator
    * @param   {TimeDateFunctions} deps.timeDate   The time and date functions
-   * @param   {string}            deps.locale     Locale to use for translations
    */
-  constructor(data, { mdConfig, translator, timeDate, locale }) {
+  constructor(currentTime, { mdConfig, timeDate }) {
+    super({ _id: { $oid: 'zarimanCycle0' } }, { timeDate });
+
     /**
      * The markdown settings
      * @type {MarkdownSettings}
@@ -99,6 +109,14 @@ class DailyDeal {
      */
     this.mdConfig = mdConfig;
     Object.defineProperty(this, 'mdConfig', { enumerable: false, configurable: false });
+
+    /**
+     * The end of the Zariman bounties timer, the faction changes exactly half way through
+     * @type {Date}
+     * @private
+     */
+    this.currentTime = currentTime;
+    Object.defineProperty(this, 'currentTime', { enumerable: false, configurable: false });
 
     /**
      * The time and date functions
@@ -109,90 +127,92 @@ class DailyDeal {
     Object.defineProperty(this, 'timeDate', { enumerable: false, configurable: false });
 
     /**
-     * The item that is being offered in the sale
-     * @type {string}
+     * The current zariman cycle, for calculating the other fields
+     * @type {Object}
+     * @private
      */
-    this.item = translator.languageString(data.StoreItem, locale);
+    const ec = this.getCurrentZarimanCycle();
+    Object.defineProperty(this, 'ec', { enumerable: false, configurable: false });
 
     /**
-     * The date and time at which the deal will expire
+     * The date and time at which the event ends
      * @type {Date}
      */
-    this.expiry = timeDate.parseDate(data.Expiry);
+    this.expiry = ec.expiry;
 
     /**
-     * The date and time at which the deal will or did start
+     * The date and time at which the event started
      * @type {Date}
      */
-    this.activation = timeDate.parseDate(data.Activation);
+    this.activation = new Date(ec.start);
 
     /**
-     * The item's original price
-     * @type {number}
+     * Whether or not this it's daytime
+     * @type {boolean}
      */
-    this.originalPrice = data.OriginalPrice;
+    this.isCorpus = ec.corpusTime;
 
     /**
-     * The item's discounted price
-     * @type {number}
-     */
-    this.salePrice = data.SalePrice;
-
-    /**
-     * The number of available items on sale
-     * @type {number}
-     */
-    this.total = data.AmountTotal;
-
-    /**
-     * The number of items that have already been sold
-     * @type {number}
-     */
-    this.sold = data.AmountSold;
-
-    /**
-     * Unique identifier for this deal built from the end time and item
+     * Current cycle state. One of `corpus`, `grineer`
      * @type {string}
      */
-    this.id = `${data.StoreItem.split('/').slice(-1)[0]}${this.expiry.getTime()}`;
+    this.state = ec.state;
 
     /**
-     * ETA string (at time of object creation)
-     * @type {String}
+     * Time remaining string
+     * @type {string}
      */
-    this.eta = this.getETAString();
+    this.timeLeft = ec.timeLeft;
 
-    /**
-     * Percent discount
-     * @type {number}
-     */
-    this.discount = data.Discount;
+    this.id = `zarimanCycle${this.expiry.getTime()}`;
+
+    this.shortString = `${this.timeLeft.replace(/\s\d*s/gi, '')} to ${this.isCorpus ? 'grineer' : 'corpus'}`;
   }
 
   /**
-   * Get a string indicating how much time is left before the deal expires
-   * @returns {string}
+   * Get whether or not the event has expired
+   * @returns {boolean}
    */
-  getETAString() {
-    return this.timeDate.timeDeltaToString(this.timeDate.fromNow(this.expiry));
+  getExpired() {
+    return this.timeDate.fromNow(this.expiry) &lt; 0;
+  }
+
+  getCurrentZarimanCycle() {
+    // determine if it is corpus cycle or grineer cycle
+    const timeInCycle = (this.currentTime - corpusTimeMillis) % fullCycle;
+    // if timeInCycle is less than 4 hours, it is corpus, otherwise it is grineer
+    const corpusTime = timeInCycle &lt;= stateMaximum;
+
+    // cycles are offset by 2 hours from bounties
+    const millisLeft = fullCycle - timeInCycle;
+
+    const minutesCoef = 1000 * 60;
+    const expiry = new Date(Math.round((this.currentTime + millisLeft) / minutesCoef) * minutesCoef);
+    const state = corpusTime ? 'corpus' : 'grineer';
+
+    return {
+      corpusTime,
+      timeLeft: this.timeDate.timeDeltaToString(millisLeft),
+      expiry,
+      expiresIn: millisLeft,
+      state,
+      start: expiry.getTime() - stateMaximum,
+    };
   }
 
   /**
-   * Returns a string representation of the daily deal
+   * The event's string representation
    * @returns {string}
    */
   toString() {
     const lines = [
-      `Daily Deal: ${this.item}`,
-      `${this.salePrice}p (original ${this.originalPrice}p)`,
-      `${this.sold} / ${this.total} sold`,
-      `Expires in ${this.getETAString()}`,
+      `Operator, Zariman Ten Zero is currently occupied by ${this.state}`,
+      `Time remaining until ${this.isCorpus ? 'grineer' : 'corpus'} takeover: ${this.timeLeft}`,
     ];
+
     return lines.join(this.mdConfig.lineEnd);
   }
-}
-
-module.exports = DailyDeal;
+};
 </pre>
     </article>
 </section>
