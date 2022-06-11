@@ -35,7 +35,7 @@ jobs:
         node-version: [16]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.GH_TOKEN }}
       - uses: actions/setup-node@v3
@@ -47,9 +47,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
-          semantic_version: 17
-          extra_plugins: |
-            @semantic-release/exec
-            @semantic-release/git
+          semantic_version: 19
           branches: |
             ['master']
