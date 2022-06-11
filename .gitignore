@@ -37,6 +37,7 @@ node_modules
 .idea
 
 warframe-worldstate-parser-*.tgz
+package.json.backup
 
 # Test debugging files
 data.*.json
