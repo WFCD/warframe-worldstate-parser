@@ -41,7 +41,7 @@
     "build-docs": "jsdoc -c jsdoc-config.json -d docs",
     "lint": "eslint main.js lib/ test/",
     "lint:fix": "eslint main.js lib/ test/ --fix",
-    "prepublishOnly": "npm run build:types",
+    "prepublishOnly": "npm run build:types && npm_config_yes=true npx clean-package",
     "build:types": "tsc -p tsconfig.declaration.json",
     "validate": "npm run lint:fix && git add -u ."
   },
