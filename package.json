@@ -141,7 +141,8 @@
       "mocha",
       "clean-package",
       "directories",
-      "prettier"
+      "prettier",
+      "babel"
     ]
   }
 }
