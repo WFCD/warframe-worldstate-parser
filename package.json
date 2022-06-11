@@ -51,7 +51,7 @@
     "LICENSE",
     "types"
   ],
-  "repository": "wfcd/warframe-worldstate-parser",
+  "repository": "github:wfcd/warframe-worldstate-parser",
   "keywords": [
     "warframe-worldstate",
     "warframe"
@@ -65,21 +65,6 @@
     "url": "https://github.com/wfcd/warframe-worldstate-parser/issues"
   },
   "homepage": "https://github.com/wfcd/warframe-worldstate-parser#readme",
-  "release": {
-    "branch": "master",
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/npm",
-      "@semantic-release/github",
-      ["@semantic-release/exec", {
-        "prepareCmd": "mv package.json.backup package.json"
-      }],
-      ["@semantic-release/git", {
-        "assets": ["package.json"]
-      }]
-    ]
-  },
   "eslintIgnore": [
     ".github/**",
     "docs/**",
