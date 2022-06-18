@@ -7,9 +7,10 @@ const MarkdownSettings = require('../../lib/supporting/MarkdownSettings');
 
 const should = chai.should();
 const mdConfig = new MarkdownSettings();
-// this is a confirmed corpus cycle time
-// the zariman cycle logic depends on the current time
-const confirmedCorpus = 1654725600001;
+// these are confirmed corpus and grineer cycle time
+// the zariman cycle logic depends on zariman bounty expiry time
+const confirmedCorpus = 1655059552000;
+const confirmedGrineer = 1655181672000;
 
 describe('ZarimanCycle', function () {
   describe('#constructor()', function () {
@@ -43,9 +44,7 @@ describe('ZarimanCycle', function () {
     });
 
     it('should show grineer cycle string', () => {
-      // 14400000 is 4 hours in millis, by adding 4 hours, it should show
-      // a grineer cycle
-      const cycle = new ZarimanCycle(new Date(confirmedCorpus + 14400000), {
+      const cycle = new ZarimanCycle(new Date(confirmedGrineer), {
         timeDate,
         mdConfig,
       });
