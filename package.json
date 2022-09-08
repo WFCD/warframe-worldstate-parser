@@ -44,7 +44,7 @@
     "postinstall": "install-peerdeps @wfcd/eslint-config@^1.1.5 -S",
     "prepublishOnly": "npm run build:types && npm_config_yes=true npx clean-package",
     "build:types": "tsc -p tsconfig.declaration.json",
-    "validate": "npm run lint:fix && git add -u ."
+    "validate": "exit 0"
   },
   "files": [
     "lib",
