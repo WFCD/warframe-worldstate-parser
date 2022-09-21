@@ -151,7 +151,7 @@ describe('News', () => {
 
     it('Should return a lang when a lang is supplied', () => {
       const n = new News(languageTestData, { mdConfig, timeDate, translator });
-      n.getTitle('en').should.equal('/Lotus/Language/test/test');
+      n.getTitle('en').should.equal('Test');
     });
 
     it('should return the localized message when a translation is present', () => {
