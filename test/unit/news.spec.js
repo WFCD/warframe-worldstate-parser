@@ -10,12 +10,10 @@ const timeDate = require('../mocks/timeDate');
 
 const testData = require('../data/News.json');
 const realTestData = require('../data/RealNews.json');
+const languageTestData = require('../data/LanguageNews.json');
 
 const locale = 'en';
-
-const translator = {
-  node: () => 'node',
-};
+const translator = require('../../lib/translation');
 
 describe('News', () => {
   describe('#constructor()', () => {
@@ -149,6 +147,11 @@ describe('News', () => {
     it('should return the original message when no translations are present', () => {
       const n = new News(testData, { mdConfig, timeDate, translator });
       n.getTitle('en').should.equal('test');
+    });
+
+    it('Should return a lang when a lang is supplied', () => {
+      const n = new News(languageTestData, { mdConfig, timeDate, translator });
+      n.getTitle('en').should.equal('Test');
     });
 
     it('should return the localized message when a translation is present', () => {
