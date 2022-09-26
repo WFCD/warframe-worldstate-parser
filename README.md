@@ -10,6 +10,14 @@ Parse the Warframe worldstate into useable javascript objects.
 ## Documentation
 You can find the documentation [here](https://wfcd.github.io/warframe-worldstate-parser/)
 
+## Installation
+
+```shell
+$ npm i -S warframe-worldstate-parser
+```
+
+For the most part, you'll have a better experience consuming the product of this from the information in [Live version](#live-version)
+
 ## Example usage
 
 ```javascript
