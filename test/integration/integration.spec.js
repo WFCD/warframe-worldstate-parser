@@ -2,7 +2,6 @@
 
 const chai = require('chai');
 const sinonChai = require('sinon-chai');
-const rewire = require('rewire');
 const fs = require('fs').promises;
 
 const fetch = require('node-fetch');
@@ -18,7 +17,7 @@ const logger = {
 chai.should();
 chai.use(sinonChai);
 
-const WorldState = rewire('../../lib/WorldState.js');
+const WorldState = require('../../lib/WorldState');
 
 describe('WorldState (integration)', () => {
   describe('#constructor()', async () => {
