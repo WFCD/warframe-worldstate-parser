@@ -10,7 +10,7 @@ const sentientMock = require('../data/anomaly.json');
 
 chai.should();
 
-const checkToString = function checkToString(worldState) {
+const checkToString = (worldState) => {
   Object.getOwnPropertyNames(worldState).forEach((p) => {
     if (Array.isArray(worldState[p])) {
       worldState[p].forEach((m) => m.toString());
@@ -21,7 +21,7 @@ const checkToString = function checkToString(worldState) {
 };
 
 const data = {};
-const platforms = ['pc', 'ps4', 'xb1', 'swi'];
+const platforms = ['pc'];
 let w;
 
 const getPData = (p) =>
@@ -60,8 +60,14 @@ describe('The parser', () => {
       };
 
       (() => {
-        w = new WorldState(data[platform], deps);
-        checkToString(w);
+        try {
+          w = new WorldState(data[platform], deps);
+          checkToString(w);
+        } catch (e) {
+          // eslint-disable-next-line no-console
+          console.error(e);
+          throw e;
+        }
       }).should.not.throw();
     });
   });
