@@ -47,11 +47,13 @@ describe('WorldState (integration)', () => {
             }
           }).should.not.throw();
 
-          wsl?.news?.forEach((article) => {
-            if (article.message.toLowerCase().includes('stream')) {
-              article.should.include({ stream: true });
-            }
-          });
+          wsl &&
+            wsl.news &&
+            wsl.news.forEach((article) => {
+              if (article.message.toLowerCase().includes('stream')) {
+                article.should.include({ stream: true });
+              }
+            });
           /* Easy debugging! */
           if (process.env.CI) {
             return fs.writeFile(
