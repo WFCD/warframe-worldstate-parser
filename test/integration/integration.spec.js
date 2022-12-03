@@ -23,10 +23,11 @@ const WorldState = rewire('../../lib/WorldState.js');
 describe('WorldState (integration)', () => {
   describe('#constructor()', async () => {
     await Promise.all(
-      ['pc', 'ps4', 'xb1', 'swi'].map(async function (platform) {
+      // no more other console worldstates.....
+      ['pc'].map(async function (platform) {
         it(`should parse live ${platform} worldstate data`, async function () {
           this.timeout = 10000; // allow 10 seconds to parse the worldstate
-          const url = `https://content.${platform === 'pc' ? '' : `${platform}.`}warframe.com/dynamic/worldState.php`;
+          const url = `https://content.warframe.com/dynamic/worldState.php`;
           const ws = await fetch(url).then((d) => d.text());
 
           let wsl;
