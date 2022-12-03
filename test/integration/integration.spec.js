@@ -27,24 +27,38 @@ describe('WorldState (integration)', () => {
       ['pc'].map(async function (platform) {
         it(`should parse live ${platform} worldstate data`, async function () {
           this.timeout = 10000; // allow 10 seconds to parse the worldstate
-          const url = `https://content.warframe.com/dynamic/worldState.php`;
-          const ws = await fetch(url).then((d) => d.text());
+
+          const { kuvaData, ws } = await fetch('https://10o.io/arbitrations.json')
+            .then((res) => res.json())
+            .then(async (semlar) => ({
+              kuvaData: semlar,
+              ws: await fetch('https://content.warframe.com/dynamic/worldState.php').then((res) => res.text()),
+            }));
 
           let wsl;
           (() => {
-            wsl = new WorldState(ws, { logger, locale: 'en' });
+            try {
+              // once without kuva data
+              wsl = new WorldState(ws, { logger, locale: 'en' });
+              wsl = new WorldState(ws, { logger, locale: 'en', kuvaData });
+            } catch (e) {
+              console.error(e);
+              throw e;
+            }
           }).should.not.throw();
 
-          wsl.news.forEach((article) => {
+          wsl?.news?.forEach((article) => {
             if (article.message.toLowerCase().includes('stream')) {
               article.should.include({ stream: true });
             }
           });
           /* Easy debugging! */
-          return fs.writeFile(
-            path.resolve(`./data.${platform}.json`),
-            JSON.stringify(wsl.syndicateMissions.find((m) => m.syndicateKey === 'Ostrons'))
-          );
+          if (process.env.CI) {
+            return fs.writeFile(
+              path.resolve(`./data.${platform}.json`),
+              JSON.stringify(wsl.syndicateMissions.find((m) => m.syndicateKey === 'Ostrons'))
+            );
+          }
         });
       })
     );
