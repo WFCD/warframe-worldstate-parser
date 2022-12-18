@@ -11,13 +11,19 @@ const sentientMock = require('../data/anomaly.json');
 chai.should();
 
 const checkToString = (worldState) => {
-  Object.getOwnPropertyNames(worldState).forEach((p) => {
-    if (Array.isArray(worldState[p])) {
-      worldState[p].forEach((m) => m.toString());
-    } else {
-      worldState[p].toString();
-    }
-  });
+  Object.getOwnPropertyNames(worldState)
+    .filter((p) => {
+      // eslint-disable-next-line no-console
+      if (!worldState[p]) console.info(`${p} was undefined`);
+      return worldState[p];
+    })
+    .forEach((p) => {
+      if (Array.isArray(worldState[p])) {
+        worldState[p].forEach((m) => m.toString());
+      } else {
+        worldState[p].toString();
+      }
+    });
 };
 
 const data = {};
@@ -46,8 +52,14 @@ describe('The parser', () => {
       };
 
       (() => {
-        w = new WorldState(data[platform], deps);
-        checkToString(w);
+        try {
+          w = new WorldState(data[platform], deps);
+          checkToString(w);
+        } catch (e) {
+          // eslint-disable-next-line no-console
+          console.error(e);
+          throw e;
+        }
       }).should.not.throw();
     });
 
