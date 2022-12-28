@@ -48,6 +48,7 @@ describe('CambionCycle', function () {
       );
 
       should.equal(cycle.active, 'fass');
+      should.equal(cycle.state, 'fass');
     });
 
     it('should show vome for night', () => {
@@ -63,6 +64,7 @@ describe('CambionCycle', function () {
       );
 
       should.equal(cycle.active, 'vome');
+      should.equal(cycle.state, 'vome');
     });
   });
 });
