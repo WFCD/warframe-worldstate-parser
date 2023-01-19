@@ -4,6 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
+const { expect } = require('chai');
 const Nightwave = require('../../lib/Nightwave');
 const mdConfig = require('../data/markdown.json');
 const nwdata = require('../data/Nightwave.json');
@@ -31,6 +32,13 @@ describe('Nightwave', () => {
     it('should parse nightwave data', () => {
       (() => {
         new Nightwave(nwdata, deps);
+      }).should.not.throw();
+    });
+    it('isDaily should be present', () => {
+      (() => {
+        const n = new Nightwave(nwdata, deps);
+        const challenges = n.possibleChallenges.concat(n.activeChallenges);
+        challenges.forEach((e) => expect(typeof e.isDaily !== 'undefined').to.be.true);
       }).should.not.throw();
     });
   });
