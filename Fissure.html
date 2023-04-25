@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>warframe-worldstate-parser Class: Alert</title>
+	<title>warframe-worldstate-parser Class: Fissure</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,16 +72,16 @@
 		<div id="main">
 			
 
-	<h1 class="page-title">Class: Alert</h1>
+	<h1 class="page-title">Class: Fissure</h1>
 <section>
 
 <header>
     
         <h2>
-        Alert
+        Fissure
         </h2>
         
-            <div class="class-description">Represents an alert</div>
+            <div class="class-description">Represents a fissure mission</div>
         
     
 </header>
@@ -93,7 +93,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="Alert"><span class="type-signature"></span>new Alert(data, mdConfig, translator, timeDate, Mission, Reward, locale)</h4>
+    <h4 class="name" id="Fissure"><span class="type-signature"></span>new Fissure(data, deps)</h4>
     
     
 </dt>
@@ -149,20 +149,20 @@
 
             
 
-            <td class="description last">The alert data</td>
+            <td class="description last">The fissure data</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>mdConfig</code></td>
+                <td class="name"><code>deps</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">MarkdownSettings</span>
+<span class="param-type">Object</span>
 
 
 
@@ -173,9 +173,28 @@
 
             
 
-            <td class="description last">The markdown settings</td>
-        </tr>
+            <td class="description last">The dependencies object
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
 
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
@@ -228,54 +247,6 @@
 
         <tr>
             
-                <td class="name"><code>Mission</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Mission">Mission</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The Mission parser</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>Reward</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Reward.html">Reward</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The Reward parser</td>
-        </tr>
-
-    
-
-        <tr>
-            
                 <td class="name"><code>locale</code></td>
             
 
@@ -294,6 +265,13 @@
             
 
             <td class="description last">Locale to use for translations</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -337,8 +315,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Alert.js.html">Alert.js</a>,
-				 <a href="Alert.js.html#sunlight-1-line-9">line 9</a>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-9">line 9</a>
 			</li>
 		</ul>
 	</dd>
@@ -395,6 +373,249 @@
         <h3 class="subsection-title">Members</h3>
 
         <dl>
+            
+<hr>
+<dt class="name" id="activation">
+    <h4 id="activation"><span class="type-signature"></span>activation<span class="type-signature"> :Date</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The date and time at which the fissure appeared
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Date</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-84">line 84</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="enemy">
+    <h4 id="enemy"><span class="type-signature"></span>enemy<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The faction controlling the node where the fissure has appeared
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-54">line 54</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="enemyKey">
+    <h4 id="enemyKey"><span class="type-signature"></span>enemyKey<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Faction enum for the faction controlling the node where the fissure has appeared
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-60">line 60</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
             
 <hr>
 <dt class="name" id="eta">
@@ -457,8 +678,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Alert.js.html">Alert.js</a>,
-				 <a href="Alert.js.html#sunlight-1-line-57">line 57</a>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-102">line 102</a>
 			</li>
 		</ul>
 	</dd>
@@ -478,15 +699,15 @@
         
             
 <hr>
-<dt class="name" id="mission">
-    <h4 id="mission"><span class="type-signature"></span>mission<span class="type-signature"> :<a href="global.html#Mission">Mission</a></span></h4>
+<dt class="name" id="expired">
+    <h4 id="expired"><span class="type-signature"></span>expired<span class="type-signature"> :boolean</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        The mission that the players have to complete
+        Whether this is expired (at time of object creation)
     </div>
     
 
@@ -495,7 +716,7 @@
         <ul>
             <li>
                 
-<span class="param-type"><a href="global.html#Mission">Mission</a></span>
+<span class="param-type">boolean</span>
 
 
 
@@ -538,8 +759,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Alert.js.html">Alert.js</a>,
-				 <a href="Alert.js.html#sunlight-1-line-51">line 51</a>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-96">line 96</a>
 			</li>
 		</ul>
 	</dd>
@@ -559,15 +780,15 @@
         
             
 <hr>
-<dt class="name" id="rewardTypes">
-    <h4 id="rewardTypes"><span class="type-signature"></span>rewardTypes<span class="type-signature"> :Array.&lt;string></span></h4>
+<dt class="name" id="expiry">
+    <h4 id="expiry"><span class="type-signature"></span>expiry<span class="type-signature"> :Date</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        An array containing the types of all of the alert's rewards
+        The date and time at which the fissure will disappear
     </div>
     
 
@@ -576,7 +797,7 @@
         <ul>
             <li>
                 
-<span class="param-type">Array.&lt;string></span>
+<span class="param-type">Date</span>
 
 
 
@@ -619,8 +840,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Alert.js.html">Alert.js</a>,
-				 <a href="Alert.js.html#sunlight-1-line-63">line 63</a>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-90">line 90</a>
 			</li>
 		</ul>
 	</dd>
@@ -640,15 +861,15 @@
         
             
 <hr>
-<dt class="name" id="tag">
-    <h4 id="tag"><span class="type-signature"></span>tag<span class="type-signature"> :String</span></h4>
+<dt class="name" id="isHard">
+    <h4 id="isHard"><span class="type-signature"></span>isHard<span class="type-signature"> :boolean</span></h4>
 
     
 </dt>
 <dd>
     
     <div class="description">
-        A tag that DE occasionally provides, such as `LotusGift`
+        Whether this fissure is a Steel Path fissure
     </div>
     
 
@@ -657,7 +878,7 @@
         <ul>
             <li>
                 
-<span class="param-type">String</span>
+<span class="param-type">boolean</span>
 
 
 
@@ -700,8 +921,575 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Alert.js.html">Alert.js</a>,
-				 <a href="Alert.js.html#sunlight-1-line-69">line 69</a>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-114">line 114</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="isStorm">
+    <h4 id="isStorm"><span class="type-signature"></span>isStorm<span class="type-signature"> :Boolean</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Whether this fissure corresponds to a RailJack Void Storm
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Boolean</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-108">line 108</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="missionKey">
+    <h4 id="missionKey"><span class="type-signature"></span>missionKey<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The fissure mission type key
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-46">line 46</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="missionType">
+    <h4 id="missionType"><span class="type-signature"></span>missionType<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The fissure mission type
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-38">line 38</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="node">
+    <h4 id="node"><span class="type-signature"></span>node<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The node where the fissure has appeared
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-32">line 32</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="nodeKey">
+    <h4 id="nodeKey"><span class="type-signature"></span>nodeKey<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The node key where the fissure has appeared
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-66">line 66</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="tier">
+    <h4 id="tier"><span class="type-signature"></span>tier<span class="type-signature"> :string</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The fissure's tier
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-72">line 72</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="tierNum">
+    <h4 id="tierNum"><span class="type-signature"></span>tierNum<span class="type-signature"> :number</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The fissure's tier as a number
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">number</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-78">line 78</a>
 			</li>
 		</ul>
 	</dd>
@@ -728,114 +1516,6 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="getDescription"><span class="type-signature"></span>getDescription()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Get the alert's description text
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Alert.js.html">Alert.js</a>,
-				 <a href="Alert.js.html#sunlight-1-line-76">line 76</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
     <h4 class="name" id="getETAString"><span class="type-signature"></span>getETAString()</h4>
     
     
@@ -844,7 +1524,7 @@
 
     
     <div class="description">
-        Get a string indicating how much time is left before the alert expires
+        Get a string representation of how long the void fissure will remain active
     </div>
     
 
@@ -890,8 +1570,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Alert.js.html">Alert.js</a>,
-				 <a href="Alert.js.html#sunlight-1-line-92">line 92</a>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-129">line 129</a>
 			</li>
 		</ul>
 	</dd>
@@ -944,7 +1624,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="getReward"><span class="type-signature"></span>getReward()</h4>
+    <h4 class="name" id="getExpired"><span class="type-signature"></span>getExpired()</h4>
     
     
 </dt>
@@ -952,7 +1632,7 @@
 
     
     <div class="description">
-        Get the alert's reward
+        Get whether this deal has expired
     </div>
     
 
@@ -998,8 +1678,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Alert.js.html">Alert.js</a>,
-				 <a href="Alert.js.html#sunlight-1-line-84">line 84</a>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-121">line 121</a>
 			</li>
 		</ul>
 	</dd>
@@ -1035,115 +1715,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="Reward.html">Reward</a></span>
-
-
-
-    </dd>
-</dl>
-
-
-        
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="getRewardTypes"><span class="type-signature"></span>getRewardTypes()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Get an array containing the types of all of the alert's rewards
-    </div>
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="Alert.js.html">Alert.js</a>,
-				 <a href="Alert.js.html#sunlight-1-line-100">line 100</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Array.&lt;string></span>
+<span class="param-type">boolean</span>
 
 
 
@@ -1168,7 +1740,7 @@
 
     
     <div class="description">
-        The alert's string representation
+        Returns a string representation of the fissure
     </div>
     
 
@@ -1214,8 +1786,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="Alert.js.html">Alert.js</a>,
-				 <a href="Alert.js.html#sunlight-1-line-108">line 108</a>
+				<a href="Fissure.js.html">Fissure.js</a>,
+				 <a href="Fissure.js.html#sunlight-1-line-137">line 137</a>
 			</li>
 		</ul>
 	</dd>

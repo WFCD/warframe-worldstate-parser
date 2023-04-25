@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>warframe-worldstate-parser Source: SyndicateMission.js</title>
+	<title>warframe-worldstate-parser Class: CambionCycle</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -67,144 +67,435 @@
 <div class="row">
 
 	
-	<div class="col-md-12">
+	<div class="col-md-8">
 	
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: SyndicateMission.js</h1>
-    
+	<h1 class="page-title">Class: CambionCycle</h1>
 <section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript linenums">'use strict';
 
-const WorldstateObject = require('./WorldstateObject');
-const SyndicateJob = require('./SyndicateJob');
+<header>
+    
+        <h2>
+        CambionCycle
+        </h2>
+        
+            <div class="class-description">Represents the current Cambion Drift Fass/Vome Cycle</div>
+        
+    
+</header>
 
-/**
- * Represents a syndicate daily mission
- * @extends {WorldstateObject}
- */
-class SyndicateMission extends WorldstateObject {
-  /**
-   * @param   {Object}             data            The syndicate mission data
-   * @param   {Object}             deps            The dependencies object
-   * @param   {MarkdownSettings}   deps.mdConfig   The markdown settings
-   * @param   {Translator}         deps.translator The string translator
-   * @param   {TimeDateFunctions}  deps.timeDate   The time and date functions
-   * @param   {string}             deps.locale     Locale to use for translations
-   */
-  constructor(data, { mdConfig, translator, timeDate, locale }) {
-    super(data, { timeDate });
 
-    const deps = {
-      mdConfig,
-      translator,
-      timeDate,
-      locale,
-    };
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="CambionCycle"><span class="type-signature"></span>new CambionCycle(cetusCycle, deps)</h4>
+    
+    
+</dt>
+<dd>
 
-    /**
-     * The markdown settings
-     * @type {MarkdownSettings}
-     * @private
-     */
-    this.mdConfig = mdConfig;
-    Object.defineProperty(this, 'mdConfig', { enumerable: false, configurable: false });
+    
 
-    /**
-     * The time and date functions
-     * @type {TimeDateFunctions}
-     * @private
-     */
-    this.timeDate = timeDate;
-    Object.defineProperty(this, 'timeDate', { enumerable: false, configurable: false });
+    
 
-    /**
-     * The translation functions
-     * @type {Translator}
-     * @private
-     */
-    this.translator = translator;
-    Object.defineProperty(this, 'translator', { enumerable: false, configurable: false });
+    
 
-    /**
-     * The date and time at which the syndicate mission starts
-     * @type {Date}
-     */
-    this.activation = timeDate.parseDate(data.Activation);
+    
+    
+        <h5>Parameters:</h5>
+        
 
-    /**
-     * The date and time at which the syndicate mission ends
-     * @type {Date}
-     */
-    this.expiry = timeDate.parseDate(data.Expiry);
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-    /**
-     * The syndicate that is offering the mission
-     * @type {string}
-     */
-    this.syndicate = translator.syndicate(data.Tag, locale);
+        <th>Type</th>
 
-    /**
-     * The syndicate that is offering the mission
-     * @type {string}
-     */
-    this.syndicateKey = translator.syndicate(data.Tag, 'en');
+        
 
-    /**
-     * The nodes on which the missions are taking place
-     * @type {Array.&lt;string>}
-     */
-    this.nodes = data.Nodes.map((n) => translator.node(n), locale);
+        
 
-    /**
-     * The jobs for this syndicate. Will normally be []
-     * @type {Array.&lt;SyndicateJob>}
-     */
-    this.jobs = (data.Jobs || []).map((j) => new SyndicateJob(j, this.expiry, deps));
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-    /**
-     * Unique identifier for this mission set built from the end time and syndicate
-     * @type {string}
-     */
-    this.id = `${this.expiry.getTime()}${data.Tag}`;
+    <tbody>
+    
 
-    /**
-     * ETA string (at time of object creation)
-     * @type {String}
-     */
-    this.eta = this.getETAString();
-  }
+        <tr>
+            
+                <td class="name"><code>cetusCycle</code></td>
+            
 
-  /**
-   * Get a string indicating how much time is left before the syndicate mission expries
-   * @returns {string}
-   */
-  getETAString() {
-    return this.timeDate.timeDeltaToString(this.timeDate.fromNow(this.expiry));
-  }
+            <td class="type">
+            
+                
+<span class="param-type"><a href="CetusCycle.html">CetusCycle</a></span>
 
-  /**
-   * Returns a string representation of the syndicate mission
-   * @returns {string}
-   */
-  toString() {
-    if (this.nodes.length > 0) {
-      const missions = this.nodes.map((n) => `  \u2022${n.toString()}`).join(this.mdConfig.lineEnd);
-      return `[${this.getETAString()}] ${this.syndicate} currently has missions on:${this.mdConfig.lineEnd}${missions}`;
-    }
 
-    return `No missions available for ${this.syndicate}`;
-  }
-}
 
-module.exports = SyndicateMission;
-</pre>
-    </article>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Match data from cetus cycle for data</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>deps</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The dependencies object
+                <h6 class="method-params-label method-subparams-label">Properties</h6>
+                
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeDate</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#TimeDateFunctions">TimeDateFunctions</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The time and date functions</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    <dl>
+
+<table class="props table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeLeft</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">time rendering of amount of time left</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+</dl>
+
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="CambionCycle.js.html">CambionCycle.js</a>,
+				 <a href="CambionCycle.js.html#sunlight-1-line-10">line 10</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li>WorldstateObject</li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="getExpired"><span class="type-signature"></span>getExpired()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Get whether the event has expired
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="CambionCycle.js.html">CambionCycle.js</a>,
+				 <a href="CambionCycle.js.html#sunlight-1-line-31">line 31</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+
+    
+</article>
+
 </section>
-
 
 
 
@@ -214,6 +505,10 @@ module.exports = SyndicateMission;
 
 	<div class="clearfix"></div>
 
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
 	
 
 </div>
@@ -246,7 +541,7 @@ module.exports = SyndicateMission;
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
 	
-		on Tuesday, April 25th 2023, 00:49:10
+		on Tuesday, April 25th 2023, 00:49:11
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
