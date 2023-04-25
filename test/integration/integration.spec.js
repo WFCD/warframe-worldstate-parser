@@ -41,7 +41,7 @@ describe('WorldState (integration)', () => {
               wsl = new WorldState(ws, { logger, locale: 'en' });
               wsl = new WorldState(ws, { logger, locale: 'en', kuvaData });
             } catch (e) {
-              console.error(e);
+              console.error(e); // eslint-disable-line no-console
               throw e;
             }
           }).should.not.throw();
