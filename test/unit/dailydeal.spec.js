@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const DailyDeal = require('../../lib/DailyDeal');
+const DailyDeal = require('../../lib/models/DailyDeal');
 
 describe('DailyDeal', function () {
   describe('#constructor()', function () {

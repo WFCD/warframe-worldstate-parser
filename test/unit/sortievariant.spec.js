@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const SortieVariant = require('../../lib/SortieVariant');
+const SortieVariant = require('../../lib/models/SortieVariant');
 
 describe('SortieVariant', function () {
   describe('#constructor()', function () {

@@ -4,12 +4,12 @@ const chai = require('chai');
 
 chai.should();
 
-const VoidTrader = require('../../lib/VoidTrader');
+const VoidTrader = require('../../lib/models/VoidTrader');
 const mdConfig = require('../data/markdown.json');
 const VaultTrader = require('../data/VaultTrader.json');
 
-const translator = require('../../lib/translation');
-const timeDate = require('../../lib/timeDate');
+const translator = require('../../lib/utilities/translation');
+const timeDate = require('../../lib/utilities/timeDate');
 
 const deps = {
   translator,

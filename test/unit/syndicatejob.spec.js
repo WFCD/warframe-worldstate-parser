@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const SyndicateJob = require('../../lib/SyndicateJob');
+const SyndicateJob = require('../../lib/models/SyndicateJob');
 const timeDate = require('../mocks/timeDate');
 const translator = require('../mocks/translation');
 

@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const FlashSale = require('../../lib/FlashSale');
+const FlashSale = require('../../lib/models/FlashSale');
 const mdConfig = require('../data/markdown.json');
 const timeDate = require('../mocks/timeDate');
 

@@ -4,7 +4,7 @@ const chai = require('chai');
 
 const should = chai.should();
 
-const Invasion = require('../../lib/Invasion');
+const Invasion = require('../../lib/models/Invasion');
 const mdConfig = require('../data/markdown.json');
 const timeDate = require('../mocks/timeDate');
 

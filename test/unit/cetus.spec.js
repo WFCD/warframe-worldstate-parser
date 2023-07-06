@@ -1,7 +1,7 @@
 'use strict';
 
 const chai = require('chai');
-const CetusCycle = require('../../lib/CetusCycle');
+const CetusCycle = require('../../lib/models/CetusCycle');
 const timeDate = require('../mocks/timeDate');
 const MarkdownSettings = require('../../lib/supporting/MarkdownSettings');
 

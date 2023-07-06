@@ -9,7 +9,7 @@ const translator = require('../mocks/translation');
 
 const locale = 'en';
 
-const Simaris = require('../../lib/Simaris');
+const Simaris = require('../../lib/models/Simaris');
 
 describe('Simaris', function () {
   describe('#constructor()', function () {

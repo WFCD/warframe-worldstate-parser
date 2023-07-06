@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const utils = require('../../lib/timeDate');
+const utils = require('../../lib/utilities/timeDate');
 
 describe('timeDateUtils', () => {
   describe('timeDeltaToString()', () => {

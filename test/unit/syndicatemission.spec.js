@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const SyndicateMission = require('../../lib/SyndicateMission');
+const SyndicateMission = require('../../lib/models/SyndicateMission');
 const mdConfig = require('../data/markdown.json');
 const timeDate = require('../mocks/timeDate');
 

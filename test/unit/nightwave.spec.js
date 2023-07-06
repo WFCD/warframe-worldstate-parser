@@ -5,12 +5,12 @@ const chai = require('chai');
 chai.should();
 
 const { expect } = require('chai');
-const Nightwave = require('../../lib/Nightwave');
+const Nightwave = require('../../lib/models/Nightwave');
 const mdConfig = require('../data/markdown.json');
 const nwdata = require('../data/Nightwave.json');
 
-const translator = require('../../lib/translation');
-const timeDate = require('../../lib/timeDate');
+const translator = require('../../lib/utilities/translation');
+const timeDate = require('../../lib/utilities/timeDate');
 
 const deps = {
   translator,

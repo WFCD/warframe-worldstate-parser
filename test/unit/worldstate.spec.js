@@ -6,7 +6,7 @@ const sinonChai = require('sinon-chai');
 const rewire = require('rewire');
 
 const timeDate = require('../mocks/timeDate');
-const WorldStateObject = require('../../lib/WorldstateObject');
+const WorldStateObject = require('../../lib/models/WorldstateObject');
 
 chai.should();
 chai.use(sinonChai);

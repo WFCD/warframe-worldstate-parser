@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const Fissure = require('../../lib/Fissure');
+const Fissure = require('../../lib/models/Fissure');
 
 describe('Fissure', () => {
   describe('#constructor()', () => {
