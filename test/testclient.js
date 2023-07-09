@@ -13,7 +13,7 @@ fetch('https://10o.io/arbitrations.json')
   }))
   .then(({ semlar, ws }) => {
     const parsed = new Worldstate(ws, { kuvaData: semlar });
-    console.log(parsed.arbitration);
+    console.log(parsed.duviriCycle.toString());
     process.exit(0);
   })
   .catch((e) => {
