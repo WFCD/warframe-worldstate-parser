@@ -4,7 +4,7 @@ const chai = require('chai');
 
 chai.should();
 
-const Sortie = require('../../lib/Sortie');
+const Sortie = require('../../lib/models/Sortie');
 const mdConfig = require('../data/markdown.json');
 const timeDate = require('../mocks/timeDate');
 

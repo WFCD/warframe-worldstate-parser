@@ -5,7 +5,7 @@ const rewire = require('rewire');
 
 chai.should();
 
-const translator = rewire('../../lib/translation');
+const translator = rewire('../../lib/utilities/translation');
 
 describe('translation', () => {
   describe('toTitleCase()', () => {

@@ -4,8 +4,8 @@ const chai = require('chai');
 
 chai.should();
 
-const Mission = require('../../lib/Mission');
-const Reward = require('../../lib/Reward');
+const Mission = require('../../lib/models/Mission');
+const Reward = require('../../lib/models/Reward');
 
 const Alerts = require('../data/Alerts.json');
 const mdConfig = require('../data/markdown.json');

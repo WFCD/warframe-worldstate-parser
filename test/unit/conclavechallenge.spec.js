@@ -6,10 +6,10 @@ const should = chai.should();
 
 const challenges = require('../data/PVPChallengeInstances.json');
 
-const translator = require('../../lib/translation');
-const timeDate = require('../../lib/timeDate');
+const translator = require('../../lib/utilities/translation');
+const timeDate = require('../../lib/utilities/timeDate');
 
-const ConclaveChallenge = require('../../lib/ConclaveChallenge');
+const ConclaveChallenge = require('../../lib/models/ConclaveChallenge');
 
 describe('ConclaveChallenge', () => {
   describe('#constructor()', () => {

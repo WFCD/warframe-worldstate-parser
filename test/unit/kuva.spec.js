@@ -4,7 +4,7 @@ const chai = require('chai');
 
 const should = chai.should();
 
-const Kuva = require('../../lib/Kuva');
+const Kuva = require('../../lib/models/Kuva');
 const mockKuva = require('../data/kuvalog.json');
 
 const minDeps = {

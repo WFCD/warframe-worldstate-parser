@@ -1,7 +1,7 @@
 'use strict';
 
 const chai = require('chai');
-const ZarimanCycle = require('../../lib/ZarimanCycle');
+const ZarimanCycle = require('../../lib/models/ZarimanCycle');
 const timeDate = require('../mocks/timeDate');
 const MarkdownSettings = require('../../lib/supporting/MarkdownSettings');
 

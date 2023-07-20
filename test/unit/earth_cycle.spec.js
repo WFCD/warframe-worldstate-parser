@@ -6,11 +6,11 @@ chai.should();
 
 /* eslint-disable global-require */
 const deps = {
-  timeDate: require('../../lib/timeDate'),
+  timeDate: require('../../lib/utilities/timeDate'),
   mdConfig: new (require('../../lib/supporting/MarkdownSettings'))(),
 };
 
-const EarthCycle = require('../../lib/EarthCycle');
+const EarthCycle = require('../../lib/models/EarthCycle');
 
 describe('EarthCycle', () => {
   describe('#constructor()', () => {

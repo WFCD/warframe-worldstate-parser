@@ -4,7 +4,7 @@ const chai = require('chai');
 
 const should = chai.should();
 
-const CambionCycle = require('../../lib/CambionCycle');
+const CambionCycle = require('../../lib/models/CambionCycle');
 
 const timeDate = require('../mocks/timeDate');
 
