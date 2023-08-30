@@ -756,7 +756,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-248">line 248</a>
+				 <a href="WorldState.js.html#sunlight-1-line-257">line 257</a>
 			</li>
 		</ul>
 	</dd>
@@ -837,7 +837,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-242">line 242</a>
+				 <a href="WorldState.js.html#sunlight-1-line-251">line 251</a>
 			</li>
 		</ul>
 	</dd>
@@ -918,7 +918,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-221">line 221</a>
+				 <a href="WorldState.js.html#sunlight-1-line-230">line 230</a>
 			</li>
 		</ul>
 	</dd>
@@ -999,7 +999,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-278">line 278</a>
+				 <a href="WorldState.js.html#sunlight-1-line-287">line 287</a>
 			</li>
 		</ul>
 	</dd>
@@ -1161,7 +1161,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-209">line 209</a>
+				 <a href="WorldState.js.html#sunlight-1-line-218">line 218</a>
 			</li>
 		</ul>
 	</dd>
@@ -1404,7 +1404,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-233">line 233</a>
+				 <a href="WorldState.js.html#sunlight-1-line-242">line 242</a>
 			</li>
 		</ul>
 	</dd>
@@ -3371,7 +3371,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-291">line 291</a>
+				 <a href="WorldState.js.html#sunlight-1-line-300">line 300</a>
 			</li>
 		</ul>
 	</dd>
@@ -3614,7 +3614,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-227">line 227</a>
+				 <a href="WorldState.js.html#sunlight-1-line-236">line 236</a>
 			</li>
 		</ul>
 	</dd>
@@ -3857,7 +3857,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-317">line 317</a>
+				 <a href="WorldState.js.html#sunlight-1-line-326">line 326</a>
 			</li>
 		</ul>
 	</dd>
@@ -3938,7 +3938,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-215">line 215</a>
+				 <a href="WorldState.js.html#sunlight-1-line-224">line 224</a>
 			</li>
 		</ul>
 	</dd>
@@ -4101,7 +4101,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-323">line 323</a>
+				 <a href="WorldState.js.html#sunlight-1-line-332">line 332</a>
 			</li>
 		</ul>
 	</dd>
@@ -4587,7 +4587,88 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-284">line 284</a>
+				 <a href="WorldState.js.html#sunlight-1-line-293">line 293</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="voidTraders">
+    <h4 id="voidTraders"><span class="type-signature"></span>voidTraders<span class="type-signature"> :Array.&lt;<a href="VoidTrader.html">VoidTrader</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The state of all Void Traders
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="VoidTrader.html">VoidTrader</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>,
+				 <a href="WorldState.js.html#sunlight-1-line-203">line 203</a>
 			</li>
 		</ul>
 	</dd>
@@ -4668,7 +4749,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-263">line 263</a>
+				 <a href="WorldState.js.html#sunlight-1-line-272">line 272</a>
 			</li>
 		</ul>
 	</dd>
@@ -4749,7 +4830,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-257">line 257</a>
+				 <a href="WorldState.js.html#sunlight-1-line-266">line 266</a>
 			</li>
 		</ul>
 	</dd>
@@ -5988,7 +6069,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-248">line 248</a>
+				 <a href="WorldState.js.html#sunlight-1-line-257">line 257</a>
 			</li>
 		</ul>
 	</dd>
@@ -6069,7 +6150,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-242">line 242</a>
+				 <a href="WorldState.js.html#sunlight-1-line-251">line 251</a>
 			</li>
 		</ul>
 	</dd>
@@ -6150,7 +6231,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-221">line 221</a>
+				 <a href="WorldState.js.html#sunlight-1-line-230">line 230</a>
 			</li>
 		</ul>
 	</dd>
@@ -6231,7 +6312,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-278">line 278</a>
+				 <a href="WorldState.js.html#sunlight-1-line-287">line 287</a>
 			</li>
 		</ul>
 	</dd>
@@ -6393,7 +6474,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-209">line 209</a>
+				 <a href="WorldState.js.html#sunlight-1-line-218">line 218</a>
 			</li>
 		</ul>
 	</dd>
@@ -6636,7 +6717,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-233">line 233</a>
+				 <a href="WorldState.js.html#sunlight-1-line-242">line 242</a>
 			</li>
 		</ul>
 	</dd>
@@ -8603,7 +8684,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-291">line 291</a>
+				 <a href="WorldState.js.html#sunlight-1-line-300">line 300</a>
 			</li>
 		</ul>
 	</dd>
@@ -8846,7 +8927,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-227">line 227</a>
+				 <a href="WorldState.js.html#sunlight-1-line-236">line 236</a>
 			</li>
 		</ul>
 	</dd>
@@ -9089,7 +9170,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-317">line 317</a>
+				 <a href="WorldState.js.html#sunlight-1-line-326">line 326</a>
 			</li>
 		</ul>
 	</dd>
@@ -9170,7 +9251,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-215">line 215</a>
+				 <a href="WorldState.js.html#sunlight-1-line-224">line 224</a>
 			</li>
 		</ul>
 	</dd>
@@ -9333,7 +9414,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-323">line 323</a>
+				 <a href="WorldState.js.html#sunlight-1-line-332">line 332</a>
 			</li>
 		</ul>
 	</dd>
@@ -9819,7 +9900,88 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-284">line 284</a>
+				 <a href="WorldState.js.html#sunlight-1-line-293">line 293</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="voidTraders">
+    <h4 id="voidTraders"><span class="type-signature"></span>voidTraders<span class="type-signature"> :Array.&lt;<a href="VoidTrader.html">VoidTrader</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The state of all Void Traders
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="VoidTrader.html">VoidTrader</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>,
+				 <a href="WorldState.js.html#sunlight-1-line-203">line 203</a>
 			</li>
 		</ul>
 	</dd>
@@ -9900,7 +10062,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-263">line 263</a>
+				 <a href="WorldState.js.html#sunlight-1-line-272">line 272</a>
 			</li>
 		</ul>
 	</dd>
@@ -9981,7 +10143,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-257">line 257</a>
+				 <a href="WorldState.js.html#sunlight-1-line-266">line 266</a>
 			</li>
 		</ul>
 	</dd>
@@ -11339,7 +11501,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-248">line 248</a>
+				 <a href="WorldState.js.html#sunlight-1-line-257">line 257</a>
 			</li>
 		</ul>
 	</dd>
@@ -11420,7 +11582,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-242">line 242</a>
+				 <a href="WorldState.js.html#sunlight-1-line-251">line 251</a>
 			</li>
 		</ul>
 	</dd>
@@ -11501,7 +11663,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-221">line 221</a>
+				 <a href="WorldState.js.html#sunlight-1-line-230">line 230</a>
 			</li>
 		</ul>
 	</dd>
@@ -11582,7 +11744,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-278">line 278</a>
+				 <a href="WorldState.js.html#sunlight-1-line-287">line 287</a>
 			</li>
 		</ul>
 	</dd>
@@ -11744,7 +11906,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-209">line 209</a>
+				 <a href="WorldState.js.html#sunlight-1-line-218">line 218</a>
 			</li>
 		</ul>
 	</dd>
@@ -11987,7 +12149,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-233">line 233</a>
+				 <a href="WorldState.js.html#sunlight-1-line-242">line 242</a>
 			</li>
 		</ul>
 	</dd>
@@ -13954,7 +14116,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-291">line 291</a>
+				 <a href="WorldState.js.html#sunlight-1-line-300">line 300</a>
 			</li>
 		</ul>
 	</dd>
@@ -14197,7 +14359,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-227">line 227</a>
+				 <a href="WorldState.js.html#sunlight-1-line-236">line 236</a>
 			</li>
 		</ul>
 	</dd>
@@ -14440,7 +14602,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-317">line 317</a>
+				 <a href="WorldState.js.html#sunlight-1-line-326">line 326</a>
 			</li>
 		</ul>
 	</dd>
@@ -14521,7 +14683,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-215">line 215</a>
+				 <a href="WorldState.js.html#sunlight-1-line-224">line 224</a>
 			</li>
 		</ul>
 	</dd>
@@ -14684,7 +14846,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-323">line 323</a>
+				 <a href="WorldState.js.html#sunlight-1-line-332">line 332</a>
 			</li>
 		</ul>
 	</dd>
@@ -15170,7 +15332,88 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-284">line 284</a>
+				 <a href="WorldState.js.html#sunlight-1-line-293">line 293</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="voidTraders">
+    <h4 id="voidTraders"><span class="type-signature"></span>voidTraders<span class="type-signature"> :Array.&lt;<a href="VoidTrader.html">VoidTrader</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The state of all Void Traders
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="VoidTrader.html">VoidTrader</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>,
+				 <a href="WorldState.js.html#sunlight-1-line-203">line 203</a>
 			</li>
 		</ul>
 	</dd>
@@ -15251,7 +15494,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-263">line 263</a>
+				 <a href="WorldState.js.html#sunlight-1-line-272">line 272</a>
 			</li>
 		</ul>
 	</dd>
@@ -15332,7 +15575,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-257">line 257</a>
+				 <a href="WorldState.js.html#sunlight-1-line-266">line 266</a>
 			</li>
 		</ul>
 	</dd>
@@ -16592,7 +16835,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-248">line 248</a>
+				 <a href="WorldState.js.html#sunlight-1-line-257">line 257</a>
 			</li>
 		</ul>
 	</dd>
@@ -16673,7 +16916,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-242">line 242</a>
+				 <a href="WorldState.js.html#sunlight-1-line-251">line 251</a>
 			</li>
 		</ul>
 	</dd>
@@ -16754,7 +16997,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-221">line 221</a>
+				 <a href="WorldState.js.html#sunlight-1-line-230">line 230</a>
 			</li>
 		</ul>
 	</dd>
@@ -16835,7 +17078,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-278">line 278</a>
+				 <a href="WorldState.js.html#sunlight-1-line-287">line 287</a>
 			</li>
 		</ul>
 	</dd>
@@ -16997,7 +17240,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-209">line 209</a>
+				 <a href="WorldState.js.html#sunlight-1-line-218">line 218</a>
 			</li>
 		</ul>
 	</dd>
@@ -17240,7 +17483,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-233">line 233</a>
+				 <a href="WorldState.js.html#sunlight-1-line-242">line 242</a>
 			</li>
 		</ul>
 	</dd>
@@ -19207,7 +19450,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-291">line 291</a>
+				 <a href="WorldState.js.html#sunlight-1-line-300">line 300</a>
 			</li>
 		</ul>
 	</dd>
@@ -19450,7 +19693,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-227">line 227</a>
+				 <a href="WorldState.js.html#sunlight-1-line-236">line 236</a>
 			</li>
 		</ul>
 	</dd>
@@ -19693,7 +19936,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-317">line 317</a>
+				 <a href="WorldState.js.html#sunlight-1-line-326">line 326</a>
 			</li>
 		</ul>
 	</dd>
@@ -19774,7 +20017,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-215">line 215</a>
+				 <a href="WorldState.js.html#sunlight-1-line-224">line 224</a>
 			</li>
 		</ul>
 	</dd>
@@ -19937,7 +20180,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-323">line 323</a>
+				 <a href="WorldState.js.html#sunlight-1-line-332">line 332</a>
 			</li>
 		</ul>
 	</dd>
@@ -20423,7 +20666,88 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-284">line 284</a>
+				 <a href="WorldState.js.html#sunlight-1-line-293">line 293</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="voidTraders">
+    <h4 id="voidTraders"><span class="type-signature"></span>voidTraders<span class="type-signature"> :Array.&lt;<a href="VoidTrader.html">VoidTrader</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The state of all Void Traders
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="VoidTrader.html">VoidTrader</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>,
+				 <a href="WorldState.js.html#sunlight-1-line-203">line 203</a>
 			</li>
 		</ul>
 	</dd>
@@ -20504,7 +20828,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-263">line 263</a>
+				 <a href="WorldState.js.html#sunlight-1-line-272">line 272</a>
 			</li>
 		</ul>
 	</dd>
@@ -20585,7 +20909,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-257">line 257</a>
+				 <a href="WorldState.js.html#sunlight-1-line-266">line 266</a>
 			</li>
 		</ul>
 	</dd>
@@ -22064,7 +22388,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-248">line 248</a>
+				 <a href="WorldState.js.html#sunlight-1-line-257">line 257</a>
 			</li>
 		</ul>
 	</dd>
@@ -22145,7 +22469,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-242">line 242</a>
+				 <a href="WorldState.js.html#sunlight-1-line-251">line 251</a>
 			</li>
 		</ul>
 	</dd>
@@ -22226,7 +22550,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-221">line 221</a>
+				 <a href="WorldState.js.html#sunlight-1-line-230">line 230</a>
 			</li>
 		</ul>
 	</dd>
@@ -22307,7 +22631,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-278">line 278</a>
+				 <a href="WorldState.js.html#sunlight-1-line-287">line 287</a>
 			</li>
 		</ul>
 	</dd>
@@ -22469,7 +22793,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-209">line 209</a>
+				 <a href="WorldState.js.html#sunlight-1-line-218">line 218</a>
 			</li>
 		</ul>
 	</dd>
@@ -22712,7 +23036,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-233">line 233</a>
+				 <a href="WorldState.js.html#sunlight-1-line-242">line 242</a>
 			</li>
 		</ul>
 	</dd>
@@ -24679,7 +25003,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-291">line 291</a>
+				 <a href="WorldState.js.html#sunlight-1-line-300">line 300</a>
 			</li>
 		</ul>
 	</dd>
@@ -24922,7 +25246,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-227">line 227</a>
+				 <a href="WorldState.js.html#sunlight-1-line-236">line 236</a>
 			</li>
 		</ul>
 	</dd>
@@ -25165,7 +25489,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-317">line 317</a>
+				 <a href="WorldState.js.html#sunlight-1-line-326">line 326</a>
 			</li>
 		</ul>
 	</dd>
@@ -25246,7 +25570,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-215">line 215</a>
+				 <a href="WorldState.js.html#sunlight-1-line-224">line 224</a>
 			</li>
 		</ul>
 	</dd>
@@ -25409,7 +25733,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-323">line 323</a>
+				 <a href="WorldState.js.html#sunlight-1-line-332">line 332</a>
 			</li>
 		</ul>
 	</dd>
@@ -25895,7 +26219,88 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-284">line 284</a>
+				 <a href="WorldState.js.html#sunlight-1-line-293">line 293</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="voidTraders">
+    <h4 id="voidTraders"><span class="type-signature"></span>voidTraders<span class="type-signature"> :Array.&lt;<a href="VoidTrader.html">VoidTrader</a>></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        The state of all Void Traders
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">Array.&lt;<a href="VoidTrader.html">VoidTrader</a>></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="WorldState.js.html">WorldState.js</a>,
+				 <a href="WorldState.js.html#sunlight-1-line-203">line 203</a>
 			</li>
 		</ul>
 	</dd>
@@ -25976,7 +26381,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-263">line 263</a>
+				 <a href="WorldState.js.html#sunlight-1-line-272">line 272</a>
 			</li>
 		</ul>
 	</dd>
@@ -26057,7 +26462,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="WorldState.js.html">WorldState.js</a>,
-				 <a href="WorldState.js.html#sunlight-1-line-257">line 257</a>
+				 <a href="WorldState.js.html#sunlight-1-line-266">line 266</a>
 			</li>
 		</ul>
 	</dd>
@@ -26674,7 +27079,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a>
 	
-		on Sunday, August 27th 2023, 21:25:17
+		on Wednesday, August 30th 2023, 14:48:49
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
