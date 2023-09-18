@@ -35,7 +35,7 @@
   },
   "scripts": {
     "test": "nyc mocha",
-    "test:integration": "npm run test -- -g 'should parse live worldstate data'",
+    "test:integration": "npm run test -- -g 'should parse live pc worldstate data'",
     "printcov": "nyc report",
     "coverage": "npm test && nyc report --reporter=text-lcov | coveralls",
     "build-docs": "jsdoc -c jsdoc-config.json -d docs",
