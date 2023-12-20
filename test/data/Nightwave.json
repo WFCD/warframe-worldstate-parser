@@ -18,6 +18,7 @@
       "_id": {
         "$oid": "000700190000000000000264"
       },
+      "Permanent": false,
       "Daily": true,
       "Activation": {
         "$date": {
@@ -35,6 +36,7 @@
       "_id": {
         "$oid": "000700190000000000000265"
       },
+      "Permanent": false,
       "Daily": true,
       "Activation": {
         "$date": {
@@ -52,6 +54,7 @@
       "_id": {
         "$oid": "000700190000000000000266"
       },
+      "Permanent": false,
       "Daily": true,
       "Activation": {
         "$date": {
@@ -69,6 +72,7 @@
       "_id": {
         "$oid": "000700190000000000000253"
       },
+      "Permanent": false,
       "Activation": {
         "$date": {
           "$numberLong": "1638748800000"
@@ -85,6 +89,7 @@
       "_id": {
         "$oid": "000700190000000000000254"
       },
+      "Permanent": false,
       "Activation": {
         "$date": {
           "$numberLong": "1638748800000"
@@ -101,6 +106,7 @@
       "_id": {
         "$oid": "000700190000000000000255"
       },
+      "Permanent": false,
       "Activation": {
         "$date": {
           "$numberLong": "1638748800000"
@@ -117,11 +123,13 @@
       "_id": {
         "$oid": "000700190000000000000256"
       },
+      "Permanent": false,
       "Activation": {
         "$date": {
           "$numberLong": "1638748800000"
         }
       },
+      "Permanent": false,
       "Expiry": {
         "$date": {
           "$numberLong": "1639353600000"
@@ -133,11 +141,13 @@
       "_id": {
         "$oid": "000700190000000000000257"
       },
+      "Permanent": false,
       "Activation": {
         "$date": {
           "$numberLong": "1638748800000"
         }
       },
+      "Permanent": false,
       "Expiry": {
         "$date": {
           "$numberLong": "1639353600000"
@@ -149,6 +159,7 @@
       "_id": {
         "$oid": "000700190000000000000258"
       },
+      "Permanent": false,
       "Activation": {
         "$date": {
           "$numberLong": "1638748800000"
@@ -165,6 +176,7 @@
       "_id": {
         "$oid": "000700190000000000000259"
       },
+      "Permanent": false,
       "Activation": {
         "$date": {
           "$numberLong": "1638748800000"
