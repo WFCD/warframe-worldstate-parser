@@ -6,6 +6,7 @@ Parse the Warframe worldstate into useable javascript objects.
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/genesis-parser/localized.svg)](https://crowdin.com/project/genesis-parser)
 [![Coverage Status](https://coveralls.io/repos/github/WFCD/warframe-worldstate-parser/badge.svg?branch=master)](https://coveralls.io/github/WFCD/warframe-worldstate-parser?branch=master)
 [![Discord](https://img.shields.io/discord/256087517353213954.svg?logo=discord)](https://discord.gg/jGZxH9f)
+[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
 ## Documentation
 You can find the documentation [here](https://wfcd.github.io/warframe-worldstate-parser/)
