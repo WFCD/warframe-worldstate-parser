@@ -1,4 +1,5 @@
 import chai from 'chai';
+
 import FlashSale from '../../lib/models/FlashSale.js';
 
 chai.should();

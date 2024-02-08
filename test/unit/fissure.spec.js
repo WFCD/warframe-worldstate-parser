@@ -1,4 +1,5 @@
 import chai from 'chai';
+
 import Fissure from '../../lib/models/Fissure.js';
 
 chai.should();

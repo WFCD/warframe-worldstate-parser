@@ -1,7 +1,6 @@
 import chai from 'chai';
 
 import WorldState from '../../main.js';
-
 import kuvaMock from '../data/kuvalog.json' assert { type: 'json' };
 import sentientMock from '../data/anomaly.json' assert { type: 'json' };
 

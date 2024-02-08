@@ -1,4 +1,5 @@
 import chai from 'chai';
+
 import DarkSector from '../../lib/models/DarkSector.js';
 
 chai.should();

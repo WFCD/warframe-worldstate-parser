@@ -16,3 +16,7 @@ updates:
     pull-request-branch-name:
       separator: "-"
     rebase-strategy: "auto"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"

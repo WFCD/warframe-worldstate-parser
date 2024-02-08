@@ -1,4 +1,5 @@
 import chai from 'chai';
+
 import EarthCycle from '../../lib/models/EarthCycle.js';
 
 chai.should();

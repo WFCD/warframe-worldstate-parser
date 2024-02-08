@@ -1,4 +1,5 @@
 import chai from 'chai';
+
 import Simaris from '../../lib/models/Simaris.js';
 
 chai.should();

@@ -1,4 +1,5 @@
 import chai from 'chai';
+
 import Invasion from '../../lib/models/Invasion.js';
 
 const should = chai.should();

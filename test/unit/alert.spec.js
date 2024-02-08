@@ -1,4 +1,5 @@
 import chai from 'chai';
+
 import Alert from '../../lib/models/Alert.js';
 import Alerts from '../data/Alerts.json' assert { type: 'json' };
 

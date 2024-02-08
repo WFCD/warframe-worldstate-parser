@@ -1,4 +1,5 @@
 import chai from 'chai';
+
 import PersistentEnemy from '../../lib/models/PersistentEnemy.js';
 
 chai.should();

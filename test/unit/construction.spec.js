@@ -1,4 +1,5 @@
 import chai from 'chai';
+
 import Construction from '../../lib/models/ConstructionProgress.js';
 
 chai.should();

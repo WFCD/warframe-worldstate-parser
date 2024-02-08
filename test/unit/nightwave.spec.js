@@ -1,4 +1,5 @@
 import chai from 'chai';
+
 import Nightwave from '../../lib/models/Nightwave.js';
 import nwdata from '../data/Nightwave.json' assert { type: 'json' };
 

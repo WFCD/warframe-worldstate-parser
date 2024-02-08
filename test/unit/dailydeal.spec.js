@@ -1,4 +1,5 @@
 import chai from 'chai';
+
 import DailyDeal from '../../lib/models/DailyDeal.js';
 
 chai.should();

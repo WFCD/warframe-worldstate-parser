@@ -1,4 +1,5 @@
 import chai from 'chai';
+
 import Event from '../../lib/models/WorldEvent.js';
 import events from '../data/Goals.json' assert { type: 'json' };
 
