@@ -1,8 +1,6 @@
-'use strict';
-
 const dummy = (key) => key;
 
-module.exports = {
+export default {
   faction: dummy,
   node: dummy,
   nodeMissionType: dummy,

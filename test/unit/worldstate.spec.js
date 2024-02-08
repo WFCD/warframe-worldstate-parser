@@ -1,17 +1,13 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
-const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
-const rewire = require('rewire');
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 
-const timeDate = require('../mocks/timeDate');
-const WorldStateObject = require('../../lib/models/WorldstateObject');
+import WorldStateObject from '../../lib/models/WorldstateObject.js';
+import WorldState, { parseArray } from '../../lib/WorldState.js';
 
 chai.should();
 chai.use(sinonChai);
-
-const WorldState = rewire('../../lib/WorldState.js');
 
 describe('WorldState', () => {
   describe('#constructor()', () => {
@@ -32,7 +28,6 @@ describe('WorldState', () => {
     });
   });
   describe('parseArray()', () => {
-    const parseArray = WorldState.__get__('parseArray');
     it('uses the provided class to parse each element of the array', () => {
       const spy = sinon.spy();
       const testArray = ['test'];
@@ -68,7 +63,7 @@ describe('WorldStateObject', () => {
       },
     };
 
-    const wso = new WorldStateObject(mock, { timeDate });
+    const wso = new WorldStateObject(mock);
     wso.getEndString().should.exist;
   });
 
@@ -77,7 +72,7 @@ describe('WorldStateObject', () => {
       _id: { $id: 'testID' },
     };
 
-    const wso = new WorldStateObject(mock, { timeDate });
+    const wso = new WorldStateObject(mock);
     wso.id.should.equal('testID');
   });
 });

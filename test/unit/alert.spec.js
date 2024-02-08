@@ -1,18 +1,8 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import Alert from '../../lib/models/Alert.js';
+import Alerts from '../data/Alerts.json' assert { type: 'json' };
 
 chai.should();
-
-const Alert = require('../../lib/models/Alert');
-const Mission = require('../../lib/models/Mission');
-const Alerts = require('../data/Alerts.json');
-
-const translator = require('../mocks/translation');
-const timeDate = require('../mocks/timeDate');
-const MarkdownSettings = require('../../lib/supporting/MarkdownSettings');
-
-const mdConfig = new MarkdownSettings();
 
 describe('Alert', function () {
   describe('#constructor()', function () {
@@ -28,10 +18,7 @@ describe('Alert', function () {
     it('should successfully build alert objects when called with real data', () => {
       (() => {
         new Alert(Alerts, {
-          Mission,
-          translator,
-          timeDate,
-          mdConfig,
+          locale: 'en',
         });
       }).should.throw(TypeError);
     });

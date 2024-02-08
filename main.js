@@ -1,3 +1,3 @@
-'use strict';
+import WorldState from './lib/WorldState.js';
 
-module.exports = require('./lib/WorldState');
+export default WorldState;

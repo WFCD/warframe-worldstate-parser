@@ -1,11 +1,7 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import Construction from '../../lib/models/ConstructionProgress.js';
 
 chai.should();
-
-const Construction = require('../../lib/models/ConstructionProgress');
-const mdConfig = require('../data/markdown.json');
 
 const ProjectPct = [3.0047668038409, 104.39419581619, 0];
 
@@ -31,14 +27,14 @@ describe('Construction', () => {
 
     it('should handle 0s', () => {
       (() => {
-        new Construction({ ProjectPct: [0, 0, 0], _id: { $oid: `${Date.now()}${ProjectPct[0]}` } }, { mdConfig });
+        new Construction({ ProjectPct: [0, 0, 0], _id: { $oid: `${Date.now()}${ProjectPct[0]}` } });
       }).should.not.throw();
     });
   });
 
   describe('#toString()', () => {
     it('should format the string correctly', () => {
-      const c = new Construction(ProjectPctWithOID, { mdConfig });
+      const c = new Construction(ProjectPctWithOID);
       c.toString().should.match(/Razorback: 104\.39%/);
       c.toString().should.match(/Fomorian: 3\.00%/);
       c.toString().should.match(/Unknown: 0\.00%/);

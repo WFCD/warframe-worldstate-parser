@@ -10,15 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - run: npm i
       - run: npm install jsdoc ink-docstrap tsd-jsdoc
       - name: Build
-        uses: andstor/jsdoc-action@v1
-        with:
-          output_dir: ./docs
-          config_file: jsdoc-config.json
-          front_page: README.md
+        run: npm run build:docs
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

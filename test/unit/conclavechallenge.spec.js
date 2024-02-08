@@ -1,15 +1,8 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import ConclaveChallenge from '../../lib/models/ConclaveChallenge.js';
+import challenges from '../data/PVPChallengeInstances.json' assert { type: 'json' };
 
 const should = chai.should();
-
-const challenges = require('../data/PVPChallengeInstances.json');
-
-const translator = require('../../lib/utilities/translation');
-const timeDate = require('../../lib/utilities/timeDate');
-
-const ConclaveChallenge = require('../../lib/models/ConclaveChallenge');
 
 describe('ConclaveChallenge', () => {
   describe('#constructor()', () => {
@@ -26,9 +19,9 @@ describe('ConclaveChallenge', () => {
       .filter((challenge) => !challenge.Category.includes('_ROOT'))
       .forEach((challenge) => {
         it('should construct a valid challenge when provided with data', () => {
-          (() => new ConclaveChallenge(challenge, { translator, timeDate })).should.not.throw;
+          (() => new ConclaveChallenge(challenge)).should.not.throw;
 
-          const c = new ConclaveChallenge(challenge, { translator, timeDate });
+          const c = new ConclaveChallenge(challenge);
           should.exist(c.title);
           should.exist(c.standing);
           should.exist(c.description);

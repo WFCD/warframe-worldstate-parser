@@ -1,11 +1,8 @@
-'use strict';
-
-const chai = require('chai');
-const sinonChai = require('sinon-chai');
-const fs = require('fs').promises;
-
-const fetch = require('node-fetch');
-const path = require('path');
+import chai from 'chai';
+import sinonChai from 'sinon-chai';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import WorldState from '../../lib/WorldState.js';
 
 const logger = {
   error: () => {},
@@ -17,8 +14,6 @@ const logger = {
 const { expect } = chai;
 chai.should();
 chai.use(sinonChai);
-
-const WorldState = require('../../lib/WorldState');
 
 describe('WorldState (integration)', () => {
   it(`should parse live pc worldstate data`, async function () {

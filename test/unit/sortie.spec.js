@@ -1,12 +1,7 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import Sortie from '../../lib/models/Sortie.js';
 
 chai.should();
-
-const Sortie = require('../../lib/models/Sortie');
-const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
 
 describe('Sortie', function () {
   describe('#constructor()', function () {
@@ -26,24 +21,16 @@ describe('Sortie', function () {
       Activation: { sec: 1000 },
       Expiry: { sec: 123124 },
       Variants: [],
-      Boss: 'theBoss',
-    };
-    const translator = {
-      languageString: (s) => s,
-      sortieBoss: (s) => s,
-      sortieFaction: (s) => s,
+      Boss: 'SORTIE_BOSS_CORRUPTED_VOR',
     };
     it('should format the string correctly according to the data', function () {
-      timeDate.fromNow = () => -1;
-
-      const s = new Sortie(testData, { mdConfig, timeDate, translator });
+      let s = new Sortie(testData);
       s.toString().should.contain('no sortie');
 
-      timeDate.fromNow = () => 1;
-
+      testData.Expiry.sec = 1000000000000;
+      s = new Sortie(testData);
       s.toString().should.contain('ends in');
-
-      s.getFaction().should.equal('theBoss');
+      s.getFaction().should.equal('Corrupted');
     });
   });
 });

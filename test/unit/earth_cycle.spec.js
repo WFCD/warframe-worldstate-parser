@@ -1,28 +1,19 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import EarthCycle from '../../lib/models/EarthCycle.js';
 
 chai.should();
-
-/* eslint-disable global-require */
-const deps = {
-  timeDate: require('../../lib/utilities/timeDate'),
-  mdConfig: new (require('../../lib/supporting/MarkdownSettings'))(),
-};
-
-const EarthCycle = require('../../lib/models/EarthCycle');
 
 describe('EarthCycle', () => {
   describe('#constructor()', () => {
     it('should not throw when called with valid deps', () => {
       (() => {
-        new EarthCycle(deps);
+        new EarthCycle();
       }).should.not.throw();
     });
   });
   describe('#getExpired()', () => {
     it('should never be true', () => {
-      const cycle = new EarthCycle(deps);
+      const cycle = new EarthCycle();
       cycle.getExpired().should.be.false;
     });
   });

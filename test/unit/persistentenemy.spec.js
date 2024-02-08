@@ -1,10 +1,7 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import PersistentEnemy from '../../lib/models/PersistentEnemy.js';
 
 chai.should();
-
-const PersistentEnemy = require('../../lib/models/PersistentEnemy');
 
 describe('PersistentEnemy', function () {
   describe('#constructor()', function () {

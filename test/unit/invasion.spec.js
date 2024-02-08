@@ -1,19 +1,7 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import Invasion from '../../lib/models/Invasion.js';
 
 const should = chai.should();
-
-const Invasion = require('../../lib/models/Invasion');
-const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
-
-function Reward() {
-  this.reward = 'reward';
-  this.getTypes = function getTypes() {
-    return [];
-  };
-}
 
 describe('Invasion', () => {
   const testData = {
@@ -29,11 +17,6 @@ describe('Invasion', () => {
       faction: 'faction2',
     },
   };
-  const translator = {
-    languageString: (n) => n,
-    node: (n) => n,
-    faction: (n) => n,
-  };
 
   describe('#constructor()', () => {
     it('should throw TypeError when called with no arguments or an invalid argument', () => {
@@ -48,24 +31,14 @@ describe('Invasion', () => {
 
   describe('#toString()', () => {
     it('should choose the right format according to the factions that are fighting', () => {
-      const i = new Invasion(testData, {
-        Reward,
-        translator,
-        timeDate,
-        mdConfig,
-      });
+      const i = new Invasion(testData);
       i.toString().should.match(/vs\./);
       i.vsInfestation = true;
       i.toString().should.not.match(/vs\./);
     });
 
     it('should set the attacker victory status correctly', () => {
-      const i = new Invasion(testData, {
-        Reward,
-        translator,
-        timeDate,
-        mdConfig,
-      });
+      const i = new Invasion(testData);
       i.count = -1;
       should.equal(i.isAttackerWinning(), false);
 

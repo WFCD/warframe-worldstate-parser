@@ -1,30 +1,21 @@
-'use strict';
-
-const chai = require('chai');
+import chai from 'chai';
+import Simaris from '../../lib/models/Simaris.js';
 
 chai.should();
 
-const mdConfig = require('../data/markdown.json');
-const translator = require('../mocks/translation');
-
 const locale = 'en';
-
-const Simaris = require('../../lib/models/Simaris');
 
 describe('Simaris', function () {
   describe('#constructor()', function () {
-    it('should throw TypeError when called with no arguments or an invalid argument', function () {
-      (() => {
-        new Simaris();
-      }).should.throw(TypeError);
-      (() => {
-        new Simaris({});
-      }).should.throw(TypeError);
-    });
-
     it('should default to empty data', () => {
       (() => {
-        new Simaris(undefined, { mdConfig, translator, locale });
+        new Simaris(undefined, { locale });
+      }).should.not.throw();
+      (() => {
+        new Simaris();
+      }).should.not.throw();
+      (() => {
+        new Simaris({});
       }).should.not.throw();
     });
   });

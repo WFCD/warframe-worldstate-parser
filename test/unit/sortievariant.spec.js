@@ -1,10 +1,8 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import SortieVariant from '../../lib/models/SortieVariant.js';
 
 chai.should();
-
-const SortieVariant = require('../../lib/models/SortieVariant');
 
 describe('SortieVariant', function () {
   describe('#constructor()', function () {
