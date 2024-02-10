@@ -1,0 +1,16 @@
+env:
+  mocha: true
+parserOptions:
+  requireConfigFile: false
+rules:
+  "prefer-arrow-callback": off
+  "func-names": off
+  "no-new": off
+  "no-unused-expressions": off
+  "valid-jsdoc": off
+  "import/no-extraneous-dependencies":
+    - error
+    - devDependencies: true
+      optionalDependencies: false
+      peerDependencies: false
+  "no-console": off

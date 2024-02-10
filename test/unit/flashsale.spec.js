@@ -1,12 +1,8 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import FlashSale from '../../lib/models/FlashSale.js';
 
 chai.should();
-
-const FlashSale = require('../../lib/models/FlashSale');
-const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
 
 describe('FlashSale', function () {
   describe('#constructor()', function () {
@@ -30,11 +26,7 @@ describe('FlashSale', function () {
         Featured: false,
         Popular: false,
       };
-
-      const translator = {
-        languageString: (s) => s,
-      };
-      const fs = new FlashSale(exampleData, { translator, mdConfig, timeDate });
+      const fs = new FlashSale(exampleData);
 
       fs.toString().should.not.include('% off').and.not.include('Popular').and.not.include('Featured');
 

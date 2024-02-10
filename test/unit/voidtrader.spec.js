@@ -1,21 +1,12 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import VoidTrader from '../../lib/models/VoidTrader.js';
+import VaultTrader from '../data/VaultTrader.json' assert { type: 'json' };
 
 chai.should();
 
-const VoidTrader = require('../../lib/models/VoidTrader');
-const mdConfig = require('../data/markdown.json');
-const VaultTrader = require('../data/VaultTrader.json');
-
-const translator = require('../../lib/utilities/translation');
-const timeDate = require('../../lib/utilities/timeDate');
-
 const deps = {
-  translator,
-  timeDate,
   locale: 'en',
-  mdConfig,
 };
 
 describe('VoidTrader', () => {
@@ -44,7 +35,7 @@ describe('VoidTrader', () => {
         Character: 'Baro',
         Manifest: [],
       };
-      const v = new VoidTrader(testData, { mdConfig, timeDate, translator });
+      const v = new VoidTrader(testData);
 
       v.isActive = () => true;
       v.toString().should.contain('Trader at');

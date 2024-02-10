@@ -1,12 +1,8 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
-const ZarimanCycle = require('../../lib/models/ZarimanCycle');
-const timeDate = require('../mocks/timeDate');
-const MarkdownSettings = require('../../lib/supporting/MarkdownSettings');
+import ZarimanCycle from '../../lib/models/ZarimanCycle.js';
 
 const should = chai.should();
-const mdConfig = new MarkdownSettings();
 // these are confirmed corpus and grineer cycle time
 // the zariman cycle logic depends on zariman bounty expiry time
 const confirmedCorpus = 1655059552000;
@@ -24,10 +20,7 @@ describe('ZarimanCycle', function () {
     });
 
     it('should allow active', () => {
-      const cycle = new ZarimanCycle(new Date(Date.now() + 75000), {
-        timeDate,
-        mdConfig,
-      });
+      const cycle = new ZarimanCycle(new Date(Date.now() + 75000));
 
       const expiry = cycle.getExpired();
       should.equal(expiry, false);
@@ -36,18 +29,12 @@ describe('ZarimanCycle', function () {
     });
 
     it('should show corpus cycle string', () => {
-      const cycle = new ZarimanCycle(new Date(confirmedCorpus), {
-        timeDate,
-        mdConfig,
-      });
+      const cycle = new ZarimanCycle(new Date(confirmedCorpus));
       cycle.toString().should.include('occupied by corpus');
     });
 
     it('should show grineer cycle string', () => {
-      const cycle = new ZarimanCycle(new Date(confirmedGrineer), {
-        timeDate,
-        mdConfig,
-      });
+      const cycle = new ZarimanCycle(new Date(confirmedGrineer));
       cycle.toString().should.include('occupied by grineer');
     });
   });

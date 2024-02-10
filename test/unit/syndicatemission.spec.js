@@ -1,12 +1,8 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import SyndicateMission from '../../lib/models/SyndicateMission.js';
 
 chai.should();
-
-const SyndicateMission = require('../../lib/models/SyndicateMission');
-const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
 
 describe('SyndicateMission', function () {
   describe('#constructor()', function () {
@@ -29,10 +25,7 @@ describe('SyndicateMission', function () {
         Tag: 'syndicate',
         Nodes: [],
       };
-      const translator = {
-        syndicate: () => 'syndicate',
-      };
-      const s = new SyndicateMission(testData, { mdConfig, timeDate, translator });
+      const s = new SyndicateMission(testData);
 
       s.toString().should.contain('No missions');
 

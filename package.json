@@ -7,25 +7,20 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {
-    "node-fetch": "^2.6.1"
-  },
   "peerDependencies": {
     "warframe-worldstate-data": ">=1.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/node-fetch": "^2.5.8",
-    "@types/rewire": "^2.5.28",
     "@types/sinon-chai": "^3.2.5",
-    "@wfcd/eslint-config": "^1.1.5",
+    "@wfcd/eslint-config": "^1.5.0",
+    "c8": "^9.1.0",
     "chai": "^4.2.0",
     "coveralls": "^3.1.0",
     "install-peerdeps": "^2.0.3",
     "mocha": "^10.0.0",
-    "nyc": "^15.1.0",
     "precommit-hook": "^3.0.0",
-    "rewire": "^7.0.0",
     "sinon": "^17.0.0",
     "sinon-chai": "^3.5.0",
     "typescript": "^5.0.2"
@@ -34,14 +29,14 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "test": "nyc mocha",
+    "test": "c8 mocha",
     "test:integration": "npm run test -- -g 'should parse live pc worldstate data'",
-    "printcov": "nyc report",
-    "coverage": "npm test && nyc report --reporter=text-lcov | coveralls",
-    "build-docs": "jsdoc -c jsdoc-config.json -d docs",
+    "printcov": "c8 report",
+    "coverage": "npm test && c8 report --reporter=text-lcov | coveralls",
+    "build:docs": "jsdoc -c jsdoc-config.json -d docs",
     "lint": "eslint main.js lib/ test/",
     "lint:fix": "eslint main.js lib/ test/ --fix",
-    "postinstall": "install-peerdeps @wfcd/eslint-config@^1.1.5 -S",
+    "postinstall": "install-peerdeps @wfcd/eslint-config@^1.5.0 -S",
     "prepublishOnly": "npm run build:types && npm_config_yes=true npx clean-package",
     "build:types": "tsc -p tsconfig.declaration.json",
     "validate": "exit 0"
@@ -73,10 +68,14 @@
     "types/**"
   ],
   "eslintConfig": {
-    "extends": "@wfcd",
+    "extends": "@wfcd/eslint-config/strict-esm-jsdoc",
     "parser": "@babel/eslint-parser",
     "parserOptions": {
-      "sourceType": "script"
+      "sourceType": "module",
+      "ecmaVersion": 6,
+      "ecmaFeatures": {
+        "modules": true
+      }
     }
   },
   "babel": {
@@ -99,7 +98,7 @@
     "spec": "test/**/*.spec.js",
     "timeout": 10000
   },
-  "nyc": {
+  "c8": {
     "exclude": [
       "test/**",
       "lib/DarkSector*.js",
@@ -123,12 +122,13 @@
       "eslintIgnore",
       "eslintConfig",
       "pre-commit",
-      "nyc",
+      "c8",
       "mocha",
       "clean-package",
       "directories",
       "prettier",
       "babel"
     ]
-  }
+  },
+  "type": "module"
 }

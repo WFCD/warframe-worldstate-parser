@@ -1,12 +1,8 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import CambionCycle from '../../lib/models/CambionCycle.js';
 
 const should = chai.should();
-
-const CambionCycle = require('../../lib/models/CambionCycle');
-
-const timeDate = require('../mocks/timeDate');
 
 describe('CambionCycle', function () {
   describe('#constructor()', function () {
@@ -20,48 +16,33 @@ describe('CambionCycle', function () {
     });
 
     it('should allow expired', () => {
-      const cycle = new CambionCycle(
-        {
-          activation: new Date(0),
-          expiry: new Date(0),
-          isDay: false,
-        },
-        {
-          timeDate,
-        }
-      );
+      const cycle = new CambionCycle({
+        activation: new Date(0),
+        expiry: new Date(0),
+        isDay: false,
+      });
 
       const expiry = cycle.getExpired();
       should.equal(expiry, true);
     });
 
     it('should show fass for day', () => {
-      const cycle = new CambionCycle(
-        {
-          activation: new Date(0),
-          expiry: new Date(0),
-          isDay: true,
-        },
-        {
-          timeDate,
-        }
-      );
+      const cycle = new CambionCycle({
+        activation: new Date(0),
+        expiry: new Date(0),
+        isDay: true,
+      });
 
       should.equal(cycle.active, 'fass');
       should.equal(cycle.state, 'fass');
     });
 
     it('should show vome for night', () => {
-      const cycle = new CambionCycle(
-        {
-          activation: new Date(0),
-          expiry: new Date(0),
-          isDay: false,
-        },
-        {
-          timeDate,
-        }
-      );
+      const cycle = new CambionCycle({
+        activation: new Date(0),
+        expiry: new Date(0),
+        isDay: false,
+      });
 
       should.equal(cycle.active, 'vome');
       should.equal(cycle.state, 'vome');

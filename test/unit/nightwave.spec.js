@@ -1,22 +1,14 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import Nightwave from '../../lib/models/Nightwave.js';
+import nwdata from '../data/Nightwave.json' assert { type: 'json' };
 
 chai.should();
 
-const { expect } = require('chai');
-const Nightwave = require('../../lib/models/Nightwave');
-const mdConfig = require('../data/markdown.json');
-const nwdata = require('../data/Nightwave.json');
-
-const translator = require('../../lib/utilities/translation');
-const timeDate = require('../../lib/utilities/timeDate');
+const { expect } = chai;
 
 const deps = {
-  translator,
-  timeDate,
   locale: 'en',
-  mdConfig,
 };
 
 describe('Nightwave', () => {

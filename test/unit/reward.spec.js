@@ -1,14 +1,11 @@
-'use strict';
+import chai from 'chai';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 
-const chai = require('chai');
-const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
-const rewire = require('rewire');
+import Reward, { getItemType } from '../../lib/models/Reward.js';
 
 chai.should();
 chai.use(sinonChai);
-
-const Reward = rewire('../../lib/models/Reward.js');
 
 describe('Reward', function () {
   describe('#constructor()', function () {
@@ -32,7 +29,6 @@ describe('Reward', function () {
     });
   });
   describe('getItemType', function () {
-    const getItemType = Reward.__get__('getItemType');
     it('should categorize the items using the provided functions', function () {
       const types = [
         {

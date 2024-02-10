@@ -1,19 +1,13 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import News from '../../lib/models/News.js';
+import testData from '../data/News.json' assert { type: 'json' };
+import realTestData from '../data/RealNews.json' assert { type: 'json' };
+import languageTestData from '../data/LanguageNews.json' assert { type: 'json' };
 
 chai.should();
 
-const News = require('../../lib/models/News');
-const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
-
-const testData = require('../data/News.json');
-const realTestData = require('../data/RealNews.json');
-const languageTestData = require('../data/LanguageNews.json');
-
 const locale = 'en';
-const translator = require('../../lib/utilities/translation');
 
 describe('News', () => {
   describe('#constructor()', () => {
@@ -30,9 +24,6 @@ describe('News', () => {
   describe('#getETAString()', () => {
     it('should format the string correctly according to the data', () => {
       const n = new News(testData, {
-        mdConfig,
-        timeDate,
-        translator,
         locale,
       });
 
@@ -45,9 +36,6 @@ describe('News', () => {
   describe('#isUpdate()', () => {
     it('should return true if the news is an update or a hotfix', () => {
       const n = new News(testData, {
-        mdConfig,
-        timeDate,
-        translator,
         locale,
       });
       n.isUpdate().should.be.false;
@@ -61,9 +49,6 @@ describe('News', () => {
   describe('#isStream()', () => {
     it('should return true if the message indicates a stream', () => {
       const n = new News(realTestData[1], {
-        mdConfig,
-        timeDate,
-        translator,
         locale,
       });
       n.isStream().should.be.true;
@@ -73,9 +58,6 @@ describe('News', () => {
   describe('.link', () => {
     it('should resolve a url from Links if Prop is empty', () => {
       const n = new News(realTestData[1], {
-        mdConfig,
-        timeDate,
-        translator,
         locale,
       });
       n.link.should.not.be.empty;
@@ -118,9 +100,6 @@ describe('News', () => {
           MobileOnly: false,
         },
         {
-          mdConfig,
-          timeDate,
-          translator,
           locale: 'en',
         }
       );
@@ -132,9 +111,6 @@ describe('News', () => {
   describe('#isPrimeAccess()', () => {
     it('should return true if the news is an update or a hotfix', () => {
       const n = new News(testData, {
-        mdConfig,
-        timeDate,
-        translator,
         locale,
       });
       n.isPrimeAccess().should.be.false;
@@ -145,20 +121,17 @@ describe('News', () => {
 
   describe('#getTitle()', () => {
     it('should return the original message when no translations are present', () => {
-      const n = new News(testData, { mdConfig, timeDate, translator });
+      const n = new News(testData);
       n.getTitle('en').should.equal('test');
     });
 
     it('Should return a lang when a lang is supplied', () => {
-      const n = new News(languageTestData, { mdConfig, timeDate, translator });
-      n.getTitle('en').should.equal('Test');
+      const n = new News(languageTestData);
+      n.getTitle('en').should.equal('/Lotus/Language/Test');
     });
 
     it('should return the localized message when a translation is present', () => {
       const n = new News(realTestData[0], {
-        mdConfig,
-        timeDate,
-        translator,
         locale,
       });
       n.getTitle('en').should.equal('Oberon Prime & Nekros Prime Are Back!');

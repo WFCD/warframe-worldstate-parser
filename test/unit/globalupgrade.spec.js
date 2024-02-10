@@ -1,10 +1,8 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import GlobalUpgrade from '../../lib/models/GlobalUpgrade.js';
 
 chai.should();
-
-const GlobalUpgrade = require('../../lib/models/GlobalUpgrade');
 
 describe('GlobalUpgrade', function () {
   describe('#constructor()', function () {

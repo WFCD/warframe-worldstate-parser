@@ -1,15 +1,9 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import Mission from '../../lib/models/Mission.js';
+import Alerts from '../data/Alerts.json' assert { type: 'json' };
 
 chai.should();
-
-const Mission = require('../../lib/models/Mission');
-const Reward = require('../../lib/models/Reward');
-
-const Alerts = require('../data/Alerts.json');
-const mdConfig = require('../data/markdown.json');
-const translation = require('../mocks/translation');
 
 const mockMission = Alerts[0].MissionInfo;
 
@@ -26,12 +20,7 @@ describe('Mission', () => {
 
     it('should not thow with normal data', () => {
       (() => {
-        new Mission(mockMission, {
-          mdConfig,
-          translator: translation,
-          Reward,
-          locale: 'en',
-        });
+        new Mission(mockMission);
       }).should.not.throw();
     });
   });

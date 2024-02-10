@@ -1,15 +1,9 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import Event from '../../lib/models/WorldEvent.js';
+import events from '../data/Goals.json' assert { type: 'json' };
 
 chai.should();
-
-const Event = require('../../lib/models/WorldEvent');
-const mdConfig = require('../data/markdown.json');
-const timeDate = require('../mocks/timeDate');
-const translation = require('../mocks/translation');
-
-const events = require('../data/Goals.json');
 
 describe('Event', () => {
   describe('#constructor()', () => {
@@ -24,52 +18,27 @@ describe('Event', () => {
 
     it('should parse mock event data', () => {
       (() => {
-        new Event(events, { mdConfig, timeDate, translator: translation });
+        new Event(events);
       }).should.not.throw;
     });
   });
   describe('#toString()', () => {
-    const translator = { faction: (f) => f, languageString: (l) => l, node: (n) => n };
     it('should only include the rewards if the event has any', () => {
-      const e = new Event(
-        { _id: { $oid: 'id' }, Expiry: { sec: 1 } },
-        {
-          timeDate,
-          RewardParser: {},
-          translator,
-          mdConfig,
-        }
-      );
+      const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } });
       e.toString().should.not.match(/Rewards/);
 
       e.rewards = ['reward1'];
       e.toString().should.match(/Rewards/);
     });
     it('should not include the node if the event has one', () => {
-      const e = new Event(
-        { _id: { $oid: 'id' }, Expiry: { sec: 1 } },
-        {
-          timeDate,
-          RewardParser: {},
-          translator,
-          mdConfig,
-        }
-      );
+      const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } });
       e.toString().should.not.match(/Battle on/);
 
       e.node = 'Node';
       e.toString().should.match(/Battle on/);
     });
     it('should only include the victim node if the event has one', () => {
-      const e = new Event(
-        { _id: { $oid: 'id' }, Expiry: { sec: 1 } },
-        {
-          timeDate,
-          RewardParser: {},
-          translator,
-          mdConfig,
-        }
-      );
+      const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } });
       e.toString().should.not.match(/Protect/);
 
       e.victim = 'Victim Node';

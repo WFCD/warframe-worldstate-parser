@@ -1,7 +1,4 @@
-'use strict';
-
-const fetch = require('node-fetch');
-const Worldstate = require('../main');
+import Worldstate from '../main.js';
 
 /* eslint-disable no-console */
 

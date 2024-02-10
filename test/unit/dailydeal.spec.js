@@ -1,10 +1,8 @@
-'use strict';
+import chai from 'chai';
 
-const chai = require('chai');
+import DailyDeal from '../../lib/models/DailyDeal.js';
 
 chai.should();
-
-const DailyDeal = require('../../lib/models/DailyDeal');
 
 describe('DailyDeal', function () {
   describe('#constructor()', function () {
