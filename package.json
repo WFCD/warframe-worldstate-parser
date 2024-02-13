@@ -75,6 +75,12 @@
       "ecmaFeatures": {
         "modules": true
       }
+    },
+    "rules": {
+      "import/extensions": [
+        "error",
+        "ignorePackages"
+      ]
     }
   },
   "babel": {

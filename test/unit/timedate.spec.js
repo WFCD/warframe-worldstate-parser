@@ -1,6 +1,5 @@
 import * as chai from 'chai';
-
-import { timeDeltaToString, parseDate } from '../../lib/utilities/timeDate.js';
+import { timeDeltaToString, parseDate } from 'warframe-worldstate-data/utilities';
 
 chai.should();
 
