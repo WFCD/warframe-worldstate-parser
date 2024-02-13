@@ -1,4 +1,4 @@
-import chai from 'chai';
+import * as chai from 'chai';
 
 import FlashSale from '../../lib/models/FlashSale.js';
 

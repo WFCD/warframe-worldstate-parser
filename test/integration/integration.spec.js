@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import chai from 'chai';
+import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 
 import WorldState from '../../lib/WorldState.js';

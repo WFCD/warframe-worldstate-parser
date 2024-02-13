@@ -1,4 +1,4 @@
-import chai from 'chai';
+import * as chai from 'chai';
 
 import EarthCycle from '../../lib/models/EarthCycle.js';
 

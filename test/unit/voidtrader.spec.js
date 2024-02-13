@@ -1,4 +1,4 @@
-import chai from 'chai';
+import * as chai from 'chai';
 
 import VoidTrader from '../../lib/models/VoidTrader.js';
 import VaultTrader from '../data/VaultTrader.json' assert { type: 'json' };

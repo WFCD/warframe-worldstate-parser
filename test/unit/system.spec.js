@@ -1,4 +1,4 @@
-import chai from 'chai';
+import * as chai from 'chai';
 
 import WorldState from '../../main.js';
 import kuvaMock from '../data/kuvalog.json' assert { type: 'json' };

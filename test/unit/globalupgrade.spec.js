@@ -1,4 +1,4 @@
-import chai from 'chai';
+import * as chai from 'chai';
 
 import GlobalUpgrade from '../../lib/models/GlobalUpgrade.js';
 
