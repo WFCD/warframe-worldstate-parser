@@ -1,4 +1,4 @@
-import chai from 'chai';
+import * as chai from 'chai';
 
 import Sortie from '../../lib/models/Sortie.js';
 

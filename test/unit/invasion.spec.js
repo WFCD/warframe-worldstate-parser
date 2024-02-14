@@ -1,4 +1,4 @@
-import chai from 'chai';
+import * as chai from 'chai';
 
 import Invasion from '../../lib/models/Invasion.js';
 

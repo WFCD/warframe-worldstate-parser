@@ -1,4 +1,4 @@
-import chai from 'chai';
+import * as chai from 'chai';
 
 import News from '../../lib/models/News.js';
 import testData from '../data/News.json' assert { type: 'json' };

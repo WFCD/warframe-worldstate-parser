@@ -1,5 +1,4 @@
-import chai from 'chai';
-
+import * as chai from 'chai';
 import {
   toTitleCase,
   faction,
@@ -21,7 +20,7 @@ import {
   sortieModifier,
   sortieModDesc,
   region,
-} from '../../lib/utilities/translation.js';
+} from 'warframe-worldstate-data/utilities';
 
 chai.should();
 

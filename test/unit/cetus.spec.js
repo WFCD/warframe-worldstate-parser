@@ -1,4 +1,4 @@
-import chai from 'chai';
+import * as chai from 'chai';
 
 import CetusCycle from '../../lib/models/CetusCycle.js';
 

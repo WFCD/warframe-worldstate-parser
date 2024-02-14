@@ -1,4 +1,4 @@
-import chai from 'chai';
+import * as chai from 'chai';
 
 import SyndicateJob from '../../lib/models/SyndicateJob.js';
 import isoVaultBounty from '../data/isoVaultBounty.json' assert { type: 'json' };

@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import chai from 'chai';
+import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 
 import WorldState from '../../lib/WorldState.js';
@@ -43,11 +43,22 @@ describe('WorldState (integration)', () => {
     });
     expect(wsl?.duviriCycle).to.exist;
     wsl?.duviriCycle?.choices.should.have.length.gte(2);
+    expect(wsl?.syndicateMissions).to.exist;
+    expect(wsl?.syndicateMissions).to.be.an('array');
+    expect(wsl?.syndicateMissions).to.have.length.gte(10);
+    const Ostrons = wsl?.syndicateMissions?.filter((m) => m.syndicate === 'Ostrons')[0];
+    expect(Ostrons).to.exist;
+    expect(Ostrons).to.be.an('object');
+    expect(Ostrons.syndicate).to.equal('Ostrons');
+    expect(Ostrons.jobs).to.exist;
+    expect(Ostrons.jobs).to.be.an('array');
+    expect(wsl?.fissures).to.exist;
+
     /* Easy debugging! */
     if (process.env.CI) {
       return fs.writeFile(
         path.resolve(`./data.pc.json`),
-        JSON.stringify(wsl.syndicateMissions.find((m) => m.syndicateKey === 'Ostrons'))
+        JSON.stringify(wsl.syndicateMissions.find((m) => m.syndicate === 'Ostrons'))
       );
     }
   });

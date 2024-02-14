@@ -1,4 +1,4 @@
-import chai from 'chai';
+import * as chai from 'chai';
 
 import Kuva from '../../lib/models/Kuva.js';
 import mockKuva from '../data/kuvalog.json' assert { type: 'json' };

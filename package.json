@@ -8,16 +8,14 @@
     "test": "test"
   },
   "peerDependencies": {
-    "warframe-worldstate-data": ">=1.0"
+    "warframe-worldstate-data": ">=2.0.3"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/sinon-chai": "^3.2.5",
-    "@wfcd/eslint-config": "^1.5.0",
     "c8": "^9.1.0",
-    "chai": "^4.2.0",
+    "chai": "^5.0.3",
     "coveralls": "^3.1.0",
-    "install-peerdeps": "^2.0.3",
     "mocha": "^10.0.0",
     "precommit-hook": "^3.0.0",
     "sinon": "^17.0.0",
@@ -35,7 +33,7 @@
     "build:docs": "jsdoc -c jsdoc-config.json -d docs",
     "lint": "eslint main.js lib/ test/",
     "lint:fix": "eslint main.js lib/ test/ --fix",
-    "postinstall": "install-peerdeps @wfcd/eslint-config@^1.5.0 -S",
+    "postinstall": "npx -p install-peerdeps@latest install-peerdeps @wfcd/eslint-config@^1.5.0 -S | npx -p install-peerdeps@2.0.3 install-peerdeps @wfcd/eslint-config@^1.5.0 -S",
     "prepublishOnly": "npm run build:types && npm_config_yes=true npx clean-package",
     "build:types": "tsc -p tsconfig.declaration.json",
     "validate": "exit 0"
@@ -75,6 +73,12 @@
       "ecmaFeatures": {
         "modules": true
       }
+    },
+    "rules": {
+      "import/extensions": [
+        "error",
+        "ignorePackages"
+      ]
     }
   },
   "babel": {
@@ -129,5 +133,10 @@
       "babel"
     ]
   },
-  "type": "module"
+  "type": "module",
+  "overrides": {
+    "sinon-chai": {
+      "chai": "^5.0.3"
+    }
+  }
 }
