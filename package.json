@@ -42,15 +42,21 @@
     "printcov": "c8 report",
     "test": "mocha",
     "test:coverage": "c8 npm test",
-    "test:integration": "npm run test -- -g 'should parse live pc worldstate data'"
+    "test:integration": "npm run test -- -g 'should parse live pc worldstate data'",
+    "validate": "npm ls"
   },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ],
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
   },
   "lint-staged": {
-    "*.**": [
+    "*.**,!package*.json": [
       "npm run fmt:fix"
     ],
     "*.js": [
