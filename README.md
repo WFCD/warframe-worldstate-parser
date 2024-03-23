@@ -9,6 +9,7 @@ Parse the Warframe worldstate into useable javascript objects.
 [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
 ## Documentation
+
 You can find the documentation [here](https://wfcd.github.io/warframe-worldstate-parser/)
 
 ## Installation
@@ -22,7 +23,7 @@ For the most part, you'll have a better experience consuming the product of this
 ## Example usage
 
 ```javascript
-const worldstateData = await (require('request-promise'))('http://content.warframe.com/dynamic/worldState.php');
+const worldstateData = await require('request-promise')('http://content.warframe.com/dynamic/worldState.php');
 
 const WorldState = require('warframe-worldstate-parser');
 
@@ -32,10 +33,10 @@ console.log(ws.alerts[0].toString());
 ```
 
 ## Live version
+
 See the parser in action here:
 
 [![PC API](https://img.shields.io/badge/API-PC-red.svg)](https://api.warframestat.us/pc)
 [![PS4 API](https://img.shields.io/badge/API-PS4-blue.svg)](https://api.warframestat.us/ps4)
 [![XB1 API](https://img.shields.io/badge/API-XB1-brightgreen.svg)](https://api.warframestat.us/xb1)
-[![Switch API](https://img.shields.io/badge/API-Switch-orange.svg)](https://api.warframestat.us/swi) 
-
+[![Switch API](https://img.shields.io/badge/API-Switch-orange.svg)](https://api.warframestat.us/swi)

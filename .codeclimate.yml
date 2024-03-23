@@ -17,6 +17,6 @@ plugins:
     enabled: true
 
 exclude_patterns:
-  - "docs/"
-  - "types/"
-  - "test/"
+  - 'docs/'
+  - 'types/'
+  - 'test/'
