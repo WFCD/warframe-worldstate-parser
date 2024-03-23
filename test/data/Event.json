@@ -11,10 +11,7 @@
   "Faction": "testFaction",
   "Desc": "testDesc",
   "Node": "testNode",
-  "ConcurrentNodes": [
-  	"testNode1",
-  	"testNode2"
-  ],
+  "ConcurrentNodes": ["testNode1", "testNode2"],
   "VictimNode": "testVictimNode",
   "ScoreLocTag": "testScoreLocTag"
 }

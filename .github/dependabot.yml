@@ -1,21 +1,21 @@
 version: 2
 updates:
   - package-ecosystem: npm
-    directory: "/"
+    directory: '/'
     schedule:
-      interval: "daily"
-      time: "15:00"
+      interval: 'daily'
+      time: '15:00'
     commit-message:
-      prefix: ""
-      prefix-development: "dev"
-      include: "scope"
+      prefix: ''
+      prefix-development: 'dev'
+      include: 'scope'
     labels:
-      - "dependencies"
+      - 'dependencies'
     open-pull-requests-limit: 10
     pull-request-branch-name:
-      separator: "-"
-    rebase-strategy: "auto"
-  - package-ecosystem: "github-actions"
-    directory: "/"
+      separator: '-'
+    rebase-strategy: 'auto'
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'daily'

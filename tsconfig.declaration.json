@@ -1,8 +1,5 @@
 {
-  "inlcude": [
-    "lib/**/*.js",
-    "main.js"
-  ],
+  "inlcude": ["lib/**/*.js", "main.js"],
   "exclude": [
     "test/**/*.*",
     "types/**/*.*",

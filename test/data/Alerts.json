@@ -1,100 +1,104 @@
-[{
-  "_id": {
-    "$oid": "5e8797e2c8723b199c0313de"
-  },
-  "Activation": {
-    "$date": {
-      "$numberLong": "1586372400000"
-    }
-  },
-  "Expiry": {
-    "$date": {
-      "$numberLong": "1586977200000"
-    }
-  },
-  "MissionInfo": {
-    "location": "SolNode130",
-    "missionType": "MT_SURVIVAL",
-    "faction": "FC_INFESTATION",
-    "difficulty": 1,
-    "missionReward": {
-      "credits": 10000,
-      "items": ["/Lotus/StoreItems/Upgrades/Skins/Events/InfQuantaInfestedAladV"]
+[
+  {
+    "_id": {
+      "$oid": "5e8797e2c8723b199c0313de"
     },
-    "levelOverride": "/Lotus/Levels/Proc/Grineer/GrineerAsteroidSurvivalRaid",
-    "enemySpec": "/Lotus/Types/Game/EnemySpecs/InfestedSurvivalB",
-    "minEnemyLevel": 10,
-    "maxEnemyLevel": 15,
-    "descText": "/Lotus/Language/Alerts/LotusGiftDesc",
-    "maxWaveNum": 10,
-    "exclusiveWeapon": "/Lotus/Weapons/Tenno/Melee/PlayerMeleeWeapon"
-  },
-  "ForceUnlock": true,
-  "Tag": "LotusGift"
-}, {
-  "_id": {
-    "$oid": "5e8797f2b0d3cd13ae3c1489"
-  },
-  "Activation": {
-    "$date": {
-      "$numberLong": "1586372400000"
-    }
-  },
-  "Expiry": {
-    "$date": {
-      "$numberLong": "1586977200000"
-    }
-  },
-  "MissionInfo": {
-    "location": "SolNode23",
-    "missionType": "MT_MOBILE_DEFENSE",
-    "faction": "FC_CORPUS",
-    "difficulty": 1,
-    "missionReward": {
-      "credits": 10000,
-      "items": ["/Lotus/StoreItems/Upgrades/Skins/Events/AcolyteStalkerMios"]
+    "Activation": {
+      "$date": {
+        "$numberLong": "1586372400000"
+      }
     },
-    "levelOverride": "/Lotus/Levels/Proc/Corpus/CorpusShipMobileDefense",
-    "enemySpec": "/Lotus/Types/Game/EnemySpecs/CorpusExterminateHumans",
-    "extraEnemySpec": "/Lotus/Types/Game/EnemySpecs/CorpusDropship",
-    "minEnemyLevel": 10,
-    "maxEnemyLevel": 15,
-    "descText": "/Lotus/Language/Alerts/LotusGiftDesc",
-    "exclusiveWeapon": "/Lotus/Weapons/Tenno/Rifle/LotusAssaultRifle"
-  },
-  "ForceUnlock": true,
-  "Tag": "LotusGift"
-}, {
-  "_id": {
-    "$oid": "5e879802847dd0751056a572"
-  },
-  "Activation": {
-    "$date": {
-      "$numberLong": "1586372400000"
-    }
-  },
-  "Expiry": {
-    "$date": {
-      "$numberLong": "1586977200000"
-    }
-  },
-  "MissionInfo": {
-    "location": "SolNode79",
-    "missionType": "MT_TERRITORY",
-    "faction": "FC_GRINEER",
-    "difficulty": 1,
-    "missionReward": {
-      "credits": 10000,
-      "items": ["/Lotus/StoreItems/Upgrades/Skins/Events/ArchRocketCrossbowGrineer"]
+    "Expiry": {
+      "$date": {
+        "$numberLong": "1586977200000"
+      }
     },
-    "levelOverride": "/Lotus/Levels/Proc/Grineer/GrineerForestInterception",
-    "enemySpec": "/Lotus/Types/Game/EnemySpecs/GrineerDefenseAAsteroid",
-    "minEnemyLevel": 10,
-    "maxEnemyLevel": 15,
-    "maxWaveNum": 2,
-    "descText": "/Lotus/Language/Alerts/LotusGiftDesc",
-    "exclusiveWeapon": "/Lotus/Weapons/Tenno/Pistol/LotusPistol"
+    "MissionInfo": {
+      "location": "SolNode130",
+      "missionType": "MT_SURVIVAL",
+      "faction": "FC_INFESTATION",
+      "difficulty": 1,
+      "missionReward": {
+        "credits": 10000,
+        "items": ["/Lotus/StoreItems/Upgrades/Skins/Events/InfQuantaInfestedAladV"]
+      },
+      "levelOverride": "/Lotus/Levels/Proc/Grineer/GrineerAsteroidSurvivalRaid",
+      "enemySpec": "/Lotus/Types/Game/EnemySpecs/InfestedSurvivalB",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 15,
+      "descText": "/Lotus/Language/Alerts/LotusGiftDesc",
+      "maxWaveNum": 10,
+      "exclusiveWeapon": "/Lotus/Weapons/Tenno/Melee/PlayerMeleeWeapon"
+    },
+    "ForceUnlock": true,
+    "Tag": "LotusGift"
   },
-  "ForceUnlock": true,
-  "Tag": "LotusGift"
-}]
+  {
+    "_id": {
+      "$oid": "5e8797f2b0d3cd13ae3c1489"
+    },
+    "Activation": {
+      "$date": {
+        "$numberLong": "1586372400000"
+      }
+    },
+    "Expiry": {
+      "$date": {
+        "$numberLong": "1586977200000"
+      }
+    },
+    "MissionInfo": {
+      "location": "SolNode23",
+      "missionType": "MT_MOBILE_DEFENSE",
+      "faction": "FC_CORPUS",
+      "difficulty": 1,
+      "missionReward": {
+        "credits": 10000,
+        "items": ["/Lotus/StoreItems/Upgrades/Skins/Events/AcolyteStalkerMios"]
+      },
+      "levelOverride": "/Lotus/Levels/Proc/Corpus/CorpusShipMobileDefense",
+      "enemySpec": "/Lotus/Types/Game/EnemySpecs/CorpusExterminateHumans",
+      "extraEnemySpec": "/Lotus/Types/Game/EnemySpecs/CorpusDropship",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 15,
+      "descText": "/Lotus/Language/Alerts/LotusGiftDesc",
+      "exclusiveWeapon": "/Lotus/Weapons/Tenno/Rifle/LotusAssaultRifle"
+    },
+    "ForceUnlock": true,
+    "Tag": "LotusGift"
+  },
+  {
+    "_id": {
+      "$oid": "5e879802847dd0751056a572"
+    },
+    "Activation": {
+      "$date": {
+        "$numberLong": "1586372400000"
+      }
+    },
+    "Expiry": {
+      "$date": {
+        "$numberLong": "1586977200000"
+      }
+    },
+    "MissionInfo": {
+      "location": "SolNode79",
+      "missionType": "MT_TERRITORY",
+      "faction": "FC_GRINEER",
+      "difficulty": 1,
+      "missionReward": {
+        "credits": 10000,
+        "items": ["/Lotus/StoreItems/Upgrades/Skins/Events/ArchRocketCrossbowGrineer"]
+      },
+      "levelOverride": "/Lotus/Levels/Proc/Grineer/GrineerForestInterception",
+      "enemySpec": "/Lotus/Types/Game/EnemySpecs/GrineerDefenseAAsteroid",
+      "minEnemyLevel": 10,
+      "maxEnemyLevel": 15,
+      "maxWaveNum": 2,
+      "descText": "/Lotus/Language/Alerts/LotusGiftDesc",
+      "exclusiveWeapon": "/Lotus/Weapons/Tenno/Pistol/LotusPistol"
+    },
+    "ForceUnlock": true,
+    "Tag": "LotusGift"
+  }
+]
