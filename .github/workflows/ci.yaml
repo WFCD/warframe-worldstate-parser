@@ -18,6 +18,8 @@ jobs:
       run: npm ci
     - name: Run linters
       run: npm run lint
+    - name: Run commitlint
+      run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
   test:
     name: Test
     runs-on: ubuntu-latest

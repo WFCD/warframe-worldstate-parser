@@ -11,13 +11,16 @@
     "warframe-worldstate-data": ">=2.0.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
     "@types/chai": "^4.2.11",
     "@types/sinon-chai": "^3.2.5",
     "c8": "^9.1.0",
     "chai": "^5.0.3",
     "coveralls": "^3.1.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "mocha": "^10.0.0",
-    "precommit-hook": "^3.0.0",
     "sinon": "^17.0.0",
     "sinon-chai": "^3.5.0",
     "typescript": "^5.0.2"
@@ -36,7 +39,9 @@
     "postinstall": "npx install-peerdeps @wfcd/eslint-config@latest -S",
     "prepublishOnly": "npm run build:types && npm_config_yes=true npx clean-package",
     "build:types": "tsc -p tsconfig.declaration.json",
-    "validate": "exit 0"
+    "prepare": "husky",
+    "fmt": "prettier -c .",
+    "fmt:fix": "prettier -w ."
   },
   "files": [
     "lib",
@@ -90,11 +95,6 @@
       "@babel/plugin-transform-private-methods"
     ]
   },
-  "pre-commit": [
-    "lint",
-    "test",
-    "validate"
-  ],
   "prettier": "@wfcd/eslint-config/prettier",
   "mocha": {
     "exit": true,
@@ -130,7 +130,8 @@
       "clean-package",
       "directories",
       "prettier",
-      "babel"
+      "babel",
+      "lint-staged"
     ]
   },
   "type": "module",
@@ -138,5 +139,23 @@
     "sinon-chai": {
       "chai": "^5.0.3"
     }
+  },
+  "lint-staged": {
+    "*.**": [
+      "npm run fmt:fix"
+    ],
+    "*.js": [
+      "eslint --fix --cache",
+      "npm test"
+    ],
+    "package*.json": [
+      "npm dedupe",
+      "npx sort-package-json"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
