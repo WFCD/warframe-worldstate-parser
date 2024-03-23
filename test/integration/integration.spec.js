@@ -27,7 +27,7 @@ describe('WorldState (integration)', () => {
     (() => {
       try {
         // once without kuva data
-        wsl = new WorldState(ws, { logger, locale: 'en' });
+        // wsl = new WorldState(ws, { logger, locale: 'en' });
         wsl = new WorldState(ws, { logger, locale: 'en', kuvaData });
       } catch (e) {
         console.error(e); // eslint-disable-line no-console
@@ -53,6 +53,7 @@ describe('WorldState (integration)', () => {
     expect(Ostrons.jobs).to.exist;
     expect(Ostrons.jobs).to.be.an('array');
     expect(wsl?.fissures).to.exist;
+    expect(wsl?.sentientOutposts.id).to.not.contain('dataOverride');
 
     /* Easy debugging! */
     if (process.env.CI) {
