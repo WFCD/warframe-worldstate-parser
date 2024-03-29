@@ -45,3 +45,5 @@ data.*.json
 # unwanted configs from plugins
 .jshintignore
 .jshintrc
+
+.eslintcache
