@@ -4,7 +4,7 @@ import path from 'node:path';
 import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 
-import WorldState from '../../lib/WorldState.js';
+import { WorldState } from '../../lib/WorldState.js';
 
 const logger = {
   error: () => {},
