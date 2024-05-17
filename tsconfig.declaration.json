@@ -1,12 +1,14 @@
 {
-  "inlcude": ["lib/**/*.js", "main.js"],
+  "include": ["lib/**/*.js", "main.js"],
   "exclude": [
     "test/**/*.*",
     "types/**/*.*",
     "resources/**/*.*",
     "docs/**/*.*",
     "node_modules/**/*.*",
-    "coverage/**/*.*"
+    "coverage/**/*.*",
+    "clean-package.config.js",
+    "babel.config.cjs"
   ],
   "compilerOptions": {
     "outDir": "./types",
