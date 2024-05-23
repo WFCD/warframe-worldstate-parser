@@ -31,7 +31,6 @@
   "scripts": {
     "build:docs": "jsdoc -c jsdoc-config.json -d docs",
     "build:types": "tsc -p tsconfig.declaration.json",
-    "coverage": "npm test && c8 report --reporter=text-lcov | coveralls",
     "fmt": "prettier -c .",
     "fmt:fix": "prettier -w .",
     "lint": "eslint main.js lib/ test/",
@@ -44,17 +43,14 @@
     "test:integration": "npm run test -- -g 'should parse live pc worldstate data'",
     "validate": "npm ls"
   },
-  "pre-commit": [
-    "lint",
-    "validate",
-    "test"
-  ],
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ],
     "rules": {
-      "body-max-line-length": [0]
+      "body-max-line-length": [
+        0
+      ]
     }
   },
   "lint-staged": {
@@ -131,7 +127,6 @@
     "@types/sinon-chai": "^3.2.5",
     "c8": "^9.1.0",
     "chai": "^5.0.3",
-    "coveralls": "^3.1.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "mocha": "^10.0.0",
