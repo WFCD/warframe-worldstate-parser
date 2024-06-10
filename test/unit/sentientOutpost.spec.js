@@ -10,7 +10,7 @@ chai.use(sinonChai);
 describe('SentientOutpost', function () {
   describe('#constructor()', function () {
     it('should be able to handle some raw data', () => {
-      const outpost = new SentientOutpost(data.Tmp, { locale: 'en', logger: console });
+      const outpost = new SentientOutpost(data, { locale: 'en', logger: console });
 
       outpost.id.should.equal('CrewBattleNode554:true');
       outpost.mission.node.should.equal('H-2 Cloud (Veil)');
