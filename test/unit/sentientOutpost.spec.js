@@ -2,7 +2,7 @@ import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 
 import SentientOutpost from '../../lib/models/SentientOutpost.js';
-import Tmp from '../data/Tmp.json' assert { type: 'json' };
+import data from '../data/Tmp.js';
 
 chai.should();
 chai.use(sinonChai);
@@ -10,7 +10,7 @@ chai.use(sinonChai);
 describe('SentientOutpost', function () {
   describe('#constructor()', function () {
     it('should be able to handle some raw data', () => {
-      const outpost = new SentientOutpost(Tmp.Tmp, { locale: 'en', logger: console });
+      const outpost = new SentientOutpost(data.Tmp, { locale: 'en', logger: console });
 
       outpost.id.should.equal('CrewBattleNode554:true');
       outpost.mission.node.should.equal('H-2 Cloud (Veil)');
