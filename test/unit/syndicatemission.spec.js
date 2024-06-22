@@ -17,7 +17,7 @@ describe('SyndicateMission', function () {
   });
 
   describe('#toString()', function () {
-    it('should format the string correctly according to the data', function () {
+    it('should format the string correctly according to the data', async function () {
       const testData = {
         _id: { $oid: '1234sg' },
         Activation: { sec: 1241 },
@@ -25,12 +25,10 @@ describe('SyndicateMission', function () {
         Tag: 'syndicate',
         Nodes: [],
       };
-      const s = new SyndicateMission(testData);
+      const s = await new SyndicateMission(testData);
 
       s.toString().should.contain('No missions');
-
       s.nodes.push('node');
-
       s.toString().should.contain('has missions');
     });
   });

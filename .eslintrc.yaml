@@ -1,0 +1,11 @@
+parser: '@babel/eslint-parser'
+parserOptions:
+  ecmaFeatures:
+    modules: true
+  ecmaVersion: 6
+  sourceType: module
+extends: '@wfcd/eslint-config/strict-esm-jsdoc'
+rules:
+  import/extensions:
+    - error
+    - ignorePackages

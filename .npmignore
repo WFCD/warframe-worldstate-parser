@@ -38,3 +38,13 @@ data.*.json
 package.json.backup
 .install/
 
+# Other project configuration files
+.c8rc.json
+.commitlintrc.ts
+.eslintignore
+.eslintrc.yaml
+.eslintcache
+.lintstagedrc.yaml
+.mocharc.yml
+babel.config.cjs
+clean-package.config.js

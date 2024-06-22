@@ -38,7 +38,7 @@ describe('SyndicateJob', () => {
         };
 
         interval = setInterval(() => {
-          if (job.rewardPool.length) verify(job.rewardPool);
+          if (job.rewardPool?.length) verify(job.rewardPool);
         }, 100);
 
         setTimeout(() => {

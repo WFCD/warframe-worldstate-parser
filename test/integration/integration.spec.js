@@ -17,25 +17,28 @@ const { expect } = chai;
 chai.should();
 chai.use(sinonChai);
 
+const json = async (url) => fetch(url).then((res) => res.json());
+const text = async (url) => fetch(url).then((res) => res.text());
+
 describe('WorldState (integration)', () => {
   it(`should parse live pc worldstate data`, async function () {
     this.timeout = 10000; // allow 10 seconds to parse the worldstate
-    const kuvaData = await fetch('https://10o.io/arbitrations.json').then((res) => res.json());
-    const ws = await fetch('https://content.warframe.com/dynamic/worldState.php').then((res) => res.text());
+    const kuvaData = await json('https://10o.io/arbitrations.json');
+    const ws = await text('https://content.warframe.com/dynamic/worldState.php');
 
     let wsl;
-    (() => {
+    (async () => {
       try {
         // once without kuva data
-        // wsl = new WorldState(ws, { logger, locale: 'en' });
-        wsl = new WorldState(ws, { logger, locale: 'en', kuvaData });
+        wsl = await new WorldState(ws, { logger, locale: 'en' });
+        // wsl = await new WorldState(ws, { logger, locale: 'en', kuvaData });
       } catch (e) {
         console.error(e); // eslint-disable-line no-console
         throw e;
       }
     }).should.not.throw();
 
-    expect(wsl.news).to.exist;
+    expect(wsl?.news).to.exist;
     wsl?.news?.forEach((article) => {
       if (article.message.toLowerCase().includes('stream')) {
         article.should.include({ stream: true });

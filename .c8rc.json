@@ -1,0 +1,16 @@
+{
+  "exclude": [
+    "test/**",
+    "lib/DarkSector*.js",
+    "lib/Alert.js",
+    "lib/PersistentEnemy.js",
+    "lib/GlobalUpgrade.js",
+    "lib/ChallengeInstance.js",
+    "lib/WeeklyChallenge.js"
+  ],
+  "reporter": [
+    "lcov",
+    "text"
+  ],
+  "skip-full": true
+}
