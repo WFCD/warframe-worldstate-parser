@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module.html#.exports">module.exports</a></li>
+					<li><a href="module.html#.exports">module.exports</a></li><li><a href="WorldState.html">WorldState</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#arbitration">arbitration</a></li><li><a href="global.html#compileDesription">compileDesription</a></li><li><a href="global.html#defaultDeps">defaultDeps</a></li><li><a href="global.html#getBoss">getBoss</a></li><li><a href="global.html#getCurrentCycle">getCurrentCycle</a></li><li><a href="global.html#getCurrentEarthCycle">getCurrentEarthCycle</a></li><li><a href="global.html#getDescription">getDescription</a></li><li><a href="global.html#getEndOfDay">getEndOfDay</a></li><li><a href="global.html#getEndString">getEndString</a></li><li><a href="global.html#getETAString">getETAString</a></li><li><a href="global.html#getExpired">getExpired</a></li><li><a href="global.html#getFaction">getFaction</a></li><li><a href="global.html#getFirstDayOfWeek">getFirstDayOfWeek</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#getLastDayOfWeek">getLastDayOfWeek</a></li><li><a href="global.html#getLevelString">getLevelString</a></li><li><a href="global.html#getRemainingTime">getRemainingTime</a></li><li><a href="global.html#getReward">getReward</a></li><li><a href="global.html#getRewardTypes">getRewardTypes</a></li><li><a href="global.html#getStartOfDay">getStartOfDay</a></li><li><a href="global.html#getStartString">getStartString</a></li><li><a href="global.html#getTitle">getTitle</a></li><li><a href="global.html#getTypes">getTypes</a></li><li><a href="global.html#getTypesFull">getTypesFull</a></li><li><a href="global.html#isActive">isActive</a></li><li><a href="global.html#isAttackerWinning">isAttackerWinning</a></li><li><a href="global.html#isDaily">isDaily</a></li><li><a href="global.html#isExpired">isExpired</a></li><li><a href="global.html#isPrimeAccess">isPrimeAccess</a></li><li><a href="global.html#isRootChallenge">isRootChallenge</a></li><li><a href="global.html#isStream">isStream</a></li><li><a href="global.html#isUpdate">isUpdate</a></li><li><a href="global.html#kuva">kuva</a></li><li><a href="global.html#parse">parse</a></li><li><a href="global.html#parseArray">parseArray</a></li><li><a href="global.html#scrub">scrub</a></li><li><a href="global.html#start">start</a></li><li><a href="global.html#toString">toString</a></li><li><a href="global.html#truncateTime">truncateTime</a></li>
+					<li><a href="global.html#arbitration">arbitration</a></li><li><a href="global.html#build">build</a></li><li><a href="global.html#compileDesription">compileDesription</a></li><li><a href="global.html#defaultDeps">defaultDeps</a></li><li><a href="global.html#getBoss">getBoss</a></li><li><a href="global.html#getCurrentCycle">getCurrentCycle</a></li><li><a href="global.html#getCurrentEarthCycle">getCurrentEarthCycle</a></li><li><a href="global.html#getDescription">getDescription</a></li><li><a href="global.html#getEndOfDay">getEndOfDay</a></li><li><a href="global.html#getEndString">getEndString</a></li><li><a href="global.html#getETAString">getETAString</a></li><li><a href="global.html#getExpired">getExpired</a></li><li><a href="global.html#getFaction">getFaction</a></li><li><a href="global.html#getFirstDayOfWeek">getFirstDayOfWeek</a></li><li><a href="global.html#getItemType">getItemType</a></li><li><a href="global.html#getItemTypeFull">getItemTypeFull</a></li><li><a href="global.html#getLastDayOfWeek">getLastDayOfWeek</a></li><li><a href="global.html#getLevelString">getLevelString</a></li><li><a href="global.html#getRemainingTime">getRemainingTime</a></li><li><a href="global.html#getReward">getReward</a></li><li><a href="global.html#getRewardTypes">getRewardTypes</a></li><li><a href="global.html#getStartOfDay">getStartOfDay</a></li><li><a href="global.html#getStartString">getStartString</a></li><li><a href="global.html#getTitle">getTitle</a></li><li><a href="global.html#getTypes">getTypes</a></li><li><a href="global.html#getTypesFull">getTypesFull</a></li><li><a href="global.html#isActive">isActive</a></li><li><a href="global.html#isAttackerWinning">isAttackerWinning</a></li><li><a href="global.html#isDaily">isDaily</a></li><li><a href="global.html#isExpired">isExpired</a></li><li><a href="global.html#isPrimeAccess">isPrimeAccess</a></li><li><a href="global.html#isRootChallenge">isRootChallenge</a></li><li><a href="global.html#isStream">isStream</a></li><li><a href="global.html#isUpdate">isUpdate</a></li><li><a href="global.html#kuva">kuva</a></li><li><a href="global.html#parse">parse</a></li><li><a href="global.html#parseArray">parseArray</a></li><li><a href="global.html#parseAsyncArray">parseAsyncArray</a></li><li><a href="global.html#scrub">scrub</a></li><li><a href="global.html#start">start</a></li><li><a href="global.html#toString">toString</a></li><li><a href="global.html#truncateTime">truncateTime</a></li>
 				</ul>
 			</li>
 			
@@ -106,6 +106,34 @@ import Reward from './Reward.js';
  * @augments {WorldstateObject}
  */
 export default class WorldEvent extends WorldstateObject {
+  /**
+   * Asynchronously build a new WorldEvent
+   * @param   {object}            data            The event data
+   * @param   {object}            deps            The dependencies object
+   * @param   {string}            deps.locale     Locale to use for translations
+   * @returns {Promise.&lt;WorldEvent>}              The created WorldEvent object
+   */
+  static async build(data, deps) {
+    const event = new WorldEvent(data, deps);
+    if (data.Jobs) {
+      const jobs = [];
+      // eslint-disable-next-line no-restricted-syntax
+      for await (const job of data.Jobs ?? []) {
+        jobs.push(await SyndicateJob.build(job, event.expiry, deps));
+      }
+      event.jobs = jobs;
+    }
+    if (data.PreviousJobs) {
+      const previousJobs = [];
+      // eslint-disable-next-line no-restricted-syntax
+      for await (const job of data.PreviousJobs ?? []) {
+        previousJobs.push(await SyndicateJob.build(job, event.expiry, deps));
+      }
+      event.previousJobs = previousJobs;
+    }
+    return event;
+  }
+
   /**
    * @param   {object}            data            The event data
    * @param   {object}            deps            The dependencies object
@@ -211,13 +239,8 @@ export default class WorldEvent extends WorldstateObject {
     this.health =
       typeof data.HealthPct !== 'undefined' ? Number.parseFloat(((data.HealthPct || 0.0) * 100).toFixed(2)) : undefined;
 
-    if (data.JobAffiliationTag) {
-      this.affiliatedWith = syndicate(data.JobAffiliationTag, locale);
-      if (data.Jobs) {
-        this.jobs = (data.Jobs || []).map((j) => new SyndicateJob(j, this.expiry, opts));
-        this.previousJobs = (data.PreviousJobs || []).map((j) => new SyndicateJob(j, this.expiry, opts));
-      }
-    }
+    this.jobs = [];
+    this.previousJobs = [];
 
     /**
      * Previous job id
@@ -270,22 +293,22 @@ export default class WorldEvent extends WorldstateObject {
     }
 
     /**
-     * Whether or not to show the total score at the end of the mission
+     * Whether to show the total score at the end of the mission
      * @type {boolean}
      */
     this.showTotalAtEndOfMission = data.ShowTotalAtEOM;
     /**
-     * Whether or not the event is personal
+     * Whether the event is personal
      * @type {boolean}
      */
     this.isPersonal = data.Personal;
     /**
-     * Whether or not the event is community
+     * Whether the event is community
      * @type {boolean}
      */
     this.isCommunity = data.Community;
 
-    /**
+    /*
      * Affectors for this mission
      * @type {string[]}
      */
@@ -320,10 +343,14 @@ export default class WorldEvent extends WorldstateObject {
       expiry: parseDate(data.NextAltExpiry),
       activation: parseDate(data.NextAltActivation),
     };
+
+    if (data.JobAffiliationTag) {
+      this.affiliatedWith = syndicate(data.JobAffiliationTag, locale);
+    }
   }
 
   /**
-   * Get whether or not the event has expired
+   * Get whether the event has expired
    * @returns {boolean} whether the event has expired
    */
   getExpired() {
@@ -415,7 +442,7 @@ export default class WorldEvent extends WorldstateObject {
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a>
 	
-		on Friday, June 21st 2024, 17:39:20
+		on Sunday, June 23rd 2024, 17:03:08
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
