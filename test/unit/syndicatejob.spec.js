@@ -24,33 +24,22 @@ describe('SyndicateJob', () => {
   });
 
   describe('.rewardPool', () => {
-    const poolTest = (data) =>
-      function (done) {
+    const poolTest = async (data) =>
+      async function () {
         this.timeout(1100000000);
-        const job = new SyndicateJob(data, new Date(), { locale });
-
-        let interval;
+        const job = await SyndicateJob.build(data, new Date(), { locale });
         const verify = (rewardPool) => {
           rewardPool.should.be.an('array');
           rewardPool.length.should.be.at.least(1);
-          done();
-          clearInterval(interval);
         };
 
-        interval = setInterval(() => {
-          if (job.rewardPool?.length) verify(job.rewardPool);
-        }, 100);
-
-        setTimeout(() => {
-          clearInterval(interval);
-          verify(job.rewardPool);
-        }, 10000);
+        if (job.rewardPool?.length) verify(job.rewardPool);
       };
 
-    it('should exist when requested', poolTest(isoVaultBounty));
-    it('should support plague star', poolTest(plagueStarBounty));
-    it('should support Cetus F Tier', poolTest(CetusFTier));
-    it('should support Deimos F Tier', poolTest(CambionFTier));
-    it('should support Unmatched tiers', poolTest(NoMatchJob));
+    it('should exist when requested', async () => poolTest(isoVaultBounty));
+    it('should support plague star', async () => poolTest(plagueStarBounty));
+    it('should support Cetus F Tier', async () => poolTest(CetusFTier));
+    it('should support Deimos F Tier', async () => poolTest(CambionFTier));
+    it('should support Unmatched tiers', async () => poolTest(NoMatchJob));
   });
 });

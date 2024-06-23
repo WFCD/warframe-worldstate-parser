@@ -1,10 +1,9 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
+import WorldState from 'warframe-worldstate-parser';
 import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
-
-import { WorldState } from '../../lib/WorldState.js';
 
 const logger = {
   error: () => {},
@@ -26,18 +25,11 @@ describe('WorldState (integration)', () => {
     const kuvaData = await json('https://10o.io/arbitrations.json');
     const ws = await text('https://content.warframe.com/dynamic/worldState.php');
 
-    let wsl;
     (async () => {
-      try {
-        // once without kuva data
-        wsl = await new WorldState(ws, { logger, locale: 'en' });
-        // wsl = await new WorldState(ws, { logger, locale: 'en', kuvaData });
-      } catch (e) {
-        console.error(e); // eslint-disable-line no-console
-        throw e;
-      }
+      await WorldState.build(ws, { logger, locale: 'en' });
     }).should.not.throw();
 
+    const wsl = await WorldState.build(ws, { logger, locale: 'en', kuvaData });
     expect(wsl?.news).to.exist;
     wsl?.news?.forEach((article) => {
       if (article.message.toLowerCase().includes('stream')) {
@@ -55,6 +47,9 @@ describe('WorldState (integration)', () => {
     expect(Ostrons.syndicate).to.equal('Ostrons');
     expect(Ostrons.jobs).to.exist;
     expect(Ostrons.jobs).to.be.an('array');
+    expect(Ostrons.jobs).to.have.length.gte(1);
+    wsl.syndicateMissions.some((m) => !!m.jobs.some((job) => job.rewardPool.length > 0)).should.be.true;
+
     expect(wsl?.fissures).to.exist;
     expect(wsl?.sentientOutposts.id).to.not.contain('dataOverride');
 
@@ -65,5 +60,18 @@ describe('WorldState (integration)', () => {
         JSON.stringify(wsl.syndicateMissions.find((m) => m.syndicate === 'Ostrons'))
       );
     }
+  });
+
+  it('should run the README example', async () => {
+    const example = async () => {
+      const WorldStateParser = await import('warframe-worldstate-parser');
+      const worldstateData = await fetch('https://content.warframe.com/dynamic/worldState.php').then((data) =>
+        data.text()
+      );
+      const ws = await WorldStateParser(worldstateData);
+      console.log(ws.alerts[0].toString());
+    };
+
+    example.should.not.throw();
   });
 });
