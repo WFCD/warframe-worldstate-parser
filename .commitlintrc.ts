@@ -6,7 +6,12 @@ export default {
   ],
   rules: {
     'body-max-line-length': [
-      RuleConfigSeverity.Error
+      RuleConfigSeverity.Disabled
+    ],
+    'subject-case': [
+      RuleConfigSeverity.Error,
+      'never',
+      ['sentence-case', 'start-case']
     ]
   }
 }
