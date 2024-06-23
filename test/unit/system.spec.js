@@ -1,5 +1,6 @@
 import * as chai from 'chai';
 
+// eslint-disable-next-line import/no-named-as-default
 import WorldState from '../../main.js';
 import kuvaMock from '../data/kuvalog.json' assert { type: 'json' };
 import sentientMock from '../data/anomaly.json' assert { type: 'json' };

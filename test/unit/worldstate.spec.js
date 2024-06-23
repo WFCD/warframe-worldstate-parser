@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
 import WorldStateObject from '../../lib/models/WorldstateObject.js';
-import WorldState, { parseArray } from '../../lib/WorldState.js';
+import { WorldState, parseArray } from '../../lib/WorldState.js';
 
 chai.should();
 chai.use(sinonChai);

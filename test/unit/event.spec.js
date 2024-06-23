@@ -23,22 +23,22 @@ describe('Event', () => {
     });
   });
   describe('#toString()', () => {
-    it('should only include the rewards if the event has any', () => {
-      const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } });
+    it('should only include the rewards if the event has any', async () => {
+      const e = await new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } });
       e.toString().should.not.match(/Rewards/);
 
       e.rewards = ['reward1'];
       e.toString().should.match(/Rewards/);
     });
-    it('should not include the node if the event has one', () => {
-      const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } });
+    it('should not include the node if the event has one', async () => {
+      const e = await new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } });
       e.toString().should.not.match(/Battle on/);
 
       e.node = 'Node';
       e.toString().should.match(/Battle on/);
     });
-    it('should only include the victim node if the event has one', () => {
-      const e = new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } });
+    it('should only include the victim node if the event has one', async () => {
+      const e = await new Event({ _id: { $oid: 'id' }, Expiry: { sec: 1 } });
       e.toString().should.not.match(/Protect/);
 
       e.victim = 'Victim Node';

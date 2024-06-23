@@ -23,11 +23,12 @@ For the most part, you'll have a better experience consuming the product of this
 ## Example usage
 
 ```javascript
-const worldstateData = await require('request-promise')('http://content.warframe.com/dynamic/worldState.php');
+// import WorldState from 'warframe-worldstate-data';
+// using this syntax to make it precisely testable in a test
+const WorldStateParser = await import('warframe-worldstate-parser');
+const worldstateData = await fetch('https://content.warframe.com/dynamic/worldState.php').then((data) => data.text());
 
-const WorldState = require('warframe-worldstate-parser');
-
-const ws = new WorldState(worldstateData);
+const ws = await WorldStateParser(worldstateData);
 
 console.log(ws.alerts[0].toString());
 ```

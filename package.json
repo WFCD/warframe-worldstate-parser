@@ -16,6 +16,12 @@
   "contributors": [
     "nspacestd (https://github.com/nspacestd)"
   ],
+  "exports": {
+    ".": {
+      "import": "./main.js",
+      "types": "./types/index.d.ts"
+    }
+  },
   "type": "module",
   "main": "main.js",
   "types": "./types/main.d.ts",
@@ -40,89 +46,13 @@
     "printcov": "c8 report",
     "test": "mocha",
     "test:coverage": "c8 npm test",
-    "test:integration": "npm run test -- -g 'should parse live pc worldstate data'",
-    "validate": "npm ls"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ],
-    "rules": {
-      "body-max-line-length": [
-        0
-      ]
-    }
-  },
-  "lint-staged": {
-    "*.**,!package*.json": [
-      "npm run fmt:fix"
-    ],
-    "*.js": [
-      "eslint --fix --cache",
-      "npm test -- --reporter=mocha-minimalist-reporter"
-    ],
-    "package*.json": [
-      "npm dedupe",
-      "npx sort-package-json"
-    ]
-  },
-  "babel": {
-    "plugins": [
-      "@babel/plugin-transform-class-properties",
-      "@babel/plugin-transform-private-methods"
-    ],
-    "presets": [
-      "@babel/preset-env"
-    ]
+    "test:integration": "npm run test -- -g 'should parse live pc worldstate data'"
   },
   "prettier": "@wfcd/eslint-config/prettier",
-  "eslintConfig": {
-    "parser": "@babel/eslint-parser",
-    "parserOptions": {
-      "ecmaFeatures": {
-        "modules": true
-      },
-      "ecmaVersion": 6,
-      "sourceType": "module"
-    },
-    "extends": "@wfcd/eslint-config/strict-esm-jsdoc",
-    "rules": {
-      "import/extensions": [
-        "error",
-        "ignorePackages"
-      ]
-    }
-  },
-  "eslintIgnore": [
-    ".github/**",
-    "docs/**",
-    "resources/**",
-    "types/**"
-  ],
-  "mocha": {
-    "exit": true,
-    "spec": "test/**/*.spec.js",
-    "timeout": 10000
-  },
-  "c8": {
-    "exclude": [
-      "test/**",
-      "lib/DarkSector*.js",
-      "lib/Alert.js",
-      "lib/PersistentEnemy.js",
-      "lib/GlobalUpgrade.js",
-      "lib/ChallengeInstance.js",
-      "lib/WeeklyChallenge.js"
-    ],
-    "reporter": [
-      "lcov",
-      "text"
-    ],
-    "skip-full": true
-  },
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
+    "@commitlint/types": "^19.0.3",
     "@types/chai": "^4.2.11",
     "@types/sinon-chai": "^3.2.5",
     "c8": "^10.0.0",
@@ -141,23 +71,6 @@
   },
   "engines": {
     "node": ">=18.19.0"
-  },
-  "clean-package": {
-    "remove": [
-      "devDependencies",
-      "scripts",
-      "release",
-      "eslintIgnore",
-      "eslintConfig",
-      "c8",
-      "mocha",
-      "clean-package",
-      "directories",
-      "prettier",
-      "babel",
-      "lint-staged",
-      "overrides"
-    ]
   },
   "overrides": {
     "sinon-chai": {

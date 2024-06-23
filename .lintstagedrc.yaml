@@ -1,0 +1,8 @@
+'*.**,!package*.json':
+  - 'npm run fmt:fix'
+'*.js':
+  - eslint --fix --cache
+  - npm test -- --reporter=mocha-minimalist-reporter
+package*.json:
+  - npm dedupe
+  - npx sort-package-json
