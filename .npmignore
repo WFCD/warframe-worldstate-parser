@@ -47,4 +47,4 @@ package.json.backup
 .lintstagedrc.yaml
 .mocharc.yml
 babel.config.cjs
-clean-package.config.js
+clean-package.config.cjs

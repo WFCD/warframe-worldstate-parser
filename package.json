@@ -16,13 +16,13 @@
   "contributors": [
     "nspacestd (https://github.com/nspacestd)"
   ],
+  "type": "module",
   "exports": {
     ".": {
       "import": "./main.js",
       "types": "./types/index.d.ts"
     }
   },
-  "type": "module",
   "main": "main.js",
   "types": "./types/main.d.ts",
   "directories": {
@@ -40,7 +40,7 @@
     "fmt": "prettier -c .",
     "fmt:fix": "prettier -w .",
     "lint": "eslint main.js lib/ test/",
-    "lint:fix": "eslint main.js lib/ test/ --fix",
+    "lint:fix": "npm run lint -- --fix",
     "prepare": "husky && npx install-peerdeps @wfcd/eslint-config@latest -S",
     "prepublishOnly": "npm run build:types && npm_config_yes=true npx clean-package",
     "printcov": "c8 report",
@@ -57,6 +57,7 @@
     "@types/sinon-chai": "^3.2.5",
     "c8": "^10.0.0",
     "chai": "^5.0.3",
+    "eslint-plugin-redos": "^4.4.5",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "mocha": "^10.0.0",
