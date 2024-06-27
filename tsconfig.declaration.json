@@ -7,7 +7,7 @@
     "docs/**/*.*",
     "node_modules/**/*.*",
     "coverage/**/*.*",
-    "clean-package.config.js",
+    "clean-package.config.cjs",
     "babel.config.cjs"
   ],
   "compilerOptions": {
