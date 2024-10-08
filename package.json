@@ -68,7 +68,7 @@
     "typescript": "^5.0.2"
   },
   "peerDependencies": {
-    "warframe-worldstate-data": ">=2.0.3"
+    "warframe-worldstate-data": ">=2.12.2"
   },
   "engines": {
     "node": ">=18.19.0"
