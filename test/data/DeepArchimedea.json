@@ -1,0 +1,32 @@
+{
+    "mt": [
+        "Extermination",
+        "Survival",
+        "Assassination"
+    ],
+    "mv": [
+        "NecramechActivation",
+        "NecramechLockout",
+        "InfiniteTide"
+    ],
+    "c": [
+        [
+            "ExplosiveCrawlers",
+            "Voidburst"
+        ],
+        [
+            "RegeneratingEnemies",
+            "Quicksand"
+        ],
+        [
+            "AcceleratedEnemies",
+            "PointBlank"
+        ]
+    ],
+    "fv": [
+        "OperatorLockout",
+        "Knifestep",
+        "ContactDamage",
+        "ShieldDelay"
+    ]
+}
