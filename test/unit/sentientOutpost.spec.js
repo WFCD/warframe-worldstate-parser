@@ -16,10 +16,10 @@ describe('SentientOutpost', function () {
     });
     it('should throw TypeError when called with no argument or an invalid argument', function () {
       (() => {
-        SentientOutpost();
+        new SentientOutpost();
       }).should.throw(TypeError);
       (() => {
-        SentientOutpost({});
+        new SentientOutpost({});
       }).should.throw(TypeError);
     });
   });

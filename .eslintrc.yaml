@@ -12,3 +12,8 @@ rules:
   import/extensions:
     - error
     - ignorePackages
+overrides:
+  - rules:
+      no-new: off
+    files:
+      - './test/**/*.spec.js'
