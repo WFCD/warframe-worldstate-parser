@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 
 import Kuva from '../../lib/models/Kuva.js';
-import mockKuva from '../data/kuvalog.json' assert { type: 'json' };
+import mockKuva from '../data/kuvalog.json' with { type: 'json' };
 
 const should = chai.should();
 

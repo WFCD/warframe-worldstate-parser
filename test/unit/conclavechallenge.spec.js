@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 
 import ConclaveChallenge from '../../lib/models/ConclaveChallenge.js';
-import challenges from '../data/PVPChallengeInstances.json' assert { type: 'json' };
+import challenges from '../data/PVPChallengeInstances.json' with { type: 'json' };
 
 const should = chai.should();
 

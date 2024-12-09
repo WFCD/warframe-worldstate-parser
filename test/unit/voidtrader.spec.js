@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 
 import VoidTrader from '../../lib/models/VoidTrader.js';
-import VaultTrader from '../data/VaultTrader.json' assert { type: 'json' };
+import VaultTrader from '../data/VaultTrader.json' with { type: 'json' };
 
 chai.should();
 

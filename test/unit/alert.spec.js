@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 
 import Alert from '../../lib/models/Alert.js';
-import Alerts from '../data/Alerts.json' assert { type: 'json' };
+import Alerts from '../data/Alerts.json' with { type: 'json' };
 
 chai.should();
 

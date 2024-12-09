@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 
 import Nightwave from '../../lib/models/Nightwave.js';
-import nwdata from '../data/Nightwave.json' assert { type: 'json' };
+import nwdata from '../data/Nightwave.json' with { type: 'json' };
 
 chai.should();
 

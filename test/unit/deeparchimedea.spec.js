@@ -2,7 +2,7 @@ import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 
 import DeepArchidemea from '../../lib/models/DeepArchidemea.js';
-import data from '../data/DeepArchimedea.json' assert { type: 'json' };
+import data from '../data/DeepArchimedea.json' with { type: 'json' };
 
 chai.should();
 chai.use(sinonChai);
