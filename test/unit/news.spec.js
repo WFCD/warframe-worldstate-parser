@@ -1,9 +1,9 @@
 import * as chai from 'chai';
 
 import News from '../../lib/models/News.js';
-import testData from '../data/News.json' assert { type: 'json' };
-import realTestData from '../data/RealNews.json' assert { type: 'json' };
-import languageTestData from '../data/LanguageNews.json' assert { type: 'json' };
+import testData from '../data/News.json' with { type: 'json' };
+import realTestData from '../data/RealNews.json' with { type: 'json' };
+import languageTestData from '../data/LanguageNews.json' with { type: 'json' };
 
 chai.should();
 

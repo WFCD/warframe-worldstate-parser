@@ -1,11 +1,11 @@
 import * as chai from 'chai';
 
 import SyndicateJob from '../../lib/models/SyndicateJob.js';
-import isoVaultBounty from '../data/isoVaultBounty.json' assert { type: 'json' };
-import plagueStarBounty from '../data/plagueStarBounty.json' assert { type: 'json' };
-import CetusFTier from '../data/CetusFTier.json' assert { type: 'json' };
-import CambionFTier from '../data/CambionFTier.json' assert { type: 'json' };
-import NoMatchJob from '../data/NoMatchJob.json' assert { type: 'json' };
+import isoVaultBounty from '../data/isoVaultBounty.json' with { type: 'json' };
+import plagueStarBounty from '../data/plagueStarBounty.json' with { type: 'json' };
+import CetusFTier from '../data/CetusFTier.json' with { type: 'json' };
+import CambionFTier from '../data/CambionFTier.json' with { type: 'json' };
+import NoMatchJob from '../data/NoMatchJob.json' with { type: 'json' };
 
 chai.should();
 

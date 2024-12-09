@@ -15,5 +15,19 @@ rules:
 overrides:
   - rules:
       no-new: off
+      'prefer-arrow-callback': off
+      'func-names': off
+      'no-unused-expressions': off
+      'valid-jsdoc': off
+      'import/no-extraneous-dependencies':
+        - error
+        - devDependencies: true
+          optionalDependencies: false
+          peerDependencies: false
+      'no-console': off
+    parserOptions:
+      requireConfigFile: false
+    env:
+      mocha: true
     files:
       - './test/**/*.spec.js'
