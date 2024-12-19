@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>warframe-worldstate-parser Source: models/PersistentEnemy.js</title>
+	<title>warframe-worldstate-parser Source: models/Calendar.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,109 +72,68 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: models/PersistentEnemy.js</h1>
+		<h1 class="page-title">Source: models/Calendar.js</h1>
     
 <section>
     <article>
         <pre
-            class="sunlight-highlight-javascript linenums">import { parseDate, languageString, node, region } from 'warframe-worldstate-data/utilities';
+            class="sunlight-highlight-javascript linenums">import {
+  languageDesc,
+  languageString,
+  parseDate,
+  translateCalendarEvent,
+  translateSeason,
+} from 'warframe-worldstate-data/utilities';
 
-import mdConfig from '../supporting/MarkdownSettings.js';
-
-import WorldstateObject from './WorldstateObject.js';
+const EventTypes = Object.freeze({
+  PLOT: 'CET_PLOT',
+  REWARD: 'CET_REWARD',
+  CHALLENGE: 'CET_CHALLENGE',
+  UPGRADE: 'CET_UPGRADE',
+});
 
 /**
- * Represents a persistent enemy
- * @augments {WorldstateObject}
+ * Event data for a 1999 calendar day
+ * @param {object} event raw event data
  */
-export default class PersistentEnemy extends WorldstateObject {
-  /**
-   * @param   {object}             data            The persistent enemy data
-   * @param   {object}             deps            The dependencies object
-   * @param   {string}             deps.locale     Locale to use for translations
-   */
-  constructor(data, { locale = 'en' } = { locale: 'en' }) {
-    super(data);
+class DayEvent {
+  constructor(event) {
+    this.type = translateCalendarEvent(event.type);
 
-    /**
-     * The enemy's type
-     * @type {string}
-     */
-    this.agentType = languageString(data.AgentType, locale);
+    if (event.challenge) this.challenge = this.eventDescription(event.challenge);
 
-    /**
-     * The location tag
-     * @type {string}
-     */
-    this.locationTag = languageString(data.LocTag, locale);
+    if (event.upgrade) this.upgrade = this.eventDescription(event.upgrade);
 
-    /**
-     * The enemy's rank
-     * @type {number}
-     */
-    this.rank = data.Rank;
+    if (event.reward) this.reward = languageString(event.reward);
 
-    /**
-     * The enemy's remaining health percentage
-     * @type {number}
-     */
-    this.healthPercent = Number.parseFloat(data.HealthPercent);
-
-    /**
-     * The percentual damage that the enemy takes when it's defeated
-     * @type {number}
-     */
-    this.fleeDamage = data.FleeDamage;
-
-    /**
-     * The region where the enemy is located
-     * @type {string}
-     */
-    this.region = region(data.Region, locale);
-
-    /**
-     * The last time the enemy was discovered
-     * @type {Date}
-     */
-    this.lastDiscoveredTime = parseDate(data.LastDiscoveredTime);
-
-    /**
-     * The node at which the enemy was last discovered
-     * @type {string}
-     */
-    this.lastDiscoveredAt = node(data.LastDiscoveredLocation, locale);
-
-    /**
-     * Whether or not the enemy is currently available
-     * @type {boolean}
-     */
-    this.isDiscovered = data.Discovered;
-
-    /**
-     * Whether or not the enemy is using ticketing
-     * @type {boolean}
-     */
-    this.isUsingTicketing = data.UseTicketing;
-
-    /**
-     * Fake ID incorporating discovery
-     * @type {string}
-     */
-    this.pid = `${this.id}${this.isDiscovered}`;
+    if (event.type === EventTypes.PLOT) {
+      this.dialogueName = event.dialogueName;
+      this.dialogueConvo = event.dialogueConvo;
+    }
   }
 
-  /**
-   * Returns a string representation of the persistent enemy
-   * @returns {string} string representation
-   */
-  toString() {
-    const status = this.isDiscovered ? 'discovered' : 'not discovered';
-    const lines = [
-      `${this.agentType} last discovered at ${this.lastDiscoveredAt}.`,
-      `It has ${this.healthPercent}% health remaining and is currently ${status}`,
-    ];
+  eventDescription(name) {
+    return { title: languageString(name), description: languageDesc(name) };
+  }
+}
 
-    return lines.join(mdConfig.lineEnd);
+export default class Calendar {
+  constructor(calendar) {
+    this.activation = parseDate(calendar.Activation);
+
+    this.expiry = parseDate(calendar.Expiry);
+
+    this.days = Array.isArray(calendar.Days)
+      ? calendar.Days.filter(Boolean).map((d) => ({ ...d, events: d.events.map((e) => new DayEvent(e)) }))
+      : [];
+
+    this.season = translateSeason(calendar.Season);
+
+    this.yearIteration = calendar.YearIteration;
+
+    this.version = calendar.Version;
+
+    this.requirements = calendar.UpgradeAvaliabilityRequirements;
   }
 }
 </pre>

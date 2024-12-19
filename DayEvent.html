@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>warframe-worldstate-parser Source: models/PersistentEnemy.js</title>
+	<title>warframe-worldstate-parser Class: DayEvent</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -67,120 +67,185 @@
 <div class="row">
 
 	
-	<div class="col-md-12">
+	<div class="col-md-8">
 	
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: models/PersistentEnemy.js</h1>
-    
+	<h1 class="page-title">Class: DayEvent</h1>
 <section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript linenums">import { parseDate, languageString, node, region } from 'warframe-worldstate-data/utilities';
 
-import mdConfig from '../supporting/MarkdownSettings.js';
+<header>
+    
+        <h2>
+        DayEvent
+        </h2>
+        
+            <div class="class-description">Event data for a 1999 calendar day</div>
+        
+    
+</header>
 
-import WorldstateObject from './WorldstateObject.js';
 
-/**
- * Represents a persistent enemy
- * @augments {WorldstateObject}
- */
-export default class PersistentEnemy extends WorldstateObject {
-  /**
-   * @param   {object}             data            The persistent enemy data
-   * @param   {object}             deps            The dependencies object
-   * @param   {string}             deps.locale     Locale to use for translations
-   */
-  constructor(data, { locale = 'en' } = { locale: 'en' }) {
-    super(data);
+<article>
+    <div class="container-overview">
+    
+        
+<hr>
+<dt>
+    <h4 class="name" id="DayEvent"><span class="type-signature"></span>new DayEvent(event)</h4>
+    
+    
+</dt>
+<dd>
 
-    /**
-     * The enemy's type
-     * @type {string}
-     */
-    this.agentType = languageString(data.AgentType, locale);
+    
 
-    /**
-     * The location tag
-     * @type {string}
-     */
-    this.locationTag = languageString(data.LocTag, locale);
+    
 
-    /**
-     * The enemy's rank
-     * @type {number}
-     */
-    this.rank = data.Rank;
+    
 
-    /**
-     * The enemy's remaining health percentage
-     * @type {number}
-     */
-    this.healthPercent = Number.parseFloat(data.HealthPercent);
+    
+    
+        <h5>Parameters:</h5>
+        
 
-    /**
-     * The percentual damage that the enemy takes when it's defeated
-     * @type {number}
-     */
-    this.fleeDamage = data.FleeDamage;
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-    /**
-     * The region where the enemy is located
-     * @type {string}
-     */
-    this.region = region(data.Region, locale);
+        <th>Type</th>
 
-    /**
-     * The last time the enemy was discovered
-     * @type {Date}
-     */
-    this.lastDiscoveredTime = parseDate(data.LastDiscoveredTime);
+        
 
-    /**
-     * The node at which the enemy was last discovered
-     * @type {string}
-     */
-    this.lastDiscoveredAt = node(data.LastDiscoveredLocation, locale);
+        
 
-    /**
-     * Whether or not the enemy is currently available
-     * @type {boolean}
-     */
-    this.isDiscovered = data.Discovered;
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
-    /**
-     * Whether or not the enemy is using ticketing
-     * @type {boolean}
-     */
-    this.isUsingTicketing = data.UseTicketing;
+    <tbody>
+    
 
-    /**
-     * Fake ID incorporating discovery
-     * @type {string}
-     */
-    this.pid = `${this.id}${this.isDiscovered}`;
-  }
+        <tr>
+            
+                <td class="name"><code>event</code></td>
+            
 
-  /**
-   * Returns a string representation of the persistent enemy
-   * @returns {string} string representation
-   */
-  toString() {
-    const status = this.isDiscovered ? 'discovered' : 'not discovered';
-    const lines = [
-      `${this.agentType} last discovered at ${this.lastDiscoveredAt}.`,
-      `It has ${this.healthPercent}% health remaining and is currently ${status}`,
-    ];
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
 
-    return lines.join(mdConfig.lineEnd);
-  }
-}
-</pre>
-    </article>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">raw event data</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="models_Calendar.js.html">models/Calendar.js</a>,
+				 <a href="models_Calendar.js.html#sunlight-1-line-20">line 20</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
 </section>
-
 
 
 
@@ -190,6 +255,10 @@ export default class PersistentEnemy extends WorldstateObject {
 
 	<div class="clearfix"></div>
 
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
 	
 
 </div>
