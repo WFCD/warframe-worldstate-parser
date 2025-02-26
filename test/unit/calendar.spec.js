@@ -16,6 +16,7 @@ describe('SentientOutpost', function () {
       calendar.days[0].events[0].challenge.description.should.equal('Kill 10 Eximus');
       calendar.days[1].events[0].upgrade.title.should.equal('Heavy Mags');
       calendar.days[4].events[0].reward.should.equal('Exilus Weapon Adapter Blueprint');
+      calendar.days[0].date.should.equal('1999-01-06T00:00:00.000Z');
     });
     it('should throw TypeError when called with no argument or an invalid argument', function () {
       (() => {
