@@ -1,0 +1,37 @@
+{
+    "mt": [
+        "Extermination",
+        "Survival",
+        "Defense"
+    ],
+    "mv": [
+        "EscalateImmediately",
+        "TechrotConjunction",
+        "ChemicalNoise"
+    ],
+    "mf": [
+        9,
+        9,
+        8
+    ],
+    "c": [
+        [
+            "JadeSpring",
+            "HeavyWarfare"
+        ],
+        [
+            "MiasmiteHive",
+            "PointBlank"
+        ],
+        [
+            "ArcadeAutomata",
+            "HostileOvergrowth"
+        ]
+    ],
+    "fv": [
+        "OverSensitive",
+        "Armorless",
+        "DullBlades",
+        "TimeDilation"
+    ]
+}
