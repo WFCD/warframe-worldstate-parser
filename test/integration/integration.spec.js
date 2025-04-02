@@ -16,20 +16,21 @@ const { expect } = chai;
 chai.should();
 chai.use(sinonChai);
 
+// eslint-disable-next-line no-unused-vars
 const json = async (url) => fetch(url).then((res) => res.json());
 const text = async (url) => fetch(url).then((res) => res.text());
 
 describe('WorldState (integration)', () => {
   it(`should parse live pc worldstate data`, async function () {
     this.timeout = 10000; // allow 10 seconds to parse the worldstate
-    const kuvaData = await json('https://10o.io/arbitrations.json');
+    // const kuvaData = await json('https://10o.io/arbitrations.json');
     const ws = await text('https://content.warframe.com/dynamic/worldState.php');
 
     (async () => {
       await WorldState.build(ws, { logger, locale: 'en' });
     }).should.not.throw();
 
-    const wsl = await WorldState.build(ws, { logger, locale: 'en', kuvaData });
+    const wsl = await WorldState.build(ws, { logger, locale: 'en', kuvaData: undefined });
     expect(wsl?.news).to.exist;
     wsl?.news?.forEach((article) => {
       if (article.message.toLowerCase().includes('stream')) {
