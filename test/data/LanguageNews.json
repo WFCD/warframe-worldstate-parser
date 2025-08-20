@@ -2,7 +2,11 @@
   "_id": { "$oid": "1234sg" },
   "Activation": { "sec": 1 },
   "Expiry": { "sec": 3 },
-  "Messages": [{ "Message": "/Lotus/Language/Test" }],
+  "Messages": [{ "LanguageCode": "en", "Message": "/Lotus/Language/Test"  }],
   "Date": { "sec": 1000 },
-  "Prop": "https://forums.warframe.com/"
+  "Prop": "https://forums.warframe.com/",
+  "Links":[], 
+  "ImageUrl": "", 
+  "Priority": false,
+  "MobileOnly": false
 }

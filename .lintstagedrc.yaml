@@ -1,7 +1,7 @@
 '*.**,!package*.json':
   - 'npm run fmt:fix'
-'*.js':
-  - eslint -c .eslintrc.yaml --fix --cache
+'*.ts':
+  - biome lint --write
   - npm test -- --reporter=mocha-minimalist-reporter
 package*.json:
   - npm dedupe
