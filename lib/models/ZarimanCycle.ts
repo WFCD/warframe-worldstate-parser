@@ -11,7 +11,7 @@ const corpusTimeMillis = 1655182800000;
 const fullCycle = 18000000;
 const stateMaximum = 9000000;
 
-export interface ZCycle {
+export interface CurrentZarimanCycle {
   isCorpus: boolean;
   timeLeft: string;
   expiry: Date;
@@ -43,7 +43,7 @@ export default class ZarimanCycle extends WorldstateObject {
   /**
    * The current zariman cycle, for calculating the other fields
    */
-  private ec: ZCycle;
+  private ec: CurrentZarimanCycle;
 
   /**
    * The end of the Zariman bounties timer, the faction changes exactly half way through
@@ -77,7 +77,7 @@ export default class ZarimanCycle extends WorldstateObject {
     return this.expiry ? fromNow(this.expiry) < 0 : true;
   }
 
-  getCurrentZarimanCycle(): ZCycle {
+  getCurrentZarimanCycle(): CurrentZarimanCycle {
     const now = Date.now();
     // determine if it is corpus cycle or grineer cycle based on bounty end time
     // we subtract 5000 millis (5 seconds) to ensure the corpus/grineer calculation is correct
