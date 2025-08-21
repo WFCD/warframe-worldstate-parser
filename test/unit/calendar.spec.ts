@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 
-import Calendar, { RawCalender } from '../../lib/models/Calendar';
+import Calendar, { type RawCalender } from '../../lib/models/Calendar';
 import data from '../data/Calendar.json' with { type: 'json' };
 
 chai.should();

@@ -26,12 +26,12 @@ export default class VoidTraderItem {
   credits: number;
 
   /**
-   * @param   {object}             data            The void trader item data
-   * @param   {string}             data.ItemType   Worldstate Item i18n path
-   * @param   {string}             data.PrimePrice Ducat cost of the item
-   * @param   {string}             data.RegularPrice Credit price of the item
-   * @param   {Dependency}         deps            The dependencies object
-   * @param   {string}             deps.locale     Locale to use for translations
+   * @param data              The void trader item data
+   * @param data.ItemType     Worldstate Item i18n path
+   * @param data.PrimePrice   Ducat cost of the item
+   * @param data.RegularPrice Credit price of the item
+   * @param deps              The dependencies object
+   * @param deps.locale       Locale to use for translations
    */
   constructor(
     { ItemType, PrimePrice, RegularPrice }: RawVoidTraderItem,

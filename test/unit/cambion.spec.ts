@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 
 import CambionCycle from '../../lib/models/CambionCycle';
-import CetusCycle from '../../lib/models/CetusCycle';
+import type CetusCycle from '../../lib/models/CetusCycle';
 
 const should = chai.should();
 
@@ -23,7 +23,7 @@ describe('CambionCycle', function () {
         isDay: false,
       } as CetusCycle);
 
-      const expiry = cycle.getExpired();
+      const expiry = cycle.expired;
       should.equal(expiry, true);
     });
 
@@ -34,7 +34,6 @@ describe('CambionCycle', function () {
         isDay: true,
       } as CetusCycle);
 
-      should.equal(cycle.active, 'fass');
       should.equal(cycle.state, 'fass');
     });
 
@@ -45,7 +44,6 @@ describe('CambionCycle', function () {
         isDay: false,
       } as CetusCycle);
 
-      should.equal(cycle.active, 'vome');
       should.equal(cycle.state, 'vome');
     });
   });

@@ -1,10 +1,16 @@
-import { parseDate, fromNow, timeDeltaToString, languageString } from 'warframe-worldstate-data/utilities';
+import {
+  parseDate,
+  fromNow,
+  timeDeltaToString,
+  languageString,
+  ContentTimestamp,
+} from 'warframe-worldstate-data/utilities';
 
 import mdConfig from '../supporting/MarkdownSettings.js';
 import Dependency from '../supporting/Dependency.js';
-import { ContentTimestamp } from './WorldstateObject.js';
+import { BaseContentObject } from './WorldstateObject.js';
 
-export interface RawFlashSale {
+export interface RawFlashSale extends BaseContentObject {
   TypeName: string;
   EndDate: ContentTimestamp;
   StartDate: ContentTimestamp;
@@ -71,16 +77,6 @@ export default class FlashSale {
   id: string;
 
   /**
-   * Whether or not this is expired (at time of object creation)
-   */
-  expired: boolean;
-
-  /**
-   * ETA string (at time of object creation)
-   */
-  eta: string;
-
-  /**
    * @param   {object}             data            The flash sale data
    * @param   {Dependency}             deps            The dependencies object
    * @param   {string}             deps.locale     Locale to use for translations
@@ -105,42 +101,19 @@ export default class FlashSale {
     this.isPopular = data.Popular;
 
     this.id = `${data.TypeName.split('/').slice(-1)[0]}${this.expiry.getTime()}`;
-
-    this.expired = this.getExpired();
-
-    this.eta = this.getETAString();
   }
 
   /**
-   * Get how much time is left before the deal expires
+   * ETA string (at time of object creation)
    */
-  getETAString() {
+  get eta() {
     return timeDeltaToString(fromNow(this.expiry));
   }
 
   /**
-   * Get whether or not this deal has expired
+   * Whether or not this is expired (at time of object creation)
    */
-  getExpired(): boolean {
+  get expired(): boolean {
     return fromNow(this.expiry) < 0;
-  }
-
-  /**
-   * Returns a string representation of the flash sale
-   */
-  toString(): string {
-    const lines = [`${this.item}, ${this.premiumOverride}p`, `Expires in ${this.getETAString()}`];
-
-    if (this.discount) {
-      lines.unshift(`${this.discount}% off!`);
-    } else if (this.isShownInMarket) {
-      lines.unshift('**ShowInMarket**');
-    } else if (this.isPopular) {
-      lines.unshift('**Popular**');
-    } else if (this.isFeatured) {
-      lines.unshift('**Featured**');
-    }
-
-    return `${mdConfig.codeBlock}${lines.join(mdConfig.lineEnd)}${mdConfig.blockEnd}`;
   }
 }

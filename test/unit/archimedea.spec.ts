@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 
-import DeepArchidemea, { RawArchimedea } from '../../lib/models/Archidemea';
+import DeepArchidemea, { type RawArchimedea } from '../../lib/models/Archidemea';
 import deepData from '../data/DeepArchimedea.json' with { type: 'json' };
 import temporalData from '../data/TemporalArchimedea.json' with { type: 'json' };
 

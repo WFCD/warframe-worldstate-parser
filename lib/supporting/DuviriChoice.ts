@@ -1,6 +1,8 @@
-export interface RawChoice {
+import { BaseContentObject } from '../models/WorldstateObject';
+
+export interface RawChoice extends BaseContentObject {
   Category: 'EXC_NORMAL' | 'EXC_HARD';
-  Choices: string[]
+  Choices: string[];
 }
 
 /**
@@ -10,7 +12,7 @@ export default class DuviriChoice {
   category: string;
   categoryKey: string;
   choices: string[];
-  
+
   constructor(data: RawChoice) {
     switch (data.Category) {
       case 'EXC_NORMAL':

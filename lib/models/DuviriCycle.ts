@@ -35,39 +35,27 @@ const getStageInfo = (): {
  * @augments {WorldstateObject}
  */
 export default class DuviriCycle extends WorldstateObject {
+  /**
+   * Current stage key
+   */
   state: string;
+
+  /**
+   * Choice options for this Cycle
+   */
   choices: DuviriChoice[];
 
+  /**
+   * @param duviriChoices The current circuit choices
+   */
   constructor(duviriChoices: DuviriChoice[]) {
     super({ _id: { $oid: 'duviriCycle0' } });
     const { activation, expiry, state } = getStageInfo();
 
-    /**
-     * When the cycle start(s/ed)
-     * @type {Date}
-     */
     this.activation = activation;
-    /**
-     * When the cycle end(s/ed)
-     * @type {Date}
-     */
     this.expiry = expiry;
-    /**
-     * Current stage key
-     * @type {string}
-     */
     this.state = state;
-    /**
-     * Choice options for this Cycle
-     */
     this.choices = duviriChoices;
-
     this.id = `duviriCycle${this.state}${this.expiry.getTime()}`;
-  }
-
-  toString(): string {
-    return `${toTitleCase(this.state)} spiral. ${toTitleCase(
-      states[(states.indexOf(this.state) + 1) % 5]
-    )} in ${timeDeltaToString(new Date(this.expiry!).getTime() - Date.now())}`;
   }
 }

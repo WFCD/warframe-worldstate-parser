@@ -1,11 +1,9 @@
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
-import mdConfig from '../supporting/MarkdownSettings';
-
-import WorldstateObject, { BaseContentObject } from './WorldstateObject';
-import Mission, { RawMission } from './Mission';
 import Dependency from '../supporting/Dependency';
+import Mission, { RawMission } from './Mission';
 import Reward from './Reward';
+import WorldstateObject, { BaseContentObject } from './WorldstateObject';
 
 export interface RawAlert extends BaseContentObject {
   MissionInfo: RawMission;
@@ -21,14 +19,6 @@ export default class Alert extends WorldstateObject {
    * The mission that the players have to complete
    */
   mission: Mission;
-  /**
-   * ETA string (at time of object creation)
-   */
-  eta: string;
-  /**
-   * An array containing the types of all of the alert's rewards
-   */
-  rewardTypes: string[];
 
   /**
    * A tag that DE occasionally provides, such as `LotusGift`
@@ -43,45 +33,34 @@ export default class Alert extends WorldstateObject {
     };
 
     this.mission = new Mission(data.MissionInfo, deps);
-    this.eta = this.getETAString();
-    this.rewardTypes = this.getRewardTypes()?.length ? this.getRewardTypes()! : ['credits'];
     this.tag = data.Tag || undefined;
   }
 
   /**
-   * Get the alert's description text
+   * Alert's description
    */
-  getDescription(): string {
+  get description(): string {
     return this.mission.description;
   }
 
   /**
-   * Get the alert's reward
+   * Alert rewards
    */
-  getReward(): Reward | undefined {
+  get reward(): Reward | undefined {
     return this.mission.reward;
   }
 
   /**
-   * Get a string indicating how much time is left before the alert expires
+   * How much time is left before the alert expires
    */
-  getETAString(): string {
+  get eta(): string {
     return timeDeltaToString(fromNow(this.expiry!));
   }
 
-  /**
-   * Get an array containing the types of all of the alert's rewards
+   /**
+   * An array containing the types of all of the alert's rewards
    */
-  getRewardTypes(): string[] | undefined {
-    return this.mission.reward?.getTypes();
-  }
-
-  /**
-   * The alert's string representation
-   */
-  toString(): string {
-    const lines = [this.mission.toString(), this.getETAString()];
-
-    return `${mdConfig.codeBlock}${lines.join(mdConfig.lineEnd)}${mdConfig.blockEnd}`;
+  get rewardTypes(): string[] | undefined {
+    return this.reward?.getTypes()?.length ? this.reward.getTypes()! : ['credits']
   }
 }

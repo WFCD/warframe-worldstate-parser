@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import DarkSector, { RawDarkSector } from '../../lib/models/DarkSector';
+import DarkSector, { type RawDarkSector } from '../../lib/models/DarkSector';
 
 chai.should();
 describe('DarkSector', function () {

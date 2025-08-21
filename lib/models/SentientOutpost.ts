@@ -1,4 +1,3 @@
-import { Locale } from 'warframe-worldstate-data';
 import { node, nodeEnemy, nodeMissionType } from 'warframe-worldstate-data/utilities';
 import Dependency from '../supporting/Dependency';
 
@@ -22,15 +21,10 @@ const sat = () => {
 
 /**
  * Mission typeDef
- * @typedef {object} Mission
- * @property {string} node Mission node name
- * @property {string} enemy Node enemy
- * @property {string} type Mission type of the node
  */
-
 interface Mission {
   node: string;
-  enemy: string;
+  faction: string;
   type: string;
 }
 
@@ -50,12 +44,31 @@ interface Mission {
 export default class SentientOutpost {
   private node;
 
-  mission: { node: string; faction: string; type: string } | undefined;
-  activation: Date;
-  expiry: Date;
-  active: boolean;
   id: string;
 
+  /**
+   * Start time
+   */
+  activation: Date;
+  /**
+   * End time
+   */
+  expiry: Date;
+
+  /**
+   * Current Mission
+   */
+  mission?: Mission;
+
+  /**
+   * Whether or not the object was active during creation
+   */
+  active: boolean;
+
+  /**
+   * @param sfn  Sentient outpost node number
+   * @param deps Dependencies
+   */
   constructor(sfn: string | number | undefined, { locale, sentientData, logger }: Dependency) {
     this.node = sfn || '000';
     const id = `CrewBattleNode${this.node}`;

@@ -13,7 +13,7 @@ import Kuva from './models/Kuva';
 import SentientOutpost from './models/SentientOutpost';
 import CambionCycle from './models/CambionCycle';
 import SteelPathOffering from './models/SteelPathOffering';
-import Dependency from './supporting/Dependency'; // eslint-disable-line no-unused-vars
+import Dependency from './supporting/Dependency';
 import DuviriCycle from './models/DuviriCycle';
 import WeeklyChallenge, { RawWeeklyChallenge } from './models/WeeklyChallenge';
 import Sortie, { RawSortie } from './models/Sortie';
@@ -35,7 +35,7 @@ import News, { RawNews } from './models/News';
 import Kinepage from './models/Kinepage';
 import Calendar, { RawCalender } from './models/Calendar';
 import MidrathCycle from './models/MidrathCycle';
-import WorldstateObject from './models/WorldstateObject';
+import WorldstateObject, { BaseContentObject } from './models/WorldstateObject';
 import Archimedea, { RawArchimedea } from './models/Archidemea';
 import ExternalMission from './supporting/ExternalMission';
 
@@ -56,13 +56,13 @@ const defaultDeps: Dependency = {
 
 /**
  *
- * @param {object} ParserClass class for parsing data
- * @param {Array<BaseContentObject>} dataArray array of raw data
- * @param {Dependency} deps shared dependency object
- * @param {*} [uniqueField] field to treat as unique
- * @returns {WorldstateObject[]} array of parsed objects
+ * @param ParserClass class for parsing data
+ * @param dataArray array of raw data
+ * @param deps shared dependency object
+ * @param uniqueField field to treat as unique
+ * @returns  array of parsed objects
  */
-export function parseArray<T, D extends object>(
+export function parseArray<T, D extends BaseContentObject>(
   ParserClass: new (data: D, deps: Dependency) => T,
   dataArray: Array<D>,
   deps: Dependency,
@@ -78,7 +78,6 @@ export function parseArray<T, D extends object>(
     });
     return Array.from(arr).filter((obj: any) => {
       if (obj && obj.active && typeof obj.active !== 'undefined') return obj.active;
-      /* istanbul ignore next */
       return true;
     });
   }
@@ -87,20 +86,19 @@ export function parseArray<T, D extends object>(
 
 /**
  * Parse array of objects that requires async parsing
- * @param {object} ParserClass class for parsing data - must expose a static build method
- * @param {Array<BaseContentObject>} dataArray array of raw data
- * @param {Dependency} deps shared dependency object
- * @param {*} [uniqueField] field to treat as unique
- * @returns {Promise<WorldstateObject[]>} array of parsed objects
+ * @param ParserClass class for parsing data - must expose a static build method
+ * @param dataArray array of raw data
+ * @param deps shared dependency object
+ * @param uniqueField field to treat as unique
+ * @returns array of parsed objects
  */
-export async function parseAsyncArray<T extends WorldstateObject, D extends object>(
+export async function parseAsyncArray<T extends WorldstateObject, D extends BaseContentObject>(
   ParserClass: { build: (data: D, deps: Dependency) => Promise<T> },
   dataArray: Array<D>,
   deps: Dependency,
   uniqueField?: keyof T
 ): Promise<T[]> {
   const arr = [];
-  // eslint-disable-next-line no-restricted-syntax
   for await (const d of dataArray ?? []) {
     arr.push(await ParserClass.build(d, deps));
   }
@@ -113,7 +111,6 @@ export async function parseAsyncArray<T extends WorldstateObject, D extends obje
     });
     return Array.from(arr).filter((obj) => {
       if (obj && obj.active && typeof obj.active !== 'undefined') return obj.active;
-      /* istanbul ignore next */
       return true;
     });
   }
@@ -159,45 +156,200 @@ export interface RawTmp {
  * Parses Warframe Worldstate JSON
  */
 export class WorldState {
-  events: WorldEvent[];
-  syndicateMissions: SyndicateMission[];
+  /**
+   * The date and time at which the World State was generated
+   */
   timestamp: Date;
+
+  /**
+   * The in-game news
+   */
   news: News[];
+
+  /**
+   * The current events
+   */
+  events: WorldEvent[];
+
+  /**
+   * The current alerts
+   */
   alerts: Alert[];
+
+  /**
+   * The current sortie
+   */
   sortie: Sortie;
+
+  /**
+   * The current syndicate missions
+   */
+  syndicateMissions: SyndicateMission[];
+
+  /**
+   * The current fissures: 'ActiveMissions' & 'VoidStorms'
+   */
   fissures: Fissure[];
+
+  /**
+   * The current global upgrades
+   */
   globalUpgrades: GlobalUpgrade[];
+
+  /**
+   * The current flash sales
+   */
   flashSales: FlashSale[];
+
+  /**
+   * The current invasions
+   */
   invasions: Invasion[];
+
+  /**
+   * The state of the dark sectors
+   */
   darkSectors: DarkSector[];
+
+  /**
+   * The state of all Void Traders
+   */
   voidTraders: VoidTrader[];
+
+  /**
+   * The first entry for voidTraders
+   * @deprecated
+   */
   voidTrader: VoidTrader;
+
+  /**
+   * The current daily deals
+   */
   dailyDeals: DailyDeal[];
+
+  /**
+   * The state of the sanctuary synthesis targets
+   */
   simaris: Simaris;
+
+  /**
+   * The current conclave challenges
+   */
   conclaveChallenges: ConclaveChallenge[];
+
+  /**
+   * The currently active persistent enemies
+   */
   persistentEnemies: PersistentEnemy[];
+
+  /**
+   * The current earth cycle
+   */
   earthCycle: EarthCycle;
+
+  /**
+   * The current Cetus cycle
+   */
   cetusCycle: CetusCycle;
+
+  /**
+   * Cambion Drift Cycle
+   */
   cambionCycle: CambionCycle;
+
+  /**
+   * The current Zariman cycle based off current time
+   */
   zarimanCycle: ZarimanCycle;
+
+  /**
+   * Midrath cycle (soulframe)
+   */
   midrathCycle: MidrathCycle;
+
+  /**
+   * Weekly challenges
+   */
   weeklyChallenges?: WeeklyChallenge;
+
+  /**
+   * The Current construction progress for Fomorians/Razorback/etc.
+   */
   constructionProgress: ConstructionProgress;
+
+  /**
+   * The current Orb Vallis cycle state
+   */
   vallisCycle: VallisCycle;
-  nightwave: Nightwave | undefined;
-  kuva: ExternalMission[] | undefined;
-  arbitration: ExternalMission | undefined;
+
+  /**
+   * The current nightwave season
+   */
+  nightwave?: Nightwave;
+
+  /**
+   * Kuva missions array
+   */
+  kuva?: ExternalMission[];
+
+  /**
+   * Arbitration mission
+   */
+  arbitration?: ExternalMission;
+
+  /**
+   * Current sentient outposts
+   */
   sentientOutposts: SentientOutpost;
+
+  /**
+   * Steel path offering rotation
+   */
   steelPath: SteelPathOffering;
-  vaultTrader: any;
-  archonHunt: any;
+
+  /**
+   * The current prime resurgence
+   */
+  vaultTrader: VoidTrader;
+
+  /**
+   * The current archon hunt
+   */
+  archonHunt: Sortie;
+
+  /**
+   * Current Duviri circuit choices
+   */
   duviriCycle: DuviriCycle;
+
+  /**
+   * Current kinepage message
+   */
   kinepage: Kinepage;
-  deepArchimedea: Archimedea | undefined;
-  temporalArchimedea: Archimedea | undefined;
+
+  /**
+   * The current Deep Archimedea missions and modifiers
+   */
+  deepArchimedea?: Archimedea;
+
+  /**
+   * The current Temporal Archimedea missions and modifiers
+   */
+  temporalArchimedea?: Archimedea;
+
+  /**
+   * The current calendar for 1999
+   */
   calendar: Calendar;
 
-  static async build(json: string, deps = defaultDeps): Promise<WorldState> {
+  /**
+   * Generates the worldstate json as a string into usable objects
+   */
+  static async build(json: string, deps: Dependency = defaultDeps): Promise<WorldState> {
+    if (typeof json !== 'string') {
+      throw new TypeError(`json needs to be a string, provided ${typeof json} : ${JSON.stringify(json)}`);
+    }
+
     const data = JSON.parse(json);
     const ws = new WorldState(data, deps);
 
@@ -208,31 +360,19 @@ export class WorldState {
   }
 
   /**
-   * Generates the worldstate json as a string into usable objects
-   * @param {string} json The worldstate JSON string
-   * @param {Dependency} [deps] The options object
-   * @class
-   * @async
+   * @param data The worldstate JSON string
+   * @param deps The options object
    */
   constructor(data: RawWorldState, deps: Dependency = defaultDeps) {
     const tmp: RawTmp = JSON.parse(data.Tmp);
 
-    // eslint-disable-next-line no-param-reassign
     deps = {
       ...defaultDeps,
       ...deps,
     };
 
-    /**
-     * The date and time at which the World State was generated
-     * @type {Date}
-     */
     this.timestamp = new Date(data.Time * 1000);
 
-    /**
-     * The in-game news
-     * @type {Array.<News>}
-     */
     this.news = parseArray(
       News,
       safeArray<RawNews>(data.Events).filter(
@@ -241,103 +381,38 @@ export class WorldState {
       deps
     );
 
-    /**
-     * The current events
-     * @type {Array.<WorldEvent>}
-     */
     this.events = [];
 
-    /**
-     * The current alerts
-     * @type {Array.<Alert>}
-     */
     this.alerts = parseArray(Alert, data.Alerts, deps);
 
-    /**
-     * The current sortie
-     * @type {Sortie}
-     */
     [this.sortie] = parseArray(Sortie, data.Sorties, deps);
 
-    /**
-     * The current syndicate missions
-     * @type {Array.<SyndicateMission>}
-     */
     this.syndicateMissions = [];
 
-    /**
-     * The current fissures: 'ActiveMissions' & 'VoidStorms'
-     * @type {Array.<Fissure>}
-     */
     this.fissures = parseArray(Fissure, data.ActiveMissions, deps).concat(parseArray(Fissure, data.VoidStorms, deps));
 
-    /**
-     * The current global upgrades
-     * @type {Array.<GlobalUpgrade>}
-     */
     this.globalUpgrades = parseArray(GlobalUpgrade, data.GlobalUpgrades, deps);
 
-    /**
-     * The current flash sales
-     * @type {Array.<FlashSale>}
-     */
     this.flashSales = parseArray(FlashSale, data.FlashSales, deps);
 
-    /**
-     * The current invasions
-     * @type {Array.<Invasion>}
-     */
     this.invasions = parseArray(Invasion, data.Invasions, deps);
 
-    /**
-     * The state of the dark sectors
-     * @type {Array.<DarkSector>}
-     */
     this.darkSectors = parseArray(DarkSector, data.BadlandNodes, deps);
 
-    /**
-     * The state of all Void Traders
-     * @type {VoidTrader[]}
-     */
     this.voidTraders = parseArray(VoidTrader, data.VoidTraders, deps).sort(
       (a, b) => a.activation!.getTime() - b.activation!.getTime()
     );
 
-    /**
-     * The state of the Void Trader
-     * @type {VoidTrader}
-     * @deprecated
-     */
     [this.voidTrader] = this.voidTraders;
 
-    /**
-     * The current daily deals
-     * @type {Array.<DailyDeal>}
-     */
     this.dailyDeals = parseArray(DailyDeal, data.DailyDeals, deps);
 
-    /**
-     * The state of the sanctuary synthesis targets
-     * @type {Simaris}
-     */
     this.simaris = new Simaris(safeObj(data.LibraryInfo), deps);
 
-    /**
-     * The current conclave challenges
-     * @type {Array.<ConclaveChallenge>}
-     */
     this.conclaveChallenges = parseArray(ConclaveChallenge, data.PVPChallengeInstances, deps);
 
-    /**
-     * The currently active persistent enemies
-     * @type {Array.<PersistentEnemy>}
-     */
     this.persistentEnemies = parseArray(PersistentEnemy, data.PersistentEnemies, deps);
 
-    /**
-     * The current earth cycle
-     * @type {EarthCycle}
-     */
     this.earthCycle = new EarthCycle();
 
     // bounties are 2.5 hours regardless of faction, so this can be reused
@@ -346,34 +421,14 @@ export class WorldState {
     );
     const bountyEnd = parseDate(cetusSynd.length > 0 ? cetusSynd[0].Expiry : { $date: { $numberLong: 0 } });
 
-    /**
-     * The current Cetus cycle
-     * @type {CetusCycle}
-     */
     this.cetusCycle = new CetusCycle(bountyEnd);
 
-    /**
-     * Cambion Drift Cycle
-     * @type {CambionCycle}
-     */
     this.cambionCycle = new CambionCycle(this.cetusCycle);
 
-    /**
-     * The current Zariman cycle based off current time
-     * @type {ZarimanCycle}
-     */
     this.zarimanCycle = new ZarimanCycle(bountyEnd);
 
-    /**
-     * Midrath cycle (soulframe)
-     * @type {MidrathCycle}
-     */
     this.midrathCycle = new MidrathCycle();
 
-    /**
-     * Weekly challenges
-     * @type {Array.<WeeklyChallenge>}
-     */
     this.weeklyChallenges = data.WeeklyChallenges ? new WeeklyChallenge(data.WeeklyChallenges) : undefined;
 
     const projectPCTwithOid = data.ProjectPct
@@ -385,40 +440,17 @@ export class WorldState {
         }
       : undefined;
 
-    /**
-     * The Current construction progress for Fomorians/Razorback/etc.
-     * @type {ConstructionProgress}
-     */
     this.constructionProgress = new ConstructionProgress(safeObj(projectPCTwithOid));
 
-    /**
-     * The current Orb Vallis cycle state
-     * @type {VallisCycle}
-     */
     this.vallisCycle = new VallisCycle();
 
     if (data.SeasonInfo) {
-      /**
-       * The current nightwave season
-       * @type {Nightwave}
-       */
       this.nightwave = new Nightwave(data.SeasonInfo, deps);
     }
 
     const externalMissions = new Kuva(deps);
 
-    ({
-      /**
-       * Kuva missions array
-       * @type {ExternalMission[]}
-       */
-      kuva: this.kuva,
-      /**
-       * Arbitration mission
-       * @type {ExternalMission}
-       */
-      arbitration: this.arbitration,
-    } = externalMissions);
+    ({ kuva: this.kuva, arbitration: this.arbitration } = externalMissions);
 
     if (!this.arbitration || !Object.keys(this.arbitration).length) {
       this.arbitration = {
@@ -436,24 +468,12 @@ export class WorldState {
       };
     }
 
-    /**
-     * Current sentient outposts
-     * @type {SentientOutpost}
-     */
     this.sentientOutposts = new SentientOutpost(tmp.sfn, deps);
 
-    /**
-     * Steel path offering rotation
-     * @type {SteelPathOffering}
-     */
     this.steelPath = new SteelPathOffering(deps);
 
     [this.vaultTrader] = parseArray(VoidTrader, data.PrimeVaultTraders, deps);
 
-    /**
-     * The current archon hunt
-     * @type {Sortie}
-     */
     [this.archonHunt] = parseArray(Sortie, data.LiteSorties, deps);
 
     const choices = parseArray(DuviriChoice, data.EndlessXpChoices, deps);
@@ -463,21 +483,11 @@ export class WorldState {
 
     if (tmp.lqo) {
       const { activation, expiry } = weeklyReset();
-
-      /**
-       * The current Deep Archimedea missions and modifiers
-       * @type {DeepArchimedea}
-       */
       this.deepArchimedea = new Archimedea(activation, expiry, tmp.lqo);
     }
 
     if (tmp.hqo) {
       const { activation, expiry } = weeklyReset();
-
-      /**
-       * The current Temporal Archimedea missions and modifiers
-       * @type {DeepArchimedea}
-       */
       this.temporalArchimedea = new Archimedea(activation, expiry, tmp.hqo);
     }
 

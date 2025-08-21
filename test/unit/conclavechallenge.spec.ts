@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import ConclaveChallenge, { RawChallenge } from '../../lib/models/ConclaveChallenge';
+import ConclaveChallenge, { type RawChallenge } from '../../lib/models/ConclaveChallenge';
 import challenges from '../data/PVPChallengeInstances.json' with { type: 'json' };
 
 const should = chai.should();

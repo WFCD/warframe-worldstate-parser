@@ -94,22 +94,53 @@ export interface RawSyndicateJob {
  * @augments {WorldstateObject}
  */
 export default class SyndicateJob extends WorldstateObject {
+  /**
+   * Array of strings describing rewards
+   */
   rewardPool: string[];
+
+  /**
+   * The type of job this is
+   */
   type: string;
+
+  /**
+   * Array of enemy levels
+   */
   enemyLevels: number[];
+
+  /**
+   * Array of standing gains per stage of job
+   */
   standingStages: number[];
+
+  /**
+   * Minimum mastery required to participate
+   */
   minMR: number;
+
+  /**
+   * Whether or not this is a Vault job.
+   * No indication for difference of normal vs arcana vaults.
+   */
   isVault: boolean;
+
+  /**
+   * Corresponding chamber. Nullable
+   */
   locationTag?: string;
+
+  /**
+   * What time phase this bounty is bound to
+   */
   timeBound: string | undefined;
 
   /**
    * Generate a job with async data (reward pool)
-   * @param {object} data The syndicate mission data
-   * @param {Date} expiry The syndicate job expiration
-   * @param {object} deps The dependencies object
-   * @param {string} deps.locale Locale to use for translations
-   * @returns {Promise<SyndicateJob>} The created SyndicateJob object with rewardPool
+   * @param data   The syndicate mission data
+   * @param expiry The syndicate job expiration
+   * @param deps   The dependencies object
+   * @returns The created SyndicateJob object with rewardPool
    */
   static async build(data: RawSyndicateJob, expiry: Date, deps: Dependency): Promise<SyndicateJob> {
     const job = new SyndicateJob(data, expiry, deps);
@@ -120,10 +151,10 @@ export default class SyndicateJob extends WorldstateObject {
 
   /**
    * Construct a job without async data (reward pool)
-   * @param {object} data The syndicate mission data
-   * @param {Date} expiry The syndicate job expiration
-   * @param {object} deps The dependencies object
-   * @param {string} deps.locale Locale to use for translations
+   * @param data        The syndicate mission data
+   * @param expiry      The syndicate job expiration
+   * @param deps        The dependencies object
+   * @param deps.locale Locale to use for translations
    *
    * This DOES NOT populate the reward pool
    */
@@ -136,63 +167,23 @@ export default class SyndicateJob extends WorldstateObject {
       },
     });
 
-    /**
-     * Array of strings describing rewards
-     * @type {Array.<string>}
-     */
     this.rewardPool = [];
 
     const chamber = ((data.locationTag || '').match(/[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+/g) || []).join(' ');
 
-    /**
-     * The type of job this is
-     * @type {string}
-     */
     this.type = data.isVault ? `Isolation Vault ${chamber}` : languageString(data.jobType!, locale);
 
-    /**
-     * Array of enemy levels
-     * @type {Array.<number>}
-     */
     this.enemyLevels = [data.minEnemyLevel, data.maxEnemyLevel];
 
-    /**
-     * Array of standing gains per stage of job
-     * @type {Array.<number>}
-     */
     this.standingStages = data.xpAmounts;
 
-    /**
-     * Minimum mastery required to participate
-     * @type {number}
-     */
     this.minMR = data.masteryReq || 0;
 
-    /**
-     * Whether or not this is a Vault job.
-     * No indication for difference of normal vs arcana vaults.
-     * @type {boolean}
-     */
     this.isVault = data.isVault ?? false;
 
-    /**
-     * Corresponding chamber. Nullable
-     * @type {string|null}
-     */
     this.locationTag = data.locationTag;
 
-    /**
-     * End time for the syndicate mission.
-     * Should be inherited from the Syndicate, but some are timebound.
-     * @type {Date}
-     */
     this.expiry = expiry;
-
-    /**
-     * What time phase this bounty is bound to
-     * @type {string}
-     */
-    this.timeBound = undefined;
 
     if (data.jobType && data.jobType.toLowerCase().includes('narmer')) {
       if (data.jobType.toLowerCase().includes('eidolon')) {

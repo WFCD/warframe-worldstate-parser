@@ -46,9 +46,9 @@ export default class ChallengeInstance {
   target?: string;
 
   /**
-   * @param   data            The challenge instance data
-   * @param   deps            The dependencies object
-   * @param   deps.locale     Locale to use for translations
+   * @param   data        The challenge instance data
+   * @param   deps        The dependencies object
+   * @param   deps.locale Locale to use for translations
    */
   constructor(data: RawChallengeInstance, { locale = 'en' }: Dependency = { locale: 'en' }) {
     this.type = languageString(data.Type, locale);
@@ -66,9 +66,5 @@ export default class ChallengeInstance {
         ? languageString(data.VictimType[0], locale)
         : // eslint-disable-next-line no-underscore-dangle
           data.Script?._faction;
-  }
-
-  toString(): string {
-    return `Task: ${this.type}\nAmount: ${this.requiredAmount}\nTarget: ${this.target}`;
   }
 }

@@ -6,14 +6,13 @@ import CetusCycle from './CetusCycle';
 /**
  * Represents the current Cambion Drift Fass/Vome Cycle
  * @augments {WorldstateObject}
- * @property {string} timeLeft time rendering of amount of time left
  */
 export default class CambionCycle extends WorldstateObject {
-  timeLeft: any;
+  timeLeft: string;
   state: string;
 
   /**
-   * @param   {CetusCycle}        cetusCycle Match data from cetus cycle for data
+   * @param {CetusCycle} cetusCycle Match data from cetus cycle for data
    */
   constructor(cetusCycle: CetusCycle) {
     super({ _id: { $oid: 'cambionCycle0' } });
@@ -21,7 +20,6 @@ export default class CambionCycle extends WorldstateObject {
     ({ activation: this.activation, expiry: this.expiry, timeLeft: this.timeLeft } = cetusCycle);
 
     this.state = cetusCycle.isDay ? 'fass' : 'vome';
-    this.active = this.state;
 
     this.id = `cambionCycle${this.expiry!.getTime()}`;
   }
@@ -29,7 +27,7 @@ export default class CambionCycle extends WorldstateObject {
   /**
    * Get whether the event has expired
    */
-  getExpired(): boolean {
+  get expired(): boolean {
     return fromNow(this.expiry!) < 0;
   }
 }

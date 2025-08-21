@@ -1,8 +1,16 @@
-import { fromNow, parseDate, faction, languageString, node, syndicate } from 'warframe-worldstate-data/utilities';
+import {
+  fromNow,
+  parseDate,
+  faction,
+  languageString,
+  node,
+  syndicate,
+  ContentTimestamp,
+} from 'warframe-worldstate-data/utilities';
 
 import mdConfig from '../supporting/MarkdownSettings';
 
-import WorldstateObject, { BaseContentObject, ContentTimestamp, Identifier } from './WorldstateObject';
+import WorldstateObject, { BaseContentObject, Identifier } from './WorldstateObject';
 import SyndicateJob, { RawSyndicateJob } from './SyndicateJob';
 import Reward, { RawReward } from './Reward';
 import Dependency from '../supporting/Dependency';
@@ -81,46 +89,143 @@ export interface RawWorldEvent extends BaseContentObject {
 export default class WorldEvent extends WorldstateObject {
   jobs: SyndicateJob[];
   previousJobs: SyndicateJob[];
+
+  /**
+   * The event's main score goal
+   */
   maximumScore: number;
+
+  /**
+   * The current score on the event
+   */
   currentScore: number;
+
+  /**
+   * The first intermediate score goal
+   */
   smallInterval: number;
+
+  /**
+   * The second intermediate score goal
+   */
   largeInterval: number;
-  faction?: string;
+
+  /**
+   * The faction that the players must fight in the event
+   */
+  faction: string | undefined;
+
+  /**
+   * The description of the event
+   */
   description: string;
-  tooltip?: string;
-  node?: string;
+
+  /**
+   * Tooltip for the event
+   */
+  tooltip: string | undefined;
+
+  /**
+   * The node where the event takes place
+   */
+  node: string | undefined;
+
+  /**
+   * The other nodes where the event takes place
+   */
   concurrentNodes: string[];
-  victimNode?: string;
-  scoreLocTag?: string;
+
+  /**
+   * The victim node
+   */
+  victimNode: string | undefined;
+
+  /**
+   * The score description
+   */
+  scoreLocTag: string | undefined;
+
+  /**
+   * The event's rewards
+   */
   rewards: Reward[];
-  expired: boolean;
+
+  /**
+   * Health remaining for the target
+   */
   health: number | undefined;
+
+  /**
+   * Previous job id
+   */
   previousId: string | undefined;
+
+  /**
+   * Array of steps
+   */
   interimSteps: InterimStep[];
+
+  /**
+   * Progress Steps, if any are present
+   */
   progressSteps: ProgressStep[];
-  progressTotal: number | undefined;
+
+  /**
+   * Total of all MultiProgress
+   */
+  progressTotal?: number;
+
+  /**
+   * Whether to show the total score at the end of the mission
+   */
   showTotalAtEndOfMission: boolean;
+
+  /**
+   * Whether the event is personal
+   */
   isPersonal: boolean;
+
+  /**
+   * Whether the event is community
+   */
   isCommunity: boolean;
+
+  /*
+   * Affectors for this mission
+   */
   regionDrops: string[];
+
+  /**
+   * Archwing Drops in effect while this event is active
+   */
   archwingDrops: string[];
-  asString: string;
+
+  /**
+   * Metadata provided by DE
+   */
   metadata: any;
+
+  /**
+   * Bonuses given for completion
+   */
   completionBonuses: number[];
   scoreVar: string;
   altExpiry: Date;
   altActivation: Date;
   nextAlt: { expiry: Date; activation: Date };
-  affiliatedWith: string | undefined;
+  affiliatedWith?: string;
+
+  /**
+   * The event's tag
+   */
   tag: string;
   victim: any;
 
   /**
    * Asynchronously build a new WorldEvent
-   * @param   {object}            data            The event data
-   * @param   {object}            deps            The dependencies object
-   * @param   {string}            deps.locale     Locale to use for translations
-   * @returns {Promise.<WorldEvent>}              The created WorldEvent object
+   * @param data The event data
+   * @param deps The dependencies object
+   * @returns The created WorldEvent object
    */
   static async build(data: RawWorldEvent, deps: Dependency): Promise<WorldEvent> {
     const event = new WorldEvent(data, deps);
@@ -144,124 +249,49 @@ export default class WorldEvent extends WorldstateObject {
   }
 
   /**
-   * @param   {object}            data            The event data
-   * @param   {object}            deps            The dependencies object
-   * @param   {string}            deps.locale     Locale to use for translations
+   * @param data The event data
+   * @param deps The dependencies object
    */
   constructor(data: RawWorldEvent, { locale = 'en' }: Dependency = { locale: 'en' }) {
     super(data);
 
-    const opts = {
-      locale,
-    };
+    const opts = { locale };
 
-    /**
-     * The date and time at which the event ends
-     * @type {Date}
-     */
-    this.expiry = parseDate(data.Expiry);
-
-    /**
-     * The event's main score goal
-     * @type {number}
-     */
     this.maximumScore = Number.parseInt(String(data.Goal), 10);
 
-    /**
-     * The current score on the event
-     * @type {number}
-     */
     this.currentScore = Number.parseInt(String(data.Count), 10);
 
-    /**
-     * The first intermediate score goal
-     * @type {?number}
-     */
     this.smallInterval = Number.parseInt(String(data.GoalInterim), 10);
 
-    /**
-     * The second intermediate score goal
-     * @type {?number}
-     */
     this.largeInterval = Number.parseInt(String(data.GoalInterim2), 10);
 
-    /**
-     * The faction that the players must fight in the event
-     * @type {string}
-     */
     this.faction = data.Faction ? faction(data.Faction!, locale) : undefined;
 
-    /**
-     * The description of the event
-     * @type {string}
-     */
     this.description = languageString(data.Desc, locale);
 
-    /**
-     * Tooltip for the event
-     * @type {?string}
-     */
     this.tooltip = data.ToolTip ? languageString(data.ToolTip, locale) : undefined;
 
-    /**
-     * The node where the event takes place
-     * @type {?string}
-     */
     this.node = data.Node ? node(data.Node, locale) : undefined;
 
-    /**
-     * The other nodes where the event takes place
-     * @type {string[]}
-     */
     this.concurrentNodes = data.ConcurrentNodes ? data.ConcurrentNodes.map((n) => node(n), locale) : [];
 
-    /**
-     * The victim node
-     * @type {?string}
-     */
     this.victimNode = data.VictimNode ? node(data.VictimNode, locale) : undefined;
 
-    /**
-     * The score description
-     * @type {?string}
-     */
     this.scoreLocTag = data.ScoreLocTag ? languageString(data.ScoreLocTag, locale) : undefined;
     if (data.Fomorian) this.scoreLocTag = 'Fomorian Assault Score';
 
-    /**
-     * The event's rewards
-     * @type {Reward[]}
-     */
     this.rewards = Object.keys(data)
       .filter((k) => k.includes('Reward') || k.includes('reward'))
       .map((k) => new Reward(data[k as keyof RawWorldEvent] as RawReward, opts));
 
-    /**
-     * Whether or not this is expired (at time of object creation)
-     * @type {boolean}
-     */
-    this.expired = this.getExpired();
-
-    /**
-     * Health remaining for the target
-     * @type {number}
-     */
     this.health =
       typeof data.HealthPct !== 'undefined' ? Number.parseFloat(((data.HealthPct || 0.0) * 100).toFixed(2)) : undefined;
 
     this.jobs = [];
     this.previousJobs = [];
 
-    /**
-     * Previous job id
-     * @type {string}
-     */
     this.previousId = (data.JobPreviousVersion || {}).$oid;
 
-    /**
-     * Array of steps
-     * @type {InterimStep[]}
-     */
     this.interimSteps = [];
 
     (data.InterimRewards || []).forEach((reward, index) => {
@@ -276,15 +306,10 @@ export default class WorldEvent extends WorldstateObject {
           senderIcon: msg.senderIcon,
           attachments: msg.attachments,
         },
-        // eslint-disable-next-line no-underscore-dangle
         winnerCount: (data._interimWinnerCounts || [])[index],
       };
     });
 
-    /**
-     * Progress Steps, if any are present
-     * @type {ProgressStep[]}
-     */
     this.progressSteps = [];
 
     if (data.IsMultiProgress) {
@@ -295,53 +320,21 @@ export default class WorldEvent extends WorldstateObject {
         };
       });
 
-      /**
-       * Total of all MultiProgress
-       * @type {number}
-       */
       this.progressTotal = Number.parseFloat(data.MultiProgress!.reduce((accumulator, val) => accumulator + val));
     }
 
-    /**
-     * Whether to show the total score at the end of the mission
-     * @type {boolean}
-     */
     this.showTotalAtEndOfMission = data.ShowTotalAtEOM ?? false;
-    /**
-     * Whether the event is personal
-     * @type {boolean}
-     */
+
     this.isPersonal = data.Personal;
-    /**
-     * Whether the event is community
-     * @type {boolean}
-     */
+
     this.isCommunity = data.Community ?? false;
 
-    /*
-     * Affectors for this mission
-     * @type {string[]}
-     */
     this.regionDrops = (data.RegionDrops || []).map((drop) => languageString(drop, locale));
 
-    /**
-     * Archwing Drops in effect while this event is active
-     * @type {string[]}
-     */
     this.archwingDrops = (data.ArchwingDrops || []).map((drop) => languageString(drop, locale));
 
-    this.asString = this.toString();
-
-    /**
-     * Metadata provided by DE
-     * @type {object}
-     */
     this.metadata = JSON.parse((data.Metadata || '{}').replace('" ', '"'));
 
-    /**
-     * Bonuses given for completion
-     * @type {Array.<number>}
-     */
     this.completionBonuses = data.CompletionBonus || [];
 
     this.scoreVar = data.ScoreVar;
@@ -358,26 +351,20 @@ export default class WorldEvent extends WorldstateObject {
       this.affiliatedWith = syndicate(data.JobAffiliationTag, locale);
     }
 
-    /**
-     * The event's tag
-     * @type {string}
-     */
     this.tag = data.Tag;
   }
 
   /**
-   * Get whether the event has expired
-   * @returns {boolean} whether the event has expired
+   * Whether the event has expired
    */
-  getExpired(): boolean {
+  get expired(): boolean {
     return fromNow(this.expiry!) < 0;
   }
 
   /**
    * The event's string representation
-   * @returns {string} the event's string representation
    */
-  toString(): string {
+  get asString(): string {
     let lines = [];
     if (this.faction) {
       lines.push(`${this.description} : ${this.faction}`);

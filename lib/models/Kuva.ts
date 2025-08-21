@@ -9,9 +9,9 @@ const HOURS_2 = 7200000;
 
 /**
  * Truncate time for a semlar-provided mission
- * @param  {object} mission parsed mission with re-aligned field names
+ * @param mission parsed mission with re-aligned field names
  */
-const truncateTime = (mission: any) => {
+const truncateTime = (mission: ExternalMission) => {
   mission.expiry.setHours(mission.activation.getHours() + 1);
   mission.expiry.setMinutes(4);
   mission.expiry.setSeconds(0);
@@ -21,32 +21,30 @@ const truncateTime = (mission: any) => {
 
 /**
  * Scrub unnecessary details from the mission
- * @param  {object} mission parsed mission with re-aligned field names
+ * @param mission parsed mission with re-aligned field names
  */
-const scrub = (mission: any) => {
-  /* eslint-disable no-param-reassign */
+const scrub = (mission: Record<string, unknown>) => {
   delete mission.solnode;
   delete mission.name;
   delete mission.node_type;
   delete mission.tile;
   delete mission.planet;
-  /* eslint-enable no-param-reassign */
 };
 
 const hash = (str: string) => createHash('sha256').update(str, 'utf8').digest('hex');
 
 /**
  * Parse kuva & arbitration data
- * @param  {object} data       Data to split for kuva/arbitration
- * @param  {string} locale     locale to translate
- * @returns {Kuva}           Split parsed data
+ * @param data   Data to split for kuva/arbitration
+ * @param locale locale to translate
+ * @returns Split parsed data
  */
 const parse = (data: unknown[], locale: Locale) => {
   const parsed = { kuva: new Array<ExternalMission>(), arbitration: {} as ExternalMission };
   const now = new Date();
   if (!data) return undefined;
   data?.forEach?.((mission: any) => {
-    const p: ExternalMission = {
+    const p = {
       activation: new Date(mission.start),
       expiry: new Date(mission.end),
       ...mission.solnodedata,
@@ -84,24 +82,14 @@ const parse = (data: unknown[], locale: Locale) => {
  * @property {ExternalMission} arbitration current arbitration
  */
 export default class Kuva {
-  private locale: Locale;
-
   kuva?: ExternalMission[];
   arbitration?: ExternalMission;
 
   constructor({ kuvaData, locale, logger }: Dependency) {
-    /**
-     * The locale to leverage for translations
-     * @type {string}
-     * @private
-     */
-    this.locale = locale;
-
     if (!kuvaData) {
-      // eslint-ignore-next-line no-console
       logger?.debug('No defined kuva data, skipping data');
     } else {
-      const parsed = parse(kuvaData, this.locale);
+      const parsed = parse(kuvaData, locale);
 
       this.kuva = parsed?.kuva;
       this.arbitration = parsed?.arbitration;

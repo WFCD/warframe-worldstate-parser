@@ -2,8 +2,8 @@ import * as chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import WorldStateObject, { BaseContentObject } from '../../lib/models/WorldstateObject.js';
-import { RawWorldState, WorldState, parseArray } from '../../lib/WorldState.js';
+import WorldStateObject, { type BaseContentObject } from '../../lib/models/WorldstateObject.js';
+import { type RawWorldState, WorldState, parseArray } from '../../lib/WorldState.js';
 
 chai.should();
 chai.use(sinonChai);
@@ -63,7 +63,7 @@ describe('WorldStateObject', () => {
     };
 
     const wso = new WorldStateObject(mock);
-    wso.getEndString().should.exist;
+    wso.endString?.should.exist;
   });
 
   it('should honor _id.$id', () => {

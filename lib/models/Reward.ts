@@ -43,16 +43,15 @@ export default class Reward {
    * The credits being rewarded
    */
   credits: number;
-  
-  asString: string;
+
   itemString: string;
   thumbnail: string;
   color: number;
 
   /**
-   * @param   {object} data        The mission data
-   * @param   {Dependency}         deps            The dependencies object
-   * @param   {string}             deps.locale     Locale to use for translations
+   * @param data        The mission data
+   * @param deps        The dependencies object
+   * @param deps.locale Locale to use for translations
    */
   constructor(data: RawReward, { locale = 'en' }: Dependency = { locale: 'en' }) {
     insist({ ...data });
@@ -69,8 +68,6 @@ export default class Reward {
 
     this.credits = data.credits || 0;
 
-    this.asString = this.toString();
-
     this.itemString = this.items
       .concat(this.countedItems.map((i) => `${i.count > 1 ? i.count : ''} ${i.type}`.trim()))
       .join(' + ');
@@ -81,23 +78,9 @@ export default class Reward {
   }
 
   /**
-   * The types of all items that are being rewarded
-   */
-  getTypes(): Array<string> {
-    return this.items.concat(this.countedItems.map((i) => i.key)).map((t) => getItemType(t));
-  }
-
-  /**
-   * The types of all the items that are being rewarded
-   */
-  getTypesFull(): Array<RewardType> {
-    return this.items.concat(this.countedItems.map((i) => i.key)).map((t) => getItemTypeFull(t));
-  }
-
-  /**
    * The reward's string representation
    */
-  toString(): string {
+  get asString(): string {
     const tokens = this.items.concat(this.countedItems.map((i) => `${i.count > 1 ? i.count : ''} ${i.type}`.trim()));
 
     if (this.credits) {
@@ -105,5 +88,12 @@ export default class Reward {
     }
 
     return tokens.join(' + ');
+  }
+
+  /**
+   * The types of all the items that are being rewarded
+   */
+  private getTypesFull(): Array<RewardType> {
+    return this.items.concat(this.countedItems.map((i) => i.key)).map((t) => getItemTypeFull(t));
   }
 }

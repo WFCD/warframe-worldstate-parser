@@ -15,7 +15,7 @@ describe('EarthCycle', () => {
   describe('#getExpired()', () => {
     it('should never be true', () => {
       const cycle = new EarthCycle();
-      cycle.getExpired().should.be.false;
+      cycle.expired.should.be.false;
     });
   });
 });

@@ -25,12 +25,22 @@ export interface ZCycle {
  * @augments {WorldstateObject}
  */
 export default class ZarimanCycle extends WorldstateObject {
+  /**
+   * Whether or not this it's corpus or grineer
+   */
   isCorpus: boolean;
-  state: string;
-  timeLeft: string;
-  shortString: string;
 
-   /**
+  /**
+   * Current cycle state. One of `corpus`, `grineer`
+   */
+  state: string;
+
+  /**
+   * Time remaining string
+   */
+  timeLeft: string;
+
+  /**
    * The current zariman cycle, for calculating the other fields
    */
   private ec: ZCycle;
@@ -48,48 +58,23 @@ export default class ZarimanCycle extends WorldstateObject {
 
     this.bountiesEndDate = bountiesEndDate;
     this.ec = this.getCurrentZarimanCycle();
-
-    /**
-     * The date and time at which the event ends
-     * @type {Date}
-     */
     this.expiry = this.ec.expiry;
-
-    /**
-     * The date and time at which the event started
-     * @type {Date}
-     */
     this.activation = new Date(this.ec.start);
 
-    /**
-     * Whether or not this it's corpus or grineer
-     * @type {boolean}
-     */
     this.isCorpus = this.ec.isCorpus;
 
-    /**
-     * Current cycle state. One of `corpus`, `grineer`
-     * @type {string}
-     */
     this.state = this.ec.state;
 
-    /**
-     * Time remaining string
-     * @type {string}
-     */
     this.timeLeft = this.ec.timeLeft;
 
     this.id = `zarimanCycle${this.expiry.getTime()}`;
-
-    this.shortString = `${this.timeLeft.replace(/\s\d*s/gi, '')} to ${this.isCorpus ? 'grineer' : 'corpus'}`;
   }
 
   /**
-   * Get whether the event has expired
-   * @returns {boolean} whether this is expired
+   * Whether this is expired
    */
-  getExpired(): boolean {
-    return this.expiry ? fromNow(this.expiry) < 0 : /* istanbul ignore next */ true;
+  get expired(): boolean {
+    return this.expiry ? fromNow(this.expiry) < 0 : true;
   }
 
   getCurrentZarimanCycle(): ZCycle {
@@ -123,12 +108,7 @@ export default class ZarimanCycle extends WorldstateObject {
   /**
    * The event's string representation
    */
-  toString(): string {
-    const lines = [
-      `Operator, Zariman Ten Zero is currently occupied by ${this.state}`,
-      `Time remaining until ${this.isCorpus ? 'grineer' : 'corpus'} takeover: ${this.timeLeft}`,
-    ];
-
-    return lines.join(mdConfig.lineEnd);
+  get shortString(): string {
+    return `${this.timeLeft.replace(/\s\d*s/gi, '')} to ${this.isCorpus ? 'grineer' : 'corpus'}`;
   }
 }

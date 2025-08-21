@@ -1,11 +1,10 @@
-import { parseDate, languageString } from 'warframe-worldstate-data/utilities';
-import { ContentTimestamp } from './WorldstateObject';
+import { parseDate, languageString, ContentTimestamp } from 'warframe-worldstate-data/utilities';
 import Dependency from '../supporting/Dependency';
 
 export default class VoidTraderSchedule {
   expiry: Date;
   item: string;
-  
+
   constructor(
     data: { Expiry: ContentTimestamp; FeaturedItem: string },
     { locale = 'en' }: Dependency = { locale: 'en' }

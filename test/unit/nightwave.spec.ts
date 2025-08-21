@@ -1,8 +1,8 @@
 import * as chai from 'chai';
 
-import Nightwave, { RawNightwave } from '../../lib/models/Nightwave.js';
+import Nightwave, { type RawNightwave } from '../../lib/models/Nightwave.js';
 import nwdata from '../data/Nightwave.json' with { type: 'json' };
-import Dependency from '../../lib/supporting/Dependency.js';
+import type Dependency from '../../lib/supporting/Dependency.js';
 
 chai.should();
 

@@ -49,5 +49,8 @@ export default interface ExternalMission {
    */
   sharkwing: boolean;
 
+  /**
+   * Whether the mission is expired at the time of creation or not
+   */
   expired: boolean;
 }

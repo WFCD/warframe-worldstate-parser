@@ -1,7 +1,4 @@
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
-
-import mdConfig from '../supporting/MarkdownSettings';
-
 import WorldstateObject from './WorldstateObject';
 
 const nightTime = 3000;
@@ -11,7 +8,7 @@ const maximums = {
   night: 3000000,
 };
 
-interface CurrentCetusCycle {
+export interface CurrentCetusCycle {
   dayTime: boolean;
   timeLeft: string;
   expiry: Date;
@@ -28,12 +25,12 @@ export default class CetusCycle extends WorldstateObject {
   /**
    * The end of the Ostron bounties timer (marks the end of night)
    */
-  #bountiesEndDate: Date;
+  private bountiesEndDate: Date;
 
   /**
    * The current cetus cycle, for calculating the other fields
    */
-  #ec: CurrentCetusCycle;
+  private ec: CurrentCetusCycle;
 
   /**
    * Whether it's daytime
@@ -56,47 +53,47 @@ export default class CetusCycle extends WorldstateObject {
   isCetus: boolean;
 
   /**
-   * Short summary of the current state
-   */
-  shortString: string;
-
-  /**
-   * @param   {Date}              bountiesEndDate The end date for Ostron bounties
+   * @param bountiesEndDate The end date for Ostron bounties
    */
   constructor(bountiesEndDate: Date) {
     super({ _id: { $oid: 'cetusCycle0' } });
 
-    this.#bountiesEndDate = bountiesEndDate;
+    this.bountiesEndDate = bountiesEndDate;
 
-    this.#ec = this.getCurrentCetusCycle();
+    this.ec = this.getCurrentCetusCycle();
 
-    this.expiry = this.#ec.expiry;
+    this.expiry = this.ec.expiry;
 
-    this.activation = new Date(this.#ec.start);
+    this.activation = new Date(this.ec.start);
 
-    this.isDay = this.#ec.dayTime;
+    this.isDay = this.ec.dayTime;
 
-    this.state = this.#ec.state;
+    this.state = this.ec.state;
 
-    this.timeLeft = this.#ec.timeLeft;
+    this.timeLeft = this.ec.timeLeft;
 
     this.isCetus = true;
 
     this.id = `cetusCycle${this.expiry.getTime()}`;
-
-    this.shortString = `${this.timeLeft.replace(/\s\d*s/gi, '')} to ${this.isDay ? 'Night' : 'Day'}`;
   }
 
   /**
-   * Get whether or not the event has expired
+   * Whether or not the event has expired
    */
-  getExpired(): boolean {
+  get expired(): boolean {
     return fromNow(this.expiry!) < 0;
   }
 
-  getCurrentCetusCycle(): CurrentCetusCycle {
+  /**
+   * Short summary of the current state
+   */
+  get shortString(): string {
+    return `${this.timeLeft.replace(/\s\d*s/gi, '')} to ${this.isDay ? 'Night' : 'Day'}`;
+  }
+
+  private getCurrentCetusCycle(): CurrentCetusCycle {
     const now = Date.now();
-    const bountiesClone = this.#bountiesEndDate;
+    const bountiesClone = this.bountiesEndDate;
     bountiesClone.setSeconds(0);
     let millisLeft = fromNow(bountiesClone);
     const secondsToNightEnd = Number((millisLeft / 1000).toFixed(0));
@@ -116,17 +113,5 @@ export default class CetusCycle extends WorldstateObject {
       state,
       start: expiry.getTime() - maximums[state],
     };
-  }
-
-  /**
-   * The event's string representation
-   */
-  toString(): string {
-    const lines = [
-      `Operator, Cetus is currently in ${this.state}time`,
-      `Time remaining until ${this.isDay ? 'night' : 'day'}: ${this.timeLeft}`,
-    ];
-
-    return lines.join(mdConfig.lineEnd);
   }
 }

@@ -5,9 +5,10 @@ import {
   conclaveMode,
   conclaveCategory,
   conclaveChallenge,
+  ContentTimestamp,
 } from 'warframe-worldstate-data/utilities';
 
-import WorldstateObject, { BaseContentObject, ContentTimestamp } from './WorldstateObject';
+import WorldstateObject, { BaseContentObject } from './WorldstateObject';
 import Dependency from '../supporting/Dependency';
 
 export interface RawChallenge extends BaseContentObject {
@@ -40,31 +41,6 @@ export default class ConclaveChallenge extends WorldstateObject {
   category: string;
 
   /**
-   * ETA string (at time of object creation)
-   */
-  eta: string;
-
-  /**
-   * Whether or not this is expired (at time of object creation)
-   */
-  expired: boolean;
-
-  /**
-   * Whether or not this is a daily conclave challenge.
-   */
-  daily: boolean;
-
-  /**
-   * Whether or not this is the root challenge
-   */
-  rootChallenge: boolean;
-
-  /**
-   * the end string
-   */
-  endString: string;
-
-  /**
    * The challenge's description text
    */
   description?: string;
@@ -78,11 +54,6 @@ export default class ConclaveChallenge extends WorldstateObject {
    * Standing granted by completing challenge.
    */
   standing?: number;
-
-  /**
-   * This challenge as a string
-   */
-  asString: string;
 
   /**
    * @param   {object}             data            The challenge data
@@ -102,56 +73,44 @@ export default class ConclaveChallenge extends WorldstateObject {
 
     this.category = conclaveCategory(data.Category, locale);
 
-    this.eta = this.getEndString();
-
-    this.expired = this.isExpired();
-
-    this.daily = this.isDaily();
-
-    this.rootChallenge = this.isRootChallenge();
-
-    this.endString = this.getEndString();
-
     const challenge = conclaveChallenge(data.challengeTypeRefID, locale);
 
     ({ title: this.title, description: this.description, standing: this.standing } = challenge);
-
-    this.asString = this.toString();
   }
 
   /**
-   * Get whether or not the challenge is daily
+   * Whether or not this is a daily conclave challenge.
    */
-  isDaily(): boolean {
+  get daily(): boolean {
     return this.category.toLowerCase() === 'day';
   }
 
   /**
-   * Get whether or not this is the weekly root challenge
+   * Whether or not this is the root challenge
    */
-  isRootChallenge(): boolean {
+  get rootChallenge(): boolean {
     return this.category.toLowerCase() === 'week_root';
   }
 
   /**
-   * Get whether or not the challenge has expired
+   * Whether or not this is expired (at time of object creation)
    */
-  isExpired(): boolean {
+  get expired(): boolean {
     return fromNow(this.expiry!) < 0;
   }
 
   /**
-   * Get a string indicating how much time is left before the challenge expires
+   * ETA string (at time of object creation)
    */
-  getEndString(): string {
+  get eta(): string {
     const timeDelta = fromNow(this.expiry!);
     return timeDeltaToString(timeDelta);
   }
 
   /**
-   * The conclave challenge's string representation
+   * This challenge as a string
    */
-  toString(): string {
+  asString(): string {
     return `${this.description} on ${this.mode} ${this.amount} times in a ${this.category}`;
   }
 }

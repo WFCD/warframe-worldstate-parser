@@ -22,20 +22,18 @@ describe('ZarimanCycle', function () {
     it('should allow active', () => {
       const cycle = new ZarimanCycle(new Date(Date.now() + 75000));
 
-      const expiry = cycle.getExpired();
+      const expiry = cycle.expired;
       should.equal(expiry, false);
-
-      cycle.toString().should.include('Operator, Zariman Ten Zero is currently occupied by');
     });
 
     it('should show corpus cycle string', () => {
       const cycle = new ZarimanCycle(new Date(confirmedCorpus));
-      cycle.toString().should.include('occupied by corpus');
+      cycle.state.should.include('corpus');
     });
 
     it('should show grineer cycle string', () => {
       const cycle = new ZarimanCycle(new Date(confirmedGrineer));
-      cycle.toString().should.include('occupied by grineer');
+      cycle.state.should.include('grineer');
     });
   });
 });

@@ -1,9 +1,17 @@
-import { parseDate, timeDeltaToString, toNow, node, languageString, faction } from 'warframe-worldstate-data/utilities';
+import {
+  parseDate,
+  timeDeltaToString,
+  toNow,
+  node,
+  languageString,
+  faction,
+  ContentTimestamp,
+} from 'warframe-worldstate-data/utilities';
 
 import mdConfig from '../supporting/MarkdownSettings.js';
 
 import Reward, { RawReward } from './Reward.js';
-import WorldstateObject, { BaseContentObject, ContentTimestamp } from './WorldstateObject.js';
+import WorldstateObject, { BaseContentObject } from './WorldstateObject.js';
 import Dependency from '../supporting/Dependency.js';
 
 export interface RawInvasion extends BaseContentObject {
@@ -59,11 +67,6 @@ export default class Invasion extends WorldstateObject {
   desc: string;
 
   /**
-   * The attacking faction
-   */
-  attackingFaction: string;
-
-  /**
    * Invasion attacker
    */
   attacker: InvasionParticipant;
@@ -100,34 +103,19 @@ export default class Invasion extends WorldstateObject {
   completed: boolean;
 
   /**
-   * ETA string (at time of object creation)
-   */
-  eta: string;
-
-  /**
-   * An array containing the types of all of the invasions's rewards
-   */
-  rewardTypes: string[];
-
-  /**
    * @param   {object}             data            The invasion data
    * @param   {Dependency}         deps            The dependencies object
    * @param   {string}             deps.locale     Locale to use for translations
    */
   constructor(data: RawInvasion, { locale = 'en' }: Dependency = { locale: 'en' }) {
     super(data);
-
-    const opts = {
-      locale,
-    };
+    const opts = { locale };
 
     this.node = node(data.Node, locale);
 
     this.nodeKey = node(data.Node);
 
     this.desc = languageString(data.LocTag, locale);
-
-    this.attackingFaction = faction(data.DefenderMissionInfo.faction, locale);
 
     this.attacker = {
       reward: Object.keys(data?.AttackerReward || {})?.length ? new Reward(data.AttackerReward, opts) : undefined,
@@ -143,8 +131,6 @@ export default class Invasion extends WorldstateObject {
 
     this.vsInfestation = /infest/i.test(data.DefenderMissionInfo.faction);
 
-    this.activation = parseDate(data.Activation);
-
     this.count = data.Count;
 
     this.requiredRuns = data.Goal;
@@ -152,62 +138,37 @@ export default class Invasion extends WorldstateObject {
     this.completion = (1 + data.Count / data.Goal) * (this.vsInfestation ? 100 : 50);
 
     this.completed = data.Completed;
-
-    this.eta = this.getETAString();
-
-    this.rewardTypes = this.getRewardTypes();
   }
 
   /**
    * Whether or not the attackers are winning.
    * This is always false when the infestation is attacking
    */
-  isAttackerWinning(): boolean {
+  get isAttackerWinning(): boolean {
     return this.count > 0;
+  }
+
+  /**
+   * ETA string (at time of object creation)
+   */
+  get eta(): string {
+    return timeDeltaToString(this.getRemainingTime());
+  }
+
+  /**
+   * An array containing the types of all of the invasions's rewards
+   */
+  get rewardTypes(): string[] {
+    return [...(this.attacker.reward?.getTypes() ?? []), ...(this.defender.reward?.getTypes() ?? [])];
   }
 
   /**
    * Get an estimation of how much time is left before the invasion ends in milliseconds
    */
-  getRemainingTime(): number {
+  private getRemainingTime(): number {
     const completedRuns = Math.abs(this.count);
     const elapsedMillis = toNow(this.activation!);
     const remainingRuns = this.requiredRuns - completedRuns;
     return remainingRuns * (elapsedMillis / completedRuns);
-  }
-
-  /**
-   * Get a string estimating how much time is left before the invasion ends
-   */
-  getETAString(): string {
-    return timeDeltaToString(this.getRemainingTime());
-  }
-
-  /**
-   * Get the types of the items being rewarded in the invasion
-   */
-  getRewardTypes(): string[] {
-    return [...(this.attacker.reward?.getTypes() ?? []), ...(this.defender.reward?.getTypes() ?? [])];
-  }
-
-  /**
-   * The invasion's string representation
-   */
-  toString(): string {
-    let lines = [];
-    if (this.vsInfestation) {
-      lines = [
-        this.defender.reward?.toString(),
-        `${this.desc} on ${this.node}`,
-        `${Math.round(this.completion * 100) / 100}% - ETA: ${this.getETAString()}`,
-      ].filter(Boolean);
-    } else {
-      lines = [
-        `${this.attackingFaction} (${this.attacker.reward}) vs. ${this.defender.faction} (${this.defender.reward})`,
-        `${this.node} - ${this.desc}`,
-        `${Math.round(this.completion * 100) / 100}% - ETA: ${this.getETAString()}`,
-      ];
-    }
-    return `${mdConfig.codeBlock}${lines.join(mdConfig.lineEnd)}${mdConfig.blockEnd}`;
   }
 }

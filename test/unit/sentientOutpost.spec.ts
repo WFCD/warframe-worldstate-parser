@@ -2,7 +2,7 @@ import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 
 import SentientOutpost from '../../lib/models/SentientOutpost.js';
-import Dependency from '../../lib/supporting/Dependency.js';
+import type Dependency from '../../lib/supporting/Dependency.js';
 
 chai.should();
 chai.use(sinonChai);

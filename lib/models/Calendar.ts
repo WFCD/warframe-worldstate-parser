@@ -15,7 +15,7 @@ export interface RawCalender extends BaseContentObject {
   UpgradeAvaliabilityRequirements: string[];
 }
 
-interface RawDay {
+export interface RawDay {
   type: string;
   challenge?: string;
   upgrade?: string;
@@ -26,9 +26,8 @@ interface RawDay {
 
 /**
  * Event data for a 1999 calendar day
- * @param {object} event raw event data
  */
-class DayEvent {
+export class DayEvent {
   type: string;
   challenge?: { title: string; description: string };
   upgrade?: { title: string; description: string };
@@ -36,6 +35,9 @@ class DayEvent {
   dialogueName: any;
   dialogueConvo: any;
 
+  /**
+   * @param event raw event data
+   */
   constructor(event: RawDay) {
     this.type = translateCalendarEvent(event.type);
 
@@ -51,26 +53,42 @@ class DayEvent {
     }
   }
 
-  eventDescription(name: string): { title: string; description: string } {
+  private eventDescription(name: string): { title: string; description: string } {
     return { title: languageString(name), description: languageDesc(name) };
   }
 }
 
 export default class Calendar extends WorldstateObject {
-  activation: Date;
-  expiry: Date;
+  /**
+   * Rewards, Challenges, and Calender events
+   */
   days: { date: string; events: DayEvent[] }[];
+
+  /**
+   * Current Calender Season
+   */
   season: string;
+
+  /**
+   * Current loop number
+   */
   yearIteration: any;
+
+  /**
+   * Version
+   */
   version: any;
+  
+  /**
+   * Player requirements needed to view this calender
+   */
   requirements: any;
 
+  /**
+   * @param calendar RawCalender data to parse from
+   */
   constructor(calendar: RawCalender) {
     super(calendar);
-
-    this.activation = parseDate(calendar.Activation);
-
-    this.expiry = parseDate(calendar.Expiry);
 
     this.days = Array.isArray(calendar.Days)
       ? calendar.Days.filter(Boolean).map((d) => ({
@@ -80,18 +98,15 @@ export default class Calendar extends WorldstateObject {
       : [];
 
     this.season = translateSeason(calendar.Season);
-
     this.yearIteration = calendar.YearIteration;
-
     this.version = calendar.Version;
-
     this.requirements = calendar.UpgradeAvaliabilityRequirements;
   }
 
   /**
    * Converts number of day to a date in 1999 in UTC
    */
-  getDate(day: number): Date {
+  private getDate(day: number): Date {
     const date = new Date(Date.UTC(1999));
     date.setUTCDate(date.getUTCDate() + day - 1);
     return date;

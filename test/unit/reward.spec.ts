@@ -2,7 +2,7 @@ import * as chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import Reward, { getItemType, RawReward } from '../../lib/models/Reward.js';
+import Reward, { getItemType, type RawReward } from '../../lib/models/Reward.js';
 
 chai.should();
 chai.use(sinonChai);
@@ -16,15 +16,6 @@ describe('Reward', function () {
       (() => {
         new Reward({} as unknown as RawReward);
       }).should.throw(TypeError);
-    });
-  });
-  describe('#toString()', function () {
-    it('should only include credits if the reward has any', function () {
-      const r = new Reward({ items: [], countedItems: [] }, { locale: 'en' });
-      r.toString().should.not.match(/cr/);
-
-      r.credits = 100;
-      r.toString().should.match(/cr/);
     });
   });
   describe('getItemType', function () {

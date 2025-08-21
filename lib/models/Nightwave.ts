@@ -20,50 +20,53 @@ export interface RawNightwave extends BaseContentObject {
  * @augments {WorldstateObject}
  */
 export default class Nightwave extends WorldstateObject {
+  /**
+   * The current season. 0-indexed.
+   */
   season: number;
-  tag: string;
-  phase: number;
-  params: Record<string, unknown>;
-  possibleChallenges: NightwaveChallenge[];
-  activeChallenges: NightwaveChallenge[];
-  rewardTypes: string[];
 
   /**
-   * @param   {object}             data            The alert data
-   * @param   {object}             deps            The dependencies object
-   * @param   {string}             deps.locale     Locale to use for translations
+   * Descriptor for affiliation
+   */
+  tag: string;
+
+  /**
+   * The current season's current phase. 0-indexed.
+   */
+  phase: number;
+
+  /**
+   * Misc params provided.
+   */
+  params: Record<string, unknown>;
+
+  /**
+   * Array of possible challenges
+   */
+  possibleChallenges: NightwaveChallenge[];
+
+  /**
+   * Array of active challenges
+   */
+  activeChallenges: NightwaveChallenge[];
+
+  /**
+   * @param data        The alert data
+   * @param deps        The dependencies object
+   * @param deps.locale Locale to use for translations
    */
   constructor(data: RawNightwave, { locale }: { locale: Locale } = { locale: 'en' }) {
     super(data);
+    const deps = { locale };
 
     this.id = `nightwave${new Date(this.expiry!).getTime()}`;
 
-    const deps = {
-      locale,
-    };
-
-    /**
-     * The current season. 0-indexed.
-     * @type {number}
-     */
     this.season = data.Season;
 
-    /**
-     * Descriptor for affiliation
-     * @type {string}
-     */
     this.tag = languageString(data.AffiliationTag, locale);
 
-    /**
-     * The current season's current phase. 0-indexed.
-     * @type {number}
-     */
     this.phase = data.Phase;
 
-    /**
-     * Misc params provided.
-     * @type {object}
-     */
     this.params = JSON.parse(data.Params || '{}');
 
     this.possibleChallenges = (data.Challenges || [])
@@ -73,37 +76,12 @@ export default class Nightwave extends WorldstateObject {
     this.activeChallenges = (data.ActiveChallenges || [])
       .map((challenge) => new NightwaveChallenge(challenge, deps))
       .filter((challenge) => challenge);
-
-    /**
-     * An array containing the types of all of the alert's rewards
-     * @type {Array.<string>}
-     */
-    this.rewardTypes = this.getRewardTypes().length ? this.getRewardTypes() : ['credits'];
   }
 
   /**
-   * Get a string indicating how much time is left before the alert expires
-   * @returns {string} estimated timer of the alert
+   * How much time is left before the nightwave expires
    */
-  getETAString(): string {
+  get eta(): string {
     return timeDeltaToString(fromNow(this.expiry!));
-  }
-
-  /**
-   * Get an array containing the types of all of the nightwave season's rewards
-   * @returns {Array.<string>} an array containing the types of all of the nightwave season's rewards
-   */
-  getRewardTypes(): string[] {
-    return [];
-  }
-
-  /**
-   * The alert's string representation
-   * @returns {string} string representation of the alert
-   */
-  toString(): string {
-    return `${mdConfig.codeBlock}Nightwave Season ${this.season + 1} - ${this.tag} - Phase ${this.phase + 1}${
-      mdConfig.blockEnd
-    }`;
   }
 }

@@ -6,6 +6,9 @@ import { SortieData } from 'warframe-worldstate-data/types';
  * Dependency Object
  */
 export default interface Dependency {
+  /**
+   * Kuva data for parsing
+   */
   kuvaData?: unknown[];
 
   /**
@@ -18,7 +21,13 @@ export default interface Dependency {
    */
   logger?: any;
 
+  /**
+   * Sentint Data for parsing
+   */
   sentientData?: { start: number; end: number };
 
+  /**
+   * Sortie data for parsing
+   */
   sortieData?: SortieData;
 }

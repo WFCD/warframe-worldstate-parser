@@ -18,6 +18,12 @@ class ArchidemeaMission {
   deviation: { key: string; name: string; description: string; };
   riskVariables: { key: string; name: string; description: string; }[];
 
+  /**
+   * @param mission   Challenge mission type
+   * @param deviation Mission deviation
+   * @param risks     Mission risks
+   * @param locale    Locale to tranlslate to
+   */
   constructor(mission: string, deviation: string, risks: string[], locale: Locale) {
     this.mission = mission;
 
@@ -40,6 +46,13 @@ export default class Archimedea {
   missions: ArchidemeaMission[];
   personalModifiers: { key: string; name: string; description: string; }[];
 
+  /**
+   * 
+   * @param activation Start timestamp
+   * @param expiry     End timestamp
+   * @param data       Data to parse
+   * @param locale     Locale to translate to
+   */
   constructor(activation: Date, expiry: Date, data: RawArchimedea, locale: Locale = 'en') {
     this.id = `${activation}Archimedea`;
 

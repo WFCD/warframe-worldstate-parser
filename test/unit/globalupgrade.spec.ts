@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import GlobalUpgrade, { RawGlobalUpgrade } from '../../lib/models/GlobalUpgrade.js';
+import GlobalUpgrade, { type RawGlobalUpgrade } from '../../lib/models/GlobalUpgrade.js';
 
 chai.should();
 

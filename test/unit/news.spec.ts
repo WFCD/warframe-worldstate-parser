@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import News, { RawNews } from '../../lib/models/News.js';
+import News, { type RawNews } from '../../lib/models/News.js';
 import languageTestData from '../data/LanguageNews.json' with { type: 'json' };
 import testData from '../data/News.json' with { type: 'json' };
 import realTestData from '../data/RealNews.json' with { type: 'json' };
@@ -27,39 +27,34 @@ describe('News', () => {
         locale,
       });
 
-      n.toString().should.contain('ago');
-      n.endDate = new Date(123);
-      n.toString().should.contain('in');
+      n.eta.should.contain('ago');
+      n.expiry = new Date(123);
+      n.eta.should.contain('in');
     });
   });
 
   describe('#isUpdate()', () => {
     it('should return true if the news is an update or a hotfix', () => {
-      const n = new News(testData, {
-        locale,
-      });
-      n.isUpdate().should.be.false;
+      const n = new News(testData, { locale });
+
+      n.update.should.be.false;
       n.link = `${testData.Prop}update-1960`;
-      n.isUpdate().should.be.true;
+      n.update.should.be.true;
       n.message = `${testData.Prop}hotfix-1961`;
-      n.isUpdate().should.be.true;
+      n.update.should.be.true;
     });
   });
 
   describe('#isStream()', () => {
     it('should return true if the message indicates a stream', () => {
-      const n = new News(realTestData[1], {
-        locale,
-      });
-      n.isStream().should.be.true;
+      const n = new News(realTestData[1], { locale });
+      n.stream.should.be.true;
     });
   });
 
   describe('.link', () => {
     it('should resolve a url from Links if Prop is empty', () => {
-      const n = new News(realTestData[1], {
-        locale,
-      });
+      const n = new News(realTestData[1], { locale });
       n.link.should.not.be.empty;
     });
     it('should default link if none matching is found', () => {
@@ -111,12 +106,11 @@ describe('News', () => {
 
   describe('#isPrimeAccess()', () => {
     it('should return true if the news is an update or a hotfix', () => {
-      const n = new News(testData, {
-        locale,
-      });
-      n.isPrimeAccess().should.be.false;
+      const n = new News(testData, { locale });
+
+      n.primeAccess.should.be.false;
       n.link = `${testData.Prop}valkyr-prime-access`;
-      n.isPrimeAccess().should.be.true;
+      n.primeAccess.should.be.true;
     });
   });
 

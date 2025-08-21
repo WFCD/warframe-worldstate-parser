@@ -17,7 +17,7 @@ export default class ConstructionProgress extends WorldstateObject {
   unknownProgress: string;
 
   /**
-   * @param   {object}             data            The construction data
+   * @param data The construction data
    */
   constructor(data: RawConstructionProgress) {
     super(data);
@@ -25,16 +25,5 @@ export default class ConstructionProgress extends WorldstateObject {
     this.fomorianProgress = (data.ProjectPct[0] || 0.0).toFixed(2);
     this.razorbackProgress = (data.ProjectPct[1] || 0.0).toFixed(2);
     this.unknownProgress = (data.ProjectPct[2] || 0.0).toFixed(2);
-  }
-
-  /**
-   * The alert's string representation
-   * @returns {string} string representation
-   */
-  toString(): string {
-    return (
-      `${mdConfig.codeBlock}Fomorian: ${this.fomorianProgress}%${mdConfig.lineEnd}Razorback: ` +
-      `${this.razorbackProgress}%${mdConfig.lineEnd}Unknown: ${this.unknownProgress}%${mdConfig.blockEnd}`
-    );
   }
 }

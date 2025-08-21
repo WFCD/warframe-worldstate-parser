@@ -1,5 +1,5 @@
-import { parseDate } from 'warframe-worldstate-data/utilities';
-import { ContentTimestamp, Identifier } from './WorldstateObject';
+import { ContentTimestamp, parseDate } from 'warframe-worldstate-data/utilities';
+import {  Identifier } from './WorldstateObject';
 
 export interface RawDarkSectorBattle {
   Def: string;

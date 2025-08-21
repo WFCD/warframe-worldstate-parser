@@ -1,7 +1,5 @@
 import { timeDeltaToString, fromNow } from 'warframe-worldstate-data/utilities';
 
-import mdConfig from '../supporting/MarkdownSettings';
-
 import WorldstateObject from './WorldstateObject';
 
 /**
@@ -33,13 +31,11 @@ function getCurrentMidrathCycle() {
 
   const activation = new Date(now - (phase.duration - phase.remaining));
   const expiry = new Date(activation.getTime() + phase.duration);
-  const timeLeft = timeDeltaToString(phase.remaining);
 
   return {
     activation,
     expiry,
     state: phase.name,
-    timeLeft,
     isDay,
   };
 }
@@ -47,40 +43,35 @@ function getCurrentMidrathCycle() {
 export default class MidrathCycle extends WorldstateObject {
   private cycle = getCurrentMidrathCycle();
   
+  /**
+   * Whether it's day or not
+   */
   isDay: boolean;
+
+  /**
+   * The current state
+   */
   state: string;
-  timeLeft: string;
 
   constructor() {
     super({ _id: { $oid: 'midrathCycle0' } });
-
     this.activation = this.cycle.activation;
-
     this.expiry = this.cycle.expiry;
-
     this.isDay = this.cycle.isDay;
-
     this.state = this.cycle.state;
-
-    this.timeLeft = this.cycle.timeLeft;
   }
 
   /**
    * Get whether or not the event has expired
    */
-  getExpired(): boolean {
+  get expired(): boolean {
     return fromNow(this.expiry!) < 0;
   }
 
   /**
-   * The event's string representation
+   * The amount of time left as a string
    */
-  toString(): string {
-    const lines = [
-      `Envoy, it is currently ${this.isDay ? 'Day' : 'Night'}time in Midrath`,
-      `Time remaining until ${this.isDay ? 'night' : 'day'}: ${this.timeLeft}`,
-    ];
-
-    return lines.join(mdConfig.lineEnd);
+  get timeLeft(): string {
+    return timeDeltaToString(fromNow(this.expiry!));
   }
 }

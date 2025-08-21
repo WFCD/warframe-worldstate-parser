@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import Construction, { RawConstructionProgress } from '../../lib/models/ConstructionProgress';
+import Construction, { type RawConstructionProgress } from '../../lib/models/ConstructionProgress';
 
 chai.should();
 
@@ -36,9 +36,6 @@ describe('Construction', () => {
   describe('#toString()', () => {
     it('should format the string correctly', () => {
       const c = new Construction(ProjectPctWithOID);
-      c.toString().should.match(/Razorback: 104\.39%/);
-      c.toString().should.match(/Fomorian: 3\.00%/);
-      c.toString().should.match(/Unknown: 0\.00%/);
       c.fomorianProgress.should.match(/3\.00/);
       c.razorbackProgress.should.match(/104\.39/);
     });

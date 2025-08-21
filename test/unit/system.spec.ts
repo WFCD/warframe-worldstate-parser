@@ -1,33 +1,14 @@
 import * as chai from 'chai';
 
-// eslint-disable-next-line import/no-named-as-default
-import WorldstateObject from '../../lib/models/WorldstateObject.js';
+import type Dependency from '../../lib/supporting/Dependency.js';
 import WorldState from '../../main.js';
 import sentientMock from '../data/anomaly.json' with { type: 'json' };
 import kuvaMock from '../data/kuvalog.json' with { type: 'json' };
-import Dependency from '../../lib/supporting/Dependency.js';
 
 chai.should();
 
-const checkToString = (worldState: WorldState) => {
-  Object.getOwnPropertyNames(worldState)
-    .filter((p) => {
-      // eslint-disable-next-line no-console
-      if (!worldState[p as keyof WorldState]) console.info(`${p} was undefined`);
-      return worldState[p as keyof WorldState];
-    })
-    .forEach((p) => {
-      if (Array.isArray(worldState[p as keyof WorldState])) {
-        worldState[p as keyof WorldState].forEach((m: WorldstateObject) => m.toString());
-      } else {
-        worldState[p as keyof WorldState].toString();
-      }
-    });
-};
-
 const data: Record<string, string> = {};
 const platforms = ['pc'];
-let w: WorldState;
 
 const getPData = (p: string) =>
   fetch(`https://content.warframe.com/dynamic/worldState.php`)
@@ -53,10 +34,8 @@ describe('The parser', () => {
 
       (() => {
         try {
-          w = new WorldState(JSON.parse(data[platform]), deps);
-          checkToString(w);
+          new WorldState(JSON.parse(data[platform]), deps);
         } catch (e) {
-          // eslint-disable-next-line no-console
           console.error(e);
           throw e;
         }
@@ -73,10 +52,8 @@ describe('The parser', () => {
 
       (() => {
         try {
-          w = new WorldState(JSON.parse(data[platform]), deps);
-          checkToString(w);
+          new WorldState(JSON.parse(data[platform]), deps);
         } catch (e) {
-          // eslint-disable-next-line no-console
           console.error(e);
           throw e;
         }

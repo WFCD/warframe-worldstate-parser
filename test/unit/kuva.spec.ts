@@ -2,7 +2,7 @@ import * as chai from 'chai';
 
 import Kuva from '../../lib/models/Kuva.js';
 import mockKuva from '../data/kuvalog.json' with { type: 'json' };
-import Dependency from '../../lib/supporting/Dependency.js';
+import type Dependency from '../../lib/supporting/Dependency.js';
 
 const should = chai.should();
 

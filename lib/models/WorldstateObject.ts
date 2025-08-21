@@ -1,4 +1,4 @@
-import { parseDate, fromNow, timeDeltaToString, insist, WorldStateDate } from 'warframe-worldstate-data/utilities';
+import { parseDate, fromNow, timeDeltaToString, insist, ContentTimestamp } from 'warframe-worldstate-data/utilities';
 
 export interface Identifier {
   $id?: string;
@@ -10,8 +10,6 @@ export interface BaseContentObject {
   Activation?: ContentTimestamp;
   Expiry?: ContentTimestamp;
 }
-
-export type ContentTimestamp = WorldStateDate;
 
 /**
  * Represents a generic object from Worldstate
@@ -33,64 +31,43 @@ export default class WorldstateObject {
   expiry?: Date;
 
   /**
-   * A string indicating how long it will take for the trader to arrive
-   *  (at time of object creation)
-   */
-  startString?: string;
-
-  /**
-   * Whether the void trader is active (at time of object creation)
-   */
-  active?: boolean | string;
-
-  /**
    * @param data The object data
    */
   constructor(data: BaseContentObject) {
     insist({ ...data });
-
-    // eslint-disable-next-line no-underscore-dangle
     this.id = data._id ? data._id.$oid || data._id.$id : undefined;
 
     if (data.Activation) {
       this.activation = parseDate(data.Activation);
-      this.startString = this.getStartString();
     }
 
     if (data.Expiry) {
       this.expiry = parseDate(data.Expiry);
     }
-
-    if (data.Activation && data.Expiry) {
-      this.active = this.isActive();
-    }
   }
 
   /**
-   * Returns a string representation of the object
+   * Whether the void trader is active (at time of object creation)
    */
-  toString(): string {
-    return `id: ${this.id}`;
-  }
-
-  /**
-   * Get whether the current object is active or not
-   */
-  isActive(): boolean {
+  get active(): boolean {
+    if (!this.activation && !this.expiry) return false;
     return fromNow(this.activation!) < 0 && fromNow(this.expiry!) > 0;
   }
 
   /**
-   * Time delta string from now to the start
+   * A string indicating how long it will take for the trader to arrive
+   *  (at time of object creation)
    */
-  getStartString(): string {
+  get startString(): string | undefined {
+    if (!this.activation) return undefined;
     return timeDeltaToString(fromNow(this.activation!));
   }
 
   /**
    * Time delta string from now to the end
    */
-  getEndString(): string {
+  get endString(): string | undefined {
+    if (!this.expiry) return undefined;
     return timeDeltaToString(fromNow(this.expiry!));
   }
 }

@@ -8,9 +8,10 @@ import {
   nodeEnemy,
   fissureModifier,
   fissureTier,
+  ContentTimestamp,
 } from 'warframe-worldstate-data/utilities';
 
-import WorldstateObject, { BaseContentObject, ContentTimestamp } from './WorldstateObject';
+import WorldstateObject, { BaseContentObject } from './WorldstateObject';
 import Dependency from '../supporting/Dependency';
 
 export interface RawFissure extends BaseContentObject {
@@ -69,16 +70,6 @@ export default class Fissure extends WorldstateObject {
   tierNum: string | number;
 
   /**
-   * Whether this is expired (at time of object creation)
-   */
-  expired: boolean;
-
-  /**
-   * ETA string (at time of object creation)
-   */
-  eta: string;
-
-  /**
    * Whether this fissure corresponds to a RailJack Void Storm
    */
   isStorm: boolean;
@@ -116,33 +107,22 @@ export default class Fissure extends WorldstateObject {
 
     this.expiry = parseDate(data.Expiry);
 
-    this.expired = this.getExpired();
-
-    this.eta = this.getETAString();
-
     this.isStorm = Boolean(data.ActiveMissionTier);
 
     this.isHard = Boolean(data.Hard);
   }
 
   /**
-   * Get whether this deal has expired
+   * Whether this is expired (at time of object creation)
    */
-  getExpired(): boolean {
+  get expired(): boolean {
     return fromNow(this.expiry!) < 0;
   }
 
   /**
-   * Get a string representation of how long the void fissure will remain active
+   * ETA string (at time of object creation)
    */
-  getETAString(): string {
+  get eta(): string {
     return timeDeltaToString(fromNow(this.expiry!));
-  }
-
-  /**
-   * Returns a string representation of the fissure
-   */
-  toString(): string {
-    return `[${this.getETAString()}] ${this.tier} fissure at ${this.node} - ${this.enemy} ${this.missionType}`;
   }
 }

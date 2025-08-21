@@ -3,11 +3,11 @@ import {
   timeDeltaToString,
   fromNow,
   languageString,
+  ContentTimestamp,
 } from 'warframe-worldstate-data/utilities';
 
 import mdConfig from '../supporting/MarkdownSettings.js';
 import Dependency from '../supporting/Dependency.js';
-import { ContentTimestamp } from './WorldstateObject.js';
 
 export interface RawDailyDeal {
   StoreItem: string;
@@ -70,19 +70,14 @@ export default class DailyDeal {
   id: string;
   
   /**
-   * ETA string (at time of object creation)
-   */
-  eta: string;
-  
-  /**
    * Percent discount
    */
   discount: number;
 
   /**
-   * @param   {object}            data            The deal data
-   * @param   {object}            deps            The dependencies object
-   * @param   {string}            deps.locale     Locale to use for translations
+   * @param data        The deal data
+   * @param deps        The dependencies object
+   * @param deps.locale Locale to use for translations
    */
   constructor(data: RawDailyDeal, { locale = 'en' }: Dependency = { locale: 'en' }) {
     this.item = languageString(data.StoreItem, locale);
@@ -103,28 +98,13 @@ export default class DailyDeal {
 
     this.id = `${data.StoreItem.split('/').slice(-1)[0]}${this.expiry.getTime()}`;
 
-    this.eta = this.getETAString();
-
     this.discount = data.Discount;
   }
 
   /**
    * Get a string indicating how much time is left before the deal expires
    */
-  getETAString(): string {
+  get eta(): string {
     return timeDeltaToString(fromNow(this.expiry));
-  }
-
-  /**
-   * Returns a string representation of the daily deal
-   */
-  toString(): string {
-    const lines = [
-      `Daily Deal: ${this.item}`,
-      `${this.salePrice}p (original ${this.originalPrice}p)`,
-      `${this.sold} / ${this.total} sold`,
-      `Expires in ${this.getETAString()}`,
-    ];
-    return lines.join(mdConfig.lineEnd);
   }
 }

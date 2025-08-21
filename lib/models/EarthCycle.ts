@@ -4,27 +4,42 @@ import mdConfig from '../supporting/MarkdownSettings';
 
 import WorldstateObject from './WorldstateObject';
 
-/**
- * @typedef {object} EarthCycle
- * @property {Date} expiry The date and time at which the event ends
- * @property {Date} activation The date and time at which the event started
- * @property {boolean} isDay Whether or not this it's daytime
- * @property {string} state Current cycle state. One of `day`, `night`
- * @property {string} timeLeft Time remaining string
- * @property {Date} rounded The date and time at which the event ends, rounded to the nearest minute
- * @property {Date} start The date and time at which the event started, 4 hours before the end
- * @property {boolean} expired Whether or not the event has expired
- */
-
-type EarthCycleType = {
+export interface EarthCycleType {
+  /**
+   * Whether or not this it's daytime
+   */
   dayTime: boolean;
+
+  /**
+   * Time remaining string
+   */
   timeLeft: string;
+
+  /**
+   * The date and time at which the event ends
+   */
   expiry: Date;
+
+  /**
+   * Time it expires in
+   */
   expiresIn: number;
+
+  /**
+   * The date and time at which the event ends, rounded to the nearest minute
+   */
   rounded: Date;
+
+  /**
+   * Current cycle state. One of `day`, `night`
+   */
   state: string;
+
+  /**
+   *  The date and time at which the event started, 4 hours before the end
+   */
   start: Date;
-};
+}
 
 /**
  * Get the current Earth Day/Night Cycle
@@ -106,20 +121,7 @@ export default class EarthCycle extends WorldstateObject {
    * Get whether or not the event has expired
    * @returns {boolean} Whether or not the event has expired
    */
-  getExpired(): boolean {
+  get expired(): boolean {
     return fromNow(this.expiry!) < 0;
-  }
-
-  /**
-   * The event's string representation
-   * @returns {string} The string representation of the event
-   */
-  toString(): string {
-    const lines = [
-      `Operator, Earth is currently in ${this.isDay ? 'Day' : 'Night'}time`,
-      `Time remaining until ${this.isDay ? 'night' : 'day'}: ${this.timeLeft}`,
-    ];
-
-    return lines.join(mdConfig.lineEnd);
   }
 }

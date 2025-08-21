@@ -1,4 +1,5 @@
 import { Locale } from 'warframe-worldstate-data';
+import { SteelPathOffering } from 'warframe-worldstate-data/types';
 import { timeDeltaToString, steelPath } from 'warframe-worldstate-data/utilities';
 
 const monday = 1;

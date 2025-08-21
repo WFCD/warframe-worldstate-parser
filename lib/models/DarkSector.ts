@@ -1,6 +1,6 @@
-import { parseDate, languageString } from 'warframe-worldstate-data/utilities';
+import { parseDate, languageString, ContentTimestamp } from 'warframe-worldstate-data/utilities';
 
-import WorldstateObject, { BaseContentObject, ContentTimestamp } from './WorldstateObject';
+import WorldstateObject, { BaseContentObject } from './WorldstateObject';
 import Mission, { RawMission } from './Mission';
 import DarkSectorBattle, { RawDarkSectorBattle } from './DarkSectorBattle';
 import Dependency from '../supporting/Dependency';
@@ -29,7 +29,7 @@ interface DefenderInfo {
   BattlePaySetByClan: string;
   TaxLastChangedBy: string;
   TaxLastChangedByClan: string;
-};
+}
 
 export interface RawDarkSector extends BaseContentObject {
   DefenderInfo: DefenderInfo;
@@ -41,29 +41,109 @@ export interface RawDarkSector extends BaseContentObject {
  * @augments {WorldstateObject}
  */
 export default class DarkSector extends WorldstateObject {
+  /**
+   * The dark sector credit tax rate
+   */
   creditTaxRate: number;
+
+  /**
+   * The dark sector credit tax rate for clan/alliance members
+   */
   memberCreditsTaxRate: number;
+
+  /**
+   * The dark sector resource tax rate
+   */
   itemsTaxRate: number;
+
+  /**
+   * The dark sector resource tax rate for clan/alliance members
+   */
   memberItemsTaxRate: number;
+
+  /**
+   * Whether the dark sector holder is an alliance or not
+   */
   isAlliance: boolean;
+
+  /**
+   * The current holder of the dark sector
+   */
   defenderName: string;
+
+  /**
+   * The remaining health of the current solar rail
+   */
   defenderPoolRemaining: number;
+
+  /**
+   * The maximum health of the solar rail
+   */
   defenderMaxPool: number;
+
+  /**
+   * The date and time at which the rail was deployed
+   */
   defenderDeployemntActivation: number | Date;
+
+  /**
+   * The solar rail type
+   */
   railType: string;
+
+  /**
+   * The MOTD set by the dark sector holder
+   */
   defenderMOTD: string;
+
+  /**
+   * The player who deployed the solar rail
+   */
   deployerName: string;
+
+  /**
+   * The clan of the player who deployed the solar rail
+   */
   deployerClan: string;
   defenderRailHealReserve: number;
   healRate: number;
   damagePerMission: number;
+
+  /**
+   * The dark sector's mission
+   */
   mission: Mission | undefined;
   battlePayReserve: number;
+
+  /**
+   * The battle pay per mission offered to players
+   * @type {number}
+   */
   perMissionBattlePay: number;
+  /**
+   * The player who set the battle pay
+   * @type {string}
+   */
   battlePaySetBy: string;
+  /**
+   * The clan of the player who set the battle pay
+   * @type {string}
+   */
   battlePaySetByClan: string;
+  /**
+   * The player who changed the tax
+   * @type {string}
+   */
   taxChangedBy: string;
+  /**
+   * The clan of the player who set the tax
+   * @type {string}
+   */
   taxChangedByClan: string;
+  /**
+   * The history of the dark sector
+   * @type {Array.<DarkSectorBattle>}
+   */
   history: DarkSectorBattle[];
 
   /**
@@ -78,84 +158,32 @@ export default class DarkSector extends WorldstateObject {
       locale,
     };
 
-    /**
-     * The dark sector credit tax rate
-     * @type {number}
-     */
     this.creditTaxRate = data.DefenderInfo.CreditsTaxRate;
 
-    /**
-     * The dark sector credit tax rate for clan/alliance members
-     * @type {number}
-     */
     this.memberCreditsTaxRate = data.DefenderInfo.MemberCreditsTax;
 
-    /**
-     * The dark sector resource tax rate
-     * @type {number}
-     */
     this.itemsTaxRate = data.DefenderInfo.ItemsTaxRate;
 
-    /**
-     * The dark sector resource tax rate for clan/alliance members
-     * @type {number}
-     */
     this.memberItemsTaxRate = data.DefenderInfo.MemberItemsTaxRate;
 
-    /**
-     * Whether the dark sector holder is an alliance or not
-     * @type {boolean}
-     */
     this.isAlliance = data.DefenderInfo.IsAlliance;
 
-    /**
-     * The current holder of the dark sector
-     * @type {string}
-     */
     this.defenderName = data.DefenderInfo.Name;
 
-    /**
-     * The remaining health of the current solar rail
-     * @type {number}
-     */
     this.defenderPoolRemaining = Number.parseFloat(data.DefenderInfo.StrengthRemaining);
 
-    /**
-     * The maximum health of the solar rail
-     * @type {number}
-     */
     this.defenderMaxPool = Number.parseFloat(data.DefenderInfo.MaxStrength);
 
-    /**
-     * The date and time at which the rail was deployed
-     * @type {Date}
-     */
     this.defenderDeployemntActivation = data.DefenderInfo.DeploymentActivationTime
       ? parseDate(data.DefenderInfo.DeploymentActivationTime)
       : 0;
 
-    /**
-     * The solar rail type
-     * @type {string}
-     */
     this.railType = languageString(data.DefenderInfo.RailType, locale);
 
-    /**
-     * The MOTD set by the dark sector holder
-     * @type {string}
-     */
     this.defenderMOTD = data.DefenderInfo.MOTD;
 
-    /**
-     * The player who deployed the solar rail
-     * @type {string}
-     */
     this.deployerName = data.DefenderInfo.DeployerName;
 
-    /**
-     * The clan of the player who deployed the solar rail
-     * @type {string}
-     */
     this.deployerClan = data.DefenderInfo.DeployerClan;
 
     this.defenderRailHealReserve = data.DefenderInfo.RailHealReserve;
@@ -164,48 +192,20 @@ export default class DarkSector extends WorldstateObject {
 
     this.damagePerMission = data.DefenderInfo.DamagePerMission;
 
-    /**
-     * The dark sector's mission
-     * @type {?Mission}
-     */
     this.mission = data.DefenderInfo.MissionInfo ? new Mission(data.DefenderInfo.MissionInfo, deps) : undefined;
 
     this.battlePayReserve = data.DefenderInfo.BattlePayReserve;
 
-    /**
-     * The battle pay per mission offered to players
-     * @type {number}
-     */
     this.perMissionBattlePay = data.DefenderInfo.MissionBattlePay;
 
-    /**
-     * The player who set the battle pay
-     * @type {string}
-     */
     this.battlePaySetBy = data.DefenderInfo.BattlePaySetBy;
 
-    /**
-     * The clan of the player who set the battle pay
-     * @type {string}
-     */
     this.battlePaySetByClan = data.DefenderInfo.BattlePaySetByClan;
 
-    /**
-     * The player who changed the tax
-     * @type {string}
-     */
     this.taxChangedBy = data.DefenderInfo.TaxLastChangedBy;
 
-    /**
-     * The clan of the player who set the tax
-     * @type {string}
-     */
     this.taxChangedByClan = data.DefenderInfo.TaxLastChangedByClan;
 
-    /**
-     * The history of the dark sector
-     * @type {Array.<DarkSectorBattle>}
-     */
     this.history = data.History ? data.History.map((b) => new DarkSectorBattle(b)) : [];
   }
 }

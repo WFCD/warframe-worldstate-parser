@@ -14,57 +14,55 @@ export interface RawSortieVariant {
  * @class
  */
 export default class SortieVariant {
+  /**
+   * The variant's mission type
+   */
   missionType: string;
+
+  /**
+   * The variant's mission type unlocalzied
+   */
   missionTypeKey: string;
+
+  /**
+   * The mission modifier
+   */
   modifier: string;
+
+  /**
+   * The variant's modifier description
+   */
   modifierDescription: string;
+
+  /**
+   * The node where the variant takes place
+   */
   node: string;
+
+  /**
+   * The node where the variant takes place unlocalized
+   */
   nodeKey: string;
 
   /**
    * Make the SortieVariant
-   * @class
-   * @param {object} data Sortie variant data
-   * @param {object} deps Dependencies
-   * @param {string} deps.locale Locale to use for translations
+   * @param data Sortie variant data
+   * @param deps Dependencies
+   * @param deps.locale Locale to use for translations
    */
   constructor(data: RawSortieVariant, { locale = 'en' }: Dependency = { locale: 'en' }) {
     insist({ ...data });
-    /**
-     * The variant's mission type
-     * @type {string}
-     */
+
     this.missionType = missionType(data.missionType, locale);
 
     this.missionTypeKey = missionType(data.missionType, 'en');
 
-    /**
-     * The variant's modifier
-     * @type {string}
-     */
     this.modifier = sortieModifier(data.modifierType, locale);
 
-    /**
-     * The variant's modifier description
-     * @type {string}
-     */
     this.modifierDescription = sortieModDesc(data.modifierType, locale);
 
-    /**
-     * The node where the variant takes place
-     * @type {string}
-     */
     this.node = node(data.node, locale);
 
     this.nodeKey = node(data.node, 'en');
-  }
-
-  /**
-   * Returns a string representation of the sortie variant
-   */
-  toString(): string {
-    return this.modifier
-      ? `${this.node.padEnd(25, ' ')} |  ${this.modifier.padEnd(20, ' ')} | ${this.missionType}${mdConfig.lineEnd}`
-      : `${this.node.padEnd(25, ' ')} | ${this.missionType}${mdConfig.lineEnd}`;
   }
 }
