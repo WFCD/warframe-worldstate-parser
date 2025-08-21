@@ -1,5 +1,5 @@
 {
-  "name": "@wfcd/worldstate-parser",
+  "name": "warframe-worldstate-parser",
   "version": "0.0.0-dev",
   "description": "An Open parser for Warframe's Worldstate in Javascript",
   "keywords": [
