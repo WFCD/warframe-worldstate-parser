@@ -1,5 +1,5 @@
+import { cdn, wfCdn } from './ImgCdn.js';
 import { auras, nightmare, resources } from './RewardData.js';
-import { wfCdn, cdn } from './ImgCdn.js';
 
 /**
  * An object describing a type of reward, including name, description,
@@ -19,7 +19,7 @@ export interface RewardType {
   /**
    * Function for testing the reward type against a string.
    */
-  test: ((s: string) => boolean) | (() => boolean);
+  test: (s: string) => boolean;
 
   /**
    * Thumbnail url for the reward type.

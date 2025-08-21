@@ -1,13 +1,12 @@
 import {
-  parseDate,
-  timeDeltaToString,
+  type ContentTimestamp,
   fromNow,
   languageString,
-  ContentTimestamp,
+  timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
 
-import mdConfig from '../supporting/MarkdownSettings.js';
-import Dependency from '../supporting/Dependency.js';
+import type Dependency from '../supporting/Dependency.js';
+import WorldstateObject from './WorldstateObject.js';
 
 export interface RawDailyDeal {
   StoreItem: string;
@@ -23,52 +22,42 @@ export interface RawDailyDeal {
 /**
  * Represents a daily deal
  */
-export default class DailyDeal {
+export default class DailyDeal extends WorldstateObject {
   /**
    * The item that is being offered in the sale
    */
   item: string;
-  
+
   /**
    * The uniqueName for the item on sale
    */
   uniqueName: string;
-  
-  /**
-   * The date and time at which the deal will expire
-   */
-  expiry: Date;
-  
-  /**
-   * The date and time at which the deal will or did start
-   */
-  activation: Date;
-  
+
   /**
    * The item's original price
    */
   originalPrice: number;
-  
+
   /**
    * The item's discounted price
    */
   salePrice: number;
-  
+
   /**
    * The number of available items on sale
    */
   total: number;
-  
+
   /**
    * The number of items that have already been sold
    */
   sold: number;
-  
+
   /**
    * Unique identifier for this deal built from the end time and item
    */
   id: string;
-  
+
   /**
    * Percent discount
    */
@@ -80,13 +69,11 @@ export default class DailyDeal {
    * @param deps.locale Locale to use for translations
    */
   constructor(data: RawDailyDeal, { locale = 'en' }: Dependency = { locale: 'en' }) {
+    super(data);
+
     this.item = languageString(data.StoreItem, locale);
 
     this.uniqueName = data.StoreItem;
-
-    this.expiry = parseDate(data.Expiry);
-
-    this.activation = parseDate(data.Activation);
 
     this.originalPrice = data.OriginalPrice;
 
@@ -96,7 +83,7 @@ export default class DailyDeal {
 
     this.sold = data.AmountSold;
 
-    this.id = `${data.StoreItem.split('/').slice(-1)[0]}${this.expiry.getTime()}`;
+    this.id = `${data.StoreItem.split('/').slice(-1)[0]}${this.expiry!.getTime()}`;
 
     this.discount = data.Discount;
   }
@@ -105,6 +92,6 @@ export default class DailyDeal {
    * Get a string indicating how much time is left before the deal expires
    */
   get eta(): string {
-    return timeDeltaToString(fromNow(this.expiry));
+    return timeDeltaToString(fromNow(this.expiry!));
   }
 }

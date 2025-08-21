@@ -1,7 +1,5 @@
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
-import mdConfig from '../supporting/MarkdownSettings';
-
 import WorldstateObject from './WorldstateObject';
 
 // This is a confirmed starting time for Corpus (in millis)

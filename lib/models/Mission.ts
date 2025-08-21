@@ -1,7 +1,7 @@
 import { faction, insist, languageString, missionType, node } from 'warframe-worldstate-data/utilities';
 
-import Dependency from '../supporting/Dependency';
-import Reward, { RawReward } from './Reward';
+import type Dependency from '../supporting/Dependency';
+import Reward, { type RawReward } from './Reward';
 
 export interface RawMission {
   descText: string;
@@ -140,7 +140,7 @@ export default class Mission {
   /**
    * A tag for the event that this corresponds to
    */
-  goalTag: any;
+  goalTag?: string;
 
   /**
    * Affectors for this mission

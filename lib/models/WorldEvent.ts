@@ -1,19 +1,17 @@
 import {
-  fromNow,
-  parseDate,
+  type ContentTimestamp,
   faction,
+  fromNow,
   languageString,
   node,
+  parseDate,
   syndicate,
-  ContentTimestamp,
 } from 'warframe-worldstate-data/utilities';
 
-import mdConfig from '../supporting/MarkdownSettings';
-
-import WorldstateObject, { BaseContentObject, Identifier } from './WorldstateObject';
-import SyndicateJob, { RawSyndicateJob } from './SyndicateJob';
-import Reward, { RawReward } from './Reward';
-import Dependency from '../supporting/Dependency';
+import type Dependency from '../supporting/Dependency';
+import Reward, { type RawReward } from './Reward';
+import SyndicateJob, { type RawSyndicateJob } from './SyndicateJob';
+import WorldstateObject, { type BaseContentObject, type Identifier } from './WorldstateObject';
 
 /**
  * Interim step for an event reward system.
@@ -203,7 +201,7 @@ export default class WorldEvent extends WorldstateObject {
   /**
    * Metadata provided by DE
    */
-  metadata: any;
+  metadata: object;
 
   /**
    * Bonuses given for completion
@@ -219,7 +217,7 @@ export default class WorldEvent extends WorldstateObject {
    * The event's tag
    */
   tag: string;
-  victim: any;
+  victim?: string;
 
   /**
    * Asynchronously build a new WorldEvent
@@ -290,7 +288,7 @@ export default class WorldEvent extends WorldstateObject {
     this.jobs = [];
     this.previousJobs = [];
 
-    this.previousId = (data.JobPreviousVersion || {}).$oid;
+    this.previousId = data.JobPreviousVersion?.$oid;
 
     this.interimSteps = [];
 
@@ -359,44 +357,5 @@ export default class WorldEvent extends WorldstateObject {
    */
   get expired(): boolean {
     return fromNow(this.expiry!) < 0;
-  }
-
-  /**
-   * The event's string representation
-   */
-  get asString(): string {
-    let lines = [];
-    if (this.faction) {
-      lines.push(`${this.description} : ${this.faction}`);
-    } else {
-      lines.push(this.description);
-    }
-
-    if (this.scoreLocTag && this.maximumScore) {
-      lines.push(`${this.scoreLocTag} : ${this.maximumScore}`);
-    }
-
-    if (this.rewards.length) {
-      lines.push('Rewards:');
-      lines = lines.concat(this.rewards.map((r) => r.toString()));
-    }
-    if (this.node) {
-      lines.push(`Battle on ${this.node}`);
-    }
-    if (this.victim) {
-      lines.push(`Protect ${this.victimNode}`);
-    }
-    if (this.health) {
-      lines.push(`${this.health}% Remaining`);
-    }
-
-    if (this.affiliatedWith && this.jobs) {
-      lines.push(
-        `${this.affiliatedWith} will reward you for performing ` +
-          `${this.jobs.map((job) => job.type).join(', ')} job${this.jobs.length > 1 ? 's' : ''}`
-      );
-    }
-
-    return lines.join(mdConfig.lineEnd);
   }
 }

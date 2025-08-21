@@ -1,10 +1,9 @@
-import { fromNow, parseDate, timeDeltaToString, node, syndicate } from 'warframe-worldstate-data/utilities';
+import { fromNow, node, syndicate, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
-import mdConfig from '../supporting/MarkdownSettings';
 
-import SyndicateJob, { RawSyndicateJob } from './SyndicateJob';
-import WorldstateObject, { BaseContentObject } from './WorldstateObject';
-import Dependency from '../supporting/Dependency';
+import type Dependency from '../supporting/Dependency';
+import SyndicateJob, { type RawSyndicateJob } from './SyndicateJob';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 export interface RawSyndicateMission extends BaseContentObject {
   Tag: string;

@@ -8,7 +8,7 @@
     "files": {
         "includes": [
             "test/**/*.ts",
-            "tools/*.ts"
+            "lib/**/*.ts"
         ],
         "ignoreUnknown": true
     },

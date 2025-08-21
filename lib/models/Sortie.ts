@@ -1,19 +1,16 @@
 import wsData from 'warframe-worldstate-data';
 import {
   fromNow,
-  parseDate,
-  timeDeltaToString,
   languageString,
+  parseDate,
   sortieBoss,
   sortieFaction,
+  timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
-
-import mdConfig from '../supporting/MarkdownSettings';
-
-import WorldstateObject, { BaseContentObject } from './WorldstateObject';
-import SortieVariant, { RawSortieVariant } from './SortieVariant';
-import Mission, { RawMission } from './Mission';
-import Dependency from '../supporting/Dependency';
+import type Dependency from '../supporting/Dependency';
+import Mission, { type RawMission } from './Mission';
+import SortieVariant, { type RawSortieVariant } from './SortieVariant';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 const { sortie: sortieData } = wsData;
 
@@ -68,7 +65,6 @@ export default class Sortie extends WorldstateObject {
     super(data);
 
     const opts = {
-      mdConfig,
       sortieData,
       locale,
     };

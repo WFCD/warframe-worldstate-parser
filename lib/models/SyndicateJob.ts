@@ -1,7 +1,6 @@
 import { languageString } from 'warframe-worldstate-data/utilities';
-
-import WorldstateObject, { Identifier } from './WorldstateObject';
-import Dependency from '../supporting/Dependency';
+import type Dependency from '../supporting/Dependency';
+import WorldstateObject, { type Identifier } from './WorldstateObject';
 
 const apiBase = process.env.API_BASE_URL || 'https://api.warframestat.us';
 const bountyRewardRegex = /(?:Tier([ABCDE])|Narmer)Table([ABC])Rewards/i;
@@ -18,16 +17,16 @@ const determineLocation = (i18n: string, raw: RawSyndicateJob, isVault?: boolean
   const bountyMatches = last.match(bountyRewardRegex);
   const ghoulMatches = last.match(ghoulRewardRegex);
 
-  const isBounty = bountyMatches && bountyMatches.length;
-  const isGhoul = ghoulMatches && ghoulMatches.length;
+  const isBounty = bountyMatches?.length;
+  const isGhoul = ghoulMatches?.length;
   const isCetus = /eidolonjob/i.test(i18n);
   const isVallis = /venusjob/i.test(i18n);
   const isDeimos = /deimosmissionrewards/i.test(i18n);
   const rotation = isBounty ? bountyMatches[2] : '';
   const levelString = getLevelString(raw);
 
-  let location;
-  let levelClause;
+  let location: string | undefined;
+  let levelClause: string | undefined;
   if (isCetus) {
     location = 'Earth/Cetus ';
     if (isGhoul) {
@@ -50,8 +49,8 @@ const determineLocation = (i18n: string, raw: RawSyndicateJob, isVault?: boolean
 };
 
 const getBountyRewards = async (i18n: string, raw: RawSyndicateJob, isVault?: boolean): Promise<string[]> => {
-  let location;
-  let locationWRot;
+  let location: string | undefined;
+  let locationWRot: string | undefined;
   if (i18n.endsWith('PlagueStarTableRewards')) {
     location = 'plague star';
     locationWRot = 'Earth/Cetus (Level 15 - 25 Plague Star), Rot A';
@@ -63,7 +62,7 @@ const getBountyRewards = async (i18n: string, raw: RawSyndicateJob, isVault?: bo
   const reply: Record<string, { rewards: { item: string }[] }> = await fetch(url)
     .then((res) => res.json())
     .catch(() => {}); // swallow errors
-  const pool = (reply || {})[locationWRot];
+  const pool = reply?.[locationWRot];
   if (!pool) {
     return ['Pattern Mismatch. Results inaccurate.'];
   }
@@ -102,7 +101,7 @@ export default class SyndicateJob extends WorldstateObject {
   /**
    * The type of job this is
    */
-  type: string;
+  type?: string;
 
   /**
    * Array of enemy levels
@@ -171,7 +170,7 @@ export default class SyndicateJob extends WorldstateObject {
 
     const chamber = ((data.locationTag || '').match(/[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+/g) || []).join(' ');
 
-    this.type = data.isVault ? `Isolation Vault ${chamber}` : languageString(data.jobType!, locale);
+    this.type = data.isVault ? `Isolation Vault ${chamber}` : (data.jobType ? languageString(data.jobType, locale): undefined);
 
     this.enemyLevels = [data.minEnemyLevel, data.maxEnemyLevel];
 
@@ -185,7 +184,7 @@ export default class SyndicateJob extends WorldstateObject {
 
     this.expiry = expiry;
 
-    if (data.jobType && data.jobType.toLowerCase().includes('narmer')) {
+    if (data.jobType?.toLowerCase().includes('narmer')) {
       if (data.jobType.toLowerCase().includes('eidolon')) {
         this.timeBound = 'day';
         this.expiry = new Date(this.expiry.getTime() - FIFTY_MINUTES);

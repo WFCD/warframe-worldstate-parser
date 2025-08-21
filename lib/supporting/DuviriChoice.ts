@@ -1,4 +1,4 @@
-import { BaseContentObject } from '../models/WorldstateObject';
+import type { BaseContentObject } from '../models/WorldstateObject';
 
 export interface RawChoice extends BaseContentObject {
   Category: 'EXC_NORMAL' | 'EXC_HARD';

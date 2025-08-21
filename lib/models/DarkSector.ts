@@ -1,9 +1,9 @@
-import { parseDate, languageString, ContentTimestamp } from 'warframe-worldstate-data/utilities';
+import { parseDate, languageString, type ContentTimestamp } from 'warframe-worldstate-data/utilities';
 
-import WorldstateObject, { BaseContentObject } from './WorldstateObject';
-import Mission, { RawMission } from './Mission';
-import DarkSectorBattle, { RawDarkSectorBattle } from './DarkSectorBattle';
-import Dependency from '../supporting/Dependency';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+import Mission, { type RawMission } from './Mission';
+import DarkSectorBattle, { type RawDarkSectorBattle } from './DarkSectorBattle';
+import type Dependency from '../supporting/Dependency';
 
 interface DefenderInfo {
   CreditsTaxRate: number;
@@ -22,7 +22,7 @@ interface DefenderInfo {
   RailHealReserve: number;
   healRate: string;
   DamagePerMission: number;
-  MissionInfo: RawMission;
+  MissionInfo?: RawMission;
   BattlePayReserve: number;
   MissionBattlePay: number;
   BattlePaySetBy: string;
@@ -112,7 +112,7 @@ export default class DarkSector extends WorldstateObject {
   /**
    * The dark sector's mission
    */
-  mission: Mission | undefined;
+  mission?: Mission;
   battlePayReserve: number;
 
   /**

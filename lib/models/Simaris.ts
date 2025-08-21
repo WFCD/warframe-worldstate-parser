@@ -1,5 +1,5 @@
 import { languageString } from 'warframe-worldstate-data/utilities';
-import Dependency from '../supporting/Dependency';
+import type Dependency from '../supporting/Dependency';
 
 /**
  * Simaris library info

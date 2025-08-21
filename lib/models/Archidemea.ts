@@ -1,5 +1,6 @@
-import { languageDesc, languageString } from 'warframe-worldstate-data/utilities';
-import { Locale } from 'warframe-worldstate-data';
+import { createHash } from 'node:crypto';
+import type { Locale } from 'warframe-worldstate-data';
+import { languageDesc, languageString, weeklyReset } from 'warframe-worldstate-data/utilities';
 
 /**
  * @deprecated use Archimedea to reference temporal and deep
@@ -15,8 +16,8 @@ export interface RawArchimedea {
 
 class ArchidemeaMission {
   mission: string;
-  deviation: { key: string; name: string; description: string; };
-  riskVariables: { key: string; name: string; description: string; }[];
+  deviation: { key: string; name: string; description: string };
+  riskVariables: { key: string; name: string; description: string }[];
 
   /**
    * @param mission   Challenge mission type
@@ -44,21 +45,19 @@ export default class Archimedea {
   activation: Date;
   expiry: Date;
   missions: ArchidemeaMission[];
-  personalModifiers: { key: string; name: string; description: string; }[];
+  personalModifiers: { key: string; name: string; description: string }[];
 
   /**
-   * 
+   *
    * @param activation Start timestamp
    * @param expiry     End timestamp
    * @param data       Data to parse
    * @param locale     Locale to translate to
    */
-  constructor(activation: Date, expiry: Date, data: RawArchimedea, locale: Locale = 'en') {
-    this.id = `${activation}Archimedea`;
+  constructor(data: RawArchimedea, locale: Locale = 'en') {
+    ({ activation: this.activation, expiry: this.expiry } = weeklyReset());
 
-    this.activation = activation;
-
-    this.expiry = expiry;
+    this.id = createHash('md5').update(JSON.stringify(data), 'utf8').digest('hex');
 
     this.missions = data.mt.map((m, i) => new ArchidemeaMission(m, data.mv[i], data.c[i], locale));
 

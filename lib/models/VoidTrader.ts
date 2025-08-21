@@ -1,18 +1,15 @@
 import {
+  type ContentTimestamp,
   fromNow,
+  insist,
+  node,
   parseDate,
   timeDeltaToString,
-  node,
-  insist,
-  ContentTimestamp,
 } from 'warframe-worldstate-data/utilities';
-
-import mdConfig from '../supporting/MarkdownSettings.js';
-
-import WorldstateObject, { BaseContentObject } from './WorldstateObject';
-import VoidTraderItem, { RawVoidTraderItem } from './VoidTraderItem';
+import type Dependency from '../supporting/Dependency.js';
+import VoidTraderItem, { type RawVoidTraderItem } from './VoidTraderItem';
 import VoidTraderSchedule from './VoidTraderSchedule';
-import Dependency from '../supporting/Dependency.js';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 export interface RawVoidTrader extends BaseContentObject {
   Character?: string;

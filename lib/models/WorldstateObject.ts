@@ -1,4 +1,4 @@
-import { parseDate, fromNow, timeDeltaToString, insist, ContentTimestamp } from 'warframe-worldstate-data/utilities';
+import { type ContentTimestamp, fromNow, insist, parseDate, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
 export interface Identifier {
   $id?: string;

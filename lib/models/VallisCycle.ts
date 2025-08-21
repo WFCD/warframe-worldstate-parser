@@ -41,7 +41,7 @@ function getCurrentCycle(): CurrnetCycle {
   if (toNextFull > coldTime) {
     state = 'warm';
   }
-  let toNextMinor;
+  let toNextMinor: number;
   if (toNextFull < coldTime) {
     toNextMinor = toNextFull;
   } else {

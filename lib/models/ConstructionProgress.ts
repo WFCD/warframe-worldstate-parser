@@ -1,6 +1,5 @@
-import mdConfig from '../supporting/MarkdownSettings.js';
 
-import WorldstateObject, { BaseContentObject, Identifier } from './WorldstateObject.js';
+import WorldstateObject, { type BaseContentObject, type Identifier } from './WorldstateObject.js';
 
 export interface RawConstructionProgress extends BaseContentObject {
   _id: Identifier;

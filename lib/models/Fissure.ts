@@ -8,11 +8,11 @@ import {
   nodeEnemy,
   fissureModifier,
   fissureTier,
-  ContentTimestamp,
+  type ContentTimestamp,
 } from 'warframe-worldstate-data/utilities';
 
-import WorldstateObject, { BaseContentObject } from './WorldstateObject';
-import Dependency from '../supporting/Dependency';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+import type Dependency from '../supporting/Dependency';
 
 export interface RawFissure extends BaseContentObject {
   Node: string;

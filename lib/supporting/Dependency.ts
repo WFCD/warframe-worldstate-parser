@@ -1,6 +1,6 @@
-import { Locale } from 'warframe-worldstate-data';
-import ExternalMission from './ExternalMission';
-import { SortieData } from 'warframe-worldstate-data/types';
+import type { Locale } from 'warframe-worldstate-data';
+import type { SortieData } from 'warframe-worldstate-data/types';
+import type { KuvaLogEntry } from './KuvaLogEntry';
 
 /**
  * Dependency Object
@@ -9,7 +9,7 @@ export default interface Dependency {
   /**
    * Kuva data for parsing
    */
-  kuvaData?: unknown[];
+  kuvaData?: KuvaLogEntry[];
 
   /**
    * Locale to use for translations
@@ -19,7 +19,7 @@ export default interface Dependency {
   /**
    * Generic logger to use if needed
    */
-  logger?: any;
+  logger?: {debug: (message: string) => void};
 
   /**
    * Sentint Data for parsing

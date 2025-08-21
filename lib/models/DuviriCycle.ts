@@ -1,7 +1,6 @@
-import { timeDeltaToString, toTitleCase } from 'warframe-worldstate-data/utilities';
 
+import type DuviriChoice from '../supporting/DuviriChoice';
 import WorldstateObject from './WorldstateObject';
-import DuviriChoice from '../supporting/DuviriChoice';
 
 const cycleTime = 36000;
 const stateTime = 7200;

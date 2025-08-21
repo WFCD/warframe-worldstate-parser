@@ -1,4 +1,4 @@
-import { timeDeltaToString, fromNow } from 'warframe-worldstate-data/utilities';
+import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
 import WorldstateObject from './WorldstateObject';
 

@@ -1,17 +1,14 @@
+import type { Locale } from 'warframe-worldstate-data';
 import {
-  ContentTimestamp,
+  type ContentTimestamp,
   fromNow,
   languageString,
   parseDate,
   timeDeltaToString,
   toNow,
 } from 'warframe-worldstate-data/utilities';
-
 import { cdn, deProxy } from '../supporting/ImgCdn';
-import mdConfig from '../supporting/MarkdownSettings';
-
-import { Locale } from 'warframe-worldstate-data';
-import WorldstateObject, { BaseContentObject } from './WorldstateObject';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 const updateReg = /(update|hotfix|patch-notes)/i;
 const primeAccessReg = /(access)/i;

@@ -1,9 +1,6 @@
-import { parseDate, languageString, node, region, ContentTimestamp } from 'warframe-worldstate-data/utilities';
-
-import mdConfig from '../supporting/MarkdownSettings.js';
-
-import WorldstateObject, { BaseContentObject } from './WorldstateObject.js';
-import { Locale } from 'warframe-worldstate-data';
+import type { Locale } from 'warframe-worldstate-data';
+import { type ContentTimestamp, languageString, node, parseDate, region } from 'warframe-worldstate-data/utilities';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject.js';
 
 export interface RawPersistentEnemy extends BaseContentObject {
   AgentType: string;

@@ -1,10 +1,7 @@
-import { fromNow, timeDeltaToString, languageString } from 'warframe-worldstate-data/utilities';
-
-import mdConfig from '../supporting/MarkdownSettings';
-
-import WorldstateObject, { BaseContentObject } from './WorldstateObject';
-import NightwaveChallenge, { RawNightwaveChallenge } from './NightwaveChallenge';
-import { Locale } from 'warframe-worldstate-data';
+import type { Locale } from 'warframe-worldstate-data';
+import { fromNow, languageString, timeDeltaToString } from 'warframe-worldstate-data/utilities';
+import NightwaveChallenge, { type RawNightwaveChallenge } from './NightwaveChallenge';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 export interface RawNightwave extends BaseContentObject {
   Season: number;

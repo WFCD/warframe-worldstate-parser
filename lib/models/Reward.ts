@@ -1,7 +1,6 @@
-import { languageString, insist } from 'warframe-worldstate-data/utilities';
-
-import rewardTypes, { RewardType } from '../supporting/RewardTypes';
-import Dependency from '../supporting/Dependency';
+import { insist, languageString } from 'warframe-worldstate-data/utilities';
+import type Dependency from '../supporting/Dependency';
+import rewardTypes, { type RewardType } from '../supporting/RewardTypes';
 
 /**
  * Returns the type of a given item
@@ -56,7 +55,7 @@ export default class Reward {
   constructor(data: RawReward, { locale = 'en' }: Dependency = { locale: 'en' }) {
     insist({ ...data });
 
-    this.items = data.items ? data.items.map((i) => languageString(i), locale) : [];
+    this.items = data.items ? data.items.map((i) => languageString(i, locale)) : [];
 
     this.countedItems = data.countedItems
       ? data.countedItems.map((i) => ({
@@ -88,6 +87,13 @@ export default class Reward {
     }
 
     return tokens.join(' + ');
+  }
+
+   /**
+   * The types of all items that are being rewarded
+   */
+  getTypes(): string[] {
+    return this.items.concat(this.countedItems.map((i) => i.key)).map((t) => getItemType(t));
   }
 
   /**

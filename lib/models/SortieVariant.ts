@@ -1,7 +1,5 @@
-import { missionType, node, sortieModDesc, sortieModifier, insist } from 'warframe-worldstate-data/utilities';
-
-import mdConfig from '../supporting/MarkdownSettings';
-import Dependency from '../supporting/Dependency';
+import { insist, missionType, node, sortieModDesc, sortieModifier } from 'warframe-worldstate-data/utilities';
+import type Dependency from '../supporting/Dependency';
 
 export interface RawSortieVariant {
   missionType: string;

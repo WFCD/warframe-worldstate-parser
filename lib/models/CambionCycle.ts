@@ -1,7 +1,7 @@
 import { fromNow } from 'warframe-worldstate-data/utilities';
 
+import type CetusCycle from './CetusCycle';
 import WorldstateObject from './WorldstateObject';
-import CetusCycle from './CetusCycle';
 
 /**
  * Represents the current Cambion Drift Fass/Vome Cycle

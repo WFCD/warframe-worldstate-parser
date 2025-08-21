@@ -1,5 +1,5 @@
-import WorldstateObject, { BaseContentObject } from './WorldstateObject';
-import ChallengeInstance, { RawChallengeInstance } from './ChallengeInstance';
+import ChallengeInstance, { type RawChallengeInstance } from './ChallengeInstance';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 export interface RawWeeklyChallenge extends BaseContentObject {
   Challenges: RawChallengeInstance[];

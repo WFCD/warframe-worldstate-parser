@@ -1,15 +1,14 @@
 import {
-  parseDate,
-  fromNow,
-  timeDeltaToString,
-  conclaveMode,
+  type ContentTimestamp,
   conclaveCategory,
   conclaveChallenge,
-  ContentTimestamp,
+  conclaveMode,
+  fromNow,
+  parseDate,
+  timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
-
-import WorldstateObject, { BaseContentObject } from './WorldstateObject';
-import Dependency from '../supporting/Dependency';
+import type Dependency from '../supporting/Dependency';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 export interface RawChallenge extends BaseContentObject {
   endDate: ContentTimestamp;
@@ -39,6 +38,11 @@ export default class ConclaveChallenge extends WorldstateObject {
    * The challenge's category (daily, weekly...)
    */
   category: string;
+
+  /**
+   * The challenge category unlocalized
+   */
+  categoryKey: string;
 
   /**
    * The challenge's description text
@@ -73,6 +77,8 @@ export default class ConclaveChallenge extends WorldstateObject {
 
     this.category = conclaveCategory(data.Category, locale);
 
+    this.categoryKey = conclaveCategory(data.Category, 'en');
+
     const challenge = conclaveChallenge(data.challengeTypeRefID, locale);
 
     ({ title: this.title, description: this.description, standing: this.standing } = challenge);
@@ -82,14 +88,14 @@ export default class ConclaveChallenge extends WorldstateObject {
    * Whether or not this is a daily conclave challenge.
    */
   get daily(): boolean {
-    return this.category.toLowerCase() === 'day';
+    return this.categoryKey.toLowerCase() === 'day';
   }
 
   /**
    * Whether or not this is the root challenge
    */
   get rootChallenge(): boolean {
-    return this.category.toLowerCase() === 'week_root';
+    return this.categoryKey.toLowerCase() === 'week_root';
   }
 
   /**
@@ -105,12 +111,5 @@ export default class ConclaveChallenge extends WorldstateObject {
   get eta(): string {
     const timeDelta = fromNow(this.expiry!);
     return timeDeltaToString(timeDelta);
-  }
-
-  /**
-   * This challenge as a string
-   */
-  asString(): string {
-    return `${this.description} on ${this.mode} ${this.amount} times in a ${this.category}`;
   }
 }

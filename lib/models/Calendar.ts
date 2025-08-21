@@ -1,11 +1,10 @@
 import {
   languageDesc,
   languageString,
-  parseDate,
   translateCalendarEvent,
-  translateSeason,
+  translateSeason
 } from 'warframe-worldstate-data/utilities';
-import WorldstateObject, { BaseContentObject } from './WorldstateObject';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 export interface RawCalender extends BaseContentObject {
   Days: { day: number; events: RawDay[] }[];
@@ -20,8 +19,8 @@ export interface RawDay {
   challenge?: string;
   upgrade?: string;
   reward?: string;
-  dialogueName?: any;
-  dialogueConvo?: any;
+  dialogueName?: string;
+  dialogueConvo?: string;
 }
 
 /**
@@ -32,8 +31,8 @@ export class DayEvent {
   challenge?: { title: string; description: string };
   upgrade?: { title: string; description: string };
   reward?: string;
-  dialogueName: any;
-  dialogueConvo: any;
+  dialogueName?: string;
+  dialogueConvo?: string;
 
   /**
    * @param event raw event data
@@ -72,17 +71,17 @@ export default class Calendar extends WorldstateObject {
   /**
    * Current loop number
    */
-  yearIteration: any;
+  yearIteration: number;
 
   /**
    * Version
    */
-  version: any;
+  version: number;
   
   /**
    * Player requirements needed to view this calender
    */
-  requirements: any;
+  requirements: string[];
 
   /**
    * @param calendar RawCalender data to parse from

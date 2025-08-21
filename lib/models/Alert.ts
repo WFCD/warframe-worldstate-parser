@@ -1,9 +1,9 @@
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
-import Dependency from '../supporting/Dependency';
-import Mission, { RawMission } from './Mission';
-import Reward from './Reward';
-import WorldstateObject, { BaseContentObject } from './WorldstateObject';
+import type Dependency from '../supporting/Dependency';
+import Mission, { type RawMission } from './Mission';
+import type Reward from './Reward';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 export interface RawAlert extends BaseContentObject {
   MissionInfo: RawMission;

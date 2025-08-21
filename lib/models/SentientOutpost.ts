@@ -1,5 +1,5 @@
 import { node, nodeEnemy, nodeMissionType } from 'warframe-worldstate-data/utilities';
-import Dependency from '../supporting/Dependency';
+import type Dependency from '../supporting/Dependency';
 
 const duration = 1800;
 
@@ -31,15 +31,6 @@ interface Mission {
 /**
  * Represents a set of sentient outposts that are present
  * Parsed source is combined data from DE's worldstate and semlar.com/anomaly.json
- * @property {Mission} mission    List of current missions
- * @property {string}  id         Identifier for the mission node with active indicator
- * @property {boolean} active     Whether or not the mission is active
- * @property {Date}    activation When the mission became or becomes active
- * @property {Date}    expiry     When the mission became or becomes inactive
- * @property {object}  previous   Estimation data for the last mission that was active.
- *                                Could also be the current.
- * @property {Date}    previous.activation  When the mission became or becomes active
- * @property {Date}    previous.expiry     When the mission became or becomes inactive
  */
 export default class SentientOutpost {
   private node;
@@ -69,10 +60,9 @@ export default class SentientOutpost {
    * @param sfn  Sentient outpost node number
    * @param deps Dependencies
    */
-  constructor(sfn: string | number | undefined, { locale, sentientData, logger }: Dependency) {
+  constructor(sfn: string | number | undefined, { locale, sentientData, logger}: Dependency) {
     this.node = sfn || '000';
     const id = `CrewBattleNode${this.node}`;
-    /* istanbul ignore if */
     if (this.node === '000') {
       this.mission = undefined;
     } else {
@@ -87,7 +77,7 @@ export default class SentientOutpost {
     this.id = `${id}:${this.active}`;
 
     if (!sentientData) {
-      logger.debug('No outpost data, skipping');
+      logger?.debug('No outpost data, skipping');
     } else {
       this.activation = new Date(sentientData.start * 1000);
       this.expiry = new Date(sentientData.end * 1000);

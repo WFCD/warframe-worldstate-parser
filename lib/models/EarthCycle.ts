@@ -1,7 +1,5 @@
 import { fromNow } from 'warframe-worldstate-data/utilities';
 
-import mdConfig from '../supporting/MarkdownSettings';
-
 import WorldstateObject from './WorldstateObject';
 
 export interface EarthCycleType {

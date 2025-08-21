@@ -1,48 +1,49 @@
 import { createHash } from 'node:crypto';
 
 import wsData from 'warframe-worldstate-data';
-import { parseDate, weeklyReset } from 'warframe-worldstate-data/utilities';
-
-import EarthCycle from './models/EarthCycle';
-import CetusCycle from './models/CetusCycle';
-import ConstructionProgress from './models/ConstructionProgress';
-import VallisCycle from './models/VallisCycle';
-import ZarimanCycle from './models/ZarimanCycle';
-import Nightwave, { RawNightwave } from './models/Nightwave';
-import Kuva from './models/Kuva';
-import SentientOutpost from './models/SentientOutpost';
+import { parseDate } from 'warframe-worldstate-data/utilities';
+import Alert, { type RawAlert } from './models/Alert';
+import type Archimedea from './models/Archidemea';
+import Calendar, { type RawCalender } from './models/Calendar';
 import CambionCycle from './models/CambionCycle';
-import SteelPathOffering from './models/SteelPathOffering';
-import Dependency from './supporting/Dependency';
+import CetusCycle from './models/CetusCycle';
+import ConclaveChallenge, { type RawChallenge } from './models/ConclaveChallenge';
+import ConstructionProgress from './models/ConstructionProgress';
+import DailyDeal, { type RawDailyDeal } from './models/DailyDeal';
+import DarkSector, { type RawDarkSector } from './models/DarkSector';
 import DuviriCycle from './models/DuviriCycle';
-import WeeklyChallenge, { RawWeeklyChallenge } from './models/WeeklyChallenge';
-import Sortie, { RawSortie } from './models/Sortie';
-import DuviriChoice, { RawChoice } from './supporting/DuviriChoice';
-import VoidTrader, { RawVoidTrader } from './models/VoidTrader';
-import PersistentEnemy, { RawPersistentEnemy } from './models/PersistentEnemy';
-import ConclaveChallenge, { RawChallenge } from './models/ConclaveChallenge';
-import Simaris, { LibraryInfo } from './models/Simaris';
-import DailyDeal, { RawDailyDeal } from './models/DailyDeal';
-import DarkSector, { RawDarkSector } from './models/DarkSector';
-import Invasion, { RawInvasion } from './models/Invasion';
-import FlashSale, { RawFlashSale } from './models/FlashSale';
-import GlobalUpgrade, { RawGlobalUpgrade } from './models/GlobalUpgrade';
-import Fissure, { RawFissure } from './models/Fissure';
-import SyndicateMission, { RawSyndicateMission } from './models/SyndicateMission';
-import Alert, { RawAlert } from './models/Alert';
-import WorldEvent, { RawWorldEvent } from './models/WorldEvent';
-import News, { RawNews } from './models/News';
-import Kinepage from './models/Kinepage';
-import Calendar, { RawCalender } from './models/Calendar';
+import EarthCycle from './models/EarthCycle';
+import Fissure, { type RawFissure } from './models/Fissure';
+import FlashSale, { type RawFlashSale } from './models/FlashSale';
+import GlobalUpgrade, { type RawGlobalUpgrade } from './models/GlobalUpgrade';
+import Invasion, { type RawInvasion } from './models/Invasion';
+import type Kinepage from './models/Kinepage';
+import Kuva from './models/Kuva';
 import MidrathCycle from './models/MidrathCycle';
-import WorldstateObject, { BaseContentObject } from './models/WorldstateObject';
-import Archimedea, { RawArchimedea } from './models/Archidemea';
-import ExternalMission from './supporting/ExternalMission';
+import News, { type RawNews } from './models/News';
+import Nightwave, { type RawNightwave } from './models/Nightwave';
+import PersistentEnemy, { type RawPersistentEnemy } from './models/PersistentEnemy';
+import type SentientOutpost from './models/SentientOutpost';
+import Simaris, { type LibraryInfo } from './models/Simaris';
+import Sortie, { type RawSortie } from './models/Sortie';
+import SteelPathOffering from './models/SteelPathOffering';
+import SyndicateMission, { type RawSyndicateMission } from './models/SyndicateMission';
+import VallisCycle from './models/VallisCycle';
+import VoidTrader, { type RawVoidTrader } from './models/VoidTrader';
+import WeeklyChallenge, { type RawWeeklyChallenge } from './models/WeeklyChallenge';
+import WorldEvent, { type RawWorldEvent } from './models/WorldEvent';
+import type WorldstateObject from './models/WorldstateObject';
+import type { BaseContentObject } from './models/WorldstateObject';
+import ZarimanCycle from './models/ZarimanCycle';
+import type Dependency from './supporting/Dependency';
+import DuviriChoice, { type RawChoice } from './supporting/DuviriChoice';
+import type ExternalMission from './supporting/ExternalMission';
+import { Tmp } from './Tmp';
 
 const { sortie } = wsData;
 
-const safeArray = <T>(arr: T[] | undefined) => (arr as T[]) || <T>[];
-const safeObj = <T>(obj: T | undefined) => obj || ({} as T);
+const safeArray = <T>(arr: T[] | undefined) => (arr ?? []) as T[];
+const safeObj = <T>(obj: T | undefined) => (obj ?? {}) as T;
 
 /**
  * Default Dependency object
@@ -71,13 +72,15 @@ export function parseArray<T, D extends BaseContentObject>(
   const arr = (dataArray || []).map((d) => new ParserClass(d, deps));
   if (uniqueField) {
     const utemp: Record<string, T> = {};
+    // biome-ignore lint/suspicious/noExplicitAny: There's a safety net for these any
     arr.sort((a: any, b: any) => (a.id || '').localeCompare(b.id || ''));
     arr.forEach((obj) => {
       const key = String(obj[uniqueField]);
       utemp[key] = obj;
     });
+    // biome-ignore lint/suspicious/noExplicitAny: See line 75
     return Array.from(arr).filter((obj: any) => {
-      if (obj && obj.active && typeof obj.active !== 'undefined') return obj.active;
+      if (obj?.active && typeof obj.active !== 'undefined') return obj.active;
       return true;
     });
   }
@@ -110,14 +113,14 @@ export async function parseAsyncArray<T extends WorldstateObject, D extends Base
       utemp[key] = obj;
     });
     return Array.from(arr).filter((obj) => {
-      if (obj && obj.active && typeof obj.active !== 'undefined') return obj.active;
+      if (obj?.active && typeof obj.active !== 'undefined') return obj.active;
       return true;
     });
   }
   return arr;
 }
 
-export interface RawWorldState {
+export interface InitialWorldState {
   Time: number;
   Events: RawNews[];
   Goals: RawWorldEvent[];
@@ -143,13 +146,6 @@ export interface RawWorldState {
   EndlessXpChoices: RawChoice[];
   KnownCalendarSeasons: RawCalender[];
   Tmp: string;
-}
-
-export interface RawTmp {
-  sfn: number;
-  pgr: { [k: string]: string | number };
-  lqo?: RawArchimedea;
-  hqo?: RawArchimedea;
 }
 
 /**
@@ -363,9 +359,7 @@ export class WorldState {
    * @param data The worldstate JSON string
    * @param deps The options object
    */
-  constructor(data: RawWorldState, deps: Dependency = defaultDeps) {
-    const tmp: RawTmp = JSON.parse(data.Tmp);
-
+  constructor(data: InitialWorldState, deps: Dependency = defaultDeps) {
     deps = {
       ...defaultDeps,
       ...deps,
@@ -468,8 +462,6 @@ export class WorldState {
       };
     }
 
-    this.sentientOutposts = new SentientOutpost(tmp.sfn, deps);
-
     this.steelPath = new SteelPathOffering(deps);
 
     [this.vaultTrader] = parseArray(VoidTrader, data.PrimeVaultTraders, deps);
@@ -479,19 +471,14 @@ export class WorldState {
     const choices = parseArray(DuviriChoice, data.EndlessXpChoices, deps);
     this.duviriCycle = new DuviriCycle(choices);
 
-    this.kinepage = new Kinepage(tmp.pgr, deps.locale);
-
-    if (tmp.lqo) {
-      const { activation, expiry } = weeklyReset();
-      this.deepArchimedea = new Archimedea(activation, expiry, tmp.lqo);
-    }
-
-    if (tmp.hqo) {
-      const { activation, expiry } = weeklyReset();
-      this.temporalArchimedea = new Archimedea(activation, expiry, tmp.hqo);
-    }
-
     [this.calendar] = parseArray(Calendar, data.KnownCalendarSeasons, deps);
+
+    ({
+      deepArchimedea: this.deepArchimedea,
+      kinepage: this.kinepage,
+      sentientOutposts: this.sentientOutposts,
+      temporalArchimedea: this.temporalArchimedea,
+    } = new Tmp(data.Tmp, deps));
   }
 }
 

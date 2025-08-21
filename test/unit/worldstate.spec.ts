@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
 import WorldStateObject, { type BaseContentObject } from '../../lib/models/WorldstateObject.js';
-import { type RawWorldState, WorldState, parseArray } from '../../lib/WorldState.js';
+import { type InitialWorldState, WorldState, parseArray } from '../../lib/WorldState.js';
 
 chai.should();
 chai.use(sinonChai);
@@ -12,7 +12,7 @@ describe('WorldState', () => {
   describe('#constructor()', () => {
     it('requires one string argument', () => {
       (() => {
-        new WorldState(undefined as unknown as RawWorldState);
+        new WorldState(undefined as unknown as InitialWorldState);
       }).should.throw(TypeError);
     });
     it('requires valid JSON', () => {
@@ -22,8 +22,8 @@ describe('WorldState', () => {
     });
     it('requires a valid WorldState', () => {
       (() => {
-        new WorldState({} as unknown as RawWorldState);
-      }).should.throw(SyntaxError);
+        new WorldState({} as unknown as InitialWorldState);
+      }).should.throw(TypeError);
     });
   });
   describe('parseArray()', () => {

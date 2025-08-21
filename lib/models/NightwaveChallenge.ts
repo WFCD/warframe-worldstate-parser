@@ -1,7 +1,7 @@
 import { languageDesc, languageString } from 'warframe-worldstate-data/utilities';
 
-import WorldstateObject, { BaseContentObject } from './WorldstateObject.js';
-import { Locale } from 'warframe-worldstate-data';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject.js';
+import type { Locale } from 'warframe-worldstate-data';
 
 const repBase = 1000;
 

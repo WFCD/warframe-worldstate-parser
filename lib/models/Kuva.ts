@@ -1,9 +1,9 @@
 import { createHash } from 'node:crypto';
-
+import type { Locale } from 'warframe-worldstate-data';
 import { node, nodeMissionType } from 'warframe-worldstate-data/utilities';
-import { Locale } from 'warframe-worldstate-data';
-import Dependency from '../supporting/Dependency';
-import ExternalMission from '../supporting/ExternalMission';
+import type Dependency from '../supporting/Dependency';
+import type ExternalMission from '../supporting/ExternalMission';
+import type { KuvaLogEntry } from '../supporting/KuvaLogEntry';
 
 const HOURS_2 = 7200000;
 
@@ -39,12 +39,13 @@ const hash = (str: string) => createHash('sha256').update(str, 'utf8').digest('h
  * @param locale locale to translate
  * @returns Split parsed data
  */
-const parse = (data: unknown[], locale: Locale) => {
-  const parsed = { kuva: new Array<ExternalMission>(), arbitration: {} as ExternalMission };
+const parse = (data: KuvaLogEntry[], locale: Locale) => {
+  const parsed = { kuva: [] as ExternalMission[], arbitration: {} as ExternalMission };
   const now = new Date();
   if (!data) return undefined;
-  data?.forEach?.((mission: any) => {
+  data?.forEach?.((mission) => {
     const p = {
+      id: '',
       activation: new Date(mission.start),
       expiry: new Date(mission.end),
       ...mission.solnodedata,
@@ -52,6 +53,7 @@ const parse = (data: unknown[], locale: Locale) => {
       nodeKey: node(mission.solnode, 'en'),
       type: nodeMissionType(mission.solnode, locale),
       typeKey: nodeMissionType(mission.solnode, 'en'),
+      expired: false
     };
     truncateTime(p);
     p.id = hash(JSON.stringify(p));

@@ -17,10 +17,10 @@ describe('SentientOutpost', function () {
     });
     it('should throw TypeError when called with no argument or an invalid argument', function () {
       (() => {
-        new SentientOutpost(undefined, {} as unknown as Dependency);
+        new SentientOutpost(undefined, undefined as unknown as Dependency);
       }).should.throw(TypeError);
       (() => {
-        new SentientOutpost({} as unknown as string, {} as unknown as Dependency);
+        new SentientOutpost({} as unknown as string, undefined as unknown as Dependency);
       }).should.throw(TypeError);
     });
   });

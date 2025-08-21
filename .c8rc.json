@@ -1,12 +1,13 @@
 {
   "exclude": [
     "test/**",
-    "lib/DarkSector*.ts",
-    "lib/Alert.ts",
-    "lib/PersistentEnemy.ts",
-    "lib/GlobalUpgrade.ts",
-    "lib/ChallengeInstance.ts",
-    "lib/WeeklyChallenge.ts"
+    "lib/models/DarkSector*.ts",
+    "lib/models/Alert.ts",
+    "lib/models/PersistentEnemy.ts",
+    "lib/models/GlobalUpgrade.ts",
+    "lib/models/ChallengeInstance.ts",
+    "lib/models/WeeklyChallenge.ts",
+    "dist/**"
   ],
   "reporter": [
     "lcov",

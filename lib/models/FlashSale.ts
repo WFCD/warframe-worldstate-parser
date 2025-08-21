@@ -1,14 +1,13 @@
 import {
-  parseDate,
+  type ContentTimestamp,
   fromNow,
-  timeDeltaToString,
   languageString,
-  ContentTimestamp,
+  timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
 
-import mdConfig from '../supporting/MarkdownSettings.js';
-import Dependency from '../supporting/Dependency.js';
-import { BaseContentObject } from './WorldstateObject.js';
+import type Dependency from '../supporting/Dependency';
+import type { BaseContentObject } from './WorldstateObject';
+import WorldstateObject from './WorldstateObject';
 
 export interface RawFlashSale extends BaseContentObject {
   TypeName: string;
@@ -25,21 +24,11 @@ export interface RawFlashSale extends BaseContentObject {
 /**
  * Represents a flash sale
  */
-export default class FlashSale {
+export default class FlashSale extends WorldstateObject{
   /**
    * The item being offered in the flash sale
    */
   item: string;
-
-  /**
-   * The date and time at which the sale will end
-   */
-  expiry: Date;
-
-  /**
-   * The date and time at which the sale will or did start
-   */
-  activation: Date;
 
   /**
    * The item's discount percentage
@@ -82,11 +71,9 @@ export default class FlashSale {
    * @param   {string}             deps.locale     Locale to use for translations
    */
   constructor(data: RawFlashSale, { locale = 'en' }: Dependency = { locale: 'en' }) {
+    super({Activation: data.StartDate, Expiry: data.EndDate})
+
     this.item = languageString(data.TypeName, locale);
-
-    this.expiry = parseDate(data.EndDate);
-
-    this.activation = parseDate(data.StartDate);
 
     this.discount = data.Discount;
 
@@ -100,20 +87,20 @@ export default class FlashSale {
 
     this.isPopular = data.Popular;
 
-    this.id = `${data.TypeName.split('/').slice(-1)[0]}${this.expiry.getTime()}`;
+    this.id = `${data.TypeName.split('/').slice(-1)[0]}${this.expiry!.getTime()}`;
   }
 
   /**
    * ETA string (at time of object creation)
    */
   get eta() {
-    return timeDeltaToString(fromNow(this.expiry));
+    return timeDeltaToString(fromNow(this.expiry!));
   }
 
   /**
    * Whether or not this is expired (at time of object creation)
    */
   get expired(): boolean {
-    return fromNow(this.expiry) < 0;
+    return fromNow(this.expiry!) < 0;
   }
 }
