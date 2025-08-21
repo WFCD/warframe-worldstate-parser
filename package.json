@@ -23,8 +23,8 @@
       "types": "./dist/main.d.ts"
     }
   },
-  "main": "dist/main.js",
-  "types": "./main.d.ts",
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
   "directories": {
     "test": "test"
   },
