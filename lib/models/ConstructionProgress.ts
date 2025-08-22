@@ -1,10 +1,5 @@
-
-import WorldstateObject, { type BaseContentObject, type Identifier } from './WorldstateObject.js';
-
-export interface RawConstructionProgress extends BaseContentObject {
-  _id: Identifier;
-  ProjectPct: number[];
-}
+import { createHash } from 'node:crypto';
+import WorldstateObject from './WorldstateObject.js';
 
 /**
  * Represents enemy construction progress
@@ -18,11 +13,16 @@ export default class ConstructionProgress extends WorldstateObject {
   /**
    * @param data The construction data
    */
-  constructor(data: RawConstructionProgress) {
-    super(data);
+  constructor(data: number[]) {
+    super({
+      _id: {
+        $oid: createHash('md5').update(JSON.stringify(data), 'utf8').digest('hex'),
+      },
+    });
+    
 
-    this.fomorianProgress = (data.ProjectPct[0] || 0.0).toFixed(2);
-    this.razorbackProgress = (data.ProjectPct[1] || 0.0).toFixed(2);
-    this.unknownProgress = (data.ProjectPct[2] || 0.0).toFixed(2);
+    this.fomorianProgress = (data[0] ?? 0.0).toFixed(2);
+    this.razorbackProgress = (data[1] ?? 0.0).toFixed(2);
+    this.unknownProgress = (data[2] ?? 0.0).toFixed(2);
   }
 }

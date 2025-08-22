@@ -139,7 +139,7 @@ export interface InitialWorldState {
   LibraryInfo?: LibraryInfo;
   PVPChallengeInstances: RawChallenge[];
   PersistentEnemies: RawPersistentEnemy[];
-  WeeklyChallenges: RawWeeklyChallenge;
+  WeeklyChallenges?: RawWeeklyChallenge;
   ProjectPct: number[];
   SeasonInfo: RawNightwave;
   PrimeVaultTraders: RawVoidTrader[];
@@ -425,16 +425,7 @@ export class WorldState {
 
     this.weeklyChallenges = data.WeeklyChallenges ? new WeeklyChallenge(data.WeeklyChallenges) : undefined;
 
-    const projectPCTwithOid = data.ProjectPct
-      ? {
-          ProjectPct: data.ProjectPct,
-          _id: {
-            $oid: `${Date.now()}${data.ProjectPct[0]}`,
-          },
-        }
-      : undefined;
-
-    this.constructionProgress = new ConstructionProgress(safeObj(projectPCTwithOid));
+    this.constructionProgress = new ConstructionProgress(data.ProjectPct);
 
     this.vallisCycle = new VallisCycle();
 

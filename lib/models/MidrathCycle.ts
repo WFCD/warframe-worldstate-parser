@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
 import WorldstateObject from './WorldstateObject';
@@ -42,7 +43,7 @@ function getCurrentMidrathCycle() {
 
 export default class MidrathCycle extends WorldstateObject {
   #cycle = getCurrentMidrathCycle();
-  
+
   /**
    * Whether it's day or not
    */
@@ -55,10 +56,13 @@ export default class MidrathCycle extends WorldstateObject {
 
   constructor() {
     super({ _id: { $oid: 'midrathCycle0' } });
+
     this.activation = this.#cycle.activation;
     this.expiry = this.#cycle.expiry;
     this.isDay = this.#cycle.isDay;
     this.state = this.#cycle.state;
+
+    this.id = createHash('md5').update(JSON.stringify(this.expiry), 'utf8').digest('hex');
   }
 
   /**

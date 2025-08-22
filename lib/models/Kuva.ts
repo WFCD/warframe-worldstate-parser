@@ -31,7 +31,7 @@ const scrub = (mission: Record<string, unknown>) => {
   delete mission.planet;
 };
 
-const hash = (str: string) => createHash('sha256').update(str, 'utf8').digest('hex');
+const hash = (str: string) => createHash('md5').update(str, 'utf8').digest('hex');
 
 /**
  * Parse kuva & arbitration data
