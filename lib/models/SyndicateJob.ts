@@ -183,8 +183,9 @@ export default class SyndicateJob extends WorldstateObject {
 
     this.expiry = expiry;
 
-    if (data.jobType?.toLowerCase().includes('narmer')) {
-      if (data.jobType.toLowerCase().includes('eidolon')) {
+    const jobType = data.jobType ?? '';
+    if (jobType.toLowerCase().includes('narmer')) {
+      if (jobType.toLowerCase().includes('eidolon')) {
         this.timeBound = 'day';
         this.expiry = new Date(this.expiry.getTime() - FIFTY_MINUTES);
       } else {
