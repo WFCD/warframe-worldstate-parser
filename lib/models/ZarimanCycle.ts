@@ -41,12 +41,12 @@ export default class ZarimanCycle extends WorldstateObject {
   /**
    * The current zariman cycle, for calculating the other fields
    */
-  private ec: CurrentZarimanCycle;
+  #ec: CurrentZarimanCycle;
 
   /**
    * The end of the Zariman bounties timer, the faction changes exactly half way through
    */
-  private bountiesEndDate: Date;
+  #bountiesEndDate: Date;
 
   /**
    * @param {Date} bountiesEndDate The current Zariman cycle expiry
@@ -54,16 +54,16 @@ export default class ZarimanCycle extends WorldstateObject {
   constructor(bountiesEndDate: Date) {
     super({ _id: { $oid: 'zarimanCycle0' } });
 
-    this.bountiesEndDate = bountiesEndDate;
-    this.ec = this.getCurrentZarimanCycle();
-    this.expiry = this.ec.expiry;
-    this.activation = new Date(this.ec.start);
+    this.#bountiesEndDate = bountiesEndDate;
+    this.#ec = this.getCurrentZarimanCycle();
+    this.expiry = this.#ec.expiry;
+    this.activation = new Date(this.#ec.start);
 
-    this.isCorpus = this.ec.isCorpus;
+    this.isCorpus = this.#ec.isCorpus;
 
-    this.state = this.ec.state;
+    this.state = this.#ec.state;
 
-    this.timeLeft = this.ec.timeLeft;
+    this.timeLeft = this.#ec.timeLeft;
 
     this.id = `zarimanCycle${this.expiry.getTime()}`;
   }
@@ -79,7 +79,7 @@ export default class ZarimanCycle extends WorldstateObject {
     const now = Date.now();
     // determine if it is corpus cycle or grineer cycle based on bounty end time
     // we subtract 5000 millis (5 seconds) to ensure the corpus/grineer calculation is correct
-    const bountiesClone = this.bountiesEndDate.getTime() - 5000;
+    const bountiesClone = this.#bountiesEndDate.getTime() - 5000;
     const millisLeft = fromNow(new Date(bountiesClone));
     // the following line is a modulus operation
     // this ensures that our calculation is correct if bountiesClone is before corpusTimeMillis

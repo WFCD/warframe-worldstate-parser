@@ -82,7 +82,7 @@ function getCurrentEarthCycle(): EarthCycleType {
  * @augments {WorldstateObject}
  */
 export default class EarthCycle extends WorldstateObject {
-  private ec = getCurrentEarthCycle();
+  #ec = getCurrentEarthCycle();
 
   /**
    * Whether or not this it's daytime
@@ -102,17 +102,17 @@ export default class EarthCycle extends WorldstateObject {
   constructor() {
     super({ _id: { $oid: 'earthCycle0' } });
 
-    this.expiry = this.ec.expiry;
+    this.expiry = this.#ec.expiry;
 
-    this.activation = this.ec.start;
+    this.activation = this.#ec.start;
 
-    this.isDay = this.ec.dayTime;
+    this.isDay = this.#ec.dayTime;
 
-    this.state = this.ec.state;
+    this.state = this.#ec.state;
 
-    this.timeLeft = this.ec.timeLeft;
+    this.timeLeft = this.#ec.timeLeft;
 
-    this.id = `earthCycle${this.ec.rounded.getTime()}`;
+    this.id = `earthCycle${this.#ec.rounded.getTime()}`;
   }
 
   /**

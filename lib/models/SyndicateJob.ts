@@ -121,7 +121,7 @@ export default class SyndicateJob extends WorldstateObject {
    * Whether or not this is a Vault job.
    * No indication for difference of normal vs arcana vaults.
    */
-  isVault: boolean;
+  isVault?: boolean;
 
   /**
    * Corresponding chamber. Nullable
@@ -177,7 +177,7 @@ export default class SyndicateJob extends WorldstateObject {
 
     this.minMR = data.masteryReq || 0;
 
-    this.isVault = data.isVault ?? false;
+    this.isVault = data.isVault;
 
     this.locationTag = data.locationTag;
 

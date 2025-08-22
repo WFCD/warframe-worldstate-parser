@@ -41,7 +41,7 @@ function getCurrentMidrathCycle() {
 }
 
 export default class MidrathCycle extends WorldstateObject {
-  private cycle = getCurrentMidrathCycle();
+  #cycle = getCurrentMidrathCycle();
   
   /**
    * Whether it's day or not
@@ -55,10 +55,10 @@ export default class MidrathCycle extends WorldstateObject {
 
   constructor() {
     super({ _id: { $oid: 'midrathCycle0' } });
-    this.activation = this.cycle.activation;
-    this.expiry = this.cycle.expiry;
-    this.isDay = this.cycle.isDay;
-    this.state = this.cycle.state;
+    this.activation = this.#cycle.activation;
+    this.expiry = this.#cycle.expiry;
+    this.isDay = this.#cycle.isDay;
+    this.state = this.#cycle.state;
   }
 
   /**

@@ -25,12 +25,12 @@ export default class CetusCycle extends WorldstateObject {
   /**
    * The end of the Ostron bounties timer (marks the end of night)
    */
-  private bountiesEndDate: Date;
+  #bountiesEndDate: Date;
 
   /**
    * The current cetus cycle, for calculating the other fields
    */
-  private ec: CurrentCetusCycle;
+  #ec: CurrentCetusCycle;
 
   /**
    * Whether it's daytime
@@ -58,19 +58,19 @@ export default class CetusCycle extends WorldstateObject {
   constructor(bountiesEndDate: Date) {
     super({ _id: { $oid: 'cetusCycle0' } });
 
-    this.bountiesEndDate = bountiesEndDate;
+    this.#bountiesEndDate = bountiesEndDate;
 
-    this.ec = this.getCurrentCetusCycle();
+    this.#ec = this.getCurrentCetusCycle();
 
-    this.expiry = this.ec.expiry;
+    this.expiry = this.#ec.expiry;
 
-    this.activation = new Date(this.ec.start);
+    this.activation = new Date(this.#ec.start);
 
-    this.isDay = this.ec.dayTime;
+    this.isDay = this.#ec.dayTime;
 
-    this.state = this.ec.state;
+    this.state = this.#ec.state;
 
-    this.timeLeft = this.ec.timeLeft;
+    this.timeLeft = this.#ec.timeLeft;
 
     this.isCetus = true;
 
@@ -93,7 +93,7 @@ export default class CetusCycle extends WorldstateObject {
 
   private getCurrentCetusCycle(): CurrentCetusCycle {
     const now = Date.now();
-    const bountiesClone = this.bountiesEndDate;
+    const bountiesClone = this.#bountiesEndDate;
     bountiesClone.setSeconds(0);
     let millisLeft = fromNow(bountiesClone);
     const secondsToNightEnd = Number((millisLeft / 1000).toFixed(0));

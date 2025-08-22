@@ -1,18 +1,17 @@
 import {
-  parseDate,
-  fromNow,
-  timeDeltaToString,
-  node,
-  nodeMissionType,
-  missionType,
-  nodeEnemy,
+  type ContentTimestamp,
   fissureModifier,
   fissureTier,
-  type ContentTimestamp,
+  fromNow,
+  missionType,
+  node,
+  nodeEnemy,
+  nodeMissionType,
+  parseDate,
+  timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
-
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 import type Dependency from '../supporting/Dependency';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 export interface RawFissure extends BaseContentObject {
   Node: string;
@@ -42,7 +41,7 @@ export default class Fissure extends WorldstateObject {
   /**
    * The fissure mission type key
    */
-  missionKey: string;
+  missionTypeKey: string;
 
   /**
    * The faction controlling the node where the fissure has appeared
@@ -91,7 +90,7 @@ export default class Fissure extends WorldstateObject {
 
     this.missionType = data.MissionType ? missionType(data.MissionType, locale) : nodeMissionType(data.Node, locale);
 
-    this.missionKey = data.MissionType ? missionType(data.MissionType) : nodeMissionType(data.Node);
+    this.missionTypeKey = data.MissionType ? missionType(data.MissionType) : nodeMissionType(data.Node);
 
     this.enemy = nodeEnemy(data.Node, locale);
 

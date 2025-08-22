@@ -79,16 +79,16 @@ export default class VallisCycle extends WorldstateObject {
   /**
    * The current cetus cycle, for calculating the other fields
    */
-  private ec = getCurrentCycle();
+  #ec = getCurrentCycle();
 
   constructor() {
     super({ _id: { $oid: 'vallisCycle0' } });
-    this.id = `vallisCycle${this.ec.timeAtPrevious.getTime()}`;
-    this.activation = this.ec.timeAtPrevious;
-    this.expiry = this.ec.timeAtNext;
+    this.id = `vallisCycle${this.#ec.timeAtPrevious.getTime()}`;
+    this.activation = this.#ec.timeAtPrevious;
+    this.expiry = this.#ec.timeAtNext;
 
-    this.isWarm = this.ec.state === 'warm';
-    this.state = this.ec.state;
+    this.isWarm = this.#ec.state === 'warm';
+    this.state = this.#ec.state;
   }
 
   /**
@@ -102,7 +102,7 @@ export default class VallisCycle extends WorldstateObject {
    * Time remaining string
    */
   get timeLeft(): string {
-    return timeDeltaToString(this.ec.toNextMinor);
+    return timeDeltaToString(this.#ec.toNextMinor);
   }
 
   get shortString(): string {
