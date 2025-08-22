@@ -271,7 +271,7 @@ export default class WorldEvent extends WorldstateObject {
 
     this.node = data.Node ? node(data.Node, locale) : undefined;
 
-    this.concurrentNodes = data.ConcurrentNodes ? data.ConcurrentNodes.map((n) => node(n), locale) : [];
+    this.concurrentNodes = data.ConcurrentNodes ? data.ConcurrentNodes.map((n) => node(n, locale)) : [];
 
     this.victimNode = data.VictimNode ? node(data.VictimNode, locale) : undefined;
 

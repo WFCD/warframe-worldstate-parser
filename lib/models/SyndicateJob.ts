@@ -70,7 +70,6 @@ const getBountyRewards = async (i18n: string, raw: RawSyndicateJob, isVault?: bo
   if (results) {
     return Array.from(new Set(results.map((result) => result.item)));
   }
-  /* istanbul ignore next */
   return [];
 };
 

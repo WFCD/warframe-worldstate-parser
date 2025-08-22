@@ -57,7 +57,7 @@ export default class Archimedea {
   constructor(data: RawArchimedea, locale: Locale = 'en') {
     ({ activation: this.activation, expiry: this.expiry } = weeklyReset());
 
-    this.id = createHash('md5').update(JSON.stringify(data), 'utf8').digest('hex');
+    this.id = createHash('sha256').update(JSON.stringify(data), 'utf8').digest('hex');
 
     this.missions = data.mt.map((m, i) => new ArchidemeaMission(m, data.mv[i], data.c[i], locale));
 

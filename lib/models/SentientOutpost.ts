@@ -33,7 +33,7 @@ interface Mission {
  * Parsed source is combined data from DE's worldstate and semlar.com/anomaly.json
  */
 export default class SentientOutpost {
-  private node;
+  private node: string | number;
 
   id: string;
 

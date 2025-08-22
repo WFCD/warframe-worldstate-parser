@@ -12,7 +12,7 @@ import WorldstateObject, { type BaseContentObject } from './WorldstateObject.js'
 
 export interface RawGlobalUpgrade extends BaseContentObject {
   Activation: ContentTimestamp;
-  ExpiryDate: ContentTimestamp;
+  Expiry: ContentTimestamp;
   UpgradeType: string;
   OperationType: string;
   Value: number;

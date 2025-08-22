@@ -18,7 +18,7 @@ export default class SortieVariant {
   missionType: string;
 
   /**
-   * The variant's mission type unlocalzied
+   * The variant's mission type unlocalized
    */
   missionTypeKey: string;
 

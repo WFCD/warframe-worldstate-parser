@@ -63,7 +63,7 @@ const defaultDeps: Dependency = {
  * @param uniqueField field to treat as unique
  * @returns  array of parsed objects
  */
-export function parseArray<T, D extends BaseContentObject>(
+export function parseArray<T, D extends BaseContentObject>( // Not all instances of T extend WorldstateObject
   ParserClass: new (data: D, deps: Dependency) => T,
   dataArray: Array<D>,
   deps: Dependency,

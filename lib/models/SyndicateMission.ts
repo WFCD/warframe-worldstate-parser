@@ -48,12 +48,10 @@ export default class SyndicateMission extends WorldstateObject {
    */
   static async build(data: RawSyndicateMission, deps: Dependency = { locale: 'en' }): Promise<SyndicateMission> {
     const syndicateMission = new SyndicateMission(data, deps);
-    if (data.Jobs) {
-      const jobs = [];
-      for await (const job of data.Jobs ?? []) {
-        jobs.push(await SyndicateJob.build(job, syndicateMission.expiry!, deps));
-      }
-      syndicateMission.jobs = jobs;
+    if (data.Jobs?.length) {
+      syndicateMission.jobs = await Promise.all(data.Jobs.map((job) => SyndicateJob.build(job, syndicateMission.expiry!, deps)));
+    } else {
+      syndicateMission.jobs = [];
     }
 
     return syndicateMission;
@@ -68,7 +66,7 @@ export default class SyndicateMission extends WorldstateObject {
     super(data);
     this.syndicate = syndicate(data.Tag, locale);
     this.syndicateKey = syndicate(data.Tag, 'en');
-    this.nodes = data.Nodes.map((n) => node(n), locale);
+    this.nodes = data.Nodes.map((n) => node(n, locale));
     this.jobs = [];
 
     this.id = `${this.expiry!.getTime()}${data.Tag}`;

@@ -18,7 +18,7 @@ describe('SyndicateJob', () => {
         new SyndicateJob(undefined as unknown as RawSyndicateJob, undefined as unknown as Date);
       }).should.throw(TypeError);
       (() => {
-        new SyndicateJob(undefined as unknown as RawSyndicateJob, undefined as unknown as Date);
+        new SyndicateJob({} as unknown as RawSyndicateJob, undefined as unknown as Date);
       }).should.throw(TypeError);
     });
   });

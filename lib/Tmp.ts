@@ -25,11 +25,11 @@ export class Tmp {
     this.kinepage = new Kinepage(tmp.pgr, deps.locale);
 
     if (tmp.lqo) {
-      this.deepArchimedea = new Archimedea(tmp.lqo);
+      this.deepArchimedea = new Archimedea(tmp.lqo, deps.locale);
     }
 
     if (tmp.hqo) {
-      this.temporalArchimedea = new Archimedea(tmp.hqo);
+      this.temporalArchimedea = new Archimedea(tmp.hqo, deps.locale);
     }
   }
 }
