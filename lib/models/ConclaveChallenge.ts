@@ -60,6 +60,16 @@ export default class ConclaveChallenge extends WorldstateObject {
   standing?: number;
 
   /**
+   * Whether or not this is a daily conclave challenge.
+   */
+  daily: boolean;
+
+  /**
+   * Whether or not this is the root challenge
+   */
+  rootChallenge: boolean;
+
+  /**
    * @param   {object}             data            The challenge data
    * @param   {object}             deps            The dependencies object
    * @param   {string}             deps.locale     Locale to use for translations
@@ -79,23 +89,13 @@ export default class ConclaveChallenge extends WorldstateObject {
 
     this.categoryKey = conclaveCategory(data.Category, 'en');
 
+    this.daily = this.categoryKey.toLowerCase() === 'day';
+
+    this.rootChallenge = this.categoryKey.toLowerCase() === 'week_root';
+
     const challenge = conclaveChallenge(data.challengeTypeRefID, locale);
 
     ({ title: this.title, description: this.description, standing: this.standing } = challenge);
-  }
-
-  /**
-   * Whether or not this is a daily conclave challenge.
-   */
-  get daily(): boolean {
-    return this.categoryKey.toLowerCase() === 'day';
-  }
-
-  /**
-   * Whether or not this is the root challenge
-   */
-  get rootChallenge(): boolean {
-    return this.categoryKey.toLowerCase() === 'week_root';
   }
 
   /**
