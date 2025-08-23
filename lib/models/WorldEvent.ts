@@ -280,7 +280,8 @@ export default class WorldEvent extends WorldstateObject {
 
     this.rewards = Object.keys(data)
       .filter((k) => k.includes('Reward') || k.includes('reward'))
-      .map((k) => new Reward(data[k as keyof RawWorldEvent] as RawReward, opts));
+      .map((k) => new Reward(data[k as keyof RawWorldEvent] as RawReward, opts))
+      .filter((r) => r.items.length > 0);
 
     this.health =
       typeof data.HealthPct !== 'undefined' ? Number.parseFloat(((data.HealthPct || 0.0) * 100).toFixed(2)) : undefined;
