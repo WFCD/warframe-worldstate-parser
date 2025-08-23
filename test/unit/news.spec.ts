@@ -37,18 +37,18 @@ describe('News', () => {
     it('should return true if the news is an update or a hotfix', () => {
       const n = new News(testData, { locale });
 
-      n.update.should.be.false;
+      n.isUpdate().should.be.false;
       n.link = `${testData.Prop}update-1960`;
-      n.update.should.be.true;
+      n.isUpdate().should.be.true;
       n.message = `${testData.Prop}hotfix-1961`;
-      n.update.should.be.true;
+      n.isUpdate().should.be.true;
     });
   });
 
   describe('#isStream()', () => {
     it('should return true if the message indicates a stream', () => {
       const n = new News(realTestData[1], { locale });
-      n.stream.should.be.true;
+      n.isStream().should.be.true;
     });
   });
 
@@ -108,9 +108,9 @@ describe('News', () => {
     it('should return true if the news is an update or a hotfix', () => {
       const n = new News(testData, { locale });
 
-      n.primeAccess.should.be.false;
+      n.isPrimeAccess().should.be.false;
       n.link = `${testData.Prop}valkyr-prime-access`;
-      n.primeAccess.should.be.true;
+      n.isPrimeAccess().should.be.true;
     });
   });
 

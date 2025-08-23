@@ -63,11 +63,31 @@ export default class News extends WorldstateObject {
   translations: Record<string, string>;
 
   /**
+   * Whether this is an update news item
+   */
+  update: boolean;
+
+  /**
+   * Whether this is a prime access news item
+   */
+  primeAccess: boolean;
+
+  /**
+   * Whether or not this is a stream
+   */
+  stream: boolean;
+
+  /**
+   * Whether or not this news is mobile only.
+   */
+  mobileOnly: boolean;
+
+  /**
    * @param  data    The news data
    * @param  locale  Locale to use for determining language
    */
   constructor(data: RawNews, { locale }: { locale: Locale } = { locale: 'en' }) {
-    super({...data, Activation: data.EventStartDate, Expiry: data.EventEndDate});
+    super({ ...data, Activation: data.EventStartDate, Expiry: data.EventEndDate });
 
     this.message = (data.Messages.find((msg) => msg.LanguageCode === locale) || { Message: '' }).Message;
     if (langString.test(this.message)) {
@@ -93,6 +113,35 @@ export default class News extends WorldstateObject {
         this.translations[message.LanguageCode] = languageString(message.Message, message.LanguageCode as Locale);
       }
     });
+
+    this.update = this.isUpdate();
+
+    this.primeAccess = this.isPrimeAccess();
+
+    this.stream = this.isStream();
+
+    this.mobileOnly = data.MobileOnly;
+  }
+
+  /**
+   * Whether or not this is about a game update
+   */
+  isUpdate(): boolean {
+    return updateReg.test(this.link);
+  }
+
+  /**
+   * Whether this is about a new Prime Access
+   */
+  isPrimeAccess(): boolean {
+    return primeAccessReg.test(this.link);
+  }
+
+  /**
+   * Whether this is about a new stream
+   */
+  isStream(): boolean {
+    return streamReg.test(this.message);
   }
 
   /**
@@ -105,27 +154,6 @@ export default class News extends WorldstateObject {
     }
     const timeDelta = toNow(this.date);
     return `${timeDeltaToString(timeDelta)} ago`;
-  }
-
-  /**
-   * Whether this is an update news item
-   */
-  get update(): boolean {
-    return updateReg.test(this.link);
-  }
-
-  /**
-   * Whether this is a prime access news item
-   */
-  get primeAccess(): boolean {
-    return primeAccessReg.test(this.link);
-  }
-
-  /**
-   * Whether or not this is a stream
-   */
-  get stream(): boolean {
-    return streamReg.test(this.message);
   }
 
   /**
