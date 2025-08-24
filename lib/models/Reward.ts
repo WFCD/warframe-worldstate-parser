@@ -43,8 +43,14 @@ export default class Reward {
    */
   credits: number;
 
-  itemString: string;
+  /**
+   * Thumbnail url
+   */
   thumbnail: string;
+
+  /**
+   * Reward color
+   */
   color: number;
 
   /**
@@ -67,29 +73,12 @@ export default class Reward {
 
     this.credits = data.credits || 0;
 
-    this.itemString = this.items
-      .concat(this.countedItems.map((i) => `${i.count > 1 ? i.count : ''} ${i.type}`.trim()))
-      .join(' + ');
-
     this.thumbnail = this.getTypesFull()[0] ? this.getTypesFull()[0].thumbnail : 'https://i.imgur.com/JCKyUXJ.png';
 
     this.color = this.getTypesFull()[0] ? this.getTypesFull()[0].color : 0xf1c40f;
   }
 
   /**
-   * The reward's string representation
-   */
-  get asString(): string {
-    const tokens = this.items.concat(this.countedItems.map((i) => `${i.count > 1 ? i.count : ''} ${i.type}`.trim()));
-
-    if (this.credits) {
-      tokens.push(`${this.credits}cr`);
-    }
-
-    return tokens.join(' + ');
-  }
-
-   /**
    * The types of all items that are being rewarded
    */
   getTypes(): string[] {
