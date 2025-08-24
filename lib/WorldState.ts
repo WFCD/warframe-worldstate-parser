@@ -122,6 +122,7 @@ export async function parseAsyncArray<T extends WorldstateObject, D extends Base
 
 export interface InitialWorldState {
   Time: number;
+  BuildLabel: string;
   Events: RawNews[];
   Goals: RawWorldEvent[];
   Alerts: RawAlert[];
@@ -156,6 +157,11 @@ export class WorldState {
    * The date and time at which the World State was generated
    */
   timestamp: Date;
+
+  /**
+   * Current Warframe version
+   */
+  buildLabel: string;
 
   /**
    * The in-game news
@@ -366,6 +372,8 @@ export class WorldState {
     };
 
     this.timestamp = new Date(data.Time * 1000);
+
+    this.buildLabel = data.BuildLabel.split('/')[0];
 
     this.news = parseArray(
       News,
