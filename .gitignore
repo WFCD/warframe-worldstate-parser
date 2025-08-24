@@ -47,3 +47,5 @@ data.*.json
 .jshintrc
 
 .eslintcache
+
+dist/

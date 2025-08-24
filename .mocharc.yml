@@ -1,3 +1,8 @@
 exit: true
-spec: test/**/*.spec.js
+extension: ['ts']
+spec: 'test/**/*.spec.ts'
 timeout: 10000
+require:
+  - 'chai/register-should.js'
+node-option:
+  - 'import=tsx'
