@@ -373,7 +373,7 @@ export class WorldState {
 
     this.timestamp = new Date(data.Time * 1000);
 
-    this.buildLabel = data.BuildLabel.split('/')[0];
+    this.buildLabel = data.BuildLabel;
 
     this.news = parseArray(
       News,
