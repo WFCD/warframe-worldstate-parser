@@ -37,7 +37,9 @@ describe('Reward', function () {
         },
       ];
       getItemType('test', types).should.equal('type2');
-      types.forEach((t) => t.test.should.have.been.called);
+      types.forEach((t) => {
+        t.test.should.have.been.called
+      });
     });
   });
 });
