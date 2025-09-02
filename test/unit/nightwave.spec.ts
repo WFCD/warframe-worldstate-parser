@@ -31,7 +31,9 @@ describe('Nightwave', () => {
       (() => {
         const n = new Nightwave(nwdata, deps);
         const challenges = n.possibleChallenges.concat(n.activeChallenges);
-        challenges.forEach((e) => expect(typeof e.isDaily !== 'undefined').to.be.true);
+        challenges.forEach((e) => {
+          expect(typeof e.isDaily !== 'undefined').to.be.true
+        });
       }).should.not.throw();
     });
   });
