@@ -1,5 +1,5 @@
-import { cdn, wfCdn } from './ImgCdn.js';
-import { auras, nightmare, resources } from './RewardData.js';
+import { cdn, wfCdn } from './ImgCdn';
+import { auras, nightmare, resources } from './RewardData';
 
 /**
  * An object describing a type of reward, including name, description,

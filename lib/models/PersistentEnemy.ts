@@ -1,6 +1,6 @@
 import type { Locale } from 'warframe-worldstate-data';
 import { type ContentTimestamp, languageString, node, parseDate, region } from 'warframe-worldstate-data/utilities';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject.js';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 export interface RawPersistentEnemy extends BaseContentObject {
   AgentType: string;

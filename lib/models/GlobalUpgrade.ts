@@ -7,8 +7,8 @@ import {
   upgrade
 } from 'warframe-worldstate-data/utilities';
 
-import type Dependency from '../supporting/Dependency.js';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject.js';
+import type Dependency from '../supporting/Dependency';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 export interface RawGlobalUpgrade extends BaseContentObject {
   Activation: ContentTimestamp;

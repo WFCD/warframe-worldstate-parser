@@ -6,9 +6,9 @@ import {
   timeDeltaToString,
   toNow,
 } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency.js';
-import Reward, { type RawReward } from './Reward.js';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject.js';
+import type Dependency from '../supporting/Dependency';
+import Reward, { type RawReward } from './Reward';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 export interface RawInvasion extends BaseContentObject {
   Node: string;
