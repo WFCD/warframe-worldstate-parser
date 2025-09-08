@@ -1,9 +1,8 @@
-import { parseDate, languageString, type ContentTimestamp } from 'warframe-worldstate-data/utilities';
-
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
-import Mission, { type RawMission } from './Mission';
-import DarkSectorBattle, { type RawDarkSectorBattle } from './DarkSectorBattle';
+import { type ContentTimestamp, languageString, parseDate } from 'warframe-worldstate-data/utilities';
 import type Dependency from '../supporting/Dependency';
+import DarkSectorBattle, { type RawDarkSectorBattle } from './DarkSectorBattle';
+import Mission, { type RawMission } from './Mission';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 interface DefenderInfo {
   CreditsTaxRate: number;

@@ -4,11 +4,11 @@ import {
   languageString,
   node,
   timeDeltaToString,
-  toNow
+  toNow,
 } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency.js';
-import Reward, { type RawReward } from './Reward.js';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject.js';
+import type Dependency from '../supporting/Dependency';
+import Reward, { type RawReward } from './Reward';
+import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 export interface RawInvasion extends BaseContentObject {
   Node: string;
@@ -99,6 +99,11 @@ export default class Invasion extends WorldstateObject {
   completed: boolean;
 
   /**
+   * An array containing the types of all of the invasions's rewards
+   */
+  rewardTypes: string[];
+
+  /**
    * @param   {object}             data            The invasion data
    * @param   {Dependency}         deps            The dependencies object
    * @param   {string}             deps.locale     Locale to use for translations
@@ -134,6 +139,8 @@ export default class Invasion extends WorldstateObject {
     this.completion = (1 + data.Count / data.Goal) * (this.vsInfestation ? 100 : 50);
 
     this.completed = data.Completed;
+
+    this.rewardTypes = [...(this.attacker.reward?.getTypes() ?? []), ...(this.defender.reward?.getTypes() ?? [])];
   }
 
   /**
@@ -149,13 +156,6 @@ export default class Invasion extends WorldstateObject {
    */
   get eta(): string {
     return timeDeltaToString(this.getRemainingTime());
-  }
-
-  /**
-   * An array containing the types of all of the invasions's rewards
-   */
-  get rewardTypes(): string[] {
-    return [...(this.attacker.reward?.getTypes() ?? []), ...(this.defender.reward?.getTypes() ?? [])];
   }
 
   /**

@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import WorldstateObject from './WorldstateObject.js';
+import WorldstateObject from './WorldstateObject';
 
 /**
  * Represents enemy construction progress

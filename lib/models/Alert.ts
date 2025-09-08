@@ -21,6 +21,11 @@ export default class Alert extends WorldstateObject {
   mission: Mission;
 
   /**
+   * An array containing the types of all of the alert's rewards
+   */
+  rewardTypes: string[];
+
+  /**
    * A tag that DE occasionally provides, such as `LotusGift`
    */
   tag?: string;
@@ -33,6 +38,7 @@ export default class Alert extends WorldstateObject {
     };
 
     this.mission = new Mission(data.MissionInfo, deps);
+    this.rewardTypes = this.reward?.getTypes()?.length ? this.reward.getTypes()! : ['credits'];
     this.tag = data.Tag || undefined;
   }
 
@@ -55,12 +61,5 @@ export default class Alert extends WorldstateObject {
    */
   get eta(): string {
     return timeDeltaToString(fromNow(this.expiry!));
-  }
-
-   /**
-   * An array containing the types of all of the alert's rewards
-   */
-  get rewardTypes(): string[] | undefined {
-    return this.reward?.getTypes()?.length ? this.reward.getTypes()! : ['credits']
   }
 }

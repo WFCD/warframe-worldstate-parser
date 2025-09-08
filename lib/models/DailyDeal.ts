@@ -5,8 +5,8 @@ import {
   timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
 
-import type Dependency from '../supporting/Dependency.js';
-import WorldstateObject from './WorldstateObject.js';
+import type Dependency from '../supporting/Dependency';
+import WorldstateObject from './WorldstateObject';
 
 export interface RawDailyDeal {
   StoreItem: string;
