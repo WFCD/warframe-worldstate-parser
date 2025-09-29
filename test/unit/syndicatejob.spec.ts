@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import SyndicateJob, { type RawSyndicateJob } from '../../lib/models/SyndicateJob.js';
+import SyndicateJob, { type RewardStruct, type RawSyndicateJob } from '../../lib/models/SyndicateJob.js';
 import CambionFTier from '../data/CambionFTier.json' with { type: 'json' };
 import CetusFTier from '../data/CetusFTier.json' with { type: 'json' };
 import isoVaultBounty from '../data/isoVaultBounty.json' with { type: 'json' };
@@ -28,12 +28,13 @@ describe('SyndicateJob', () => {
       async function () {
         this.timeout(1100000000);
         const job = await SyndicateJob.build(data, new Date(), { locale });
-        const verify = (rewardPool: string[]) => {
+        const verify = (rewardPool: (string | RewardStruct)[]) => {
           rewardPool.should.be.an('array');
           rewardPool.length.should.be.at.least(1);
         };
 
         if (job.rewardPool?.length) verify(job.rewardPool);
+        if (job.rewardPoolS?.length) verify(job.rewardPoolS);
       };
 
     it('should exist when requested', async () => poolTest(isoVaultBounty));

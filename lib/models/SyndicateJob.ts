@@ -48,7 +48,17 @@ const determineLocation = (i18n: string, raw: RawSyndicateJob, isVault?: boolean
   return { location, locationWRot };
 };
 
-const getBountyRewards = async (i18n: string, raw: RawSyndicateJob, isVault?: boolean): Promise<string[]> => {
+interface BountReward {
+  item: string;
+  rarirty: string;
+  chance: number;
+}
+
+const getBountyRewards = async (
+  i18n: string,
+  raw: RawSyndicateJob,
+  isVault?: boolean
+): Promise<(string | BountReward)[]> => {
   let location: string | undefined;
   let locationWRot: string | undefined;
   if (i18n.endsWith('PlagueStarTableRewards')) {
@@ -59,7 +69,7 @@ const getBountyRewards = async (i18n: string, raw: RawSyndicateJob, isVault?: bo
     ({ location, locationWRot } = determineLocation(i18n, raw, isVault));
   }
   const url = `${apiBase}/drops/search/${encodeURIComponent(location!)}?grouped_by=location`;
-  const reply: Record<string, { rewards: { item: string }[] }> = await fetch(url)
+  const reply: Record<string, { rewards: { item: string; rarirty: string; chance: number }[] }> = await fetch(url)
     .then((res) => res.json())
     .catch(() => {}); // swallow errors
   const pool = reply?.[locationWRot];
@@ -68,7 +78,7 @@ const getBountyRewards = async (i18n: string, raw: RawSyndicateJob, isVault?: bo
   }
   const results = pool.rewards;
   if (results) {
-    return Array.from(new Set(results.map((result) => result.item)));
+    return Array.from(new Set(results));
   }
   return [];
 };
@@ -87,15 +97,32 @@ export interface RawSyndicateJob {
   masteryReq?: number;
 }
 
+export interface RewardStruct {
+  item: string;
+  count: number;
+  rarirty: string;
+  chance: number;
+}
+
 /**
  * Represents a syndicate daily mission
  * @augments {WorldstateObject}
  */
 export default class SyndicateJob extends WorldstateObject {
   /**
+   * Reward pool unique name
+   */
+  uniqueName: string;
+
+  /**
    * Array of strings describing rewards
    */
   rewardPool: string[];
+
+  /**
+   * A structured version of the reward pool
+   */
+  rewardPoolS: RewardStruct[];
 
   /**
    * The type of job this is
@@ -142,7 +169,21 @@ export default class SyndicateJob extends WorldstateObject {
    */
   static async build(data: RawSyndicateJob, expiry: Date, deps: Dependency): Promise<SyndicateJob> {
     const job = new SyndicateJob(data, expiry, deps);
-    job.rewardPool = await getBountyRewards(data.rewards, data, data.isVault);
+    const rewards = await getBountyRewards(data.rewards, data, data.isVault);
+    if (rewards.length === 1) {
+      job.rewardPool = rewards as string[];
+    } else {
+      job.rewardPoolS = (rewards as BountReward[]).map((reward) => {
+        const fragments = reward.item.split('X');
+        return {
+          ...reward,
+          item: fragments[fragments.length - 1].trim(),
+          count: fragments.length > 1 ? parseInt(fragments[0], 10) : 1,
+        };
+      });
+
+      job.rewardPool = (rewards as BountReward[]).map((reward) => reward.item);
+    }
 
     return job;
   }
@@ -165,11 +206,19 @@ export default class SyndicateJob extends WorldstateObject {
       },
     });
 
+    this.uniqueName = data.rewards;
+
     this.rewardPool = [];
+
+    this.rewardPoolS = [];
 
     const chamber = ((data.locationTag || '').match(/[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+/g) || []).join(' ');
 
-    this.type = data.isVault ? `Isolation Vault ${chamber}` : (data.jobType ? languageString(data.jobType, locale): undefined);
+    this.type = data.isVault
+      ? `Isolation Vault ${chamber}`
+      : data.jobType
+        ? languageString(data.jobType, locale)
+        : undefined;
 
     this.enemyLevels = [data.minEnemyLevel, data.maxEnemyLevel];
 
