@@ -48,7 +48,7 @@ const determineLocation = (i18n: string, raw: RawSyndicateJob, isVault?: boolean
   return { location, locationWRot };
 };
 
-interface BountReward {
+interface BountyReward {
   item: string;
   rarirty: string;
   chance: number;
