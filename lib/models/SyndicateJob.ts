@@ -50,7 +50,7 @@ const determineLocation = (i18n: string, raw: RawSyndicateJob, isVault?: boolean
 
 interface BountyReward {
   item: string;
-  rarirty: string;
+  rarity: string;
   chance: number;
 }
 
@@ -58,7 +58,7 @@ const getBountyRewards = async (
   i18n: string,
   raw: RawSyndicateJob,
   isVault?: boolean
-): Promise<(string | BountReward)[]> => {
+): Promise<(string | BountyReward)[]> => {
   let location: string | undefined;
   let locationWRot: string | undefined;
   if (i18n.endsWith('PlagueStarTableRewards')) {
@@ -69,7 +69,7 @@ const getBountyRewards = async (
     ({ location, locationWRot } = determineLocation(i18n, raw, isVault));
   }
   const url = `${apiBase}/drops/search/${encodeURIComponent(location!)}?grouped_by=location`;
-  const reply: Record<string, { rewards: { item: string; rarirty: string; chance: number }[] }> = await fetch(url)
+  const reply: Record<string, { rewards: BountyReward[] }> = await fetch(url)
     .then((res) => res.json())
     .catch(() => {}); // swallow errors
   const pool = reply?.[locationWRot];
@@ -97,11 +97,8 @@ export interface RawSyndicateJob {
   masteryReq?: number;
 }
 
-export interface RewardStruct {
-  item: string;
+export interface RewardDrop extends BountyReward {
   count: number;
-  rarirty: string;
-  chance: number;
 }
 
 /**
@@ -122,7 +119,7 @@ export default class SyndicateJob extends WorldstateObject {
   /**
    * A structured version of the reward pool
    */
-  rewardPoolS: RewardStruct[];
+  rewardPoolDrops: RewardDrop[];
 
   /**
    * The type of job this is
@@ -170,10 +167,10 @@ export default class SyndicateJob extends WorldstateObject {
   static async build(data: RawSyndicateJob, expiry: Date, deps: Dependency): Promise<SyndicateJob> {
     const job = new SyndicateJob(data, expiry, deps);
     const rewards = await getBountyRewards(data.rewards, data, data.isVault);
-    if (rewards.length === 1) {
+    if (typeof rewards[0] === 'string') {
       job.rewardPool = rewards as string[];
     } else {
-      job.rewardPoolS = (rewards as BountReward[]).map((reward) => {
+      job.rewardPoolDrops = (rewards as BountyReward[]).map((reward) => {
         const fragments = reward.item.split('X');
         return {
           ...reward,
@@ -182,7 +179,7 @@ export default class SyndicateJob extends WorldstateObject {
         };
       });
 
-      job.rewardPool = (rewards as BountReward[]).map((reward) => reward.item);
+      job.rewardPool = (rewards as BountyReward[]).map((reward) => reward.item);
     }
 
     return job;
@@ -210,7 +207,7 @@ export default class SyndicateJob extends WorldstateObject {
 
     this.rewardPool = [];
 
-    this.rewardPoolS = [];
+    this.rewardPoolDrops = [];
 
     const chamber = ((data.locationTag || '').match(/[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+/g) || []).join(' ');
 
