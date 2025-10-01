@@ -62,9 +62,9 @@ export default class VoidTrader extends WorldstateObject {
 
   /**
    * @param data        The trader data
-   * @param character   The trader name
    * @param deps        The dependencies object
    * @param deps.locale Locale to use for translations
+   * @param deps.character   The trader name
    */
   constructor(data: RawVoidTrader, { locale = 'en', character }: Dependency = { locale: 'en' }) {
     super(data);
