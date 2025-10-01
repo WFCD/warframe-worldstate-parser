@@ -19,7 +19,7 @@ export default interface Dependency {
   /**
    * Generic logger to use if needed
    */
-  logger?: {debug: (message: string) => void};
+  logger?: { debug: (message: string) => void };
 
   /**
    * Sentint Data for parsing
@@ -30,4 +30,9 @@ export default interface Dependency {
    * Sortie data for parsing
    */
   sortieData?: SortieData;
+
+  /**
+   * Character name for traders
+   */
+  character?: string;
 }
