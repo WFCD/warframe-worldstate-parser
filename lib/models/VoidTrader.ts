@@ -49,7 +49,7 @@ export default class VoidTrader extends WorldstateObject {
    * The initial start date
    */
   initialStart: Date;
-  
+
   /**
    * Whether it's completed or not
    */
@@ -61,15 +61,16 @@ export default class VoidTrader extends WorldstateObject {
   schedule: VoidTraderSchedule[];
 
   /**
-   * @param data        The Void trader data
+   * @param data        The trader data
    * @param deps        The dependencies object
    * @param deps.locale Locale to use for translations
+   * @param deps.character   The trader name
    */
-  constructor(data: RawVoidTrader, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(data: RawVoidTrader, { locale = 'en', character }: Dependency = { locale: 'en' }) {
     super(data);
     insist({ ...data }, 'Activation', 'Expiry');
 
-    this.character = data.Character ? data.Character.replace("Baro'Ki Teel", "Baro Ki'Teer") : '';
+    this.character = data.Character ? data.Character.replace("Baro'Ki Teel", "Baro Ki'Teer") : character ?? '';
     this.location = node(data.Node, locale);
     this.inventory = data.Manifest ? data.Manifest.map((i) => new VoidTraderItem(i, { locale })) : [];
     this.psId = `${this.id}${this.inventory.length}`;

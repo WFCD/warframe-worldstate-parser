@@ -463,7 +463,7 @@ export class WorldState {
 
     this.steelPath = new SteelPathOffering(deps);
 
-    [this.vaultTrader] = parseArray(VoidTrader, data.PrimeVaultTraders, deps);
+    [this.vaultTrader] = parseArray(VoidTrader, data.PrimeVaultTraders, {...deps, character: 'Varzia'});
 
     [this.archonHunt] = parseArray(Sortie, data.LiteSorties, deps);
 
