@@ -14,7 +14,10 @@ export interface RawArchimedea {
   fv: string[];
 }
 
-class ArchidemeaMission {
+/**
+ * An Archimedea mission with risk and deviations
+ */
+export class ArchimedeaMission {
   mission: string;
   deviation: { key: string; name: string; description: string };
   riskVariables: { key: string; name: string; description: string }[];
@@ -41,16 +44,32 @@ class ArchidemeaMission {
 }
 
 export default class Archimedea {
+  /**
+   * MD5 generated ID
+   */
   id: string;
+
+  /**
+   * Start date
+   */
   activation: Date;
+  
+  /**
+   * End date
+   */
   expiry: Date;
-  missions: ArchidemeaMission[];
+
+  /**
+   * Missions along with deviations and risks
+   */
+  missions: ArchimedeaMission[];
+
+  /**
+   * Modifiers applied to the player
+   */
   personalModifiers: { key: string; name: string; description: string }[];
 
   /**
-   *
-   * @param activation Start timestamp
-   * @param expiry     End timestamp
    * @param data       Data to parse
    * @param locale     Locale to translate to
    */
@@ -59,7 +78,7 @@ export default class Archimedea {
 
     this.id = createHash('md5').update(JSON.stringify(data), 'utf8').digest('hex');
 
-    this.missions = data.mt.map((m, i) => new ArchidemeaMission(m, data.mv[i], data.c[i], locale));
+    this.missions = data.mt.map((m, i) => new ArchimedeaMission(m, data.mv[i], data.c[i], locale));
 
     this.personalModifiers = data.fv.map((i) => {
       return { key: i, name: languageString(i, locale), description: languageDesc(i, locale) };

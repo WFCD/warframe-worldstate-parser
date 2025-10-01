@@ -26,7 +26,7 @@ export interface RawInvasion extends BaseContentObject {
 /**
  * An invasion participant
  */
-interface InvasionParticipant {
+export interface InvasionParticipant {
   /**
    * Reward for supporting this participant in the invasion
    */
