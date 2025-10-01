@@ -69,7 +69,7 @@ export default class VoidTrader extends WorldstateObject {
     super(data);
     insist({ ...data }, 'Activation', 'Expiry');
 
-    this.character = data.Character ? data.Character.replace("Baro'Ki Teel", "Baro Ki'Teer") : '';
+    this.character = data.Character ? data.Character.replace("Baro'Ki Teel", "Baro Ki'Teer") : 'Varzia';
     this.location = node(data.Node, locale);
     this.inventory = data.Manifest ? data.Manifest.map((i) => new VoidTraderItem(i, { locale })) : [];
     this.psId = `${this.id}${this.inventory.length}`;
