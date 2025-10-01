@@ -1,6 +1,7 @@
 {
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "test"
   ],
   "compilerOptions": {
     "module": "esnext",
@@ -9,5 +10,6 @@
     "moduleResolution": "bundler",
     "esModuleInterop": true,
     "isolatedModules": true,
+    "skipLibCheck": true
   }
 }

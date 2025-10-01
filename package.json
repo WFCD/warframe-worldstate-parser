@@ -34,7 +34,7 @@
   ],
   "scripts": {
     "build": "tsdown",
-    "build:docs": "jsdoc -c jsdoc-config.json -d docs",
+    "build:docs": "typedoc",
     "fmt": "prettier -c .",
     "fmt:fix": "prettier -w .",
     "lint": "biome lint",
@@ -72,6 +72,7 @@
     "sinon-chai": "^4.0.0",
     "tsdown": "^0.15.0",
     "tsx": "^4.20.4",
+    "typedoc": "^0.28.13",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {

@@ -4,7 +4,7 @@ import DarkSectorBattle, { type RawDarkSectorBattle } from './DarkSectorBattle';
 import Mission, { type RawMission } from './Mission';
 import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
-interface DefenderInfo {
+export interface DefenderInfo {
   CreditsTaxRate: number;
   MemberCreditsTax: number;
   ItemsTaxRate: number;

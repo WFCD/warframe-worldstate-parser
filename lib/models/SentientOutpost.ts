@@ -22,7 +22,7 @@ const sat = () => {
 /**
  * Mission typeDef
  */
-interface Mission {
+export interface Mission {
   node: string;
   faction: string;
   type: string;
