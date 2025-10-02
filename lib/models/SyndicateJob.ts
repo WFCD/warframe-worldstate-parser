@@ -171,8 +171,8 @@ export default class SyndicateJob extends WorldstateObject {
       job.rewardPool = rewards as string[];
     } else {
       job.rewardPoolDrops = (rewards as BountyReward[]).map((reward) => {
-        const countReg = /([0-9]{1,10}X)/; // Don't usually see drop counts this high but you know, cast a wide net
-        const count = reward.item.match(countReg)?.[0].replace('X', '');
+        const countReg = /([0-9]{1,10})X/; // Don't usually see drop counts this high but you know, cast a wide net
+        const count = reward.item.match(countReg)?.[1];
         return {
           ...reward,
           item: reward.item.replace(countReg, '').trim(),
