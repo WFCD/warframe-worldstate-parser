@@ -345,6 +345,16 @@ export class WorldState {
   calendar: Calendar;
 
   /**
+   * Faceoff bonus current state
+   */
+  faceoffBonus?: { activation: Date; expiry: Date; next: Date };
+
+  /**
+   * Warfames annual Quest to Conquer Cancer donation count and next tier goal
+   */
+  questToConquerCancer?: { count: number; next: number };
+
+  /**
    * Generates the worldstate json as a string into usable objects
    */
   static async build(json: string, deps: Dependency = defaultDeps): Promise<WorldState> {
@@ -477,6 +487,8 @@ export class WorldState {
       kinepage: this.kinepage,
       sentientOutposts: this.sentientOutposts,
       temporalArchimedea: this.temporalArchimedea,
+      faceoffBonus: this.faceoffBonus,
+      questToConquerCancer: this.questToConquerCancer,
     } = new Tmp(data.Tmp, deps));
   }
 }
