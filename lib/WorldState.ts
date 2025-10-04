@@ -266,8 +266,9 @@ export class WorldState {
 
   /**
    * Midrath cycle (soulframe)
+   * Game seems to desync while you play and appearntly it changes between updates.
    */
-  midrathCycle: MidrathCycle;
+  // midrathCycle: MidrathCycle;
 
   /**
    * Weekly challenges
@@ -439,7 +440,7 @@ export class WorldState {
 
     this.zarimanCycle = new ZarimanCycle(bountyEnd);
 
-    this.midrathCycle = new MidrathCycle();
+    // this.midrathCycle = new MidrathCycle();
 
     this.weeklyChallenges = data.WeeklyChallenges ? new WeeklyChallenge(data.WeeklyChallenges) : undefined;
 
@@ -473,7 +474,7 @@ export class WorldState {
 
     this.steelPath = new SteelPathOffering(deps);
 
-    [this.vaultTrader] = parseArray(VoidTrader, data.PrimeVaultTraders, {...deps, character: 'Varzia'});
+    [this.vaultTrader] = parseArray(VoidTrader, data.PrimeVaultTraders, { ...deps, character: 'Varzia' });
 
     [this.archonHunt] = parseArray(Sortie, data.LiteSorties, deps);
 
