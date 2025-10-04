@@ -19,7 +19,6 @@ import GlobalUpgrade, { type RawGlobalUpgrade } from './models/GlobalUpgrade';
 import Invasion, { type RawInvasion } from './models/Invasion';
 import type Kinepage from './models/Kinepage';
 import Kuva from './models/Kuva';
-import MidrathCycle from './models/MidrathCycle';
 import News, { type RawNews } from './models/News';
 import Nightwave, { type RawNightwave } from './models/Nightwave';
 import PersistentEnemy, { type RawPersistentEnemy } from './models/PersistentEnemy';
@@ -353,7 +352,7 @@ export class WorldState {
   /**
    * Warfames annual Quest to Conquer Cancer donation count and next tier goal
    */
-  questToConquerCancer?: { count: number; next: number };
+  questToConquerCancer?: { count: number; goal: number };
 
   /**
    * Generates the worldstate json as a string into usable objects

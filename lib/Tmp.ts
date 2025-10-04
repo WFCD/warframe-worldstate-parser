@@ -20,7 +20,7 @@ export class Tmp {
   deepArchimedea?: Archimedea;
   temporalArchimedea?: Archimedea;
   faceoffBonus?: { activation: Date; expiry: Date; next: Date };
-  questToConquerCancer?: { count: number; next: number };
+  questToConquerCancer?: { count: number; goal: number };
 
   constructor(json: string, deps: Dependency = { locale: 'en' }) {
     const tmp: InitialTmp = JSON.parse(json);
@@ -47,7 +47,7 @@ export class Tmp {
     }
 
     if (tmp.QTCCFloofCount) {
-      this.questToConquerCancer = { count: tmp.QTCCFloofCount, next: tmp.QTCCFloofLimit };
+      this.questToConquerCancer = { count: tmp.QTCCFloofCount, goal: tmp.QTCCFloofLimit };
     }
   }
 }
