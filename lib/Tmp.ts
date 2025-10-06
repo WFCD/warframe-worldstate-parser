@@ -10,8 +10,8 @@ export interface InitialTmp {
   fbst?: { a: number; e: number; n: number };
   lqo?: RawArchimedea;
   hqo?: RawArchimedea;
-  QTCCFloofCount: number;
-  QTCCFloofLimit: number;
+  QTCCFloofCount?: number;
+  QTCCFloofLimit?: number;
 }
 
 export class Tmp {
@@ -47,7 +47,7 @@ export class Tmp {
     }
 
     if (tmp.QTCCFloofCount) {
-      this.questToConquerCancer = { count: tmp.QTCCFloofCount, goal: tmp.QTCCFloofLimit };
+      this.questToConquerCancer = { count: tmp.QTCCFloofCount, goal: tmp.QTCCFloofLimit! };
     }
   }
 }

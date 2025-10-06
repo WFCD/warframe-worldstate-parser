@@ -350,7 +350,7 @@ export class WorldState {
   faceoffBonus?: { activation: Date; expiry: Date; next: Date };
 
   /**
-   * Warfames annual Quest to Conquer Cancer donation count and next tier goal
+   * Warframe's annual Quest to Conquer Cancer donation count and next tier goal  
    */
   questToConquerCancer?: { count: number; goal: number };
 
