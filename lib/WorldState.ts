@@ -19,7 +19,6 @@ import GlobalUpgrade, { type RawGlobalUpgrade } from './models/GlobalUpgrade';
 import Invasion, { type RawInvasion } from './models/Invasion';
 import type Kinepage from './models/Kinepage';
 import Kuva from './models/Kuva';
-import MidrathCycle from './models/MidrathCycle';
 import News, { type RawNews } from './models/News';
 import Nightwave, { type RawNightwave } from './models/Nightwave';
 import PersistentEnemy, { type RawPersistentEnemy } from './models/PersistentEnemy';
@@ -266,8 +265,9 @@ export class WorldState {
 
   /**
    * Midrath cycle (soulframe)
+   * Game seems to desync while you play and appearntly it changes between updates.
    */
-  midrathCycle: MidrathCycle;
+  // midrathCycle: MidrathCycle;
 
   /**
    * Weekly challenges
@@ -343,6 +343,16 @@ export class WorldState {
    * The current calendar for 1999
    */
   calendar: Calendar;
+
+  /**
+   * Faceoff bonus current state
+   */
+  faceoffBonus?: { activation: Date; expiry: Date; next: Date };
+
+  /**
+   * Warframe's annual Quest to Conquer Cancer donation count and next tier goal  
+   */
+  questToConquerCancer?: { count: number; goal: number };
 
   /**
    * Generates the worldstate json as a string into usable objects
@@ -429,7 +439,7 @@ export class WorldState {
 
     this.zarimanCycle = new ZarimanCycle(bountyEnd);
 
-    this.midrathCycle = new MidrathCycle();
+    // this.midrathCycle = new MidrathCycle();
 
     this.weeklyChallenges = data.WeeklyChallenges ? new WeeklyChallenge(data.WeeklyChallenges) : undefined;
 
@@ -463,7 +473,7 @@ export class WorldState {
 
     this.steelPath = new SteelPathOffering(deps);
 
-    [this.vaultTrader] = parseArray(VoidTrader, data.PrimeVaultTraders, {...deps, character: 'Varzia'});
+    [this.vaultTrader] = parseArray(VoidTrader, data.PrimeVaultTraders, { ...deps, character: 'Varzia' });
 
     [this.archonHunt] = parseArray(Sortie, data.LiteSorties, deps);
 
@@ -477,6 +487,8 @@ export class WorldState {
       kinepage: this.kinepage,
       sentientOutposts: this.sentientOutposts,
       temporalArchimedea: this.temporalArchimedea,
+      faceoffBonus: this.faceoffBonus,
+      questToConquerCancer: this.questToConquerCancer,
     } = new Tmp(data.Tmp, deps));
   }
 }
