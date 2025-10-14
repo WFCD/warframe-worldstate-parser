@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/wfcd/warframe-worldstate-parser/issues"
   },
-  "repository": "github:wfcd/warframe-worldstate-parser",
+  "repository": "https://github.com/WFCD/warframe-worldstate-parser",
   "license": "MIT",
   "author": "aliasfalse",
   "contributors": [
@@ -80,5 +80,6 @@
   },
   "engines": {
     "node": ">=20.6.0"
-  }
+  },
+  "publishConfig": { "provenance": true }
 }
