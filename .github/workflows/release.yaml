@@ -24,16 +24,11 @@ jobs:
         run: npm run lint
       - name: Run commitlint
         run: npx commitlint --from=HEAD~1
-      - name: Tailscale
-        uses: tailscale/github-action@v3
+      - uses: wenoa/setup-wireguard@main
         with:
-          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-          tags: tag:ci
+          WG_CONFIG: ${{ secrets.WG_CONFIG }}
       - name: Run tests
         run: npm run test:coverage
-        env:
-          PROXY_URL: ${{ secrets.SOLVERR_PROXY_URL }}
   release:
     name: Release
     runs-on: ubuntu-latest
