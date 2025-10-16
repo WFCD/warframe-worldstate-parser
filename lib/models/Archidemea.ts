@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import type { Locale } from 'warframe-worldstate-data';
 import { faction, languageDesc, languageString, missionType } from 'warframe-worldstate-data/utilities';
+import type Dependency from '../supporting/Dependency';
 import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
 
 /**
@@ -121,7 +122,7 @@ export default class Archimedea extends WorldstateObject {
    * @param data       Data to parse
    * @param locale     Locale to translate to
    */
-  constructor(data: RawArchimedea, locale: Locale = 'en') {
+  constructor(data: RawArchimedea, { locale }: Dependency = { locale: 'en' }) {
     super(data);
 
     this.id = createHash('md5').update(JSON.stringify(data), 'utf8').digest('hex');

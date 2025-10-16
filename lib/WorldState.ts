@@ -145,7 +145,7 @@ export interface InitialWorldState {
   PrimeVaultTraders: RawVoidTrader[];
   EndlessXpChoices: RawChoice[];
   KnownCalendarSeasons: RawCalender[];
-  Conquests: RawArchimedea[]
+  Conquests: RawArchimedea[];
   Tmp: string;
 }
 
@@ -346,7 +346,7 @@ export class WorldState {
   faceoffBonus?: { activation: Date; expiry: Date; next: Date };
 
   /**
-   * Warframe's annual Quest to Conquer Cancer donation count and next tier goal  
+   * Warframe's annual Quest to Conquer Cancer donation count and next tier goal
    */
   questToConquerCancer?: { count: number; goal: number };
 
@@ -478,8 +478,8 @@ export class WorldState {
 
     [this.calendar] = parseArray(Calendar, data.KnownCalendarSeasons, deps);
 
-    this.archimedeas = data.Conquests.map((c) => new Archimedea(c, deps.locale));
-
+    this.archimedeas = parseArray(Archimedea, data.Conquests, deps);
+    
     ({
       kinepage: this.kinepage,
       sentientOutposts: this.sentientOutposts,
