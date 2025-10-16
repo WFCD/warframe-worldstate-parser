@@ -46,12 +46,7 @@ export default async (url: string, {
       return {
         ok: solution.responseCode === 200,
         status: solution.responseCode,
-        text: async () => solution.response.replace('<html>', '')
-          .replace('<body>', '')
-          .replace('<head>', '')
-          .replace('</html>', '')
-          .replace('</body>', '')
-          .replace('</head>', ''),
+        text: async () => solution.response.replace(/<\/?[^>]+(>|$)/g, ''),
       }
     }
     return solution.response;
