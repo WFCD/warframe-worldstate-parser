@@ -10,7 +10,10 @@
   "bugs": {
     "url": "https://github.com/wfcd/warframe-worldstate-parser/issues"
   },
-  "repository": "https://github.com/WFCD/warframe-worldstate-parser",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WFCD/warframe-worldstate-parser.git"
+  },
   "license": "MIT",
   "author": "aliasfalse",
   "contributors": [
