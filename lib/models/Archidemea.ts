@@ -103,6 +103,11 @@ export default class Archimedea extends WorldstateObject {
   type: string;
 
   /**
+   * Archimedea type untranslated
+   */
+  typeKey: string;
+
+  /**
    * Missions along with deviations and risks
    */
   missions: ArchimedeaMission[];
@@ -121,7 +126,9 @@ export default class Archimedea extends WorldstateObject {
 
     this.id = createHash('md5').update(JSON.stringify(data), 'utf8').digest('hex');
 
-    this.type = data.Type;
+    this.type = languageString(data.Type, locale);
+
+    this.typeKey = languageString(data.Type, 'en');
 
     this.missions = data.Missions.map((m) => new ArchimedeaMission(m, locale));
 
