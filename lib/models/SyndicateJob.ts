@@ -1,6 +1,7 @@
 import { languageString } from 'warframe-worldstate-data/utilities';
 import type Dependency from '../supporting/Dependency';
 import WorldstateObject, { type Identifier } from './WorldstateObject';
+import fetch from '../supporting/FetchProxy';
 
 const apiBase = process.env.API_BASE_URL || 'https://api.warframestat.us';
 const bountyRewardRegex = /(?:Tier([ABCDE])|Narmer)Table([ABC])Rewards/i;

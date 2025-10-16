@@ -4,6 +4,7 @@ import type Dependency from '../../lib/supporting/Dependency.js';
 import WorldState from '../../main.js';
 import sentientMock from '../data/anomaly.json' with { type: 'json' };
 import kuvaMock from '../data/kuvalog.json' with { type: 'json' };
+import fetch from '../../lib/supporting/FetchProxy.js';
 
 chai.should();
 
@@ -11,7 +12,7 @@ const data: Record<string, string> = {};
 const platforms = ['pc'];
 
 const getPData = (p: string) =>
-  fetch(`https://api.warframe.com/cdn/worldState.php`)
+  fetch(`https://api.warframe.com/cdn/worldState.php`, { session: `parser-${p}`, contentType: 'text/html' })
     .then((d) => d.text())
     .then((d) => {
       data[p] = d;

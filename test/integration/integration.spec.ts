@@ -5,6 +5,7 @@ import 'chai/register-should';
 import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 import WorldState from '../../lib/WorldState';
+import fetch from '../../lib/supporting/FetchProxy';
 
 const logger = {
   error: () => {},
@@ -19,11 +20,11 @@ chai.use(sinonChai);
 
 // biome-ignore lint/correctness/noUnusedVariables: incase we find a way to add kuva later on
 const json = async (url: string) => fetch(url).then((res) => res.json());
-const text = async (url: string) => fetch(url).then((res) => res.text());
+const text = async (url: string) => fetch(url, { contentType: 'text/html' }).then((res) => res.text());
 
 describe('WorldState (integration)', () => {
   it(`should parse live pc worldstate data`, async function () {
-    this.timeout(10000); // allow 10 seconds to parse the worldstate
+    this.timeout(100000); // allow 100 seconds to parse the worldstate
     // const kuvaData = await json('https://10o.io/arbitrations.json');
     const ws = await text('https://api.warframe.com/cdn/worldState.php');
 
@@ -68,7 +69,7 @@ describe('WorldState (integration)', () => {
   it('should run the README example', async () => {
     const example = async () => {
       const WorldStateParser = await import('warframe-worldstate-parser');
-      const worldstateData = await fetch('https://api.warframe.com/cdn/worldState.php').then((data) =>
+      const worldstateData = await fetch('https://api.warframe.com/cdn/worldState.php', { contentType: "text/html"}).then((data) =>
         data.text()
       );
       const ws = await WorldStateParser(worldstateData);
