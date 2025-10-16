@@ -24,7 +24,7 @@ const text = async (url: string) => fetch(url, { contentType: 'text/html' }).the
 
 describe('WorldState (integration)', () => {
   it(`should parse live pc worldstate data`, async function () {
-    this.timeout(100000); // allow 10 seconds to parse the worldstate
+    this.timeout(100000); // allow 100 seconds to parse the worldstate
     // const kuvaData = await json('https://10o.io/arbitrations.json');
     const ws = await text('https://api.warframe.com/cdn/worldState.php');
 
