@@ -39,14 +39,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm i -D warframe-worldstate-data@latest
-      - name: Set up WireGuard
-        uses: egor-tensin/setup-wireguard@v1
+      - uses: wenoa/setup-wireguard@main
         with:
-          endpoint: '${{ secrets.WG_ENDPOINT }}'
-          endpoint_public_key: '${{ secrets.WG_ENDPOINT_PUBLIC }}'
-          ips: '${{ secrets.WG_IPS }}'
-          allowed_ips: '${{ secrets.WG_ALLOWED_IPS }}'
-          private_key: '${{ secrets.WG_PKEY }}'
+          WG_CONFIG: ${{ secrets.WG_CONFIG }}
       - run: npm test
         env:
           CI: true
@@ -61,14 +56,9 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: '.nvmrc'
-      - name: Set up WireGuard
-        uses: egor-tensin/setup-wireguard@v1
+      - uses: wenoa/setup-wireguard@main
         with:
-          endpoint: '${{ secrets.WG_ENDPOINT }}'
-          endpoint_public_key: '${{ secrets.WG_ENDPOINT_PUBLIC }}'
-          ips: '${{ secrets.WG_IPS }}'
-          allowed_ips: '${{ secrets.WG_ALLOWED_IPS }}'
-          private_key: '${{ secrets.WG_PKEY }}'
+          WG_CONFIG: ${{ secrets.WG_CONFIG }}
       - run: npm ci
       - run: npm run test:coverage
         env:
