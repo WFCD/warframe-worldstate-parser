@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import wsData from 'warframe-worldstate-data';
 import { parseDate } from 'warframe-worldstate-data/utilities';
 import Alert, { type RawAlert } from './models/Alert';
-import type Archimedea from './models/Archidemea';
+import Archimedea, { type RawArchimedea } from './models/Archidemea';
 import Calendar, { type RawCalender } from './models/Calendar';
 import CambionCycle from './models/CambionCycle';
 import CetusCycle from './models/CetusCycle';
@@ -145,6 +145,7 @@ export interface InitialWorldState {
   PrimeVaultTraders: RawVoidTrader[];
   EndlessXpChoices: RawChoice[];
   KnownCalendarSeasons: RawCalender[];
+  Conquests: RawArchimedea[];
   Tmp: string;
 }
 
@@ -330,14 +331,9 @@ export class WorldState {
   kinepage: Kinepage;
 
   /**
-   * The current Deep Archimedea missions and modifiers
+   * The current Archimedea missions and modifiers
    */
-  deepArchimedea?: Archimedea;
-
-  /**
-   * The current Temporal Archimedea missions and modifiers
-   */
-  temporalArchimedea?: Archimedea;
+  archimedeas: Archimedea[];
 
   /**
    * The current calendar for 1999
@@ -350,7 +346,7 @@ export class WorldState {
   faceoffBonus?: { activation: Date; expiry: Date; next: Date };
 
   /**
-   * Warframe's annual Quest to Conquer Cancer donation count and next tier goal  
+   * Warframe's annual Quest to Conquer Cancer donation count and next tier goal
    */
   questToConquerCancer?: { count: number; goal: number };
 
@@ -482,11 +478,11 @@ export class WorldState {
 
     [this.calendar] = parseArray(Calendar, data.KnownCalendarSeasons, deps);
 
+    this.archimedeas = parseArray(Archimedea, data.Conquests, deps);
+    
     ({
-      deepArchimedea: this.deepArchimedea,
       kinepage: this.kinepage,
       sentientOutposts: this.sentientOutposts,
-      temporalArchimedea: this.temporalArchimedea,
       faceoffBonus: this.faceoffBonus,
       questToConquerCancer: this.questToConquerCancer,
     } = new Tmp(data.Tmp, deps));

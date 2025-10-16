@@ -1,0 +1,85 @@
+{
+    "Activation": {
+        "$date": {
+            "$numberLong": "1760313600000"
+        }
+    },
+    "Expiry": {
+        "$date": {
+            "$numberLong": "1760918400000"
+        }
+    },
+    "Type": "CT_LAB",
+    "Missions": [
+        {
+            "faction": "FC_MITW",
+            "missionType": "MT_ALCHEMY",
+            "difficulties": [
+                {
+                    "type": "CD_NORMAL",
+                    "deviation": "VolatileGrenades",
+                    "risks": [
+                        "PointBlank"
+                    ]
+                },
+                {
+                    "type": "CD_HARD",
+                    "deviation": "VolatileGrenades",
+                    "risks": [
+                        "PointBlank",
+                        "ShieldedFoes"
+                    ]
+                }
+            ]
+        },
+        {
+            "faction": "FC_MITW",
+            "missionType": "MT_DEFENSE",
+            "difficulties": [
+                {
+                    "type": "CD_NORMAL",
+                    "deviation": "LostInTranslation",
+                    "risks": [
+                        "DrainingResiduals"
+                    ]
+                },
+                {
+                    "type": "CD_HARD",
+                    "deviation": "LostInTranslation",
+                    "risks": [
+                        "DrainingResiduals",
+                        "Deflectors"
+                    ]
+                }
+            ]
+        },
+        {
+            "faction": "FC_MITW",
+            "missionType": "MT_ARTIFACT",
+            "difficulties": [
+                {
+                    "type": "CD_NORMAL",
+                    "deviation": "DoubleTrouble",
+                    "risks": [
+                        "AcceleratedEnemies"
+                    ]
+                },
+                {
+                    "type": "CD_HARD",
+                    "deviation": "DoubleTrouble",
+                    "risks": [
+                        "AcceleratedEnemies",
+                        "RegeneratingEnemies"
+                    ]
+                }
+            ]
+        }
+    ],
+    "Variables": [
+        "TimeDilation",
+        "VoidEnergyOverload",
+        "Framecurse",
+        "AntiGuard"
+    ],
+    "RandomSeed": 2230720732
+}
