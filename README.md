@@ -26,7 +26,7 @@ For the most part, you'll have a better experience consuming the product of this
 // import WorldState from 'warframe-worldstate-data';
 // using this syntax to make it precisely testable in a test
 const WorldStateParser = await import('warframe-worldstate-parser');
-const worldstateData = await fetch('https://content.warframe.com/dynamic/worldState.php').then((data) => data.text());
+const worldstateData = await fetch('https://api.warframe.com/cdn/worldState.php').then((data) => data.text());
 
 const ws = await WorldStateParser(worldstateData);
 

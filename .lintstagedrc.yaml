@@ -2,7 +2,7 @@
   - 'npm run fmt:fix'
 '*.ts':
   - biome lint --write --staged
-  - npm test -- --reporter=mocha-minimalist-reporter
+  - mocha --reporter=mocha-minimalist-reporter
 package*.json:
   - npm dedupe
   - npx sort-package-json

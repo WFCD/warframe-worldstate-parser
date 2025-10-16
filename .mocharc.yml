@@ -6,3 +6,5 @@ require:
   - 'chai/register-should.js'
 node-option:
   - 'import=tsx'
+ignore:
+  - test/testclient.ts

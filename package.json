@@ -42,6 +42,7 @@
     "prepare": "husky && npx install-peerdeps @wfcd/eslint-config@latest -S",
     "prepublishOnly": "npm run build && npm_config_yes=true npx clean-package",
     "printcov": "c8 report",
+    "pretest": "npm run build",
     "test": "mocha",
     "test:coverage": "c8 npm test",
     "test:integration": "npm run test -- -g 'should parse live pc worldstate data'"
@@ -81,5 +82,7 @@
   "engines": {
     "node": ">=20.6.0"
   },
-  "publishConfig": { "provenance": true }
+  "publishConfig": {
+    "provenance": true
+  }
 }

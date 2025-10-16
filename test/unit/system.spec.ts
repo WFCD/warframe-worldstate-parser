@@ -11,7 +11,7 @@ const data: Record<string, string> = {};
 const platforms = ['pc'];
 
 const getPData = (p: string) =>
-  fetch(`https://content.warframe.com/dynamic/worldState.php`)
+  fetch(`https://api.warframe.com/cdn/worldState.php`)
     .then((d) => d.text())
     .then((d) => {
       data[p] = d;

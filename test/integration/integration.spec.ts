@@ -25,7 +25,7 @@ describe('WorldState (integration)', () => {
   it(`should parse live pc worldstate data`, async function () {
     this.timeout(10000); // allow 10 seconds to parse the worldstate
     // const kuvaData = await json('https://10o.io/arbitrations.json');
-    const ws = await text('https://content.warframe.com/dynamic/worldState.php');
+    const ws = await text('https://api.warframe.com/cdn/worldState.php');
 
 
     (async () => {
@@ -68,7 +68,7 @@ describe('WorldState (integration)', () => {
   it('should run the README example', async () => {
     const example = async () => {
       const WorldStateParser = await import('warframe-worldstate-parser');
-      const worldstateData = await fetch('https://content.warframe.com/dynamic/worldState.php').then((data) =>
+      const worldstateData = await fetch('https://api.warframe.com/cdn/worldState.php').then((data) =>
         data.text()
       );
       const ws = await WorldStateParser(worldstateData);
