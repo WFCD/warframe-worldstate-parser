@@ -39,17 +39,18 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm i -D warframe-worldstate-data@latest
-      - name: Tailscale
-        uses: tailscale/github-action@v3
+      - name: Set up WireGuard
+        uses: egor-tensin/setup-wireguard@v1
         with:
-          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-          tags: tag:ci
+          endpoint: '${{ secrets.WG_ENDPOINT }}'
+          endpoint_public_key: '${{ secrets.WG_ENDPOINT_PUBLIC }}'
+          ips: '${{ secrets.WG_IPS }}'
+          allowed_ips: '${{ secrets.WG_ALLOWED_IPS }}'
+          private_key: '${{ secrets.WG_PKEY }}'
       - run: npm test
         env:
           CI: true
           parallel: true
-          PROXY_URL: ${{ secrets.SOLVERR_PROXY_URL }}
   coverage:
     name: Coverage
     runs-on: ubuntu-latest
@@ -60,16 +61,17 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: '.nvmrc'
-      - name: Tailscale
-        uses: tailscale/github-action@v3
+      - name: Set up WireGuard
+        uses: egor-tensin/setup-wireguard@v1
         with:
-          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-          tags: tag:ci
+          endpoint: '${{ secrets.WG_ENDPOINT }}'
+          endpoint_public_key: '${{ secrets.WG_ENDPOINT_PUBLIC }}'
+          ips: '${{ secrets.WG_IPS }}'
+          allowed_ips: '${{ secrets.WG_ALLOWED_IPS }}'
+          private_key: '${{ secrets.WG_PKEY }}'
       - run: npm ci
       - run: npm run test:coverage
         env:
-          PROXY_URL: ${{ secrets.SOLVERR_PROXY_URL }}
           CI: true
       - name: Coveralls
         uses: coverallsapp/github-action@master
