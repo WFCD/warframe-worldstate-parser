@@ -22,12 +22,12 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/main.d.ts",
-      "import": "./dist/main.js"
+      "types": "./dist/main.d.mts",
+      "import": "./dist/main.mjs"
     }
   },
-  "main": "./dist/main.js",
-  "types": "./dist/main.d.ts",
+  "main": "./dist/main.mjs",
+  "types": "./dist/main.d.mts",
   "directories": {
     "test": "test"
   },
