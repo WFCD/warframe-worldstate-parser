@@ -38,7 +38,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm i -D warframe-worldstate-data@latest
       - uses: wenoa/setup-wireguard@main
         with:
           WG_CONFIG: ${{ secrets.WG_CONFIG }}
