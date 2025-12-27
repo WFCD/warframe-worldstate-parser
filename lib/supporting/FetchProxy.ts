@@ -36,7 +36,7 @@ export default async (url: string, {
         json: async () => {
           try {
             return JSON.parse(solution.response);
-          } catch (error) {
+          } catch (_error) {
             return {};
           }
         },
