@@ -1,4 +1,4 @@
-import type { Dependency } from '@/supporting/Dependency';
+import type { Dependency } from '@/supporting';
 
 import { Kinepage } from './Kinepage';
 import { SentientOutpost } from './SentientOutpost';

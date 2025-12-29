@@ -5,7 +5,7 @@ import {
   timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from '@/supporting/Dependency';
+import type { Dependency } from '@/supporting';
 
 import { WorldStateObject } from './WorldStateObject';
 

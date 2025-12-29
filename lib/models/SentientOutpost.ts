@@ -4,7 +4,7 @@ import {
   nodeMissionType,
 } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from '@/supporting/Dependency';
+import type { Dependency } from '@/supporting';
 
 const duration = 1800;
 
