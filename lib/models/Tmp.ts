@@ -1,4 +1,5 @@
 import type { Dependency } from '@/supporting/Dependency';
+
 import { Kinepage } from './Kinepage';
 import { SentientOutpost } from './SentientOutpost';
 

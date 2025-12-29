@@ -12,6 +12,7 @@ import {
 } from 'warframe-worldstate-data/utilities';
 
 import type { Dependency } from '@/supporting/Dependency';
+
 import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawFissure extends BaseContentObject {

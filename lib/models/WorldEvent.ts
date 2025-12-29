@@ -341,7 +341,12 @@ export class WorldEvent extends WorldStateObject {
       });
 
       this.progressTotal = Number.parseFloat(
-        data.MultiProgress!.reduce((accumulator, val) => accumulator + val)
+        String(
+          data.MultiProgress!.reduce(
+            (acc, val) => acc + Number.parseFloat(val),
+            0
+          )
+        )
       );
     }
 
