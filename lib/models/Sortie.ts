@@ -8,7 +8,7 @@ import {
   timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from './@/supporting/Dependency';
+import type { Dependency } from '@/supporting/Dependency';
 import { Mission, type RawMission } from './Mission';
 import { type RawSortieVariant, SortieVariant } from './SortieVariant';
 import { type BaseContentObject, WorldStateObject } from './WorldStateObject';

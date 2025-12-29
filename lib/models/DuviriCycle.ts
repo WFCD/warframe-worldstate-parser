@@ -1,4 +1,4 @@
-import type DuviriChoice from '@/supporting/DuviriChoice';
+import type { DuviriChoice } from '@/supporting/DuviriChoice';
 
 import { WorldStateObject } from './WorldStateObject';
 

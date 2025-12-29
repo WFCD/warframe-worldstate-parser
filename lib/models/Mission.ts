@@ -6,7 +6,7 @@ import {
   node,
 } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from './@/supporting/Dependency';
+import type { Dependency } from '@/supporting/Dependency';
 import { type RawReward, Reward } from './Reward';
 
 export interface RawMission {

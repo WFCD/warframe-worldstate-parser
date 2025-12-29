@@ -2,7 +2,7 @@ import { insist, languageString } from 'warframe-worldstate-data/utilities';
 
 import rewardTypes, { type RewardType } from '@/supporting/RewardTypes';
 
-import type { Dependency } from './@/supporting/Dependency';
+import type { Dependency } from '@/supporting/Dependency';
 
 /**
  * Returns the type of a given item
