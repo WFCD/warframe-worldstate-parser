@@ -5,7 +5,8 @@ import {
   timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from '../supporting';
+import type { Dependency } from '@/supporting';
+
 import { type RawSyndicateJob, SyndicateJob } from './SyndicateJob';
 import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 

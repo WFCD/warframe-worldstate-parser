@@ -1,4 +1,5 @@
-import type DuviriChoice from '../supporting/DuviriChoice';
+import type DuviriChoice from '@/supporting/DuviriChoice';
+
 import { WorldStateObject } from './WorldStateObject';
 
 const cycleTime = 36000;

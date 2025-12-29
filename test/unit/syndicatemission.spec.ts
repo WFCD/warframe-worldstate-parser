@@ -1,9 +1,6 @@
 import * as chai from 'chai';
 
-import {
-  type RawSyndicateMission,
-  SyndicateMission,
-} from '@/models/SyndicateMission.js';
+import { type RawSyndicateMission, SyndicateMission } from '@/models';
 
 chai.should();
 

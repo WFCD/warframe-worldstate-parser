@@ -8,7 +8,8 @@ import {
   toNow,
 } from 'warframe-worldstate-data/utilities';
 
-import { cdn, deProxy } from '../supporting/ImgCdn';
+import { cdn, deProxy } from '@/supporting/ImgCdn';
+
 import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 const updateReg = /(update|hotfix|patch-notes)/i;

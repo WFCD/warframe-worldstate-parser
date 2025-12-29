@@ -7,7 +7,8 @@ import {
   timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from '../supporting';
+import type { Dependency } from '@/supporting';
+
 import { type RawVoidTraderItem, VoidTraderItem } from './VoidTraderItem';
 import { VoidTraderSchedule } from './VoidTraderSchedule';
 import { type BaseContentObject, WorldStateObject } from './WorldStateObject';

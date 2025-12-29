@@ -21,7 +21,7 @@ export interface RawNightwave extends BaseContentObject {
 }
 
 /**
- * Represents an alert
+ * Represents a nightwave state
  * @augments {WorldStateObject}
  */
 export class Nightwave extends WorldStateObject {

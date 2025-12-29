@@ -3,9 +3,10 @@ import { createHash } from 'node:crypto';
 import type { Locale } from 'warframe-worldstate-data';
 import { node, nodeMissionType } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from './../supporting/Dependency';
-import type ExternalMission from '../supporting/ExternalMission';
-import type { KuvaLogEntry } from '../supporting/KuvaLogEntry';
+import type ExternalMission from '@/supporting/ExternalMission';
+import type { KuvaLogEntry } from '@/supporting/KuvaLogEntry';
+
+import type { Dependency } from './@/supporting/Dependency';
 
 const HOURS_2 = 7200000;
 

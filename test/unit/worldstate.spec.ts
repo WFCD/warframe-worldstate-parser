@@ -4,11 +4,7 @@ import sinonChai from 'sinon-chai';
 
 import { type BaseContentObject, WorldStateObject } from '@/models';
 
-import {
-  type InitialWorldState,
-  parseArray,
-  WorldState,
-} from '@/WorldState.js';
+import { type InitialWorldState, parseArray, WorldState } from '@/WorldState';
 
 chai.should();
 chai.use(sinonChai);

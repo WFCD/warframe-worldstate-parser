@@ -1,7 +1,7 @@
 import { languageString } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from './../supporting/Dependency';
-import fetch from '../supporting/FetchProxy';
+import { type Dependency, fetchProxy as fetch } from '@/supporting';
+
 import { type Identifier, WorldStateObject } from './WorldStateObject';
 
 const apiBase = process.env.API_BASE_URL || 'https://api.warframestat.us';
@@ -225,9 +225,11 @@ export class SyndicateJob extends WorldStateObject {
 
     this.rewardPoolDrops = [];
 
-    const chamber = (
-      (data.locationTag || '').match(/[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+/g) || []
-    ).join(' ');
+    // Split on word boundaries without backtracking risk
+    const chamber = (data.locationTag || '')
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
+      .trim();
 
     this.type = data.isVault
       ? `Isolation Vault ${chamber}`

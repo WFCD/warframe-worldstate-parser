@@ -8,7 +8,8 @@ import {
   syndicate,
 } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from '../supporting';
+import type { Dependency } from '@/supporting';
+
 import { type RawReward, Reward } from './Reward';
 import { type RawSyndicateJob, SyndicateJob } from './SyndicateJob';
 import {

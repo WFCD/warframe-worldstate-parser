@@ -1,6 +1,7 @@
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from '../supporting';
+import type { Dependency } from '@/supporting';
+
 import { Mission, type RawMission } from './Mission';
 import type { Reward } from './Reward';
 import { type BaseContentObject, WorldStateObject } from './WorldStateObject';

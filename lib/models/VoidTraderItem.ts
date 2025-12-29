@@ -1,6 +1,6 @@
 import { languageString } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from '../supporting';
+import type { Dependency } from '@/supporting';
 
 export interface RawVoidTraderItem {
   ItemType: string;

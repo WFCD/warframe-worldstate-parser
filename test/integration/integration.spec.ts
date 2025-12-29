@@ -6,9 +6,9 @@ import 'chai/register-should';
 import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 
-import fetch from '@/supporting/FetchProxy';
+import { fetchProxy as fetch } from '@/supporting';
 
-import WorldState from '../../lib/WorldState';
+import WorldState from '@/WorldState';
 
 const logger = {
   error: () => {},

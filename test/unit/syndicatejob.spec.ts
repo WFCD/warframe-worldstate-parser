@@ -1,10 +1,6 @@
 import * as chai from 'chai';
 
-import {
-  type RawSyndicateJob,
-  type RewardDrop,
-  SyndicateJob,
-} from '@/models/SyndicateJob.js';
+import { type RawSyndicateJob, type RewardDrop, SyndicateJob } from '@/models';
 import CambionFTier from '@/data/CambionFTier.json' with { type: 'json' };
 import CetusFTier from '@/data/CetusFTier.json' with { type: 'json' };
 import isoVaultBounty from '@/data/isoVaultBounty.json' with { type: 'json' };

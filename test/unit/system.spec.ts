@@ -1,11 +1,10 @@
 import * as chai from 'chai';
+import WorldState from 'warframe-worldstate-parser';
 
-import type { Dependency } from '@/supporting/Dependency.js';
-import fetch from '@/supporting/FetchProxy.js';
+import type { Dependency } from '@/supporting';
+import { fetchProxy as fetch } from '@/supporting';
 import sentientMock from '@/data/anomaly.json' with { type: 'json' };
 import kuvaMock from '@/data/kuvalog.json' with { type: 'json' };
-
-import WorldState from '@/../main.js';
 
 chai.should();
 

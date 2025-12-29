@@ -4,7 +4,8 @@ import {
   parseDate,
 } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from '../supporting';
+import type { Dependency } from '@/supporting';
+
 import { DarkSectorBattle, type RawDarkSectorBattle } from './DarkSectorBattle';
 import { Mission, type RawMission } from './Mission';
 import { type BaseContentObject, WorldStateObject } from './WorldStateObject';

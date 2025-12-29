@@ -7,7 +7,8 @@ import {
   toNow,
 } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency } from '../supporting';
+import type { Dependency } from '@/supporting';
+
 import { type RawReward, Reward } from './Reward';
 import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 

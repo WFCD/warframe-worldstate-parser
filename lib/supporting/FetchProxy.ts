@@ -7,7 +7,7 @@ const localTimeout = process.env.LOCAL_TIMEOUT
   ? parseInt(process.env.LOCAL_TIMEOUT, 10)
   : 12000000;
 
-export default async (
+export const fetchProxy = async (
   url: string,
   {
     session = 'parser-session',

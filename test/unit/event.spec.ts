@@ -19,7 +19,7 @@ describe('Event', () => {
     it('should parse mock event data', () => {
       (() => {
         new WorldEvent(events[0] as unknown as RawWorldEvent);
-      }).should.not.throw;
+      }).should.not.throw();
     });
   });
 });
