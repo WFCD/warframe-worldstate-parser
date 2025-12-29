@@ -1,8 +1,8 @@
 import * as chai from 'chai';
 
-import VoidTrader, { type RawVoidTrader } from '../../lib/models/VoidTrader.js';
-import VaultTrader from '../data/VaultTrader.json' with { type: 'json' };
-import type Dependency from '../../lib/supporting/Dependency.js';
+import { type RawVoidTrader, VoidTrader } from '@/models/VoidTrader.js';
+import type { Dependency } from '@/supporting';
+import VaultTrader from '@/data/VaultTrader.json' with { type: 'json' };
 
 chai.should();
 

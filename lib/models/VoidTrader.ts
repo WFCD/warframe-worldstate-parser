@@ -6,10 +6,11 @@ import {
   parseDate,
   timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency.js';
-import VoidTraderItem, { type RawVoidTraderItem } from './VoidTraderItem';
-import VoidTraderSchedule from './VoidTraderSchedule';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+
+import type { Dependency } from '../supporting';
+import { type RawVoidTraderItem, VoidTraderItem } from './VoidTraderItem';
+import { VoidTraderSchedule } from './VoidTraderSchedule';
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawVoidTrader extends BaseContentObject {
   Character?: string;
@@ -22,9 +23,9 @@ export interface RawVoidTrader extends BaseContentObject {
 
 /**
  * Represents a void trader
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class VoidTrader extends WorldstateObject {
+export class VoidTrader extends WorldStateObject {
   /**
    * The void trader's name
    */
@@ -66,18 +67,27 @@ export default class VoidTrader extends WorldstateObject {
    * @param deps.locale Locale to use for translations
    * @param deps.character   The trader name
    */
-  constructor(data: RawVoidTrader, { locale = 'en', character }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawVoidTrader,
+    { locale = 'en', character }: Dependency = { locale: 'en' }
+  ) {
     super(data);
     insist({ ...data }, 'Activation', 'Expiry');
 
-    this.character = data.Character ? data.Character.replace("Baro'Ki Teel", "Baro Ki'Teer") : character ?? '';
+    this.character = data.Character
+      ? data.Character.replace("Baro'Ki Teel", "Baro Ki'Teer")
+      : (character ?? '');
     this.location = node(data.Node, locale);
-    this.inventory = data.Manifest ? data.Manifest.map((i) => new VoidTraderItem(i, { locale })) : [];
+    this.inventory = data.Manifest
+      ? data.Manifest.map((i) => new VoidTraderItem(i, { locale }))
+      : [];
     this.psId = `${this.id}${this.inventory.length}`;
 
     this.initialStart = parseDate(data.InitialStartDate);
     this.completed = data.Completed;
-    this.schedule = data.ScheduleInfo ? data.ScheduleInfo.map((i) => new VoidTraderSchedule(i, { locale })) : [];
+    this.schedule = data.ScheduleInfo
+      ? data.ScheduleInfo.map((i) => new VoidTraderSchedule(i, { locale }))
+      : [];
   }
 
   /**

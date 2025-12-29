@@ -1,6 +1,6 @@
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
-import WorldstateObject from './WorldstateObject';
+import { WorldStateObject } from './WorldStateObject';
 
 const lStart = new Date('November 10, 2018 08:13:48 UTC');
 const loopTime = 1600000;
@@ -48,7 +48,8 @@ function getCurrentCycle(): CurrnetCycle {
     toNextMinor = toNextFull - coldTime;
   }
   const milliAtNext = Date.now() + toNextMinor;
-  const milliAtPrev = Date.now() + toNextFull - (state === 'warm' ? loopTime : coldTime);
+  const milliAtPrev =
+    Date.now() + toNextFull - (state === 'warm' ? loopTime : coldTime);
   const timeAtPrevious = new Date(milliAtPrev);
   timeAtPrevious.setSeconds(0);
 
@@ -63,9 +64,9 @@ function getCurrentCycle(): CurrnetCycle {
 
 /**
  * Represents the current Earth Day/Night Cycle
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class VallisCycle extends WorldstateObject {
+export class VallisCycle extends WorldStateObject {
   /**
    * Whether or not this it's daytime
    */

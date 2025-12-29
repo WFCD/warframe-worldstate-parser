@@ -36,7 +36,7 @@ export interface RewardType {
  * All possible RewardTypes
  * @type {Array.<RewardType>}
  */
-export default <RewardType[]>[
+export default (<RewardType[]>[
   {
     name: 'vauban',
     description: 'Vauban parts',
@@ -120,14 +120,16 @@ export default <RewardType[]>[
     name: 'clantech',
     description: 'Clantech resources',
     test: (s: string) => /fieldron|detonite|mutagen/i.test(s),
-    thumbnail: 'https://github.com/wfcd/warframe-worldstate-parser/raw/master/resources/clantech_thmb.png',
+    thumbnail:
+      'https://github.com/wfcd/warframe-worldstate-parser/raw/master/resources/clantech_thmb.png',
     color: 0x4d5556,
   },
   {
     name: 'aura',
     description: 'Auras',
     test: (s: string) => auras.includes(s),
-    thumbnail: 'https://github.com/wfcd/warframe-worldstate-parser/raw/master/resources/aura_thumb.png',
+    thumbnail:
+      'https://github.com/wfcd/warframe-worldstate-parser/raw/master/resources/aura_thumb.png',
     color: 0xc8f8ff,
   },
   {
@@ -355,4 +357,4 @@ export default <RewardType[]>[
     thumbnail: '',
     color: 0x4f545c,
   },
-];
+]);

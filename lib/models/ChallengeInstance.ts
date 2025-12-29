@@ -1,5 +1,6 @@
 import { languageString } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
+
+import type { Dependency } from './../supporting/Dependency';
 
 export interface RawChallengeInstance {
   Type: string;
@@ -14,7 +15,7 @@ export interface RawChallengeInstance {
 /**
  * Describes a world challenge instance
  */
-export default class ChallengeInstance {
+export class ChallengeInstance {
   /**
    * Type of challenge
    */
@@ -50,12 +51,19 @@ export default class ChallengeInstance {
    * @param   deps        The dependencies object
    * @param   deps.locale Locale to use for translations
    */
-  constructor(data: RawChallengeInstance, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawChallengeInstance,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     this.type = languageString(data.Type, locale);
     this.minEnemyLevel = Number(data.MinimumEnemyLevel);
     this.requiredAmount = Number(data.RequiredCount);
     this.progressAmount = Number(data.ProgressIndicatorFreq);
-    this.damageType = data.DamageType ? languageString(data.DamageType, locale) : undefined;
-    this.target = data.VictimType?.[0] ? languageString(data.VictimType[0], locale) : data.Script?._faction;
+    this.damageType = data.DamageType
+      ? languageString(data.DamageType, locale)
+      : undefined;
+    this.target = data.VictimType?.[0]
+      ? languageString(data.VictimType[0], locale)
+      : data.Script?._faction;
   }
 }

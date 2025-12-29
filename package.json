@@ -38,8 +38,8 @@
   "scripts": {
     "build": "tsdown",
     "build:docs": "typedoc",
-    "lint": "biome lint",
-    "lint:fix": "biome lint --write",
+    "lint": "biome check",
+    "lint:fix": "biome check --write",
     "prepare": "husky",
     "prepublishOnly": "npm run build && npm_config_yes=true npx clean-package",
     "printcov": "c8 report",

@@ -1,5 +1,12 @@
-import { insist, missionType, node, sortieModDesc, sortieModifier } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
+import {
+  insist,
+  missionType,
+  node,
+  sortieModDesc,
+  sortieModifier,
+} from 'warframe-worldstate-data/utilities';
+
+import type { Dependency } from './../supporting/Dependency';
 
 export interface RawSortieVariant {
   missionType: string;
@@ -11,7 +18,7 @@ export interface RawSortieVariant {
  * Represents a sortie variant
  * @class
  */
-export default class SortieVariant {
+export class SortieVariant {
   /**
    * The variant's mission type
    */
@@ -48,7 +55,10 @@ export default class SortieVariant {
    * @param deps Dependencies
    * @param deps.locale Locale to use for translations
    */
-  constructor(data: RawSortieVariant, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawSortieVariant,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     insist({ ...data });
 
     this.missionType = missionType(data.missionType, locale);

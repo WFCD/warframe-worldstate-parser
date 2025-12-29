@@ -1,6 +1,13 @@
 import type { Locale } from 'warframe-worldstate-data';
-import { type ContentTimestamp, languageString, node, parseDate, region } from 'warframe-worldstate-data/utilities';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+import {
+  type ContentTimestamp,
+  languageString,
+  node,
+  parseDate,
+  region,
+} from 'warframe-worldstate-data/utilities';
+
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawPersistentEnemy extends BaseContentObject {
   AgentType: string;
@@ -17,9 +24,9 @@ export interface RawPersistentEnemy extends BaseContentObject {
 
 /**
  * Represents a persistent enemy
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class PersistentEnemy extends WorldstateObject {
+export class PersistentEnemy extends WorldStateObject {
   /**
    * The enemy's type
    */
@@ -80,7 +87,10 @@ export default class PersistentEnemy extends WorldstateObject {
    * @param deps        The dependencies object
    * @param deps.locale Locale to use for translations
    */
-  constructor(data: RawPersistentEnemy, { locale }: { locale: Locale } = { locale: 'en' }) {
+  constructor(
+    data: RawPersistentEnemy,
+    { locale }: { locale: Locale } = { locale: 'en' }
+  ) {
     super(data);
 
     this.agentType = languageString(data.AgentType, locale);
@@ -105,5 +115,4 @@ export default class PersistentEnemy extends WorldstateObject {
 
     this.pid = `${this.id}${this.isDiscovered}`;
   }
-
 }

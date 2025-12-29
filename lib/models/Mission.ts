@@ -1,7 +1,13 @@
-import { faction, insist, languageString, missionType, node } from 'warframe-worldstate-data/utilities';
+import {
+  faction,
+  insist,
+  languageString,
+  missionType,
+  node,
+} from 'warframe-worldstate-data/utilities';
 
-import type Dependency from '../supporting/Dependency';
-import Reward, { type RawReward } from './Reward';
+import type { Dependency } from './../supporting/Dependency';
+import { type RawReward, Reward } from './Reward';
 
 export interface RawMission {
   descText: string;
@@ -31,7 +37,7 @@ export interface RawMission {
 /**
  * Represents an in-game mission
  */
-export default class Mission {
+export class Mission {
   /**
    * The mission's description
    */
@@ -156,7 +162,10 @@ export default class Mission {
    * @param data   The mission data
    * @param locale Locale to use for translations
    */
-  constructor(data: RawMission, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawMission,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     const deps = { locale };
     insist({ ...data });
 
@@ -174,7 +183,9 @@ export default class Mission {
 
     this.factionKey = faction(data.faction, 'en');
 
-    this.reward = data.missionReward ? new Reward(data.missionReward, deps) : undefined;
+    this.reward = data.missionReward
+      ? new Reward(data.missionReward, deps)
+      : undefined;
 
     this.minEnemyLevel = data.minEnemyLevel;
 
@@ -192,19 +203,27 @@ export default class Mission {
 
     this.enemySpec = languageString(data.enemySpec, locale);
 
-    this.advancedSpawners = (data.advancedSpawners || []).map((spawner) => languageString(spawner, locale));
+    this.advancedSpawners = (data.advancedSpawners || []).map((spawner) =>
+      languageString(spawner, locale)
+    );
 
-    this.requiredItems = (data.requiredItems || []).map((reqItem) => languageString(reqItem, locale));
+    this.requiredItems = (data.requiredItems || []).map((reqItem) =>
+      languageString(reqItem, locale)
+    );
 
     this.consumeRequiredItems = data.consumeRequiredItems;
 
-    this.target = data.vipAgent ? languageString(data.vipAgent, locale) : undefined;
+    this.target = data.vipAgent
+      ? languageString(data.vipAgent, locale)
+      : undefined;
 
     this.leadersAlwaysAllowed = data.leadersAlwaysAllowed;
 
     this.goalTag = data.goalTag;
 
-    this.levelAuras = (data.levelAuras || []).map((aura) => languageString(aura, locale));
+    this.levelAuras = (data.levelAuras || []).map((aura) =>
+      languageString(aura, locale)
+    );
 
     this.exclusiveWeapon = languageString(data.exclusiveWeapon, locale);
   }

@@ -7,8 +7,9 @@ import {
   timeDeltaToString,
   toNow,
 } from 'warframe-worldstate-data/utilities';
+
 import { cdn, deProxy } from '../supporting/ImgCdn';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 const updateReg = /(update|hotfix|patch-notes)/i;
 const primeAccessReg = /(access)/i;
@@ -29,9 +30,9 @@ export interface RawNews extends BaseContentObject {
 
 /**
  * Represents a game news item
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class News extends WorldstateObject {
+export class News extends WorldStateObject {
   /**
    * The news message
    */
@@ -86,20 +87,37 @@ export default class News extends WorldstateObject {
    * @param  data    The news data
    * @param  locale  Locale to use for determining language
    */
-  constructor(data: RawNews, { locale }: { locale: Locale } = { locale: 'en' }) {
-    super({ ...data, Activation: data.EventStartDate, Expiry: data.EventEndDate });
+  constructor(
+    data: RawNews,
+    { locale }: { locale: Locale } = { locale: 'en' }
+  ) {
+    super({
+      ...data,
+      Activation: data.EventStartDate,
+      Expiry: data.EventEndDate,
+    });
 
-    this.message = (data.Messages.find((msg) => msg.LanguageCode === locale) || { Message: '' }).Message;
+    this.message = (
+      data.Messages.find((msg) => msg.LanguageCode === locale) || {
+        Message: '',
+      }
+    ).Message;
     if (langString.test(this.message)) {
       this.message = languageString(this.message, locale);
     }
 
     this.link = data.Prop;
     if ((!this.link || !this.link.length) && data.Links && data.Links.length) {
-      this.link = (data.Links.find((l) => l.LanguageCode === locale) || { Link: 'https://www.warframe.com/' }).Link;
+      this.link = (
+        data.Links.find((l) => l.LanguageCode === locale) || {
+          Link: 'https://www.warframe.com/',
+        }
+      ).Link;
     }
 
-    this.imageLink = data.ImageUrl ? deProxy(data.ImageUrl) : cdn('img/news-placeholder.png');
+    this.imageLink = data.ImageUrl
+      ? deProxy(data.ImageUrl)
+      : cdn('img/news-placeholder.png');
 
     this.priority = data.Priority;
 
@@ -110,7 +128,10 @@ export default class News extends WorldstateObject {
       this.translations[message.LanguageCode] = message.Message;
 
       if (langString.test(message.Message)) {
-        this.translations[message.LanguageCode] = languageString(message.Message, message.LanguageCode as Locale);
+        this.translations[message.LanguageCode] = languageString(
+          message.Message,
+          message.LanguageCode as Locale
+        );
       }
     });
 
@@ -162,6 +183,8 @@ export default class News extends WorldstateObject {
    * @returns {string} The title of the news item in the specified language
    */
   getTitle(langCode: Locale): string {
-    return langCode in this.translations ? this.translations[langCode] : this.message;
+    return langCode in this.translations
+      ? this.translations[langCode]
+      : this.message;
   }
 }

@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import FlashSale, { type RawFlashSale } from '../../lib/models/FlashSale.js';
+import { FlashSale, type RawFlashSale } from '@/models';
 
 chai.should();
 

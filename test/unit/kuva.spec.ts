@@ -1,12 +1,12 @@
 import * as chai from 'chai';
 
-import Kuva from '../../lib/models/Kuva.js';
-import mockKuva from '../data/kuvalog.json' with { type: 'json' };
-import type Dependency from '../../lib/supporting/Dependency.js';
+import { Kuva } from '@/models';
+import type { Dependency } from '@/supporting';
+import mockKuva from '@/data/kuvalog.json' with { type: 'json' };
 
 const should = chai.should();
 
-const minDeps:Dependency = {
+const minDeps: Dependency = {
   locale: 'en',
   logger: console,
 };
@@ -61,7 +61,6 @@ describe('Kuva', () => {
               activation: new Date(0).getTime(),
               expiry: new Date(0).getTime(),
               solnode: 'CrewBattleNode501',
-              
             },
           ],
         });

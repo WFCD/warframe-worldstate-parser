@@ -1,5 +1,6 @@
 import { languageString } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
+
+import type { Dependency } from '../supporting';
 
 export interface RawVoidTraderItem {
   ItemType: string;
@@ -10,7 +11,7 @@ export interface RawVoidTraderItem {
 /**
  * A void trader inventory item
  */
-export default class VoidTraderItem {
+export class VoidTraderItem {
   uniqueName: string;
   /**
    *  The name of the inventory item

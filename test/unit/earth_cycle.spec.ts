@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import EarthCycle from '../../lib/models/EarthCycle';
+import { EarthCycle } from '@/models';
 
 chai.should();
 

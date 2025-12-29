@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 
-import Mission, { type RawMission } from '../../lib/models/Mission.js';
-import Alerts from '../data/Alerts.json' with { type: 'json' };
+import { Mission, type RawMission } from '@/models';
+import Alerts from '@/data/Alerts.json' with { type: 'json' };
 
 chai.should();
 

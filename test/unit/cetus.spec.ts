@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import CetusCycle from '../../lib/models/CetusCycle';
+import { CetusCycle } from '@/models';
 
 const should = chai.should();
 

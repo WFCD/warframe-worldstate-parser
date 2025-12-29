@@ -2,8 +2,13 @@ import * as chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import WorldStateObject, { type BaseContentObject } from '../../lib/models/WorldstateObject.js';
-import { type InitialWorldState, WorldState, parseArray } from '../../lib/WorldState.js';
+import { type BaseContentObject, WorldStateObject } from '@/models';
+
+import {
+  type InitialWorldState,
+  parseArray,
+  WorldState,
+} from '@/WorldState.js';
 
 chai.should();
 chai.use(sinonChai);

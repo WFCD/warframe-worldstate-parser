@@ -10,6 +10,15 @@
     "moduleResolution": "bundler",
     "esModuleInterop": true,
     "isolatedModules": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/models/*": ["./lib/models/*"],
+      "@/models": ["./lib/models/index"],
+      "@/supporting/*": ["./lib/supporting/*"],
+      "@/supporting": ["./lib/supporting/index"],
+      "@/data/*": ["test/data/*"],
+      "@/*": ["./lib/*"]
+    }
   }
 }

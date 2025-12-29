@@ -1,4 +1,4 @@
-import type { BaseContentObject } from '../models/WorldstateObject';
+import type { BaseContentObject } from '../models';
 
 export interface RawChoice extends BaseContentObject {
   Category: 'EXC_NORMAL' | 'EXC_HARD';
@@ -8,7 +8,7 @@ export interface RawChoice extends BaseContentObject {
 /**
  * Single category of duviri choices
  */
-export default class DuviriChoice {
+export class DuviriChoice {
   category: string;
   categoryKey: string;
   choices: string[];

@@ -1,8 +1,13 @@
-import { type ContentTimestamp, languageString, parseDate } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
-import DarkSectorBattle, { type RawDarkSectorBattle } from './DarkSectorBattle';
-import Mission, { type RawMission } from './Mission';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+import {
+  type ContentTimestamp,
+  languageString,
+  parseDate,
+} from 'warframe-worldstate-data/utilities';
+
+import type { Dependency } from '../supporting';
+import { DarkSectorBattle, type RawDarkSectorBattle } from './DarkSectorBattle';
+import { Mission, type RawMission } from './Mission';
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface DefenderInfo {
   CreditsTaxRate: number;
@@ -37,9 +42,9 @@ export interface RawDarkSector extends BaseContentObject {
 
 /**
  * Represents a dark sector
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class DarkSector extends WorldstateObject {
+export class DarkSector extends WorldStateObject {
   /**
    * The dark sector credit tax rate
    */
@@ -150,7 +155,10 @@ export default class DarkSector extends WorldstateObject {
    * @param   {object}             deps                  The dependencies object
    * @param   {string}             deps.locale           Locale to use for translations
    */
-  constructor(data: RawDarkSector, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawDarkSector,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     super(data);
 
     const deps = {
@@ -169,11 +177,14 @@ export default class DarkSector extends WorldstateObject {
 
     this.defenderName = data.DefenderInfo.Name;
 
-    this.defenderPoolRemaining = Number.parseFloat(data.DefenderInfo.StrengthRemaining);
+    this.defenderPoolRemaining = Number.parseFloat(
+      data.DefenderInfo.StrengthRemaining
+    );
 
     this.defenderMaxPool = Number.parseFloat(data.DefenderInfo.MaxStrength);
 
-    this.defenderDeployemntActivation = data.DefenderInfo.DeploymentActivationTime
+    this.defenderDeployemntActivation = data.DefenderInfo
+      .DeploymentActivationTime
       ? parseDate(data.DefenderInfo.DeploymentActivationTime)
       : 0;
 
@@ -191,7 +202,9 @@ export default class DarkSector extends WorldstateObject {
 
     this.damagePerMission = data.DefenderInfo.DamagePerMission;
 
-    this.mission = data.DefenderInfo.MissionInfo ? new Mission(data.DefenderInfo.MissionInfo, deps) : undefined;
+    this.mission = data.DefenderInfo.MissionInfo
+      ? new Mission(data.DefenderInfo.MissionInfo, deps)
+      : undefined;
 
     this.battlePayReserve = data.DefenderInfo.BattlePayReserve;
 
@@ -205,6 +218,8 @@ export default class DarkSector extends WorldstateObject {
 
     this.taxChangedByClan = data.DefenderInfo.TaxLastChangedByClan;
 
-    this.history = data.History ? data.History.map((b) => new DarkSectorBattle(b)) : [];
+    this.history = data.History
+      ? data.History.map((b) => new DarkSectorBattle(b))
+      : [];
   }
 }

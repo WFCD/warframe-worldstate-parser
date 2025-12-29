@@ -1,6 +1,9 @@
 import * as chai from 'chai';
 
-import SortieVariant, { type RawSortieVariant } from '../../lib/models/SortieVariant.js';
+import {
+  type RawSortieVariant,
+  SortieVariant,
+} from '@/models/SortieVariant.js';
 
 chai.should();
 

@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import Simaris from '../../lib/models/Simaris.js';
+import { Simaris } from '@/models';
 
 chai.should();
 

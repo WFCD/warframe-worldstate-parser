@@ -5,8 +5,8 @@ import {
   timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
 
-import type Dependency from '../supporting/Dependency';
-import WorldstateObject from './WorldstateObject';
+import type { Dependency } from './../supporting/Dependency';
+import { WorldStateObject } from './WorldStateObject';
 
 export interface RawDailyDeal {
   StoreItem: string;
@@ -22,7 +22,7 @@ export interface RawDailyDeal {
 /**
  * Represents a daily deal
  */
-export default class DailyDeal extends WorldstateObject {
+export class DailyDeal extends WorldStateObject {
   /**
    * The item that is being offered in the sale
    */
@@ -68,7 +68,10 @@ export default class DailyDeal extends WorldstateObject {
    * @param deps        The dependencies object
    * @param deps.locale Locale to use for translations
    */
-  constructor(data: RawDailyDeal, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawDailyDeal,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     super(data);
 
     this.item = languageString(data.StoreItem, locale);

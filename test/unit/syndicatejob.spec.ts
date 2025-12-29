@@ -1,11 +1,17 @@
 import * as chai from 'chai';
 
-import SyndicateJob, { type RewardDrop, type RawSyndicateJob } from '../../lib/models/SyndicateJob.js';
-import CambionFTier from '../data/CambionFTier.json' with { type: 'json' };
-import CetusFTier from '../data/CetusFTier.json' with { type: 'json' };
-import isoVaultBounty from '../data/isoVaultBounty.json' with { type: 'json' };
-import NoMatchJob from '../data/NoMatchJob.json' with { type: 'json' };
-import plagueStarBounty from '../data/plagueStarBounty.json' with { type: 'json' };
+import {
+  type RawSyndicateJob,
+  type RewardDrop,
+  SyndicateJob,
+} from '@/models/SyndicateJob.js';
+import CambionFTier from '@/data/CambionFTier.json' with { type: 'json' };
+import CetusFTier from '@/data/CetusFTier.json' with { type: 'json' };
+import isoVaultBounty from '@/data/isoVaultBounty.json' with { type: 'json' };
+import NoMatchJob from '@/data/NoMatchJob.json' with { type: 'json' };
+import plagueStarBounty from '@/data/plagueStarBounty.json' with {
+  type: 'json',
+};
 
 chai.should();
 
@@ -15,10 +21,16 @@ describe('SyndicateJob', () => {
   describe('#constructor()', () => {
     it('should throw TypeError when called with no arguments or an invalid argument', () => {
       (() => {
-        new SyndicateJob(undefined as unknown as RawSyndicateJob, undefined as unknown as Date);
+        new SyndicateJob(
+          undefined as unknown as RawSyndicateJob,
+          undefined as unknown as Date
+        );
       }).should.throw(TypeError);
       (() => {
-        new SyndicateJob({} as unknown as RawSyndicateJob, undefined as unknown as Date);
+        new SyndicateJob(
+          {} as unknown as RawSyndicateJob,
+          undefined as unknown as Date
+        );
       }).should.throw(TypeError);
     });
   });

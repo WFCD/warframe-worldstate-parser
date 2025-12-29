@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import Fissure, { type RawFissure } from '../../lib/models/Fissure.js';
+import { Fissure, type RawFissure } from '@/models';
 
 chai.should();
 

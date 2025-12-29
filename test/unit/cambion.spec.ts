@@ -1,7 +1,6 @@
 import * as chai from 'chai';
 
-import CambionCycle from '../../lib/models/CambionCycle';
-import type CetusCycle from '../../lib/models/CetusCycle';
+import { CambionCycle, type CetusCycle } from '@/models';
 
 const should = chai.should();
 

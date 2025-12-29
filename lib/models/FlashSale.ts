@@ -5,9 +5,8 @@ import {
   timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
 
-import type Dependency from '../supporting/Dependency';
-import type { BaseContentObject } from './WorldstateObject';
-import WorldstateObject from './WorldstateObject';
+import type { Dependency } from '../supporting';
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawFlashSale extends BaseContentObject {
   TypeName: string;
@@ -24,7 +23,7 @@ export interface RawFlashSale extends BaseContentObject {
 /**
  * Represents a flash sale
  */
-export default class FlashSale extends WorldstateObject{
+export class FlashSale extends WorldStateObject {
   /**
    * The item being offered in the flash sale
    */
@@ -70,8 +69,11 @@ export default class FlashSale extends WorldstateObject{
    * @param   {Dependency}             deps            The dependencies object
    * @param   {string}             deps.locale     Locale to use for translations
    */
-  constructor(data: RawFlashSale, { locale = 'en' }: Dependency = { locale: 'en' }) {
-    super({Activation: data.StartDate, Expiry: data.EndDate})
+  constructor(
+    data: RawFlashSale,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
+    super({ Activation: data.StartDate, Expiry: data.EndDate });
 
     this.item = languageString(data.TypeName, locale);
 

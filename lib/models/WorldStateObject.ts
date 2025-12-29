@@ -1,4 +1,10 @@
-import { type ContentTimestamp, fromNow, insist, parseDate, timeDeltaToString } from 'warframe-worldstate-data/utilities';
+import {
+  type ContentTimestamp,
+  fromNow,
+  insist,
+  parseDate,
+  timeDeltaToString,
+} from 'warframe-worldstate-data/utilities';
 
 export interface Identifier {
   $id?: string;
@@ -12,21 +18,21 @@ export interface BaseContentObject {
 }
 
 /**
- * Represents a generic object from Worldstate
+ * Represents a generic object from WorldState
  */
-export default class WorldstateObject {
+export class WorldStateObject {
   /**
    * The object's id field
    */
   id?: string;
 
   /**
-   * The date and time at which the WorldstateObject started
+   * The date and time at which the WorldStateObject started
    */
   activation?: Date;
 
   /**
-   * The date and time at which the WorldstateObject ends
+   * The date and time at which the WorldStateObject ends
    */
   expiry?: Date;
 

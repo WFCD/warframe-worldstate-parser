@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import DailyDeal, { type RawDailyDeal } from '../../lib/models/DailyDeal';
+import { DailyDeal, type RawDailyDeal } from '@/models';
 
 chai.should();
 

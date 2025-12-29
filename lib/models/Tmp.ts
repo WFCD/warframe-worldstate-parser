@@ -1,6 +1,6 @@
-import Kinepage from './models/Kinepage';
-import SentientOutpost from './models/SentientOutpost';
-import type Dependency from './supporting/Dependency';
+import type { Dependency } from './../supporting/Dependency';
+import { Kinepage } from './Kinepage';
+import { SentientOutpost } from './SentientOutpost';
 
 export interface InitialTmp {
   sfn: number;
@@ -33,7 +33,10 @@ export class Tmp {
     }
 
     if (tmp.QTCCFloofCount) {
-      this.questToConquerCancer = { count: tmp.QTCCFloofCount, goal: tmp.QTCCFloofLimit! };
+      this.questToConquerCancer = {
+        count: tmp.QTCCFloofCount,
+        goal: tmp.QTCCFloofLimit!,
+      };
     }
   }
 }

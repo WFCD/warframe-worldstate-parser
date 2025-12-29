@@ -1,8 +1,8 @@
 import * as chai from 'chai';
 
-import Nightwave, { type RawNightwave } from '../../lib/models/Nightwave.js';
-import nwdata from '../data/Nightwave.json' with { type: 'json' };
-import type Dependency from '../../lib/supporting/Dependency.js';
+import { Nightwave, type RawNightwave } from '@/models';
+import type { Dependency } from '@/supporting';
+import nwdata from '@/data/Nightwave.json' with { type: 'json' };
 
 chai.should();
 
@@ -32,7 +32,7 @@ describe('Nightwave', () => {
         const n = new Nightwave(nwdata, deps);
         const challenges = n.possibleChallenges.concat(n.activeChallenges);
         challenges.forEach((e) => {
-          expect(typeof e.isDaily !== 'undefined').to.be.true
+          expect(typeof e.isDaily !== 'undefined').to.be.true;
         });
       }).should.not.throw();
     });

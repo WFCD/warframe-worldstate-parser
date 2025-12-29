@@ -1,6 +1,9 @@
 import type { Locale } from 'warframe-worldstate-data';
 import type { SteelPathOffering } from 'warframe-worldstate-data/types';
-import { steelPath, timeDeltaToString } from 'warframe-worldstate-data/utilities';
+import {
+  steelPath,
+  timeDeltaToString,
+} from 'warframe-worldstate-data/utilities';
 
 const monday = 1;
 
@@ -10,7 +13,8 @@ const monday = 1;
 function getFirstDayOfWeek(): Date {
   const resultDate = new Date();
   /* istanbul ignore next */
-  const offset = resultDate.getUTCDay() === 0 ? 6 : resultDate.getUTCDay() - monday;
+  const offset =
+    resultDate.getUTCDay() === 0 ? 6 : resultDate.getUTCDay() - monday;
   resultDate.setUTCDate(resultDate.getUTCDate() - offset);
   resultDate.setUTCHours(0);
   resultDate.setUTCMinutes(0);
@@ -79,7 +83,7 @@ export interface Incursion {
  */
 const start: Date = new Date('2020-11-16T00:00:00.000Z');
 
-export default class SteelPathOfferings {
+export class SteelPathOfferings {
   currentReward: SteelPathOffering;
   activation: Date;
   expiry: Date;

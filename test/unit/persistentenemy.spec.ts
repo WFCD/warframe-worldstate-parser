@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import PersistentEnemy, { type RawPersistentEnemy } from '../../lib/models/PersistentEnemy.js';
+import { PersistentEnemy, type RawPersistentEnemy } from '@/models';
 
 chai.should();
 

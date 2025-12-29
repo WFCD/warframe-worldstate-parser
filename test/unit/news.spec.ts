@@ -1,9 +1,9 @@
 import * as chai from 'chai';
 
-import News, { type RawNews } from '../../lib/models/News.js';
-import languageTestData from '../data/LanguageNews.json' with { type: 'json' };
-import testData from '../data/News.json' with { type: 'json' };
-import realTestData from '../data/RealNews.json' with { type: 'json' };
+import { News, type RawNews } from '@/models';
+import languageTestData from '@/data/LanguageNews.json' with { type: 'json' };
+import testData from '@/data/News.json' with { type: 'json' };
+import realTestData from '@/data/RealNews.json' with { type: 'json' };
 
 chai.should();
 
@@ -91,7 +91,8 @@ describe('News', () => {
               $numberLong: '1581448380000',
             },
           },
-          ImageUrl: 'https://n9e5v4d8.ssl.hwcdn.net/uploads/d933d8519ba49d5dab9636adeebeca84.jpg',
+          ImageUrl:
+            'https://n9e5v4d8.ssl.hwcdn.net/uploads/d933d8519ba49d5dab9636adeebeca84.jpg',
           Priority: false,
           MobileOnly: false,
         },

@@ -1,5 +1,10 @@
-import { node, nodeEnemy, nodeMissionType } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
+import {
+  node,
+  nodeEnemy,
+  nodeMissionType,
+} from 'warframe-worldstate-data/utilities';
+
+import type { Dependency } from './../supporting/Dependency';
 
 const duration = 1800;
 
@@ -32,7 +37,7 @@ export interface Mission {
  * Represents a set of sentient outposts that are present
  * Parsed source is combined data from DE's worldstate and semlar.com/anomaly.json
  */
-export default class SentientOutpost {
+export class SentientOutpost {
   private node: string | number;
 
   id: string;
@@ -60,7 +65,10 @@ export default class SentientOutpost {
    * @param sfn  Sentient outpost node number
    * @param deps Dependencies
    */
-  constructor(sfn: string | number | undefined, { locale, sentientData, logger}: Dependency) {
+  constructor(
+    sfn: string | number | undefined,
+    { locale, sentientData, logger }: Dependency
+  ) {
     this.node = sfn || '000';
     const id = `CrewBattleNode${this.node}`;
     if (this.node === '000') {

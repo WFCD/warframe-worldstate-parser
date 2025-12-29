@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import ZarimanCycle from '../../lib/models/ZarimanCycle.js';
+import { ZarimanCycle } from '@/models';
 
 const should = chai.should();
 // these are confirmed corpus and grineer cycle time

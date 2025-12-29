@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 
-import Kinepage from '../../lib/models/Kinepage.js';
+import { Kinepage } from '@/models';
 
 chai.should();
 chai.use(sinonChai);

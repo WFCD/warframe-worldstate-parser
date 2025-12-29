@@ -1,6 +1,6 @@
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
-import WorldstateObject from './WorldstateObject';
+import { WorldStateObject } from './WorldStateObject';
 
 // This is a confirmed starting time for Corpus (in millis)
 // All faction operation should use this as a calculation point
@@ -20,9 +20,9 @@ export interface CurrentZarimanCycle {
 
 /**
  * Represents the current Zariman Corpus/Grineer Cycle
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class ZarimanCycle extends WorldstateObject {
+export class ZarimanCycle extends WorldStateObject {
   /**
    * Whether or not this it's corpus or grineer
    */
@@ -84,13 +84,17 @@ export default class ZarimanCycle extends WorldstateObject {
     // the following line is a modulus operation
     // this ensures that our calculation is correct if bountiesClone is before corpusTimeMillis
     // if you really care, read https://torstencurdt.com/tech/posts/modulo-of-negative-numbers/
-    const cycleTimeElapsed = (((bountiesClone - corpusTimeMillis) % fullCycle) + fullCycle) % fullCycle;
+    const cycleTimeElapsed =
+      (((bountiesClone - corpusTimeMillis) % fullCycle) + fullCycle) %
+      fullCycle;
     const cycleTimeLeft = fullCycle - cycleTimeElapsed;
     // if timeInCycle is more than 2.5 hours, it is corpus, otherwise it is grineer
     const isCorpus = cycleTimeLeft > stateMaximum;
 
     const minutesCoef = 1000 * 60;
-    const expiry = new Date(Math.round((now + millisLeft) / minutesCoef) * minutesCoef);
+    const expiry = new Date(
+      Math.round((now + millisLeft) / minutesCoef) * minutesCoef
+    );
     const state = isCorpus ? 'corpus' : 'grineer';
 
     return {

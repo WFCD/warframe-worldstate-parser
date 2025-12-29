@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 
-import Invasion, { type RawInvasion } from '../../lib/models/Invasion.js';
+import { Invasion, type RawInvasion } from '@/models';
 
 const should = chai.should();
 

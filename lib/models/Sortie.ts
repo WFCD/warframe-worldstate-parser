@@ -7,10 +7,11 @@ import {
   sortieFaction,
   timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
-import Mission, { type RawMission } from './Mission';
-import SortieVariant, { type RawSortieVariant } from './SortieVariant';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+
+import type { Dependency } from './../supporting/Dependency';
+import { Mission, type RawMission } from './Mission';
+import { type RawSortieVariant, SortieVariant } from './SortieVariant';
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 const { sortie: sortieData } = wsData;
 
@@ -23,9 +24,9 @@ export interface RawSortie extends BaseContentObject {
 
 /**
  * Represents a daily sortie
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class Sortie extends WorldstateObject {
+export class Sortie extends WorldStateObject {
   /**
    * The sortie's reward pool
    */
@@ -61,7 +62,10 @@ export default class Sortie extends WorldstateObject {
    * @param deps        The dependencies object
    * @param deps.locale Locale to use for translations
    */
-  constructor(data: RawSortie, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawSortie,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     super(data);
 
     const opts = {
@@ -74,7 +78,9 @@ export default class Sortie extends WorldstateObject {
 
     this.rewardPool = languageString(data.Reward, locale);
 
-    this.variants = (data.Variants ?? []).map((v) => new SortieVariant(v, opts));
+    this.variants = (data.Variants ?? []).map(
+      (v) => new SortieVariant(v, opts)
+    );
 
     this.missions = (data.Missions ?? []).map((v) => new Mission(v, opts));
 

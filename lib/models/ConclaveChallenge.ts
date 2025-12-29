@@ -7,8 +7,9 @@ import {
   parseDate,
   timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+
+import type { Dependency } from './../supporting/Dependency';
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawChallenge extends BaseContentObject {
   endDate: ContentTimestamp;
@@ -21,9 +22,9 @@ export interface RawChallenge extends BaseContentObject {
 
 /**
  * Represents a Conclave challenge
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class ConclaveChallenge extends WorldstateObject {
+export class ConclaveChallenge extends WorldStateObject {
   /**
    * The number of times that the challenge's objective needs to be completed
    */
@@ -74,7 +75,10 @@ export default class ConclaveChallenge extends WorldstateObject {
    * @param   {object}             deps            The dependencies object
    * @param   {string}             deps.locale     Locale to use for translations
    */
-  constructor(data: RawChallenge, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawChallenge,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     super(data);
 
     this.expiry = parseDate(data.endDate);
@@ -95,7 +99,11 @@ export default class ConclaveChallenge extends WorldstateObject {
 
     const challenge = conclaveChallenge(data.challengeTypeRefID, locale);
 
-    ({ title: this.title, description: this.description, standing: this.standing } = challenge);
+    ({
+      title: this.title,
+      description: this.description,
+      standing: this.standing,
+    } = challenge);
   }
 
   /**
