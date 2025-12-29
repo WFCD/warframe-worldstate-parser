@@ -18,7 +18,7 @@ describe('Mission', () => {
       }).to.throw(TypeError);
     });
 
-    it('should not thow with normal data', () => {
+    it('should not throw with normal data', () => {
       expect(() => {
         new Mission(mockMission);
       }).to.not.throw();

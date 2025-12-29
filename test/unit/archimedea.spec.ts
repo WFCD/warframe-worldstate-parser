@@ -21,7 +21,7 @@ describe('Archimedea', function () {
       }).to.throw(TypeError);
       expect(() => {
         new Archimedea({} as unknown as RawArchimedea);
-      }).throw(TypeError);
+      }).to.throw(TypeError);
     });
   });
 });
