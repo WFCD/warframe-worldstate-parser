@@ -1,5 +1,4 @@
-import fetch from '../dist/lib/supporting/FetchProxy.mjs';
-import WorldState from '../dist/main.mjs';
+import WorldState, { fetchProxy as fetch } from 'warframe-worldstate-parser';
 
 try {
   const semlar = await fetch('https://10o.io/arbitrations.json').then((res) =>
@@ -10,7 +9,7 @@ try {
   }).then((res) => res.text());
 
   const parsed = await WorldState.build(ws, { locale: 'en', kuvaData: semlar });
-  console.log(parsed.fissures.toString());
+  console.log(JSON.stringify(parsed.fissures, null, 2));
   process.exit(0);
 } catch (e) {
   console.error(`it errored: ${JSON.stringify(e)}`);

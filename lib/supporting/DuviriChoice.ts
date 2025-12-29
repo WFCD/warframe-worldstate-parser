@@ -1,4 +1,4 @@
-import type { BaseContentObject } from '../models';
+import type { BaseContentObject } from '@/models';
 
 export interface RawChoice extends BaseContentObject {
   Category: 'EXC_NORMAL' | 'EXC_HARD';
