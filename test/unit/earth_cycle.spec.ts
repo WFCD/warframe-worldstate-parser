@@ -2,20 +2,20 @@ import * as chai from 'chai';
 
 import { EarthCycle } from '@/models';
 
-chai.should();
+const expect = chai.expect;
 
 describe('EarthCycle', () => {
   describe('#constructor()', () => {
     it('should not throw when called with valid deps', () => {
-      (() => {
+      expect(() => {
         new EarthCycle();
-      }).should.not.throw();
+      }).to.not.throw();
     });
   });
   describe('#getExpired()', () => {
     it('should never be true', () => {
       const cycle = new EarthCycle();
-      cycle.expired.should.be.false;
+      expect(cycle.expired).to.be.false;
     });
   });
 });

@@ -2,22 +2,22 @@ import * as chai from 'chai';
 
 import { Simaris } from '@/models';
 
-chai.should();
+const expect = chai.expect;
 
 const locale = 'en';
 
 describe('Simaris', function () {
   describe('#constructor()', function () {
     it('should default to empty data', () => {
-      (() => {
+      expect(() => {
         new Simaris(undefined, { locale });
-      }).should.not.throw();
-      (() => {
+      }).to.not.throw();
+      expect(() => {
         new Simaris();
-      }).should.not.throw();
-      (() => {
+      }).to.not.throw();
+      expect(() => {
         new Simaris({} as unknown as undefined);
-      }).should.not.throw();
+      }).to.not.throw();
     });
   });
 });

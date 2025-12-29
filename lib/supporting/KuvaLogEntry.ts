@@ -1,10 +1,10 @@
 export interface KuvaLogEntry {
   start: string;
   end: string;
-  missiontype: string;
+  missiontype?: string;
   solnode: string;
-  solnodedata: SolnodeData;
-  realtime: string;
+  solnodedata?: SolnodeData;
+  realtime?: string;
 }
 
 export interface SolnodeData {

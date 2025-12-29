@@ -86,6 +86,7 @@ describe('WorldState (integration)', () => {
         'https://api.warframe.com/cdn/worldState.php',
         { contentType: 'text/html' }
       ).then((data) => data.text());
+      // @ts-expect-error it really is callable
       const ws = await WorldStateParser(worldstateData);
       console.log(ws.alerts[0].toString());
     };

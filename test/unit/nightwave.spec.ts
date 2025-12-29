@@ -4,9 +4,7 @@ import { Nightwave, type RawNightwave } from '@/models';
 import type { Dependency } from '@/supporting';
 import nwdata from '@/data/Nightwave.json' with { type: 'json' };
 
-chai.should();
-
-const { expect } = chai;
+const expect = chai.expect;
 
 const deps: Dependency = {
   locale: 'en',
@@ -15,26 +13,26 @@ const deps: Dependency = {
 describe('Nightwave', () => {
   describe('#constructor', () => {
     it('should throw TypeError when called with no arguments or an invalid argument', () => {
-      (() => {
+      expect(() => {
         new Nightwave(undefined as unknown as RawNightwave);
-      }).should.throw(TypeError);
-      (() => {
+      }).to.throw(TypeError);
+      expect(() => {
         new Nightwave({} as unknown as RawNightwave);
-      }).should.throw(TypeError);
+      }).to.throw(TypeError);
     });
     it('should parse nightwave data', () => {
-      (() => {
+      expect(() => {
         new Nightwave(nwdata, deps);
-      }).should.not.throw();
+      }).to.not.throw();
     });
     it('isDaily should be present', () => {
-      (() => {
+      expect(() => {
         const n = new Nightwave(nwdata, deps);
         const challenges = n.possibleChallenges.concat(n.activeChallenges);
         challenges.forEach((e) => {
           expect(typeof e.isDaily !== 'undefined').to.be.true;
         });
-      }).should.not.throw();
+      }).to.not.throw();
     });
   });
 });

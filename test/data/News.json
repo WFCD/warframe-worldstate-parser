@@ -1,12 +1,12 @@
 {
   "_id": { "$oid": "1234sg" },
-  "Activation": { "sec": 1 },
-  "Expiry": { "sec": 3 },
+  "Activation": { "$date": { "$numberLong": "1750441980000" } },
+  "Expiry": { "$date": { "$numberLong": "1750441980000" } },
   "Messages": [{ "LanguageCode": "en", "Message": "test" }],
-  "Date": { "sec": 1000 },
+  "Date": { "$date": { "$numberLong": "1750441980000" } },
   "Prop": "https://forums.warframe.com/",
-  "Links":[], 
-  "ImageUrl": "", 
+  "Links": [],
+  "ImageUrl": "",
   "Priority": false,
   "MobileOnly": false
 }

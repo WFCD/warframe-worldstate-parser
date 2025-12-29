@@ -27,7 +27,7 @@ const sat = () => {
 /**
  * Mission typeDef
  */
-export interface Mission {
+export interface OutpostMission {
   node: string;
   faction: string;
   type: string;
@@ -38,7 +38,7 @@ export interface Mission {
  * Parsed source is combined data from DE's worldstate and semlar.com/anomaly.json
  */
 export class SentientOutpost {
-  private node: string | number;
+  private readonly node: string | number;
 
   id: string;
 
@@ -54,7 +54,7 @@ export class SentientOutpost {
   /**
    * Current Mission
    */
-  mission?: Mission;
+  mission?: OutpostMission;
 
   /**
    * Whether or not the object was active during creation

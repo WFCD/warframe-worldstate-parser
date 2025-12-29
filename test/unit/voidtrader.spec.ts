@@ -4,7 +4,7 @@ import { type RawVoidTrader, VoidTrader } from '@/models';
 import type { Dependency } from '@/supporting';
 import VaultTrader from '@/data/VaultTrader.json' with { type: 'json' };
 
-chai.should();
+const expect = chai.expect;
 
 const deps: Dependency = {
   locale: 'en',
@@ -13,17 +13,17 @@ const deps: Dependency = {
 describe('VoidTrader', () => {
   describe('#constructor()', () => {
     it('should throw TypeError when called with no arguments or an invalid argument', () => {
-      (() => {
+      expect(() => {
         new VoidTrader(undefined as unknown as RawVoidTrader);
-      }).should.throw(TypeError);
-      (() => {
+      }).to.throw(TypeError);
+      expect(() => {
         new VoidTrader({} as unknown as RawVoidTrader);
-      }).should.throw(TypeError);
+      }).to.throw(TypeError);
     });
     it('should parse PrimeVaultTrader', () => {
-      (() => {
+      expect(() => {
         new VoidTrader(VaultTrader, deps);
-      }).should.not.throw();
+      }).to.not.throw();
     });
   });
 });

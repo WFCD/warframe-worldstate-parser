@@ -3,7 +3,7 @@ import sinonChai from 'sinon-chai';
 
 import { Kinepage } from '@/models';
 
-chai.should();
+const expect = chai.expect;
 chai.use(sinonChai);
 
 const data = {
@@ -17,17 +17,17 @@ describe('Kinepage', function () {
     it('should be able to handle some raw data', () => {
       const pager = new Kinepage(data);
 
-      pager.message.should.equal('Amir we talked about this');
+      expect(pager.message).to.equal('Amir we talked about this');
     });
     it('should change message based on locale', () => {
       const pager = new Kinepage(data, 'es');
 
-      pager.message.should.equal('Amir, ya hablamos de esto');
+      expect(pager.message).to.equal('Amir, ya hablamos de esto');
     });
     it('should throw TypeError when called with no argument or an invalid argument', function () {
-      (() => {
+      expect(() => {
         new Kinepage(undefined as unknown as { [k: string]: string | number });
-      }).should.throw(TypeError);
+      }).to.throw(TypeError);
     });
   });
 });

@@ -20,6 +20,9 @@ export class DuviriChoice {
         break;
       case 'EXC_HARD':
         this.category = 'hard';
+        break;
+      default:
+        throw new Error(`Unknown category ${data.Category}`);
     }
     this.categoryKey = data.Category;
     this.choices = data.Choices;

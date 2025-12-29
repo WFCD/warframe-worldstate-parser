@@ -6,7 +6,7 @@ import { fetchProxy as fetch } from '@/supporting';
 import sentientMock from '@/data/anomaly.json' with { type: 'json' };
 import kuvaMock from '@/data/kuvalog.json' with { type: 'json' };
 
-chai.should();
+const { expect } = chai;
 
 const data: Record<string, string> = {};
 const platforms = ['pc'];
@@ -36,14 +36,14 @@ describe('The parser', () => {
         logger: console,
       };
 
-      (() => {
+      expect(() => {
         try {
           new WorldState(JSON.parse(data[platform]), deps);
         } catch (e) {
           console.error(e);
           throw e;
         }
-      }).should.not.throw();
+      }).to.not.throw();
     });
 
     it(`Should parse the ${platform.toUpperCase()} data to Spanish without throwing`, () => {
@@ -54,14 +54,14 @@ describe('The parser', () => {
         logger: console,
       };
 
-      (() => {
+      expect(() => {
         try {
           new WorldState(JSON.parse(data[platform]), deps);
         } catch (e) {
           console.error(e);
           throw e;
         }
-      }).should.not.throw();
+      }).to.not.throw();
     });
   });
 });

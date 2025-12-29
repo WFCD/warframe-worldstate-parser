@@ -9,25 +9,25 @@ import plagueStarBounty from '@/data/plagueStarBounty.json' with {
   type: 'json',
 };
 
-chai.should();
+const expect = chai.expect;
 
 const locale = 'en';
 
 describe('SyndicateJob', () => {
   describe('#constructor()', () => {
     it('should throw TypeError when called with no arguments or an invalid argument', () => {
-      (() => {
+      expect(() => {
         new SyndicateJob(
           undefined as unknown as RawSyndicateJob,
           undefined as unknown as Date
         );
-      }).should.throw(TypeError);
-      (() => {
+      }).to.throw(TypeError);
+      expect(() => {
         new SyndicateJob(
           {} as unknown as RawSyndicateJob,
           undefined as unknown as Date
         );
-      }).should.throw(TypeError);
+      }).to.throw(TypeError);
     });
   });
 
@@ -37,8 +37,8 @@ describe('SyndicateJob', () => {
         this.timeout(1100000000);
         const job = await SyndicateJob.build(data, new Date(), { locale });
         const verify = (rewardPool: (string | RewardDrop)[]) => {
-          rewardPool.should.be.an('array');
-          rewardPool.length.should.be.at.least(1);
+          expect(rewardPool).to.be.an('array');
+          expect(rewardPool.length).to.be.at.least(1);
         };
 
         if (job.rewardPool?.length) verify(job.rewardPool);

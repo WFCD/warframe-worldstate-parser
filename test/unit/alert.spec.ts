@@ -3,24 +3,24 @@ import * as chai from 'chai';
 import { Alert, type RawAlert } from '@/models';
 import Alerts from '@/data/Alerts.json' with { type: 'json' };
 
-chai.should();
+const { expect } = chai;
 
 describe('Alert', function () {
   describe('#constructor()', function () {
     it('should throw TypeError when called with no argument or an invalid argument', function () {
-      (() => {
+      expect(() => {
         new Alert(undefined as unknown as RawAlert);
-      }).should.throw(TypeError);
-      (() => {
+      }).to.throw(TypeError);
+      expect(() => {
         new Alert({} as RawAlert);
-      }).should.throw(TypeError);
+      }).to.throw(TypeError);
     });
 
     it('should successfully build alert objects when called with real data', () => {
       for (const alert of Alerts) {
-        (() => {
+        expect(() => {
           new Alert(alert, { locale: 'en' });
-        }).should.not.throw(TypeError);
+        }).to.not.throw(TypeError);
       }
     });
   });
