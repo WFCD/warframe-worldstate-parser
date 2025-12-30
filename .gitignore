@@ -49,3 +49,4 @@ data.*.json
 .eslintcache
 
 dist/
+docs/
