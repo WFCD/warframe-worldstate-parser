@@ -1,9 +1,14 @@
-import { fromNow, node, syndicate, timeDeltaToString } from 'warframe-worldstate-data/utilities';
+import {
+  fromNow,
+  node,
+  syndicate,
+  timeDeltaToString,
+} from 'warframe-worldstate-data/utilities';
 
+import type { Dependency } from '@/supporting';
 
-import type Dependency from '../supporting/Dependency';
-import SyndicateJob, { type RawSyndicateJob } from './SyndicateJob';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+import { type RawSyndicateJob, SyndicateJob } from './SyndicateJob';
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawSyndicateMission extends BaseContentObject {
   Tag: string;
@@ -13,9 +18,9 @@ export interface RawSyndicateMission extends BaseContentObject {
 
 /**
  * Represents a syndicate daily mission
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class SyndicateMission extends WorldstateObject {
+export class SyndicateMission extends WorldStateObject {
   /**
    * The syndicate that is offering the mission
    * @type {string}
@@ -46,10 +51,17 @@ export default class SyndicateMission extends WorldstateObject {
    * @param   deps.locale Locale to use for translations
    * @returns SyndicateMission object w/ async resolution of jobs
    */
-  static async build(data: RawSyndicateMission, deps: Dependency = { locale: 'en' }): Promise<SyndicateMission> {
+  static async build(
+    data: RawSyndicateMission,
+    deps: Dependency = { locale: 'en' }
+  ): Promise<SyndicateMission> {
     const syndicateMission = new SyndicateMission(data, deps);
     if (data.Jobs?.length) {
-      syndicateMission.jobs = await Promise.all(data.Jobs.map((job) => SyndicateJob.build(job, syndicateMission.expiry!, deps)));
+      syndicateMission.jobs = await Promise.all(
+        data.Jobs.map((job) =>
+          SyndicateJob.build(job, syndicateMission.expiry!, deps)
+        )
+      );
     } else {
       syndicateMission.jobs = [];
     }
@@ -62,7 +74,10 @@ export default class SyndicateMission extends WorldstateObject {
    * @param deps        The dependencies object
    * @param deps.locale Locale to use for translations
    */
-  constructor(data: RawSyndicateMission, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawSyndicateMission,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     super(data);
     this.syndicate = syndicate(data.Tag, locale);
     this.syndicateKey = syndicate(data.Tag, 'en');

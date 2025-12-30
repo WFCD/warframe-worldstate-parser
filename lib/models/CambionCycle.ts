@@ -1,13 +1,13 @@
 import { fromNow } from 'warframe-worldstate-data/utilities';
 
-import type CetusCycle from './CetusCycle';
-import WorldstateObject from './WorldstateObject';
+import type { CetusCycle } from './CetusCycle';
+import { WorldStateObject } from './WorldStateObject';
 
 /**
  * Represents the current Cambion Drift Fass/Vome Cycle
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class CambionCycle extends WorldstateObject {
+export class CambionCycle extends WorldStateObject {
   timeLeft: string;
   state: string;
 
@@ -17,7 +17,11 @@ export default class CambionCycle extends WorldstateObject {
   constructor(cetusCycle: CetusCycle) {
     super({ _id: { $oid: 'cambionCycle0' } });
 
-    ({ activation: this.activation, expiry: this.expiry, timeLeft: this.timeLeft } = cetusCycle);
+    ({
+      activation: this.activation,
+      expiry: this.expiry,
+      timeLeft: this.timeLeft,
+    } = cetusCycle);
 
     this.state = cetusCycle.isDay ? 'fass' : 'vome';
 

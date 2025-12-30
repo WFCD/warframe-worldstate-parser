@@ -10,8 +10,10 @@ import {
   parseDate,
   timeDeltaToString,
 } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+
+import type { Dependency } from '@/supporting';
+
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawFissure extends BaseContentObject {
   Node: string;
@@ -25,9 +27,9 @@ export interface RawFissure extends BaseContentObject {
 
 /**
  * Represents a fissure mission
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class Fissure extends WorldstateObject {
+export class Fissure extends WorldStateObject {
   /**
    * The node where the fissure has appeared
    */
@@ -83,14 +85,21 @@ export default class Fissure extends WorldstateObject {
    * @param   {Dependency}             deps            The dependencies object
    * @param   {string}             deps.locale     Locale to use for translations
    */
-  constructor(data: RawFissure, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawFissure,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     super(data);
 
     this.node = node(data.Node, locale);
 
-    this.missionType = data.MissionType ? missionType(data.MissionType, locale) : nodeMissionType(data.Node, locale);
+    this.missionType = data.MissionType
+      ? missionType(data.MissionType, locale)
+      : nodeMissionType(data.Node, locale);
 
-    this.missionTypeKey = data.MissionType ? missionType(data.MissionType) : nodeMissionType(data.Node);
+    this.missionTypeKey = data.MissionType
+      ? missionType(data.MissionType)
+      : nodeMissionType(data.Node);
 
     this.enemy = nodeEnemy(data.Node, locale);
 
@@ -98,7 +107,10 @@ export default class Fissure extends WorldstateObject {
 
     this.nodeKey = node(data.Node);
 
-    this.tier = fissureModifier(data.Modifier || data.ActiveMissionTier, locale);
+    this.tier = fissureModifier(
+      data.Modifier || data.ActiveMissionTier,
+      locale
+    );
 
     this.tierNum = fissureTier(data.Modifier || data.ActiveMissionTier, locale);
 

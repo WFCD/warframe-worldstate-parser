@@ -1,10 +1,10 @@
 import * as chai from 'chai';
 import sinonChai from 'sinon-chai';
 
-import Calendar, { type RawCalender } from '../../lib/models/Calendar';
-import data from '../data/Calendar.json' with { type: 'json' };
+import { Calendar, type RawCalender } from '@/models';
+import data from '@/data/Calendar.json' with { type: 'json' };
 
-chai.should();
+const expect = chai.expect;
 chai.use(sinonChai);
 
 describe('SentientOutpost', function () {
@@ -12,19 +12,23 @@ describe('SentientOutpost', function () {
     it('should be able to handle some raw data', () => {
       const calendar = new Calendar(data);
 
-      calendar.season.should.equal('Winter');
-      calendar.days[0].events[0].challenge!.description.should.equal('Kill 10 Eximus');
-      calendar.days[1].events[0].upgrade!.title.should.equal('Heavy Mags');
-      calendar.days[4].events[0].reward!.should.equal('Exilus Weapon Adapter Blueprint');
-      calendar.days[0].date.should.equal('1999-01-06T00:00:00.000Z');
+      expect(calendar.season).to.equal('Winter');
+      expect(calendar.days[0].events[0].challenge!.description).to.equal(
+        'Kill 10 Eximus'
+      );
+      expect(calendar.days[1].events[0].upgrade!.title).to.equal('Heavy Mags');
+      expect(calendar.days[4].events[0].reward!).to.equal(
+        'Exilus Weapon Adapter Blueprint'
+      );
+      expect(calendar.days[0].date).to.equal('1999-01-06T00:00:00.000Z');
     });
     it('should throw TypeError when called with no argument or an invalid argument', function () {
-      (() => {
+      expect(() => {
         new Calendar(undefined as unknown as RawCalender);
-      }).should.throw(TypeError);
-      (() => {
+      }).to.throw(TypeError);
+      expect(() => {
         new Calendar({} as RawCalender);
-      }).should.throw(TypeError);
+      }).to.throw(TypeError);
     });
   });
 });

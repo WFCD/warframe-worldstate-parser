@@ -2,20 +2,20 @@ import * as chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import Reward, { getItemType, type RawReward } from '../../lib/models/Reward.js';
+import { getItemType, type RawReward, Reward } from '@/models';
 
-chai.should();
+const expect = chai.expect;
 chai.use(sinonChai);
 
 describe('Reward', function () {
   describe('#constructor()', function () {
     it('should throw TypeError when called with no argument or an invalid argument', function () {
-      (() => {
+      expect(() => {
         new Reward(undefined as unknown as RawReward);
-      }).should.throw(TypeError);
-      (() => {
+      }).to.throw(TypeError);
+      expect(() => {
         new Reward({} as unknown as RawReward);
-      }).should.throw(TypeError);
+      }).to.throw(TypeError);
     });
   });
   describe('getItemType', function () {
@@ -26,19 +26,19 @@ describe('Reward', function () {
           description: 'test1',
           test: sinon.stub().returns(false),
           thumbnail: '',
-          color: 0
+          color: 0,
         },
         {
           name: 'type2',
           description: 'test2',
           test: sinon.stub().returns(true),
           thumbnail: '',
-          color: 0
+          color: 0,
         },
       ];
-      getItemType('test', types).should.equal('type2');
+      expect(getItemType('test', types)).to.equal('type2');
       types.forEach((t) => {
-        t.test.should.have.been.called
+        expect(t.test).to.have.been.called;
       });
     });
   });

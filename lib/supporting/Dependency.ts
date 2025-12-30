@@ -1,11 +1,12 @@
 import type { Locale } from 'warframe-worldstate-data';
 import type { SortieData } from 'warframe-worldstate-data/types';
+
 import type { KuvaLogEntry } from './KuvaLogEntry';
 
 /**
  * Dependency Object
  */
-export default interface Dependency {
+export interface Dependency {
   /**
    * Kuva data for parsing
    */

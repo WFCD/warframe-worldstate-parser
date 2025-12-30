@@ -1,6 +1,10 @@
 import type { Locale } from 'warframe-worldstate-data';
-import { languageDesc, languageString } from 'warframe-worldstate-data/utilities';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+import {
+  languageDesc,
+  languageString,
+} from 'warframe-worldstate-data/utilities';
+
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 const repBase = 1000;
 
@@ -12,9 +16,9 @@ export interface RawNightwaveChallenge extends BaseContentObject {
 
 /**
  * Represents an alert
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class NightwaveChallenge extends WorldstateObject {
+export class NightwaveChallenge extends WorldStateObject {
   /**
    * Whether or not this is a daily challenge
    */
@@ -50,7 +54,10 @@ export default class NightwaveChallenge extends WorldstateObject {
    * @param deps        The dependencies object
    * @param deps.locale Locale to use for translations
    */
-  constructor(data: RawNightwaveChallenge, { locale }: { locale: Locale } = { locale: 'en' }) {
+  constructor(
+    data: RawNightwaveChallenge,
+    { locale }: { locale: Locale } = { locale: 'en' }
+  ) {
     super(data);
 
     this.isDaily = data.Daily || false;
@@ -63,7 +70,8 @@ export default class NightwaveChallenge extends WorldstateObject {
 
     this.id = `${this.expiry!.getTime()}${data.Challenge.split('/').slice(-1)[0].toLowerCase()}`;
 
-    this.reputation = repBase + (!this.isDaily ? 3500 : 0) + (this.isElite ? 2500 : 0);
+    this.reputation =
+      repBase + (!this.isDaily ? 3500 : 0) + (this.isElite ? 2500 : 0);
 
     this.isPermanent = Boolean(data?.Permanent);
   }

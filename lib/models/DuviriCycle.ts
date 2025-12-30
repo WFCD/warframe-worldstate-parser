@@ -1,6 +1,6 @@
+import type { DuviriChoice } from '@/supporting/DuviriChoice';
 
-import type DuviriChoice from '../supporting/DuviriChoice';
-import WorldstateObject from './WorldstateObject';
+import { WorldStateObject } from './WorldStateObject';
 
 const cycleTime = 36000;
 const stateTime = 7200;
@@ -30,10 +30,10 @@ const getStageInfo = (): {
 };
 
 /**
- * @typedef {WorldstateObject} DuviriCycle
- * @augments {WorldstateObject}
+ * @typedef {WorldStateObject} DuviriCycle
+ * @augments {WorldStateObject}
  */
-export default class DuviriCycle extends WorldstateObject {
+export class DuviriCycle extends WorldStateObject {
   /**
    * Current stage key
    */

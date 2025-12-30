@@ -1,9 +1,9 @@
 import { createHash } from 'node:crypto';
+
 import type { Locale } from 'warframe-worldstate-data';
 import { node, nodeMissionType } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
-import type ExternalMission from '../supporting/ExternalMission';
-import type { KuvaLogEntry } from '../supporting/KuvaLogEntry';
+
+import type { Dependency, ExternalMission, KuvaLogEntry } from '@/supporting';
 
 const HOURS_2 = 7200000;
 
@@ -31,7 +31,8 @@ const scrub = (mission: Record<string, unknown>) => {
   delete mission.planet;
 };
 
-const hash = (str: string) => createHash('md5').update(str, 'utf8').digest('hex');
+const hash = (str: string) =>
+  createHash('md5').update(str, 'utf8').digest('hex');
 
 /**
  * Parse kuva & arbitration data
@@ -40,7 +41,10 @@ const hash = (str: string) => createHash('md5').update(str, 'utf8').digest('hex'
  * @returns Split parsed data
  */
 const parse = (data: KuvaLogEntry[], locale: Locale) => {
-  const parsed = { kuva: [] as ExternalMission[], arbitration: {} as ExternalMission };
+  const parsed = {
+    kuva: [] as ExternalMission[],
+    arbitration: {} as ExternalMission,
+  };
   const now = new Date();
   if (!data) return undefined;
   data?.forEach?.((mission) => {
@@ -53,7 +57,7 @@ const parse = (data: KuvaLogEntry[], locale: Locale) => {
       nodeKey: node(mission.solnode, 'en'),
       type: nodeMissionType(mission.solnode, locale),
       typeKey: nodeMissionType(mission.solnode, 'en'),
-      expired: false
+      expired: false,
     };
     truncateTime(p);
     p.id = hash(JSON.stringify(p));
@@ -83,7 +87,7 @@ const parse = (data: KuvaLogEntry[], locale: Locale) => {
  * @property {ExternalMission[]} kuva currently active kuva missions
  * @property {ExternalMission} arbitration current arbitration
  */
-export default class Kuva {
+export class Kuva {
   kuva?: ExternalMission[];
   arbitration?: ExternalMission;
 

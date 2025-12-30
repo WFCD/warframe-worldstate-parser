@@ -1,31 +1,33 @@
 import * as chai from 'chai';
 
-import ConclaveChallenge, { type RawChallenge } from '../../lib/models/ConclaveChallenge';
-import challenges from '../data/PVPChallengeInstances.json' with { type: 'json' };
+import { ConclaveChallenge, type RawChallenge } from '@/models';
+import challenges from '@/data/PVPChallengeInstances.json' with {
+  type: 'json',
+};
 
-const should = chai.should();
+const expect = chai.expect;
 
 describe('ConclaveChallenge', () => {
   describe('#constructor()', () => {
     it('should throw TypeError when called with no argument or an invalid argument', () => {
-      (() => {
+      expect(() => {
         new ConclaveChallenge(undefined as unknown as RawChallenge);
-      }).should.throw(TypeError);
-      (() => {
+      }).to.throw(TypeError);
+      expect(() => {
         new ConclaveChallenge({} as RawChallenge);
-      }).should.throw(TypeError);
+      }).to.throw(TypeError);
     });
 
     challenges
       .filter((challenge) => !challenge.Category.includes('_ROOT'))
       .forEach((challenge) => {
         it('should construct a valid challenge when provided with data', () => {
-          (() => new ConclaveChallenge(challenge)).should.not.throw;
+          expect(() => new ConclaveChallenge(challenge)).to.not.throw();
 
           const c = new ConclaveChallenge(challenge);
-          should.exist(c.title);
-          should.exist(c.standing);
-          should.exist(c.description);
+          expect(c.title).to.exist;
+          expect(c.standing).to.exist;
+          expect(c.description).to.exist;
         });
       });
   });

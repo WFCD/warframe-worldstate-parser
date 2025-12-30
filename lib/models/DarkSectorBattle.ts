@@ -1,5 +1,9 @@
-import { type ContentTimestamp, parseDate } from 'warframe-worldstate-data/utilities';
-import type {  Identifier } from './WorldstateObject';
+import {
+  type ContentTimestamp,
+  parseDate,
+} from 'warframe-worldstate-data/utilities';
+
+import type { Identifier } from './WorldStateObject';
 
 export interface RawDarkSectorBattle {
   Def: string;
@@ -15,7 +19,7 @@ export interface RawDarkSectorBattle {
 /**
  * Represents a battle over a dark sector
  */
-export default class DarkSectorBattle {
+export class DarkSectorBattle {
   /**
    * The defenders of the dark sector
    */

@@ -1,25 +1,25 @@
 import * as chai from 'chai';
 
-import Event, { type RawWorldEvent } from '../../lib/models/WorldEvent';
-import events from '../data/Goals.json' with { type: 'json' };
+import { type RawWorldEvent, WorldEvent } from '@/models';
+import events from '@/data/Goals.json' with { type: 'json' };
 
-chai.should();
+const expect = chai.expect;
 
 describe('Event', () => {
   describe('#constructor()', () => {
     it('should throw TypeError when called with no argument or an invalid argument', () => {
-      (() => {
-        new Event(undefined as unknown as RawWorldEvent);
-      }).should.throw(TypeError);
-      (() => {
-        new Event({} as RawWorldEvent);
-      }).should.throw(TypeError);
+      expect(() => {
+        new WorldEvent(undefined as unknown as RawWorldEvent);
+      }).to.throw(TypeError);
+      expect(() => {
+        new WorldEvent({} as RawWorldEvent);
+      }).to.throw(TypeError);
     });
 
     it('should parse mock event data', () => {
-      (() => {
-        new Event(events[0]);
-      }).should.not.throw;
+      expect(() => {
+        new WorldEvent(events[0] as unknown as RawWorldEvent);
+      }).to.not.throw();
     });
   });
 });

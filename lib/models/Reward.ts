@@ -1,6 +1,7 @@
 import { insist, languageString } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
-import rewardTypes, { type RewardType } from '../supporting/RewardTypes';
+
+import type { Dependency } from '@/supporting';
+import rewardTypes, { type RewardType } from '@/supporting/RewardTypes';
 
 /**
  * Returns the type of a given item
@@ -27,7 +28,7 @@ export interface RawReward {
 /**
  * Represents a mission reward
  */
-export default class Reward {
+export class Reward {
   /**
    * The items being rewarded
    */
@@ -58,10 +59,15 @@ export default class Reward {
    * @param deps        The dependencies object
    * @param deps.locale Locale to use for translations
    */
-  constructor(data: RawReward, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawReward,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     insist({ ...data });
 
-    this.items = data.items ? data.items.map((i) => languageString(i, locale)) : [];
+    this.items = data.items
+      ? data.items.map((i) => languageString(i, locale))
+      : [];
 
     this.countedItems = data.countedItems
       ? data.countedItems.map((i) => ({
@@ -73,22 +79,30 @@ export default class Reward {
 
     this.credits = data.credits || 0;
 
-    this.thumbnail = this.getTypesFull()[0] ? this.getTypesFull()[0].thumbnail : 'https://i.imgur.com/JCKyUXJ.png';
+    this.thumbnail = this.getTypesFull()[0]
+      ? this.getTypesFull()[0].thumbnail
+      : 'https://i.imgur.com/JCKyUXJ.png';
 
-    this.color = this.getTypesFull()[0] ? this.getTypesFull()[0].color : 0xf1c40f;
+    this.color = this.getTypesFull()[0]
+      ? this.getTypesFull()[0].color
+      : 0xf1c40f;
   }
 
   /**
    * The types of all items that are being rewarded
    */
   getTypes(): string[] {
-    return this.items.concat(this.countedItems.map((i) => i.key)).map((t) => getItemType(t));
+    return this.items
+      .concat(this.countedItems.map((i) => i.key))
+      .map((t) => getItemType(t));
   }
 
   /**
    * The types of all the items that are being rewarded
    */
   private getTypesFull(): Array<RewardType> {
-    return this.items.concat(this.countedItems.map((i) => i.key)).map((t) => getItemTypeFull(t));
+    return this.items
+      .concat(this.countedItems.map((i) => i.key))
+      .map((t) => getItemTypeFull(t));
   }
 }

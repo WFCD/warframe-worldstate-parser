@@ -1,7 +1,8 @@
 import { languageString } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
-import WorldstateObject, { type Identifier } from './WorldstateObject';
-import fetch from '../supporting/FetchProxy';
+
+import { type Dependency, fetchProxy as fetch } from '@/supporting';
+
+import { type Identifier, WorldStateObject } from './WorldStateObject';
 
 const apiBase = process.env.API_BASE_URL || 'https://api.warframestat.us';
 const bountyRewardRegex = /(?:Tier([ABCDE])|Narmer)Table([ABC])Rewards/i;
@@ -10,9 +11,14 @@ const ghoulRewardRegex = /GhoulBountyTable([AB])Rewards/i;
 /**
  * Determine the level string for the bounty
  */
-const getLevelString = (job: RawSyndicateJob): string => `${job.minEnemyLevel} - ${job.maxEnemyLevel}`;
+const getLevelString = (job: RawSyndicateJob): string =>
+  `${job.minEnemyLevel} - ${job.maxEnemyLevel}`;
 
-const determineLocation = (i18n: string, raw: RawSyndicateJob, isVault?: boolean) => {
+const determineLocation = (
+  i18n: string,
+  raw: RawSyndicateJob,
+  isVault?: boolean
+) => {
   const last = String(i18n).split('/').slice(-1)[0];
 
   const bountyMatches = last.match(bountyRewardRegex);
@@ -104,9 +110,9 @@ export interface RewardDrop extends BountyReward {
 
 /**
  * Represents a syndicate daily mission
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class SyndicateJob extends WorldstateObject {
+export class SyndicateJob extends WorldStateObject {
   /**
    * Reward pool unique name
    */
@@ -165,7 +171,11 @@ export default class SyndicateJob extends WorldstateObject {
    * @param deps   The dependencies object
    * @returns The created SyndicateJob object with rewardPool
    */
-  static async build(data: RawSyndicateJob, expiry: Date, deps: Dependency): Promise<SyndicateJob> {
+  static async build(
+    data: RawSyndicateJob,
+    expiry: Date,
+    deps: Dependency
+  ): Promise<SyndicateJob> {
     const job = new SyndicateJob(data, expiry, deps);
     const rewards = await getBountyRewards(data.rewards, data, data.isVault);
     if (typeof rewards[0] === 'string') {
@@ -196,7 +206,11 @@ export default class SyndicateJob extends WorldstateObject {
    *
    * This DOES NOT populate the reward pool
    */
-  constructor(data: RawSyndicateJob, expiry: Date, { locale }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawSyndicateJob,
+    expiry: Date,
+    { locale }: Dependency = { locale: 'en' }
+  ) {
     super({
       _id: {
         $oid: data.JobCurrentVersion
@@ -211,7 +225,11 @@ export default class SyndicateJob extends WorldstateObject {
 
     this.rewardPoolDrops = [];
 
-    const chamber = ((data.locationTag || '').match(/[A-Z]+(?![a-z])|[A-Z]?[a-z]+|\d+/g) || []).join(' ');
+    // Split on word boundaries without backtracking risk
+    const chamber = (data.locationTag || '')
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
+      .trim();
 
     this.type = data.isVault
       ? `Isolation Vault ${chamber}`

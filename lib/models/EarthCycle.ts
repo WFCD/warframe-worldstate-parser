@@ -1,6 +1,6 @@
 import { fromNow } from 'warframe-worldstate-data/utilities';
 
-import WorldstateObject from './WorldstateObject';
+import { WorldStateObject } from './WorldStateObject';
 
 export interface EarthCycleType {
   /**
@@ -53,7 +53,9 @@ function getCurrentEarthCycle(): EarthCycleType {
   const expiry = new Date(now + secondsLeft * 1000);
 
   const minutesCoef = 1000 * 60;
-  const rounded = new Date(Math.round((now + millisLeft) / minutesCoef) * minutesCoef);
+  const rounded = new Date(
+    Math.round((now + millisLeft) / minutesCoef) * minutesCoef
+  );
 
   const timePieces = [];
   if (secondsLeft > 3600) {
@@ -79,9 +81,9 @@ function getCurrentEarthCycle(): EarthCycleType {
 
 /**
  * Represents the current Earth Day/Night Cycle
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class EarthCycle extends WorldstateObject {
+export class EarthCycle extends WorldStateObject {
   #ec = getCurrentEarthCycle();
 
   /**

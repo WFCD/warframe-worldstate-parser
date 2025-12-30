@@ -1,7 +1,12 @@
-import { type ContentTimestamp, languageString, parseDate } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
+import {
+  type ContentTimestamp,
+  languageString,
+  parseDate,
+} from 'warframe-worldstate-data/utilities';
 
-export default class VoidTraderSchedule {
+import type { Dependency } from '@/supporting';
+
+export class VoidTraderSchedule {
   expiry: Date;
   item: string;
 

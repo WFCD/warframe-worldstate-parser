@@ -4,11 +4,12 @@ import {
   operation,
   operationSymbol,
   timeDeltaToString,
-  upgrade
+  upgrade,
 } from 'warframe-worldstate-data/utilities';
 
-import type Dependency from '../supporting/Dependency';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+import type { Dependency } from '@/supporting';
+
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawGlobalUpgrade extends BaseContentObject {
   Activation: ContentTimestamp;
@@ -21,7 +22,7 @@ export interface RawGlobalUpgrade extends BaseContentObject {
 /**
  * Represents an upgrade that applies to all players
  */
-export default class GlobalUpgrade extends WorldstateObject {
+export class GlobalUpgrade extends WorldStateObject {
   /**
    * The effect of the upgrade
    */
@@ -47,7 +48,10 @@ export default class GlobalUpgrade extends WorldstateObject {
    * @param   {object}             deps            The dependencies object
    * @param   {string}             deps.locale     Locale to use for translations
    */
-  constructor(data: RawGlobalUpgrade, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawGlobalUpgrade,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     super(data);
 
     this.upgrade = upgrade(data.UpgradeType, locale);

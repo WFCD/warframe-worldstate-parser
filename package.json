@@ -38,11 +38,12 @@
   "scripts": {
     "build": "tsdown",
     "build:docs": "typedoc",
-    "lint": "biome lint",
-    "lint:fix": "biome lint --write",
+    "lint": "biome check",
+    "lint:fix": "biome check --write",
     "prepare": "husky",
     "prepublishOnly": "npm run build && npm_config_yes=true npx clean-package",
     "printcov": "c8 report",
+    "pretest": "npm run build",
     "test": "mocha",
     "test:coverage": "c8 npm test",
     "test:integration": "npm run test -- -g 'should parse live pc worldstate data'"
@@ -75,10 +76,10 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "warframe-worldstate-data": ">=3.1.3"
+    "warframe-worldstate-data": ">=3.1.19"
   },
   "engines": {
-    "node": ">=20.6.0"
+    "node": ">=20.10.0"
   },
   "publishConfig": {
     "provenance": true

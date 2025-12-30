@@ -1,5 +1,6 @@
 import { languageString } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
+
+import type { Dependency } from '@/supporting';
 
 /**
  * Simaris library info
@@ -9,12 +10,12 @@ export type LibraryInfo = { LastCompletedTargetType: string };
 /**
  * Contains information about sanctuary targets
  */
-export default class Simaris {
+export class Simaris {
   /**
    * The sanctuary target
    */
   target: string;
-  
+
   /**
    * Whether or not the target is currently active
    */

@@ -1,8 +1,16 @@
 import { createHash } from 'node:crypto';
+
 import type { Locale } from 'warframe-worldstate-data';
-import { faction, languageDesc, languageString, missionType } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+import {
+  faction,
+  languageDesc,
+  languageString,
+  missionType,
+} from 'warframe-worldstate-data/utilities';
+
+import type { Dependency } from '@/supporting';
+
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 /**
  * @deprecated use Archimedea to reference temporal and deep
@@ -92,7 +100,7 @@ export class ArchimedeaMission {
   }
 }
 
-export default class Archimedea extends WorldstateObject {
+export class Archimedea extends WorldStateObject {
   /**
    * MD5 generated ID
    */
@@ -125,7 +133,9 @@ export default class Archimedea extends WorldstateObject {
   constructor(data: RawArchimedea, { locale }: Dependency = { locale: 'en' }) {
     super(data);
 
-    this.id = createHash('md5').update(JSON.stringify(data), 'utf8').digest('hex');
+    this.id = createHash('md5')
+      .update(JSON.stringify(data), 'utf8')
+      .digest('hex');
 
     this.type = languageString(data.Type, locale);
 
@@ -134,7 +144,11 @@ export default class Archimedea extends WorldstateObject {
     this.missions = data.Missions.map((m) => new ArchimedeaMission(m, locale));
 
     this.personalModifiers = data.Variables.map((i) => {
-      return { key: i, name: languageString(i, locale), description: languageDesc(i, locale) };
+      return {
+        key: i,
+        name: languageString(i, locale),
+        description: languageDesc(i, locale),
+      };
     });
   }
 }

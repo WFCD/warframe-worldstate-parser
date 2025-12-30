@@ -1,5 +1,6 @@
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
-import WorldstateObject from './WorldstateObject';
+
+import { WorldStateObject } from './WorldStateObject';
 
 const nightTime = 3000;
 
@@ -19,9 +20,9 @@ export interface CurrentCetusCycle {
 
 /**
  * Represents the current Earth Day/Night Cycle
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class CetusCycle extends WorldstateObject {
+export class CetusCycle extends WorldStateObject {
   /**
    * The end of the Ostron bounties timer (marks the end of night)
    */
@@ -99,10 +100,14 @@ export default class CetusCycle extends WorldstateObject {
     const secondsToNightEnd = Number((millisLeft / 1000).toFixed(0));
     const dayTime = secondsToNightEnd > nightTime;
 
-    const secondsRemainingInCycle = dayTime ? secondsToNightEnd - nightTime : secondsToNightEnd;
+    const secondsRemainingInCycle = dayTime
+      ? secondsToNightEnd - nightTime
+      : secondsToNightEnd;
     millisLeft = secondsRemainingInCycle * 1000;
     const minutesCoef = 1000 * 60;
-    const expiry = new Date(Math.round((now + millisLeft) / minutesCoef) * minutesCoef);
+    const expiry = new Date(
+      Math.round((now + millisLeft) / minutesCoef) * minutesCoef
+    );
     const state = dayTime ? 'day' : 'night';
 
     return {

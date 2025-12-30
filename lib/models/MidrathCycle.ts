@@ -1,7 +1,8 @@
 import { createHash } from 'node:crypto';
+
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
-import WorldstateObject from './WorldstateObject';
+import { WorldStateObject } from './WorldStateObject';
 
 /**
  * Get the current Midrath cycle time
@@ -41,7 +42,7 @@ function getCurrentMidrathCycle() {
   };
 }
 
-export default class MidrathCycle extends WorldstateObject {
+export class MidrathCycle extends WorldStateObject {
   #cycle = getCurrentMidrathCycle();
 
   /**
@@ -62,7 +63,9 @@ export default class MidrathCycle extends WorldstateObject {
     this.isDay = this.#cycle.isDay;
     this.state = this.#cycle.state;
 
-    this.id = createHash('md5').update(JSON.stringify(this.expiry), 'utf8').digest('hex');
+    this.id = createHash('md5')
+      .update(JSON.stringify(this.expiry), 'utf8')
+      .digest('hex');
   }
 
   /**

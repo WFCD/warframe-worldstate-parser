@@ -2,42 +2,63 @@ import { createHash } from 'node:crypto';
 
 import wsData from 'warframe-worldstate-data';
 import { parseDate } from 'warframe-worldstate-data/utilities';
-import Alert, { type RawAlert } from './models/Alert';
-import Archimedea, { type RawArchimedea } from './models/Archidemea';
-import Calendar, { type RawCalender } from './models/Calendar';
-import CambionCycle from './models/CambionCycle';
-import CetusCycle from './models/CetusCycle';
-import ConclaveChallenge, { type RawChallenge } from './models/ConclaveChallenge';
-import ConstructionProgress from './models/ConstructionProgress';
-import DailyDeal, { type RawDailyDeal } from './models/DailyDeal';
-import DarkSector, { type RawDarkSector } from './models/DarkSector';
-import DuviriCycle from './models/DuviriCycle';
-import EarthCycle from './models/EarthCycle';
-import Fissure, { type RawFissure } from './models/Fissure';
-import FlashSale, { type RawFlashSale } from './models/FlashSale';
-import GlobalUpgrade, { type RawGlobalUpgrade } from './models/GlobalUpgrade';
-import Invasion, { type RawInvasion } from './models/Invasion';
-import type Kinepage from './models/Kinepage';
-import Kuva from './models/Kuva';
-import News, { type RawNews } from './models/News';
-import Nightwave, { type RawNightwave } from './models/Nightwave';
-import PersistentEnemy, { type RawPersistentEnemy } from './models/PersistentEnemy';
-import type SentientOutpost from './models/SentientOutpost';
-import Simaris, { type LibraryInfo } from './models/Simaris';
-import Sortie, { type RawSortie } from './models/Sortie';
-import SteelPathOffering from './models/SteelPathOffering';
-import SyndicateMission, { type RawSyndicateMission } from './models/SyndicateMission';
-import VallisCycle from './models/VallisCycle';
-import VoidTrader, { type RawVoidTrader } from './models/VoidTrader';
-import WeeklyChallenge, { type RawWeeklyChallenge } from './models/WeeklyChallenge';
-import WorldEvent, { type RawWorldEvent } from './models/WorldEvent';
-import type WorldstateObject from './models/WorldstateObject';
-import type { BaseContentObject } from './models/WorldstateObject';
-import ZarimanCycle from './models/ZarimanCycle';
-import type Dependency from './supporting/Dependency';
-import DuviriChoice, { type RawChoice } from './supporting/DuviriChoice';
-import type ExternalMission from './supporting/ExternalMission';
-import { Tmp } from './Tmp';
+
+import {
+  Alert,
+  Archimedea,
+  type BaseContentObject,
+  Calendar,
+  CambionCycle,
+  CetusCycle,
+  ConclaveChallenge,
+  ConstructionProgress,
+  DailyDeal,
+  DarkSector,
+  DuviriCycle,
+  EarthCycle,
+  Fissure,
+  FlashSale,
+  GlobalUpgrade,
+  Invasion,
+  type Kinepage,
+  Kuva,
+  type LibraryInfo,
+  News,
+  Nightwave,
+  PersistentEnemy,
+  type RawAlert,
+  type RawArchimedea,
+  type RawCalender,
+  type RawChallenge,
+  type RawDailyDeal,
+  type RawDarkSector,
+  type RawFissure,
+  type RawFlashSale,
+  type RawGlobalUpgrade,
+  type RawInvasion,
+  type RawNews,
+  type RawNightwave,
+  type RawPersistentEnemy,
+  type RawSortie,
+  type RawSyndicateMission,
+  type RawVoidTrader,
+  type RawWeeklyChallenge,
+  type RawWorldEvent,
+  type SentientOutpost,
+  Simaris,
+  Sortie,
+  SteelPathOfferings,
+  SyndicateMission,
+  Tmp,
+  VallisCycle,
+  VoidTrader,
+  WeeklyChallenge,
+  WorldEvent,
+  type WorldStateObject,
+  ZarimanCycle,
+} from '@/models';
+import type { Dependency, ExternalMission } from '@/supporting';
+import { DuviriChoice, type RawChoice } from '@/supporting';
 
 const { sortie } = wsData;
 
@@ -62,7 +83,8 @@ const defaultDeps: Dependency = {
  * @param uniqueField field to treat as unique
  * @returns  array of parsed objects
  */
-export function parseArray<T, D extends BaseContentObject>( // Not all instances of T extend WorldstateObject
+export function parseArray<T, D extends BaseContentObject>(
+  // Not all instances of T extend WorldStateObject
   ParserClass: new (data: D, deps: Dependency) => T,
   dataArray: Array<D>,
   deps: Dependency,
@@ -94,7 +116,10 @@ export function parseArray<T, D extends BaseContentObject>( // Not all instances
  * @param uniqueField field to treat as unique
  * @returns array of parsed objects
  */
-export async function parseAsyncArray<T extends WorldstateObject, D extends BaseContentObject>(
+export async function parseAsyncArray<
+  T extends WorldStateObject,
+  D extends BaseContentObject,
+>(
   ParserClass: { build: (data: D, deps: Dependency) => Promise<T> },
   dataArray: Array<D>,
   deps: Dependency,
@@ -308,7 +333,7 @@ export class WorldState {
   /**
    * Steel path offering rotation
    */
-  steelPath: SteelPathOffering;
+  steelPath: SteelPathOfferings;
 
   /**
    * The current prime resurgence
@@ -353,16 +378,28 @@ export class WorldState {
   /**
    * Generates the worldstate json as a string into usable objects
    */
-  static async build(json: string, deps: Dependency = defaultDeps): Promise<WorldState> {
+  static async build(
+    json: string,
+    deps: Dependency = defaultDeps
+  ): Promise<WorldState> {
     if (typeof json !== 'string') {
-      throw new TypeError(`json needs to be a string, provided ${typeof json} : ${JSON.stringify(json)}`);
+      throw new TypeError(
+        `json needs to be a string, provided ${typeof json} : ${JSON.stringify(json)}`
+      );
     }
 
     const data = JSON.parse(json);
     const ws = new WorldState(data, deps);
 
-    ws.events = await parseAsyncArray(WorldEvent, data.Goals, deps);
-    ws.syndicateMissions = await parseAsyncArray(SyndicateMission, data.SyndicateMissions, deps, 'syndicate');
+    ws.events = await parseAsyncArray<WorldEvent, RawWorldEvent>(
+      WorldEvent,
+      data.Goals,
+      deps
+    );
+    ws.syndicateMissions = await parseAsyncArray<
+      SyndicateMission,
+      RawSyndicateMission
+    >(SyndicateMission, data.SyndicateMissions, deps, 'syndicate');
 
     return ws;
   }
@@ -384,7 +421,9 @@ export class WorldState {
     this.news = parseArray(
       News,
       safeArray<RawNews>(data.Events).filter(
-        (e) => typeof e.Messages.find((msg) => msg.LanguageCode === deps.locale) !== 'undefined'
+        (e) =>
+          typeof e.Messages.find((msg) => msg.LanguageCode === deps.locale) !==
+          'undefined'
       ),
       deps
     );
@@ -397,7 +436,9 @@ export class WorldState {
 
     this.syndicateMissions = [];
 
-    this.fissures = parseArray(Fissure, data.ActiveMissions, deps).concat(parseArray(Fissure, data.VoidStorms, deps));
+    this.fissures = parseArray(Fissure, data.ActiveMissions, deps).concat(
+      parseArray(Fissure, data.VoidStorms, deps)
+    );
 
     this.globalUpgrades = parseArray(GlobalUpgrade, data.GlobalUpgrades, deps);
 
@@ -417,17 +458,27 @@ export class WorldState {
 
     this.simaris = new Simaris(safeObj(data.LibraryInfo), deps);
 
-    this.conclaveChallenges = parseArray(ConclaveChallenge, data.PVPChallengeInstances, deps);
+    this.conclaveChallenges = parseArray(
+      ConclaveChallenge,
+      data.PVPChallengeInstances,
+      deps
+    );
 
-    this.persistentEnemies = parseArray(PersistentEnemy, data.PersistentEnemies, deps);
+    this.persistentEnemies = parseArray(
+      PersistentEnemy,
+      data.PersistentEnemies,
+      deps
+    );
 
     this.earthCycle = new EarthCycle();
 
     // bounties are 2.5 hours regardless of faction, so this can be reused
-    const cetusSynd = safeArray<RawSyndicateMission>(data.SyndicateMissions).filter(
-      (syndicate) => syndicate.Tag === 'CetusSyndicate'
+    const cetusSynd = safeArray<RawSyndicateMission>(
+      data.SyndicateMissions
+    ).filter((syndicate) => syndicate.Tag === 'CetusSyndicate');
+    const bountyEnd = parseDate(
+      cetusSynd.length > 0 ? cetusSynd[0].Expiry : { $date: { $numberLong: 0 } }
     );
-    const bountyEnd = parseDate(cetusSynd.length > 0 ? cetusSynd[0].Expiry : { $date: { $numberLong: 0 } });
 
     this.cetusCycle = new CetusCycle(bountyEnd);
 
@@ -437,7 +488,9 @@ export class WorldState {
 
     // this.midrathCycle = new MidrathCycle();
 
-    this.weeklyChallenges = data.WeeklyChallenges ? new WeeklyChallenge(data.WeeklyChallenges) : undefined;
+    this.weeklyChallenges = data.WeeklyChallenges
+      ? new WeeklyChallenge(data.WeeklyChallenges)
+      : undefined;
 
     this.constructionProgress = new ConstructionProgress(data.ProjectPct);
 
@@ -467,9 +520,12 @@ export class WorldState {
       };
     }
 
-    this.steelPath = new SteelPathOffering(deps);
+    this.steelPath = new SteelPathOfferings(deps);
 
-    [this.vaultTrader] = parseArray(VoidTrader, data.PrimeVaultTraders, { ...deps, character: 'Varzia' });
+    [this.vaultTrader] = parseArray(VoidTrader, data.PrimeVaultTraders, {
+      ...deps,
+      character: 'Varzia',
+    });
 
     [this.archonHunt] = parseArray(Sortie, data.LiteSorties, deps);
 
@@ -479,7 +535,7 @@ export class WorldState {
     [this.calendar] = parseArray(Calendar, data.KnownCalendarSeasons, deps);
 
     this.archimedeas = parseArray(Archimedea, data.Conquests, deps);
-    
+
     ({
       kinepage: this.kinepage,
       sentientOutposts: this.sentientOutposts,
@@ -489,4 +545,5 @@ export class WorldState {
   }
 }
 
-export default async (json: string, deps: Dependency) => WorldState.build(json, deps);
+export default async (json: string, deps: Dependency) =>
+  WorldState.build(json, deps);

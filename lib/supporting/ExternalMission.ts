@@ -1,7 +1,7 @@
 /**
  * External mission data retrieved from https://10o.io/kuvalog.json
  */
-export default interface ExternalMission {
+export interface ExternalMission {
   id: string;
 
   /**

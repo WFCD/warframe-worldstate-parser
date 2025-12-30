@@ -1,7 +1,15 @@
 import type { Locale } from 'warframe-worldstate-data';
-import { fromNow, languageString, timeDeltaToString } from 'warframe-worldstate-data/utilities';
-import NightwaveChallenge, { type RawNightwaveChallenge } from './NightwaveChallenge';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+import {
+  fromNow,
+  languageString,
+  timeDeltaToString,
+} from 'warframe-worldstate-data/utilities';
+
+import {
+  NightwaveChallenge,
+  type RawNightwaveChallenge,
+} from './NightwaveChallenge';
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawNightwave extends BaseContentObject {
   Season: number;
@@ -13,10 +21,10 @@ export interface RawNightwave extends BaseContentObject {
 }
 
 /**
- * Represents an alert
- * @augments {WorldstateObject}
+ * Represents a nightwave state
+ * @augments {WorldStateObject}
  */
-export default class Nightwave extends WorldstateObject {
+export class Nightwave extends WorldStateObject {
   /**
    * The current season. 0-indexed.
    */
@@ -52,7 +60,10 @@ export default class Nightwave extends WorldstateObject {
    * @param deps        The dependencies object
    * @param deps.locale Locale to use for translations
    */
-  constructor(data: RawNightwave, { locale }: { locale: Locale } = { locale: 'en' }) {
+  constructor(
+    data: RawNightwave,
+    { locale }: { locale: Locale } = { locale: 'en' }
+  ) {
     super(data);
     const deps = { locale };
 

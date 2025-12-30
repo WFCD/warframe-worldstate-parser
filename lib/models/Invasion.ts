@@ -6,9 +6,11 @@ import {
   timeDeltaToString,
   toNow,
 } from 'warframe-worldstate-data/utilities';
-import type Dependency from '../supporting/Dependency';
-import Reward, { type RawReward } from './Reward';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+
+import type { Dependency } from '@/supporting';
+
+import { type RawReward, Reward } from './Reward';
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawInvasion extends BaseContentObject {
   Node: string;
@@ -46,7 +48,7 @@ export interface InvasionParticipant {
 /**
  * Represents an invasion
  */
-export default class Invasion extends WorldstateObject {
+export class Invasion extends WorldStateObject {
   /**
    * The node where the invasion is taking place
    */
@@ -108,7 +110,10 @@ export default class Invasion extends WorldstateObject {
    * @param   {Dependency}         deps            The dependencies object
    * @param   {string}             deps.locale     Locale to use for translations
    */
-  constructor(data: RawInvasion, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawInvasion,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     super(data);
     const opts = { locale };
 
@@ -119,13 +124,17 @@ export default class Invasion extends WorldstateObject {
     this.desc = languageString(data.LocTag, locale);
 
     this.attacker = {
-      reward: Object.keys(data?.AttackerReward || {})?.length ? new Reward(data.AttackerReward, opts) : undefined,
+      reward: Object.keys(data?.AttackerReward || {})?.length
+        ? new Reward(data.AttackerReward, opts)
+        : undefined,
       faction: faction(data.DefenderMissionInfo.faction, locale),
       factionKey: faction(data.DefenderMissionInfo.faction, 'en'),
     };
 
     this.defender = {
-      reward: Object.keys(data?.DefenderReward || {})?.length ? new Reward(data.DefenderReward, opts) : undefined,
+      reward: Object.keys(data?.DefenderReward || {})?.length
+        ? new Reward(data.DefenderReward, opts)
+        : undefined,
       faction: faction(data.AttackerMissionInfo.faction, locale),
       factionKey: faction(data.AttackerMissionInfo.faction, 'en'),
     };
@@ -136,11 +145,15 @@ export default class Invasion extends WorldstateObject {
 
     this.requiredRuns = data.Goal;
 
-    this.completion = (1 + data.Count / data.Goal) * (this.vsInfestation ? 100 : 50);
+    this.completion =
+      (1 + data.Count / data.Goal) * (this.vsInfestation ? 100 : 50);
 
     this.completed = data.Completed;
 
-    this.rewardTypes = [...(this.attacker.reward?.getTypes() ?? []), ...(this.defender.reward?.getTypes() ?? [])];
+    this.rewardTypes = [
+      ...(this.attacker.reward?.getTypes() ?? []),
+      ...(this.defender.reward?.getTypes() ?? []),
+    ];
   }
 
   /**

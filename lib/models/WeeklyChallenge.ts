@@ -1,5 +1,8 @@
-import ChallengeInstance, { type RawChallengeInstance } from './ChallengeInstance';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+import {
+  ChallengeInstance,
+  type RawChallengeInstance,
+} from './ChallengeInstance';
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawWeeklyChallenge extends BaseContentObject {
   Challenges: RawChallengeInstance[];
@@ -7,9 +10,9 @@ export interface RawWeeklyChallenge extends BaseContentObject {
 
 /**
  * Represents a void trader
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class WeeklyChallenge extends WorldstateObject {
+export class WeeklyChallenge extends WorldStateObject {
   challenges: ChallengeInstance[];
 
   /**
@@ -17,6 +20,8 @@ export default class WeeklyChallenge extends WorldstateObject {
    */
   constructor(data: RawWeeklyChallenge) {
     super(data);
-    this.challenges = data.Challenges.map((challengeData) => new ChallengeInstance(challengeData));
+    this.challenges = data.Challenges.map(
+      (challengeData) => new ChallengeInstance(challengeData)
+    );
   }
 }

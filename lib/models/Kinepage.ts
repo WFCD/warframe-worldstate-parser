@@ -1,4 +1,4 @@
-export default class Kinepage {
+export class Kinepage {
   /**
    * Timestamp of when the message appeared on
    */
@@ -16,10 +16,14 @@ export default class Kinepage {
 
   constructor(data: { [k: string]: string | number }, locale = 'en') {
     this.timestamp = new Date(Number(data.ts) * 1000);
-    
-    const translations = Object.fromEntries(Object.entries(data).filter(([key]) => key !== 'ts'));
+
+    const translations = Object.fromEntries(
+      Object.entries(data).filter(([key]) => key !== 'ts')
+    );
     this.message = String(translations[locale] || data.en);
 
-    this.translations = Object.fromEntries(Object.entries(translations).filter(([key]) => key !== locale));
+    this.translations = Object.fromEntries(
+      Object.entries(translations).filter(([key]) => key !== locale)
+    );
   }
 }

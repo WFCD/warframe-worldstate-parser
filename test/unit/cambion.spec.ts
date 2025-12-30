@@ -1,19 +1,18 @@
 import * as chai from 'chai';
 
-import CambionCycle from '../../lib/models/CambionCycle';
-import type CetusCycle from '../../lib/models/CetusCycle';
+import { CambionCycle, type CetusCycle } from '@/models';
 
-const should = chai.should();
+const expect = chai.expect;
 
 describe('CambionCycle', function () {
   describe('#constructor()', function () {
     it('should throw TypeError when called with no argument or an invalid argument', function () {
-      (() => {
+      expect(() => {
         new CambionCycle(undefined as unknown as CetusCycle);
-      }).should.throw(TypeError);
-      (() => {
+      }).to.throw(TypeError);
+      expect(() => {
         new CambionCycle({} as CetusCycle);
-      }).should.throw(TypeError);
+      }).to.throw(TypeError);
     });
 
     it('should allow expired', () => {
@@ -24,7 +23,7 @@ describe('CambionCycle', function () {
       } as CetusCycle);
 
       const expiry = cycle.expired;
-      should.equal(expiry, true);
+      expect(expiry).to.equal(true);
     });
 
     it('should show fass for day', () => {
@@ -34,7 +33,7 @@ describe('CambionCycle', function () {
         isDay: true,
       } as CetusCycle);
 
-      should.equal(cycle.state, 'fass');
+      expect(cycle.state).to.equal('fass');
     });
 
     it('should show vome for night', () => {
@@ -44,7 +43,7 @@ describe('CambionCycle', function () {
         isDay: false,
       } as CetusCycle);
 
-      should.equal(cycle.state, 'vome');
+      expect(cycle.state).to.equal('vome');
     });
   });
 });

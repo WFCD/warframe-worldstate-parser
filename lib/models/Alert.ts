@@ -1,9 +1,10 @@
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
-import type Dependency from '../supporting/Dependency';
-import Mission, { type RawMission } from './Mission';
-import type Reward from './Reward';
-import WorldstateObject, { type BaseContentObject } from './WorldstateObject';
+import type { Dependency } from '@/supporting';
+
+import { Mission, type RawMission } from './Mission';
+import type { Reward } from './Reward';
+import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawAlert extends BaseContentObject {
   MissionInfo: RawMission;
@@ -12,9 +13,9 @@ export interface RawAlert extends BaseContentObject {
 
 /**
  * Represents an alert
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class Alert extends WorldstateObject {
+export class Alert extends WorldStateObject {
   /**
    * The mission that the players have to complete
    */
@@ -30,7 +31,10 @@ export default class Alert extends WorldstateObject {
    */
   tag?: string;
 
-  constructor(data: RawAlert, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawAlert,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     super(data);
 
     const deps = {
@@ -38,7 +42,9 @@ export default class Alert extends WorldstateObject {
     };
 
     this.mission = new Mission(data.MissionInfo, deps);
-    this.rewardTypes = this.reward?.getTypes()?.length ? this.reward.getTypes()! : ['credits'];
+    this.rewardTypes = this.reward?.getTypes()?.length
+      ? this.reward.getTypes()!
+      : ['credits'];
     this.tag = data.Tag || undefined;
   }
 

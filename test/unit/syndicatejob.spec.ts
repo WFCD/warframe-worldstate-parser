@@ -1,25 +1,33 @@
 import * as chai from 'chai';
 
-import SyndicateJob, { type RewardDrop, type RawSyndicateJob } from '../../lib/models/SyndicateJob.js';
-import CambionFTier from '../data/CambionFTier.json' with { type: 'json' };
-import CetusFTier from '../data/CetusFTier.json' with { type: 'json' };
-import isoVaultBounty from '../data/isoVaultBounty.json' with { type: 'json' };
-import NoMatchJob from '../data/NoMatchJob.json' with { type: 'json' };
-import plagueStarBounty from '../data/plagueStarBounty.json' with { type: 'json' };
+import { type RawSyndicateJob, type RewardDrop, SyndicateJob } from '@/models';
+import CambionFTier from '@/data/CambionFTier.json' with { type: 'json' };
+import CetusFTier from '@/data/CetusFTier.json' with { type: 'json' };
+import isoVaultBounty from '@/data/isoVaultBounty.json' with { type: 'json' };
+import NoMatchJob from '@/data/NoMatchJob.json' with { type: 'json' };
+import plagueStarBounty from '@/data/plagueStarBounty.json' with {
+  type: 'json',
+};
 
-chai.should();
+const expect = chai.expect;
 
 const locale = 'en';
 
 describe('SyndicateJob', () => {
   describe('#constructor()', () => {
     it('should throw TypeError when called with no arguments or an invalid argument', () => {
-      (() => {
-        new SyndicateJob(undefined as unknown as RawSyndicateJob, undefined as unknown as Date);
-      }).should.throw(TypeError);
-      (() => {
-        new SyndicateJob({} as unknown as RawSyndicateJob, undefined as unknown as Date);
-      }).should.throw(TypeError);
+      expect(() => {
+        new SyndicateJob(
+          undefined as unknown as RawSyndicateJob,
+          undefined as unknown as Date
+        );
+      }).to.throw(TypeError);
+      expect(() => {
+        new SyndicateJob(
+          {} as unknown as RawSyndicateJob,
+          undefined as unknown as Date
+        );
+      }).to.throw(TypeError);
     });
   });
 
@@ -29,8 +37,8 @@ describe('SyndicateJob', () => {
         this.timeout(1100000000);
         const job = await SyndicateJob.build(data, new Date(), { locale });
         const verify = (rewardPool: (string | RewardDrop)[]) => {
-          rewardPool.should.be.an('array');
-          rewardPool.length.should.be.at.least(1);
+          expect(rewardPool).to.be.an('array');
+          expect(rewardPool.length).to.be.at.least(1);
         };
 
         if (job.rewardPool?.length) verify(job.rewardPool);

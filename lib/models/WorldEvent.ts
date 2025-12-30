@@ -8,10 +8,15 @@ import {
   syndicate,
 } from 'warframe-worldstate-data/utilities';
 
-import type Dependency from '../supporting/Dependency';
-import Reward, { type RawReward } from './Reward';
-import SyndicateJob, { type RawSyndicateJob } from './SyndicateJob';
-import WorldstateObject, { type BaseContentObject, type Identifier } from './WorldstateObject';
+import type { Dependency } from '@/supporting';
+
+import { type RawReward, Reward } from './Reward';
+import { type RawSyndicateJob, SyndicateJob } from './SyndicateJob';
+import {
+  type BaseContentObject,
+  type Identifier,
+  WorldStateObject,
+} from './WorldStateObject';
 
 /**
  * Interim step for an event reward system.
@@ -82,9 +87,9 @@ export interface RawWorldEvent extends BaseContentObject {
 
 /**
  * Represents an in-game special event
- * @augments {WorldstateObject}
+ * @augments {WorldStateObject}
  */
-export default class WorldEvent extends WorldstateObject {
+export class WorldEvent extends WorldStateObject {
   jobs: SyndicateJob[];
   previousJobs: SyndicateJob[];
 
@@ -225,7 +230,10 @@ export default class WorldEvent extends WorldstateObject {
    * @param deps The dependencies object
    * @returns The created WorldEvent object
    */
-  static async build(data: RawWorldEvent, deps: Dependency): Promise<WorldEvent> {
+  static async build(
+    data: RawWorldEvent,
+    deps: Dependency
+  ): Promise<WorldEvent> {
     const event = new WorldEvent(data, deps);
     if (data.Jobs) {
       const jobs = [];
@@ -250,7 +258,10 @@ export default class WorldEvent extends WorldstateObject {
    * @param data The event data
    * @param deps The dependencies object
    */
-  constructor(data: RawWorldEvent, { locale = 'en' }: Dependency = { locale: 'en' }) {
+  constructor(
+    data: RawWorldEvent,
+    { locale = 'en' }: Dependency = { locale: 'en' }
+  ) {
     super(data);
 
     const opts = { locale };
@@ -267,15 +278,23 @@ export default class WorldEvent extends WorldstateObject {
 
     this.description = languageString(data.Desc, locale);
 
-    this.tooltip = data.ToolTip ? languageString(data.ToolTip, locale) : undefined;
+    this.tooltip = data.ToolTip
+      ? languageString(data.ToolTip, locale)
+      : undefined;
 
     this.node = data.Node ? node(data.Node, locale) : undefined;
 
-    this.concurrentNodes = data.ConcurrentNodes ? data.ConcurrentNodes.map((n) => node(n, locale)) : [];
+    this.concurrentNodes = data.ConcurrentNodes
+      ? data.ConcurrentNodes.map((n) => node(n, locale))
+      : [];
 
-    this.victimNode = data.VictimNode ? node(data.VictimNode, locale) : undefined;
+    this.victimNode = data.VictimNode
+      ? node(data.VictimNode, locale)
+      : undefined;
 
-    this.scoreLocTag = data.ScoreLocTag ? languageString(data.ScoreLocTag, locale) : undefined;
+    this.scoreLocTag = data.ScoreLocTag
+      ? languageString(data.ScoreLocTag, locale)
+      : undefined;
     if (data.Fomorian) this.scoreLocTag = 'Fomorian Assault Score';
 
     this.rewards = Object.keys(data)
@@ -284,7 +303,9 @@ export default class WorldEvent extends WorldstateObject {
       .filter((r) => r.items.length > 0);
 
     this.health =
-      typeof data.HealthPct !== 'undefined' ? Number.parseFloat(((data.HealthPct || 0.0) * 100).toFixed(2)) : undefined;
+      typeof data.HealthPct !== 'undefined'
+        ? Number.parseFloat(((data.HealthPct || 0.0) * 100).toFixed(2))
+        : undefined;
 
     this.jobs = [];
     this.previousJobs = [];
@@ -319,7 +340,14 @@ export default class WorldEvent extends WorldstateObject {
         };
       });
 
-      this.progressTotal = Number.parseFloat(data.MultiProgress!.reduce((accumulator, val) => accumulator + val));
+      this.progressTotal = Number.parseFloat(
+        String(
+          data.MultiProgress!.reduce(
+            (acc, val) => acc + Number.parseFloat(val),
+            0
+          )
+        )
+      );
     }
 
     this.showTotalAtEndOfMission = data.ShowTotalAtEOM ?? false;
@@ -328,9 +356,13 @@ export default class WorldEvent extends WorldstateObject {
 
     this.isCommunity = data.Community ?? false;
 
-    this.regionDrops = (data.RegionDrops || []).map((drop) => languageString(drop, locale));
+    this.regionDrops = (data.RegionDrops || []).map((drop) =>
+      languageString(drop, locale)
+    );
 
-    this.archwingDrops = (data.ArchwingDrops || []).map((drop) => languageString(drop, locale));
+    this.archwingDrops = (data.ArchwingDrops || []).map((drop) =>
+      languageString(drop, locale)
+    );
 
     this.metadata = JSON.parse((data.Metadata || '{}').replace('" ', '"'));
 

@@ -1,18 +1,18 @@
 import * as chai from 'chai';
 
-import SyndicateMission, { type RawSyndicateMission } from '../../lib/models/SyndicateMission.js';
+import { type RawSyndicateMission, SyndicateMission } from '@/models';
 
-chai.should();
+const expect = chai.expect;
 
 describe('SyndicateMission', function () {
   describe('#constructor()', function () {
     it('should throw TypeError when called with no arguments or an invalid argument', function () {
-      (() => {
+      expect(() => {
         new SyndicateMission(undefined as unknown as RawSyndicateMission);
-      }).should.throw(TypeError);
-      (() => {
+      }).to.throw(TypeError);
+      expect(() => {
         new SyndicateMission({} as unknown as RawSyndicateMission);
-      }).should.throw(TypeError);
+      }).to.throw(TypeError);
     });
   });
 });

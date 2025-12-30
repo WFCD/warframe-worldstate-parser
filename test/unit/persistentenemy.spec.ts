@@ -1,18 +1,18 @@
 import * as chai from 'chai';
 
-import PersistentEnemy, { type RawPersistentEnemy } from '../../lib/models/PersistentEnemy.js';
+import { PersistentEnemy, type RawPersistentEnemy } from '@/models';
 
-chai.should();
+const expect = chai.expect;
 
 describe('PersistentEnemy', function () {
   describe('#constructor()', function () {
     it('should throw TypeError when called with no arguments or an invalid argument', function () {
-      (() => {
+      expect(() => {
         new PersistentEnemy(undefined as unknown as RawPersistentEnemy);
-      }).should.throw(TypeError);
-      (() => {
+      }).to.throw(TypeError);
+      expect(() => {
         new PersistentEnemy({} as unknown as RawPersistentEnemy);
-      }).should.throw(TypeError);
+      }).to.throw(TypeError);
     });
   });
 });
