@@ -27,7 +27,7 @@ export interface ExternalMission {
   /**
    * Enemy on tile
    */
-  enemy: string;
+  enemy?: string;
 
   /**
    * Mission type of node

@@ -23,22 +23,22 @@ export interface RawArchimedea extends BaseContentObject {
   Variables: string[];
 }
 
-type Difficulty = { type: string; deviation: string; risks: string[] };
+export type Difficulty = { type: string; deviation: string; risks: string[] };
 
-interface RawArchimedeaMission {
+export interface RawArchimedeaMission {
   faction: string;
   missionType: string;
   difficulties: Difficulty[];
 }
 
-interface ArchidemeaMissionDifficultyRisk {
+export interface ArchimedeaMissionDifficultyRisk {
   key: string;
   name: string;
   description: string;
   isHard: boolean;
 }
 
-interface ArchidemeaMissionDifficulty {
+export interface ArchimedeaMissionDifficulty {
   key: string;
   name: string;
   description: string;
@@ -56,15 +56,13 @@ export class ArchimedeaMission {
 
   missionTypeKey: string;
 
-  diviation: ArchidemeaMissionDifficulty;
+  deviation: ArchimedeaMissionDifficulty;
 
-  risks: ArchidemeaMissionDifficultyRisk[];
+  risks: ArchimedeaMissionDifficultyRisk[];
 
   /**
    * @param mission   Challenge mission type
-   * @param deviation Mission deviation
-   * @param risks     Mission risks
-   * @param locale    Locale to tranlslate to
+   * @param locale    Locale for translation
    */
   constructor(mission: RawArchimedeaMission, locale: Locale) {
     this.faction = faction(mission.faction, locale);
@@ -74,7 +72,7 @@ export class ArchimedeaMission {
     this.missionTypeKey = missionType(mission.missionType, 'en');
 
     const normal = mission.difficulties[0];
-    this.diviation = {
+    this.deviation = {
       key: normal.deviation,
       name: languageString(normal.deviation, locale),
       description: languageDesc(normal.deviation, locale),

@@ -41,14 +41,14 @@ const hash = (str: string) =>
  * @returns Split parsed data
  */
 const parse = (data: KuvaLogEntry[], locale: Locale) => {
-  const parsed = {
-    kuva: [] as ExternalMission[],
+  const parsed: { kuva: ExternalMission[]; arbitration: ExternalMission } = {
+    kuva: [],
     arbitration: {} as ExternalMission,
   };
   const now = new Date();
   if (!data) return undefined;
   data?.forEach?.((mission) => {
-    const p = {
+    const p: ExternalMission = {
       id: '',
       activation: new Date(mission.start),
       expiry: new Date(mission.end),
@@ -58,6 +58,8 @@ const parse = (data: KuvaLogEntry[], locale: Locale) => {
       type: nodeMissionType(mission.solnode, locale),
       typeKey: nodeMissionType(mission.solnode, 'en'),
       expired: false,
+      archwing: mission.solnodedata?.archwing ?? false,
+      sharkwing: mission.solnodedata?.sharkwing ?? false,
     };
     truncateTime(p);
     p.id = hash(JSON.stringify(p));
@@ -73,9 +75,11 @@ const parse = (data: KuvaLogEntry[], locale: Locale) => {
         // if the diff is less than 2 hours?
         parsed.arbitration = p;
       }
-      if (mission.missiontype.startsWith('KuvaMission')) parsed.kuva.push(p);
+      if (mission.missiontype?.startsWith('KuvaMission')) {
+        parsed.kuva.push(p);
+      }
     }
-    scrub(p);
+    scrub(p as unknown as Record<string, unknown>);
   });
   parsed.kuva = Array.from(new Set(parsed.kuva));
 
