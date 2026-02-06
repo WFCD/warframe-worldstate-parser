@@ -35,7 +35,7 @@ interface CurrnetCycle {
  * @returns current cycle state
  */
 function getCurrentCycle(): CurrnetCycle {
-  const sinceLast = (Date.now() - lStart.getMilliseconds()) % loopTime;
+  const sinceLast = (Date.now() - lStart.getTime()) % loopTime;
   const toNextFull = loopTime - sinceLast;
   let state = 'cold';
   if (toNextFull > coldTime) {
