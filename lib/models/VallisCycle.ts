@@ -2,7 +2,7 @@ import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
 import { WorldStateObject } from './WorldStateObject';
 
-const lStart = new Date('November 10, 2018 08:13:48 UTC');
+const lStart = new Date('2026-02-04T19:46:48Z');
 const loopTime = 1600000;
 const warmTime = 400000;
 const coldTime = loopTime - warmTime;
@@ -35,7 +35,7 @@ interface CurrnetCycle {
  * @returns current cycle state
  */
 function getCurrentCycle(): CurrnetCycle {
-  const sinceLast = (Date.now() - lStart.getMilliseconds()) % loopTime;
+  const sinceLast = (Date.now() - lStart.getTime()) % loopTime;
   const toNextFull = loopTime - sinceLast;
   let state = 'cold';
   if (toNextFull > coldTime) {
