@@ -48,7 +48,8 @@ jobs:
   coverage:
     name: Coverage
     runs-on: ubuntu-latest
-    needs: lint
+    needs:
+      - test
     steps:
       - uses: actions/checkout@v6
       - name: Use Node.js
