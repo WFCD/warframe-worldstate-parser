@@ -17,7 +17,7 @@
       "@/models": ["./lib/models/index"],
       "@/supporting/*": ["./lib/supporting/*"],
       "@/supporting": ["./lib/supporting/index"],
-      "@/data/*": ["test/data/*"],
+      "@/data/*": ["./test/data/*"],
       "@/*": ["./lib/*"],
       "*": ["./"]
     }
