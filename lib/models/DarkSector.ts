@@ -3,8 +3,6 @@ import { Type } from 'class-transformer';
 import {
   IsArray,
   IsBoolean,
-  IsDate,
-  IsInt,
   IsNumber,
   IsOptional,
   IsString,

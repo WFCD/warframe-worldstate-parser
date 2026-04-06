@@ -24,7 +24,10 @@
       "recommended": true,
       "complexity": { "useArrowFunction": "off" },
       "style": { "noNonNullAssertion": "off", "useImportType": "on" },
-      "suspicious": { "noExplicitAny": "warn" }
+      "suspicious": { "noExplicitAny": "warn" },
+      "correctness": {
+        "noUnusedImports": "error"
+      }
     },
     "includes": ["**", "!.github/**", "!docs/**", "!data/**"],
     "domains": { "test": "recommended" }

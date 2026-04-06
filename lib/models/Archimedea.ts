@@ -1,14 +1,8 @@
 import { createHash } from 'node:crypto';
 
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import {
-  IsArray,
-  IsBoolean,
-  IsOptional,
-  IsString,
-  ValidateNested,
-} from 'class-validator';
+import { IsArray, IsString, ValidateNested } from 'class-validator';
 import type { Locale } from 'warframe-worldstate-data';
 import {
   faction,
