@@ -1,3 +1,7 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsArray, IsString, ValidateNested } from 'class-validator';
+
 import type { DuviriChoice } from '@/supporting/DuviriChoice';
 
 import { WorldStateObject } from './WorldStateObject';
@@ -37,11 +41,24 @@ export class DuviriCycle extends WorldStateObject {
   /**
    * Current stage key
    */
+  @ApiProperty({
+    description:
+      "Current emotional state. One of 'sorrow', 'fear', 'joy', 'anger', 'envy'",
+  })
+  @IsString()
   state: string;
 
   /**
    * Choice options for this Cycle
    */
+  @ApiProperty({
+    description: 'Choice options for this Cycle',
+    type: 'array',
+    items: { type: 'object' },
+  })
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => Object)
   choices: DuviriChoice[];
 
   /**

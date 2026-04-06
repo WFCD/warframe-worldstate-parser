@@ -1,3 +1,6 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsBoolean, IsDate, IsString } from 'class-validator';
 import {
   type ContentTimestamp,
   parseDate,
@@ -23,36 +26,58 @@ export class DarkSectorBattle {
   /**
    * The defenders of the dark sector
    */
+  @ApiProperty({ description: 'The defenders of the dark sector' })
+  @IsString()
   defender: string;
 
   /**
    * Whether the defenders are an alliance or not
    */
+  @ApiProperty({ description: 'Whether the defenders are an alliance or not' })
+  @IsBoolean()
   defenderIsAlliance: boolean;
 
   /**
    * The attackers of the dark sector
    */
+  @ApiProperty({ description: 'The attackers of the dark sector' })
+  @IsString()
   attacker: string;
 
   /**
    * Whether the attackers are an alliance or not
    */
+  @ApiProperty({ description: 'Whether the attackers are an alliance or not' })
+  @IsBoolean()
   attackerIsAlliance: boolean;
 
   /**
    * The winner of the battle
    */
+  @ApiProperty({ description: 'The winner of the battle' })
+  @IsString()
   winner: string;
 
   /**
    * The date and time at which the battle started
    */
+  @ApiProperty({
+    description: 'The date and time at which the battle started',
+    type: Date,
+  })
+  @IsDate()
+  @Type(() => Date)
   start: Date;
 
   /**
    * The date and time at which the battle ended
    */
+  @ApiProperty({
+    description: 'The date and time at which the battle ended',
+    type: Date,
+  })
+  @IsDate()
+  @Type(() => Date)
   end: Date;
 
   /**

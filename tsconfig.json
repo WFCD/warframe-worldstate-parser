@@ -1,8 +1,5 @@
 {
-  "exclude": [
-    "node_modules",
-    "test"
-  ],
+  "exclude": ["node_modules", "test"],
   "compilerOptions": {
     "module": "esnext",
     "target": "es2024", // set to the *lowest* target you support
@@ -11,6 +8,8 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "types": ["node"],
     "paths": {
       "@/models/*": ["./lib/models/*"],

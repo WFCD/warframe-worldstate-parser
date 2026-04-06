@@ -1,3 +1,6 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsBoolean, IsDate, IsObject, IsString } from 'class-validator';
 import type { Locale } from 'warframe-worldstate-data';
 import {
   type ContentTimestamp,
@@ -37,51 +40,72 @@ export class News extends WorldStateObject {
   /**
    * The news message
    */
+  @ApiProperty({ description: 'News message content' })
+  @IsString()
   message: string;
 
   /**
    * The link to the forum post
    */
+  @ApiProperty({ description: 'Link to the forum post or article' })
+  @IsString()
   link: string;
 
   /**
    * The news's image link
    */
+  @ApiProperty({ description: 'Image URL for the news item' })
+  @IsString()
   imageLink: string;
 
   /**
    * Whether this has priority over other news or not
    */
+  @ApiProperty({ description: 'Whether this news has priority' })
+  @IsBoolean()
   priority: boolean;
 
   /**
    * The date at which the post was published
    */
+  @ApiProperty({ description: 'Publication date', type: Date })
+  @IsDate()
+  @Type(() => Date)
   date: Date;
 
   /**
    * The message translated into different locales
    */
+  @ApiProperty({ description: 'Translations of the message', type: 'object' })
+  @IsObject()
   translations: Record<string, string>;
 
   /**
    * Whether this is an update news item
    */
+  @ApiProperty({ description: 'Whether this is a game update announcement' })
+  @IsBoolean()
   update: boolean;
 
   /**
    * Whether this is a prime access news item
    */
+  @ApiProperty({ description: 'Whether this is a Prime Access announcement' })
+  @IsBoolean()
   primeAccess: boolean;
 
   /**
    * Whether or not this is a stream
    */
+  @ApiProperty({ description: 'Whether this is a stream announcement' })
+  @IsBoolean()
   stream: boolean;
 
   /**
    * Whether or not this news is mobile only.
    */
+  @ApiProperty({ description: 'Whether this news is mobile-only' })
+  @IsBoolean()
   mobileOnly: boolean;
 
   /**
@@ -108,7 +132,7 @@ export class News extends WorldStateObject {
     }
 
     this.link = data.Prop;
-    if ((!this.link || !this.link.length) && data.Links && data.Links.length) {
+    if (!this.link?.length && data.Links && data.Links.length) {
       this.link = (
         data.Links.find((l) => l.LanguageCode === locale) || {
           Link: 'https://www.warframe.com/',

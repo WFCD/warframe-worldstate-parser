@@ -1,3 +1,6 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsDate, IsString } from 'class-validator';
 import {
   type ContentTimestamp,
   languageString,
@@ -7,7 +10,13 @@ import {
 import type { Dependency } from '@/supporting';
 
 export class VoidTraderSchedule {
+  @ApiProperty({ description: 'Schedule expiry date', type: Date })
+  @IsDate()
+  @Type(() => Date)
   expiry: Date;
+
+  @ApiProperty({ description: 'Featured item' })
+  @IsString()
   item: string;
 
   constructor(

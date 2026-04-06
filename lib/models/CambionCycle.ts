@@ -1,3 +1,5 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString } from 'class-validator';
 import { fromNow } from 'warframe-worldstate-data/utilities';
 
 import type { CetusCycle } from './CetusCycle';
@@ -8,7 +10,18 @@ import { WorldStateObject } from './WorldStateObject';
  * @augments {WorldStateObject}
  */
 export class CambionCycle extends WorldStateObject {
+  /**
+   * Time remaining string in the current cycle
+   */
+  @ApiProperty({ description: 'Time remaining in the current cycle' })
+  @IsString()
   timeLeft: string;
+
+  /**
+   * Current cycle state. One of 'fass', 'vome'
+   */
+  @ApiProperty({ description: "Current cycle state. One of 'fass', 'vome'" })
+  @IsString()
   state: string;
 
   /**

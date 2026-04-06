@@ -1,3 +1,5 @@
+import { ApiPropertyOptional } from '@nestjs/swagger';
+import { IsDate, IsOptional, IsString } from 'class-validator';
 import {
   type ContentTimestamp,
   fromNow,
@@ -24,16 +26,33 @@ export class WorldStateObject {
   /**
    * The object's id field
    */
+  @ApiPropertyOptional({
+    description: 'The unique identifier for this world state object',
+  })
+  @IsOptional()
+  @IsString()
   id?: string;
 
   /**
    * The date and time at which the WorldStateObject started
    */
+  @ApiPropertyOptional({
+    description: 'The date and time when this object becomes active',
+    type: Date,
+  })
+  @IsOptional()
+  @IsDate()
   activation?: Date;
 
   /**
    * The date and time at which the WorldStateObject ends
    */
+  @ApiPropertyOptional({
+    description: 'The date and time when this object expires',
+    type: Date,
+  })
+  @IsOptional()
+  @IsDate()
   expiry?: Date;
 
   /**

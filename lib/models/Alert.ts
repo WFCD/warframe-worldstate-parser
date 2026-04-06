@@ -1,3 +1,6 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsArray, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
 import type { Dependency } from '@/supporting';
@@ -19,16 +22,33 @@ export class Alert extends WorldStateObject {
   /**
    * The mission that the players have to complete
    */
+  @ApiProperty({
+    description: 'The mission that players must complete for this alert',
+    type: () => Mission,
+  })
+  @ValidateNested()
+  @Type(() => Mission)
   mission: Mission;
 
   /**
    * An array containing the types of all of the alert's rewards
    */
+  @ApiProperty({
+    description: 'Types of rewards available from this alert',
+    type: [String],
+  })
+  @IsArray()
+  @IsString({ each: true })
   rewardTypes: string[];
 
   /**
    * A tag that DE occasionally provides, such as `LotusGift`
    */
+  @ApiPropertyOptional({
+    description: 'Special tag for the alert (e.g., LotusGift)',
+  })
+  @IsOptional()
+  @IsString()
   tag?: string;
 
   constructor(

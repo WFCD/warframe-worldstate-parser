@@ -1,3 +1,7 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsOptional, ValidateNested } from 'class-validator';
+
 import type { Dependency } from '@/supporting';
 
 import { Kinepage } from './Kinepage';
@@ -12,9 +16,38 @@ export interface InitialTmp {
 }
 
 export class Tmp {
+  @ApiProperty({
+    description: 'Sentient outpost information',
+    type: () => SentientOutpost,
+  })
+  @ValidateNested()
+  @Type(() => SentientOutpost)
   sentientOutposts: SentientOutpost;
+
+  @ApiProperty({
+    description: 'Kinepage message',
+    type: () => Kinepage,
+  })
+  @ValidateNested()
+  @Type(() => Kinepage)
   kinepage: Kinepage;
+
+  @ApiPropertyOptional({
+    description: 'Faceoff bonus information',
+    type: Object,
+  })
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => Object)
   faceoffBonus?: { activation: Date; expiry: Date; next: Date };
+
+  @ApiPropertyOptional({
+    description: 'Quest to Conquer Cancer progress',
+    type: Object,
+  })
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => Object)
   questToConquerCancer?: { count: number; goal: number };
 
   constructor(json: string, deps: Dependency = { locale: 'en' }) {
