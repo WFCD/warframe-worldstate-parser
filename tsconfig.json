@@ -12,14 +12,14 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "types": ["node"],
-    "baseUrl": "./",
     "paths": {
       "@/models/*": ["./lib/models/*"],
       "@/models": ["./lib/models/index"],
       "@/supporting/*": ["./lib/supporting/*"],
       "@/supporting": ["./lib/supporting/index"],
       "@/data/*": ["test/data/*"],
-      "@/*": ["./lib/*"]
+      "@/*": ["./lib/*"],
+      "*": ["./"]
     }
   }
 }
