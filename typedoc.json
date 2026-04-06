@@ -1,11 +1,10 @@
 {
-    "$schema": "https://typedoc.org/schema.json",
-    "entryPoints": [
-        "main.ts",
-        "lib/**/*.ts"
-    ],
-    "exclude": [
-        "**/*.spec.ts"
-    ],
-    "out": "docs"
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["main.ts", "lib/**/*.ts"],
+  "exclude": ["**/*.spec.ts", "tsdown.config.ts"],
+  "out": "docs",
+  "skipErrorChecking": true,
+  "compilerOptions": {
+    "skipLibCheck": true
+  }
 }
