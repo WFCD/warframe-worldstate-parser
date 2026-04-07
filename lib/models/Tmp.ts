@@ -1,6 +1,12 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsOptional, ValidateNested } from 'class-validator';
+import {
+  IsDate,
+  IsInt,
+  IsOptional,
+  Min,
+  ValidateNested,
+} from 'class-validator';
 
 import type { Dependency } from '@/supporting';
 
@@ -13,6 +19,35 @@ export interface InitialTmp {
   fbst?: { a: number; e: number; n: number };
   QTCCFloofCount?: number;
   QTCCFloofLimit?: number;
+}
+
+export class FaceoffBonus {
+  @ApiProperty({ description: 'Faceoff bonus activation time', type: Date })
+  @IsDate()
+  @Type(() => Date)
+  activation!: Date;
+
+  @ApiProperty({ description: 'Faceoff bonus expiry time', type: Date })
+  @IsDate()
+  @Type(() => Date)
+  expiry!: Date;
+
+  @ApiProperty({ description: 'Next faceoff bonus time', type: Date })
+  @IsDate()
+  @Type(() => Date)
+  next!: Date;
+}
+
+export class QuestProgress {
+  @ApiProperty({ description: 'Current progress count' })
+  @IsInt()
+  @Min(0)
+  count!: number;
+
+  @ApiProperty({ description: 'Goal target' })
+  @IsInt()
+  @Min(0)
+  goal!: number;
 }
 
 export class Tmp {
@@ -34,21 +69,21 @@ export class Tmp {
 
   @ApiPropertyOptional({
     description: 'Faceoff bonus information',
-    type: Object,
+    type: () => FaceoffBonus,
   })
   @IsOptional()
   @ValidateNested()
-  @Type(() => Object)
-  faceoffBonus?: { activation: Date; expiry: Date; next: Date };
+  @Type(() => FaceoffBonus)
+  faceoffBonus?: FaceoffBonus;
 
   @ApiPropertyOptional({
     description: 'Quest to Conquer Cancer progress',
-    type: Object,
+    type: () => QuestProgress,
   })
   @IsOptional()
   @ValidateNested()
-  @Type(() => Object)
-  questToConquerCancer?: { count: number; goal: number };
+  @Type(() => QuestProgress)
+  questToConquerCancer?: QuestProgress;
 
   constructor(json: string, deps: Dependency = { locale: 'en' }) {
     const tmp: InitialTmp = JSON.parse(json);

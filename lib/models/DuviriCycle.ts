@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsArray, IsString, ValidateNested } from 'class-validator';
 
-import type { DuviriChoice } from '@/supporting/DuviriChoice';
+import { DuviriChoice } from '@/supporting/DuviriChoice';
 
 import { WorldStateObject } from './WorldStateObject';
 
@@ -53,12 +53,11 @@ export class DuviriCycle extends WorldStateObject {
    */
   @ApiProperty({
     description: 'Choice options for this Cycle',
-    type: 'array',
-    items: { type: 'object' },
+    type: [DuviriChoice],
   })
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => Object)
+  @Type(() => DuviriChoice)
   choices: DuviriChoice[];
 
   /**

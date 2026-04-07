@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsArray, IsString, ValidateNested } from 'class-validator';
+import { IsArray, IsBoolean, IsString, ValidateNested } from 'class-validator';
 import type { Locale } from 'warframe-worldstate-data';
 import {
   faction,
@@ -34,17 +34,50 @@ export interface RawArchimedeaMission {
   difficulties: Difficulty[];
 }
 
-export interface ArchimedeaMissionDifficultyRisk {
-  key: string;
-  name: string;
-  description: string;
-  isHard: boolean;
+export class ArchimedeaMissionDifficultyRisk {
+  @ApiProperty({ description: 'Risk untranslated key' })
+  @IsString()
+  key!: string;
+
+  @ApiProperty({ description: 'Risk name' })
+  @IsString()
+  name!: string;
+
+  @ApiProperty({ description: 'Risk description' })
+  @IsString()
+  description!: string;
+
+  @ApiProperty({ description: 'Whether this is a hard mode risk' })
+  @IsBoolean()
+  isHard!: boolean;
 }
 
-export interface ArchimedeaMissionDifficulty {
-  key: string;
-  name: string;
-  description: string;
+export class ArchimedeaMissionDifficulty {
+  @ApiProperty({ description: 'Deviation untranslated key' })
+  @IsString()
+  key!: string;
+
+  @ApiProperty({ description: 'Deviation name' })
+  @IsString()
+  name!: string;
+
+  @ApiProperty({ description: 'Deviation description' })
+  @IsString()
+  description!: string;
+}
+
+export class PersonalModifier {
+  @ApiProperty({ description: 'Modifier untranslated key' })
+  @IsString()
+  key!: string;
+
+  @ApiProperty({ description: 'Modifier name' })
+  @IsString()
+  name!: string;
+
+  @ApiProperty({ description: 'Modifier description' })
+  @IsString()
+  description!: string;
 }
 
 /**
@@ -67,18 +100,21 @@ export class ArchimedeaMission {
   @IsString()
   missionTypeKey: string;
 
-  @ApiProperty({ description: 'Deviation difficulty information' })
+  @ApiProperty({
+    description: 'Deviation difficulty information',
+    type: () => ArchimedeaMissionDifficulty,
+  })
   @ValidateNested()
-  @Type(() => Object)
+  @Type(() => ArchimedeaMissionDifficulty)
   deviation: ArchimedeaMissionDifficulty;
 
   @ApiProperty({
     description: 'List of risks for this mission',
-    type: [Object],
+    type: [ArchimedeaMissionDifficultyRisk],
   })
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => Object)
+  @Type(() => ArchimedeaMissionDifficultyRisk)
   risks: ArchimedeaMissionDifficultyRisk[];
 
   /**
@@ -158,12 +194,12 @@ export class Archimedea extends WorldStateObject {
    */
   @ApiProperty({
     description: 'Modifiers applied to the player',
-    type: [Object],
+    type: [PersonalModifier],
   })
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => Object)
-  personalModifiers: { key: string; name: string; description: string }[];
+  @Type(() => PersonalModifier)
+  personalModifiers: PersonalModifier[];
 
   /**
    * @param data       Data to parse

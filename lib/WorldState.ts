@@ -66,8 +66,12 @@ import {
   type WorldStateObject,
   ZarimanCycle,
 } from '@/models';
-import type { Dependency, ExternalMission } from '@/supporting';
-import { DuviriChoice, type RawChoice } from '@/supporting';
+import {
+  type Dependency,
+  DuviriChoice,
+  ExternalMission,
+  type RawChoice,
+} from '@/supporting';
 
 const { sortie } = wsData;
 
@@ -458,10 +462,12 @@ export class WorldState {
    */
   @ApiPropertyOptional({
     description: 'Kuva siphon/flood missions',
-    type: 'array',
+    type: [ExternalMission],
   })
   @IsOptional()
   @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => ExternalMission)
   kuva?: ExternalMission[];
 
   /**
@@ -469,9 +475,11 @@ export class WorldState {
    */
   @ApiPropertyOptional({
     description: 'Current arbitration mission',
-    type: 'object',
+    type: ExternalMission,
   })
   @IsOptional()
+  @ValidateNested()
+  @Type(() => ExternalMission)
   arbitration?: ExternalMission;
 
   /**

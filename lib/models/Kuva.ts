@@ -6,7 +6,11 @@ import { IsArray, IsOptional, ValidateNested } from 'class-validator';
 import type { Locale } from 'warframe-worldstate-data';
 import { node, nodeMissionType } from 'warframe-worldstate-data/utilities';
 
-import type { Dependency, ExternalMission, KuvaLogEntry } from '@/supporting';
+import {
+  type Dependency,
+  ExternalMission,
+  type KuvaLogEntry,
+} from '@/supporting';
 
 const HOURS_2 = 7200000;
 
@@ -97,21 +101,21 @@ const parse = (data: KuvaLogEntry[], locale: Locale) => {
 export class Kuva {
   @ApiPropertyOptional({
     description: 'Currently active kuva missions',
-    type: [Object],
+    type: [ExternalMission],
   })
   @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
-  @Type(() => Object)
+  @Type(() => ExternalMission)
   kuva?: ExternalMission[];
 
   @ApiPropertyOptional({
     description: 'Current arbitration mission',
-    type: Object,
+    type: ExternalMission,
   })
   @IsOptional()
   @ValidateNested()
-  @Type(() => Object)
+  @Type(() => ExternalMission)
   arbitration?: ExternalMission;
 
   constructor({ kuvaData, locale, logger }: Dependency) {
