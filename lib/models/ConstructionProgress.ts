@@ -1,5 +1,8 @@
 import { createHash } from 'node:crypto';
 
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString } from 'class-validator';
+
 import { WorldStateObject } from './WorldStateObject';
 
 /**
@@ -7,8 +10,25 @@ import { WorldStateObject } from './WorldStateObject';
  * @augments {WorldStateObject}
  */
 export class ConstructionProgress extends WorldStateObject {
+  /**
+   * Fomorian construction progress percentage
+   */
+  @ApiProperty({ description: 'Fomorian construction progress percentage' })
+  @IsString()
   fomorianProgress: string;
+
+  /**
+   * Razorback construction progress percentage
+   */
+  @ApiProperty({ description: 'Razorback construction progress percentage' })
+  @IsString()
   razorbackProgress: string;
+
+  /**
+   * Unknown construction progress percentage
+   */
+  @ApiProperty({ description: 'Unknown construction progress percentage' })
+  @IsString()
   unknownProgress: string;
 
   /**

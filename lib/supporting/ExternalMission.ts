@@ -45,7 +45,7 @@ export interface ExternalMission {
   archwing: boolean;
 
   /**
-   * whether or not the tile requires
+   * whether or not the tile requires sharkwing
    */
   sharkwing: boolean;
 

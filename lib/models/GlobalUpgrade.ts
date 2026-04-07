@@ -1,3 +1,5 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNumber, IsString } from 'class-validator';
 import {
   type ContentTimestamp,
   fromNow,
@@ -26,21 +28,29 @@ export class GlobalUpgrade extends WorldStateObject {
   /**
    * The effect of the upgrade
    */
+  @ApiProperty({ description: 'The effect of the upgrade' })
+  @IsString()
   upgrade: string;
 
   /**
    * The operation type
    */
+  @ApiProperty({ description: 'The operation type' })
+  @IsString()
   operation: string;
 
   /**
    * Symbol for operation
    */
+  @ApiProperty({ description: 'Symbol for operation' })
+  @IsString()
   operationSymbol: string;
 
   /**
    * The operation value
    */
+  @ApiProperty({ description: 'The operation value' })
+  @IsNumber()
   upgradeOperationValue: number;
 
   /**

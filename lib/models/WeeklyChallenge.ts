@@ -1,3 +1,7 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsArray, ValidateNested } from 'class-validator';
+
 import {
   ChallengeInstance,
   type RawChallengeInstance,
@@ -13,6 +17,16 @@ export interface RawWeeklyChallenge extends BaseContentObject {
  * @augments {WorldStateObject}
  */
 export class WeeklyChallenge extends WorldStateObject {
+  /**
+   * Array of weekly challenges
+   */
+  @ApiProperty({
+    description: 'Array of weekly challenges',
+    type: [ChallengeInstance],
+  })
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => ChallengeInstance)
   challenges: ChallengeInstance[];
 
   /**

@@ -1,3 +1,5 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsInt, IsNumber, IsString, Min } from 'class-validator';
 import {
   type ContentTimestamp,
   fromNow,
@@ -27,41 +29,62 @@ export class DailyDeal extends WorldStateObject {
   /**
    * The item that is being offered in the sale
    */
+  @ApiProperty({ description: 'Localized item name on sale' })
+  @IsString()
   item: string;
 
   /**
    * The uniqueName for the item on sale
    */
+  @ApiProperty({ description: 'Unique item identifier' })
+  @IsString()
   uniqueName: string;
 
   /**
    * The item's original price
    */
+  @ApiProperty({ description: 'Original price in platinum' })
+  @IsInt()
+  @Min(0)
   originalPrice: number;
 
   /**
    * The item's discounted price
    */
+  @ApiProperty({ description: 'Sale price in platinum' })
+  @IsInt()
+  @Min(0)
   salePrice: number;
 
   /**
    * The number of available items on sale
    */
+  @ApiProperty({ description: 'Total items available' })
+  @IsInt()
+  @Min(0)
   total: number;
 
   /**
    * The number of items that have already been sold
    */
+  @ApiProperty({ description: 'Number of items sold' })
+  @IsInt()
+  @Min(0)
   sold: number;
 
   /**
    * Unique identifier for this deal built from the end time and item
    */
+  @ApiProperty({ description: 'Unique deal identifier' })
+  @IsString()
   id: string;
 
   /**
    * Percent discount
    */
+  @ApiProperty({ description: 'Discount percentage' })
+  @IsNumber()
+  @Min(0)
   discount: number;
 
   /**

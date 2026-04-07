@@ -1,3 +1,5 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsBoolean, IsInt, IsOptional, IsString, Min } from 'class-validator';
 import {
   type ContentTimestamp,
   conclaveCategory,
@@ -29,46 +31,78 @@ export class ConclaveChallenge extends WorldStateObject {
   /**
    * The number of times that the challenge's objective needs to be completed
    */
+  @ApiProperty({
+    description:
+      "The number of times that the challenge's objective needs to be completed",
+  })
+  @IsInt()
+  @Min(0)
   amount: number;
 
   /**
    * The PVP mode that the challenge must be completed in
    */
+  @ApiProperty({
+    description: 'The PVP mode that the challenge must be completed in',
+  })
+  @IsString()
   mode: string;
 
   /**
    * The challenge's category (daily, weekly...)
    */
+  @ApiProperty({ description: "The challenge's category (daily, weekly...)" })
+  @IsString()
   category: string;
 
   /**
    * The challenge category unlocalized
    */
+  @ApiProperty({ description: 'The challenge category unlocalized' })
+  @IsString()
   categoryKey: string;
 
   /**
    * The challenge's description text
    */
+  @ApiPropertyOptional({ description: "The challenge's description text" })
+  @IsOptional()
+  @IsString()
   description?: string;
 
   /**
    * Title of the challenge
    */
+  @ApiPropertyOptional({ description: 'Title of the challenge' })
+  @IsOptional()
+  @IsString()
   title?: string;
 
   /**
    * Standing granted by completing challenge.
    */
+  @ApiPropertyOptional({
+    description: 'Standing granted by completing challenge',
+  })
+  @IsOptional()
+  @IsInt()
+  @Min(0)
   standing?: number;
 
   /**
    * Whether or not this is a daily conclave challenge.
    */
+  @ApiProperty({
+    description: 'Whether or not this is a daily conclave challenge',
+  })
+  @IsBoolean()
   daily: boolean;
 
   /**
    * Whether or not this is the root challenge
    */
+  @ApiProperty({ description: 'Whether or not this is the root challenge' })
+  @IsBoolean()
   rootChallenge: boolean;
 
   /**

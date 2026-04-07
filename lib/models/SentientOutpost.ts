@@ -1,3 +1,6 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsBoolean, IsDate, IsOptional, IsString } from 'class-validator';
 import {
   node,
   nodeEnemy,
@@ -40,25 +43,43 @@ export interface OutpostMission {
 export class SentientOutpost {
   private readonly node: string | number;
 
+  /**
+   * Unique identifier
+   */
+  @ApiProperty({ description: 'Unique identifier' })
+  @IsString()
   id: string;
 
   /**
    * Start time
    */
+  @ApiProperty({ description: 'Start time', type: Date })
+  @IsDate()
+  @Type(() => Date)
   activation: Date;
+
   /**
    * End time
    */
+  @ApiProperty({ description: 'End time', type: Date })
+  @IsDate()
+  @Type(() => Date)
   expiry: Date;
 
   /**
    * Current Mission
    */
+  @ApiPropertyOptional({ description: 'Current Mission', type: 'object' })
+  @IsOptional()
   mission?: OutpostMission;
 
   /**
    * Whether or not the object was active during creation
    */
+  @ApiProperty({
+    description: 'Whether or not the object was active during creation',
+  })
+  @IsBoolean()
   active: boolean;
 
   /**

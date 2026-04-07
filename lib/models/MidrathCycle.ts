@@ -1,5 +1,7 @@
 import { createHash } from 'node:crypto';
 
+import { ApiProperty } from '@nestjs/swagger';
+import { IsBoolean, IsString } from 'class-validator';
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
 import { WorldStateObject } from './WorldStateObject';
@@ -48,11 +50,15 @@ export class MidrathCycle extends WorldStateObject {
   /**
    * Whether it's day or not
    */
+  @ApiProperty({ description: "Whether it's day or not" })
+  @IsBoolean()
   isDay: boolean;
 
   /**
    * The current state
    */
+  @ApiProperty({ description: 'The current state' })
+  @IsString()
   state: string;
 
   constructor() {

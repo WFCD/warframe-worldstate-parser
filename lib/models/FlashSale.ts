@@ -1,3 +1,5 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsBoolean, IsInt, IsNumber, IsString, Min } from 'class-validator';
 import {
   type ContentTimestamp,
   fromNow,
@@ -28,41 +30,69 @@ export class FlashSale extends WorldStateObject {
   /**
    * The item being offered in the flash sale
    */
+  @ApiProperty({ description: 'The item being offered in the flash sale' })
+  @IsString()
   item: string;
 
   /**
    * The item's discount percentage
    */
+  @ApiProperty({ description: "The item's discount percentage" })
+  @IsNumber()
+  @Min(0)
   discount: number;
 
   /**
    * The item's discounted credit price
    */
+  @ApiProperty({ description: "The item's discounted credit price" })
+  @IsInt()
+  @Min(0)
   regularOverride: number;
 
   /**
    * The item's discounted platinum price
    */
+  @ApiProperty({ description: "The item's discounted platinum price" })
+  @IsInt()
+  @Min(0)
   premiumOverride: number;
 
   /**
    * Whether this item is show in the in-game market
    */
+  @ApiProperty({
+    description: 'Whether this item is shown in the in-game market',
+  })
+  @IsBoolean()
   isShownInMarket: boolean;
 
   /**
    * Whether this item is featured in the in-game market
    */
+  @ApiProperty({
+    description: 'Whether this item is featured in the in-game market',
+  })
+  @IsBoolean()
   isFeatured: boolean;
 
   /**
    * Whether this item is marked as popular in the in-game market
    */
+  @ApiProperty({
+    description: 'Whether this item is marked as popular in the in-game market',
+  })
+  @IsBoolean()
   isPopular: boolean;
 
   /**
    * Unique identifier for this sale built from the end time and reward
    */
+  @ApiProperty({
+    description:
+      'Unique identifier for this sale built from the end time and reward',
+  })
+  @IsString()
   id: string;
 
   /**

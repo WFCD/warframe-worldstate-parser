@@ -1,5 +1,8 @@
 import { createHash } from 'node:crypto';
 
+import { ApiProperty } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsArray, IsString, ValidateNested } from 'class-validator';
 import type { Locale } from 'warframe-worldstate-data';
 import {
   faction,
@@ -48,16 +51,34 @@ export interface ArchimedeaMissionDifficulty {
  * An Archimedea mission with risk and deviations
  */
 export class ArchimedeaMission {
+  @ApiProperty({ description: 'Faction name' })
+  @IsString()
   faction: string;
 
+  @ApiProperty({ description: 'Faction untranslated key' })
+  @IsString()
   factionKey: string;
 
+  @ApiProperty({ description: 'Mission type name' })
+  @IsString()
   missionType: string;
 
+  @ApiProperty({ description: 'Mission type untranslated key' })
+  @IsString()
   missionTypeKey: string;
 
+  @ApiProperty({ description: 'Deviation difficulty information' })
+  @ValidateNested()
+  @Type(() => Object)
   deviation: ArchimedeaMissionDifficulty;
 
+  @ApiProperty({
+    description: 'List of risks for this mission',
+    type: [Object],
+  })
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => Object)
   risks: ArchimedeaMissionDifficultyRisk[];
 
   /**
@@ -102,26 +123,46 @@ export class Archimedea extends WorldStateObject {
   /**
    * MD5 generated ID
    */
+  @ApiProperty({ description: 'MD5 generated ID' })
+  @IsString()
   id: string;
 
   /**
    * Archimedea type
    */
+  @ApiProperty({ description: 'Archimedea type' })
+  @IsString()
   type: string;
 
   /**
    * Archimedea type untranslated
    */
+  @ApiProperty({ description: 'Archimedea type untranslated' })
+  @IsString()
   typeKey: string;
 
   /**
    * Missions along with deviations and risks
    */
+  @ApiProperty({
+    description: 'Missions along with deviations and risks',
+    type: [ArchimedeaMission],
+  })
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => ArchimedeaMission)
   missions: ArchimedeaMission[];
 
   /**
    * Modifiers applied to the player
    */
+  @ApiProperty({
+    description: 'Modifiers applied to the player',
+    type: [Object],
+  })
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => Object)
   personalModifiers: { key: string; name: string; description: string }[];
 
   /**

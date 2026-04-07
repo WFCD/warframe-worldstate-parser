@@ -1,3 +1,12 @@
+import { ApiProperty } from '@nestjs/swagger';
+import {
+  IsArray,
+  IsBoolean,
+  IsInt,
+  IsNumber,
+  IsString,
+  ValidateNested,
+} from 'class-validator';
 import {
   type ContentTimestamp,
   faction,
@@ -52,57 +61,82 @@ export class Invasion extends WorldStateObject {
   /**
    * The node where the invasion is taking place
    */
+  @ApiProperty({
+    description: 'Localized node name where invasion is occurring',
+  })
+  @IsString()
   node: string;
 
   /**
    * The node key where the invasion is taking place
    */
+  @ApiProperty({ description: 'Unlocalized node key' })
+  @IsString()
   nodeKey: string;
 
   /**
    * The invasion's description
    */
+  @ApiProperty({ description: 'Invasion description' })
+  @IsString()
   desc: string;
 
   /**
    * Invasion attacker
    */
+  @ApiProperty({ description: 'Attacker information', type: 'object' })
+  @ValidateNested()
   attacker: InvasionParticipant;
 
   /**
    * Invasion defender
    */
+  @ApiProperty({ description: 'Defender information', type: 'object' })
+  @ValidateNested()
   defender: InvasionParticipant;
 
   /**
    * Whether this invasion is against the infestation
    */
+  @ApiProperty({ description: 'Whether this is an infestation invasion' })
+  @IsBoolean()
   vsInfestation: boolean;
 
   /**
    * The signed count of completed runs. Supporting the attackers makes the count go up,
    * supporting the defenders makes it go down
    */
+  @ApiProperty({ description: 'Signed count of completed runs' })
+  @IsInt()
   count: number;
   /**
    * The number of runs that one side needs to win
    */
+  @ApiProperty({ description: 'Number of runs required to win' })
+  @IsInt()
   requiredRuns: number;
 
   /**
    * The invasion's completion percentage. Defenders win if it gets to 0
    * Grineer vs. Corpus invasions start at 50, Infested invasions start at 100
    */
+  @ApiProperty({ description: 'Completion percentage (0-100)' })
+  @IsNumber()
   completion: number;
 
   /**
    * Whether the invasion has finished
    */
+  @ApiProperty({ description: 'Whether the invasion is completed' })
+  @IsBoolean()
   completed: boolean;
 
   /**
    * An array containing the types of all of the invasions's rewards
    */
+  @ApiProperty({ description: 'Types of rewards offered', type: [String] })
+  @IsArray()
+  @IsString({ each: true })
   rewardTypes: string[];
 
   /**
