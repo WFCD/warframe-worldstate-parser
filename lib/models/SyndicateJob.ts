@@ -66,7 +66,8 @@ interface BountyReward {
 const getBountyRewards = async (
   i18n: string,
   raw: RawSyndicateJob,
-  isVault?: boolean
+  isVault?: boolean,
+  logger: Dependency['logger'] = console
 ): Promise<(string | BountyReward)[]> => {
   let location: string | undefined;
   let locationWRot: string | undefined;
@@ -80,7 +81,10 @@ const getBountyRewards = async (
   const url = `${apiBase}/drops/search/${encodeURIComponent(location!)}?grouped_by=location`;
   const reply: Record<string, { rewards: BountyReward[] }> = await fetch(url)
     .then((res) => res.json())
-    .catch(() => {}); // swallow errors
+    .catch((error) => {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      logger?.debug(`Failed to fetch bounty rewards for ${location}: ${errorMessage}`);
+    });
   const pool = reply?.[locationWRot];
   if (!pool) {
     return ['Pattern Mismatch. Results inaccurate.'];
@@ -221,7 +225,7 @@ export class SyndicateJob extends WorldStateObject {
     deps: Dependency
   ): Promise<SyndicateJob> {
     const job = new SyndicateJob(data, expiry, deps);
-    const rewards = await getBountyRewards(data.rewards, data, data.isVault);
+    const rewards = await getBountyRewards(data.rewards, data, data.isVault, deps.logger);
     if (typeof rewards[0] === 'string') {
       job.rewardPool = rewards as string[];
     } else {
