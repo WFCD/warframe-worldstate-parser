@@ -75,7 +75,7 @@
     "mocha": "^11.7.5",
     "mocha-minimalist-reporter": "^1.1.0",
     "prettier": "^3.7.4",
-    "sinon": "^21.0.1",
+    "sinon": "^22.0.0",
     "sinon-chai": "^4.0.1",
     "tsdown": "^0.21.0",
     "tsx": "^4.21.0",
