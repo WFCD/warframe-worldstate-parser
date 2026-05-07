@@ -71,7 +71,7 @@
     "c8": "^11.0.0",
     "chai": "^6.2.2",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "^17.0.2",
     "mocha": "^11.7.5",
     "mocha-minimalist-reporter": "^1.1.0",
     "prettier": "^3.7.4",
