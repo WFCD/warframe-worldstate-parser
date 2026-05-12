@@ -77,7 +77,7 @@
     "prettier": "^3.7.4",
     "sinon": "^22.0.0",
     "sinon-chai": "^4.0.1",
-    "tsdown": "^0.21.0",
+    "tsdown": "^0.22.0",
     "tsx": "^4.21.0",
     "typedoc": "^0.28.15",
     "typescript": "^6.0.2"
