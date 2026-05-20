@@ -4,6 +4,7 @@ spec: 'test/**/*.spec.ts'
 timeout: 10000
 require:
   - 'chai/register-should.js'
+  - 'reflect-metadata'
 node-option:
   - 'import=tsx'
 ignore:

@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsString } from 'class-validator';
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
@@ -28,25 +27,18 @@ export class ZarimanCycle extends WorldStateObject {
   /**
    * Whether or not this it's corpus or grineer
    */
-  @ApiProperty({
-    description: 'Whether or not it is currently Corpus (false = Grineer)',
-  })
   @IsBoolean()
   isCorpus: boolean;
 
   /**
    * Current cycle state. One of `corpus`, `grineer`
    */
-  @ApiProperty({
-    description: "Current cycle state. One of 'corpus', 'grineer'",
-  })
   @IsString()
   state: string;
 
   /**
    * Time remaining string
    */
-  @ApiProperty({ description: 'Time remaining in the current cycle' })
   @IsString()
   timeLeft: string;
 

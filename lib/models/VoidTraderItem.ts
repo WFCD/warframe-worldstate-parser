@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsInt, IsString, Min } from 'class-validator';
 import { languageString } from 'warframe-worldstate-data/utilities';
 
@@ -14,26 +13,22 @@ export interface RawVoidTraderItem {
  * A void trader inventory item
  */
 export class VoidTraderItem {
-  @ApiProperty({ description: 'Unique item identifier' })
   @IsString()
   uniqueName: string;
   /**
    *  The name of the inventory item
    */
-  @ApiProperty({ description: 'Localized item name' })
   @IsString()
   item: string;
   /**
    * Ducat cost of the item
    */
-  @ApiProperty({ description: 'Ducat cost' })
   @IsInt()
   @Min(0)
   ducats: number;
   /**
    * Credit cost of the item
    */
-  @ApiProperty({ description: 'Credit cost' })
   @IsInt()
   @Min(0)
   credits: number;

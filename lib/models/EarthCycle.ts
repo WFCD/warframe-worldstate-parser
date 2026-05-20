@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsString } from 'class-validator';
 import { fromNow } from 'warframe-worldstate-data/utilities';
 
@@ -91,21 +90,18 @@ export class EarthCycle extends WorldStateObject {
   /**
    * Whether or not this it's daytime
    */
-  @ApiProperty({ description: 'Whether it is currently day time on Earth' })
   @IsBoolean()
   isDay: boolean;
 
   /**
    * Current cycle state. One of `day`, `night`
    */
-  @ApiProperty({ description: 'Current cycle state', enum: ['day', 'night'] })
   @IsString()
   state: string;
 
   /**
    * Time remaining string
    */
-  @ApiProperty({ description: 'Time remaining until next cycle' })
   @IsString()
   timeLeft: string;
 

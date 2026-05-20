@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsArray, IsString, ValidateNested } from 'class-validator';
 import wsData from 'warframe-worldstate-data';
@@ -34,17 +33,12 @@ export class Sortie extends WorldStateObject {
   /**
    * The sortie's reward pool
    */
-  @ApiProperty({ description: 'Sortie reward pool name' })
   @IsString()
   rewardPool: string;
 
   /**
    * The sortie's variants
    */
-  @ApiProperty({
-    description: 'Sortie mission variants',
-    type: [SortieVariant],
-  })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => SortieVariant)
@@ -53,7 +47,6 @@ export class Sortie extends WorldStateObject {
   /**
    * Archon hunt missions if sortie is an archon hunt
    */
-  @ApiProperty({ description: 'Archon hunt missions', type: [Mission] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Mission)
@@ -62,21 +55,18 @@ export class Sortie extends WorldStateObject {
   /**
    * The sortie's boss
    */
-  @ApiProperty({ description: 'Sortie boss name' })
   @IsString()
   boss: string;
 
   /**
    * The sortie's faction
    */
-  @ApiProperty({ description: 'Localized faction name' })
   @IsString()
   faction: string;
 
   /**
    * The sortie's faction
    */
-  @ApiProperty({ description: 'Unlocalized faction key' })
   @IsString()
   factionKey: string;
 

@@ -1,4 +1,3 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsInt, IsOptional, IsString, Min } from 'class-validator';
 import { languageString } from 'warframe-worldstate-data/utilities';
 
@@ -21,14 +20,12 @@ export class ChallengeInstance {
   /**
    * Type of challenge
    */
-  @ApiProperty({ description: 'Type of challenge' })
   @IsString()
   type: string;
 
   /**
    * Minimum enemy level to fulfill challenge
    */
-  @ApiProperty({ description: 'Minimum enemy level to fulfill challenge' })
   @IsInt()
   @Min(0)
   minEnemyLevel: number;
@@ -36,9 +33,6 @@ export class ChallengeInstance {
   /**
    * Required number of units to complete challenge
    */
-  @ApiProperty({
-    description: 'Required number of units to complete challenge',
-  })
   @IsInt()
   @Min(0)
   requiredAmount: number;
@@ -46,9 +40,6 @@ export class ChallengeInstance {
   /**
    * Waypoint for amount of units between progression updates
    */
-  @ApiProperty({
-    description: 'Waypoint for amount of units between progression updates',
-  })
   @IsInt()
   @Min(0)
   progressAmount: number;
@@ -56,7 +47,6 @@ export class ChallengeInstance {
   /**
    * Required damage type
    */
-  @ApiPropertyOptional({ description: 'Required damage type' })
   @IsOptional()
   @IsString()
   damageType?: string;
@@ -64,7 +54,6 @@ export class ChallengeInstance {
   /**
    * Target to fulfill challenge
    */
-  @ApiPropertyOptional({ description: 'Target to fulfill challenge' })
   @IsOptional()
   @IsString()
   target?: string;

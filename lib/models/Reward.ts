@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsArray, IsInt, IsNumber, IsString, Min } from 'class-validator';
 import { insist, languageString } from 'warframe-worldstate-data/utilities';
 
@@ -34,10 +33,6 @@ export class Reward {
   /**
    * The items being rewarded
    */
-  @ApiProperty({
-    description: 'Localized item names being rewarded',
-    type: [String],
-  })
   @IsArray()
   @IsString({ each: true })
   items: string[];
@@ -45,24 +40,12 @@ export class Reward {
   /**
    * The counted items being rewarded
    */
-  @ApiProperty({
-    description: 'Counted items being rewarded with quantities',
-    type: 'array',
-    items: {
-      properties: {
-        type: { type: 'string', description: 'Localized item type' },
-        key: { type: 'string', description: 'Unlocalized item key' },
-        count: { type: 'number', description: 'Item count' },
-      },
-    },
-  })
   @IsArray()
   countedItems: { type: string; key: string; count: number }[];
 
   /**
    * The credits being rewarded
    */
-  @ApiProperty({ description: 'Credits rewarded' })
   @IsInt()
   @Min(0)
   credits: number;
@@ -70,14 +53,12 @@ export class Reward {
   /**
    * Thumbnail url
    */
-  @ApiProperty({ description: 'Thumbnail URL for the primary reward' })
   @IsString()
   thumbnail: string;
 
   /**
    * Reward color
    */
-  @ApiProperty({ description: 'Color code for the reward type' })
   @IsNumber()
   color: number;
 

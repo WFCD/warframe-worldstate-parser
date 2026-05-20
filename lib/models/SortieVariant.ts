@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 import {
   insist,
@@ -24,42 +23,36 @@ export class SortieVariant {
   /**
    * The variant's mission type
    */
-  @ApiProperty({ description: 'Localized mission type' })
   @IsString()
   missionType: string;
 
   /**
    * The variant's mission type unlocalized
    */
-  @ApiProperty({ description: 'Unlocalized mission type key' })
   @IsString()
   missionTypeKey: string;
 
   /**
    * The mission modifier
    */
-  @ApiProperty({ description: 'Sortie modifier' })
   @IsString()
   modifier: string;
 
   /**
    * The variant's modifier description
    */
-  @ApiProperty({ description: 'Modifier description' })
   @IsString()
   modifierDescription: string;
 
   /**
    * The node where the variant takes place
    */
-  @ApiProperty({ description: 'Localized node name' })
   @IsString()
   node: string;
 
   /**
    * The node where the variant takes place unlocalized
    */
-  @ApiProperty({ description: 'Unlocalized node key' })
   @IsString()
   nodeKey: string;
 

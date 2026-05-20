@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsArray,
@@ -38,7 +37,6 @@ export class Nightwave extends WorldStateObject {
   /**
    * The current season. 0-indexed.
    */
-  @ApiProperty({ description: 'The current season (0-indexed)' })
   @IsInt()
   @Min(0)
   season: number;
@@ -46,16 +44,12 @@ export class Nightwave extends WorldStateObject {
   /**
    * Descriptor for affiliation
    */
-  @ApiProperty({ description: 'Descriptor for affiliation' })
   @IsString()
   tag: string;
 
   /**
    * The current season's current phase. 0-indexed.
    */
-  @ApiProperty({
-    description: "The current season's current phase (0-indexed)",
-  })
   @IsInt()
   @Min(0)
   phase: number;
@@ -63,20 +57,12 @@ export class Nightwave extends WorldStateObject {
   /**
    * Misc params provided.
    */
-  @ApiProperty({
-    description: 'Miscellaneous parameters provided',
-    type: 'object',
-  })
   @IsObject()
   params: Record<string, unknown>;
 
   /**
    * Array of possible challenges
    */
-  @ApiProperty({
-    description: 'Array of possible challenges',
-    type: [NightwaveChallenge],
-  })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => NightwaveChallenge)
@@ -85,10 +71,6 @@ export class Nightwave extends WorldStateObject {
   /**
    * Array of active challenges
    */
-  @ApiProperty({
-    description: 'Array of active challenges',
-    type: [NightwaveChallenge],
-  })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => NightwaveChallenge)

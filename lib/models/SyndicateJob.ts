@@ -1,4 +1,3 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsArray, IsInt, IsOptional, IsString, Min } from 'class-validator';
 import { languageString } from 'warframe-worldstate-data/utilities';
 
@@ -118,17 +117,12 @@ export class SyndicateJob extends WorldStateObject {
   /**
    * Reward pool unique name
    */
-  @ApiProperty({ description: 'Reward pool unique name' })
   @IsString()
   uniqueName: string;
 
   /**
    * Array of strings describing rewards
    */
-  @ApiProperty({
-    description: 'Array of strings describing rewards',
-    type: [String],
-  })
   @IsArray()
   @IsString({ each: true })
   rewardPool: string[];
@@ -136,18 +130,12 @@ export class SyndicateJob extends WorldStateObject {
   /**
    * A structured version of the reward pool
    */
-  @ApiProperty({
-    description: 'A structured version of the reward pool',
-    type: 'array',
-    items: { type: 'object' },
-  })
   @IsArray()
   rewardPoolDrops: RewardDrop[];
 
   /**
    * The type of job this is
    */
-  @ApiPropertyOptional({ description: 'The type of job this is' })
   @IsOptional()
   @IsString()
   type?: string;
@@ -155,10 +143,6 @@ export class SyndicateJob extends WorldStateObject {
   /**
    * Array of enemy levels
    */
-  @ApiProperty({
-    description: 'Array of enemy levels [min, max]',
-    type: [Number],
-  })
   @IsArray()
   @IsInt({ each: true })
   enemyLevels: number[];
@@ -166,10 +150,6 @@ export class SyndicateJob extends WorldStateObject {
   /**
    * Array of standing gains per stage of job
    */
-  @ApiProperty({
-    description: 'Array of standing gains per stage of job',
-    type: [Number],
-  })
   @IsArray()
   @IsInt({ each: true })
   standingStages: number[];
@@ -177,7 +157,6 @@ export class SyndicateJob extends WorldStateObject {
   /**
    * Minimum mastery required to participate
    */
-  @ApiProperty({ description: 'Minimum mastery required to participate' })
   @IsInt()
   @Min(0)
   minMR: number;
@@ -186,14 +165,12 @@ export class SyndicateJob extends WorldStateObject {
    * Whether or not this is a Vault job.
    * No indication for difference of normal vs arcana vaults.
    */
-  @ApiPropertyOptional({ description: 'Whether or not this is a Vault job' })
   @IsOptional()
   isVault?: boolean;
 
   /**
    * Corresponding chamber. Nullable
    */
-  @ApiPropertyOptional({ description: 'Corresponding chamber' })
   @IsOptional()
   @IsString()
   locationTag?: string;
@@ -201,9 +178,6 @@ export class SyndicateJob extends WorldStateObject {
   /**
    * What time phase this bounty is bound to
    */
-  @ApiPropertyOptional({
-    description: 'What time phase this bounty is bound to',
-  })
   @IsOptional()
   @IsString()
   timeBound: string | undefined;

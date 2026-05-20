@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsArray, IsDate, IsObject, IsString } from 'class-validator';
 import type { Locale } from 'warframe-worldstate-data';
@@ -90,17 +89,12 @@ export class SteelPathOfferings {
   /**
    * Current week's steel path reward
    */
-  @ApiProperty({
-    description: "Current week's steel path reward",
-    type: 'object',
-  })
   @IsObject()
   currentReward: SteelPathOffering;
 
   /**
    * When the current rotation started
    */
-  @ApiProperty({ description: 'When the current rotation started', type: Date })
   @IsDate()
   @Type(() => Date)
   activation: Date;
@@ -108,7 +102,6 @@ export class SteelPathOfferings {
   /**
    * When the current rotation ends
    */
-  @ApiProperty({ description: 'When the current rotation ends', type: Date })
   @IsDate()
   @Type(() => Date)
   expiry: Date;
@@ -116,39 +109,24 @@ export class SteelPathOfferings {
   /**
    * Time remaining string
    */
-  @ApiProperty({ description: 'Time remaining string' })
   @IsString()
   remaining: string;
 
   /**
    * Full rotation of steel path rewards
    */
-  @ApiProperty({
-    description: 'Full rotation of steel path rewards',
-    type: 'array',
-    items: { type: 'object' },
-  })
   @IsArray()
   rotation: SteelPathOffering[];
 
   /**
    * Evergreen steel path rewards
    */
-  @ApiProperty({
-    description: 'Evergreen steel path rewards',
-    type: 'array',
-    items: { type: 'object' },
-  })
   @IsArray()
   evergreens: SteelPathOffering[];
 
   /**
    * Steel path incursion information
    */
-  @ApiProperty({
-    description: 'Steel path incursion information',
-    type: 'object',
-  })
   @IsObject()
   incursions: Incursion;
 

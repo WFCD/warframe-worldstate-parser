@@ -1,4 +1,3 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsDate,
@@ -22,64 +21,43 @@ export interface InitialTmp {
 }
 
 export class FaceoffBonus {
-  @ApiProperty({ description: 'Faceoff bonus activation time', type: Date })
   @IsDate()
   @Type(() => Date)
   activation!: Date;
 
-  @ApiProperty({ description: 'Faceoff bonus expiry time', type: Date })
   @IsDate()
   @Type(() => Date)
   expiry!: Date;
 
-  @ApiProperty({ description: 'Next faceoff bonus time', type: Date })
   @IsDate()
   @Type(() => Date)
   next!: Date;
 }
 
 export class QuestProgress {
-  @ApiProperty({ description: 'Current progress count' })
   @IsInt()
   @Min(0)
   count!: number;
 
-  @ApiProperty({ description: 'Goal target' })
   @IsInt()
   @Min(0)
   goal!: number;
 }
 
 export class Tmp {
-  @ApiProperty({
-    description: 'Sentient outpost information',
-    type: () => SentientOutpost,
-  })
   @ValidateNested()
   @Type(() => SentientOutpost)
   sentientOutposts: SentientOutpost;
 
-  @ApiProperty({
-    description: 'Kinepage message',
-    type: () => Kinepage,
-  })
   @ValidateNested()
   @Type(() => Kinepage)
   kinepage: Kinepage;
 
-  @ApiPropertyOptional({
-    description: 'Faceoff bonus information',
-    type: () => FaceoffBonus,
-  })
   @IsOptional()
   @ValidateNested()
   @Type(() => FaceoffBonus)
   faceoffBonus?: FaceoffBonus;
 
-  @ApiPropertyOptional({
-    description: 'Quest to Conquer Cancer progress',
-    type: () => QuestProgress,
-  })
   @IsOptional()
   @ValidateNested()
   @Type(() => QuestProgress)

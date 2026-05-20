@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsString } from 'class-validator';
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
@@ -38,28 +37,24 @@ export class CetusCycle extends WorldStateObject {
   /**
    * Whether it's daytime
    */
-  @ApiProperty({ description: 'Whether it is currently day time in Cetus' })
   @IsBoolean()
   isDay: boolean;
 
   /**
    * Current cycle state. One of `day`, `night`
    */
-  @ApiProperty({ description: 'Current cycle state', enum: ['day', 'night'] })
   @IsString()
   state: string;
 
   /**
    * Time remaining string
    */
-  @ApiProperty({ description: 'Time remaining until next cycle' })
   @IsString()
   timeLeft: string;
 
   /**
    * Whether this is for Cetus Cycle
    */
-  @ApiProperty({ description: 'Always true for Cetus cycle' })
   @IsBoolean()
   isCetus: boolean;
 

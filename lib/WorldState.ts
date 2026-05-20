@@ -1,6 +1,5 @@
 import { createHash } from 'node:crypto';
 
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsArray,
@@ -194,10 +193,6 @@ export class WorldState {
   /**
    * The date and time at which the World State was generated
    */
-  @ApiProperty({
-    description: 'Timestamp when the world state was generated',
-    type: Date,
-  })
   @IsDate()
   @Type(() => Date)
   timestamp: Date;
@@ -205,14 +200,12 @@ export class WorldState {
   /**
    * Current Warframe version
    */
-  @ApiProperty({ description: 'Current game build version' })
   @IsString()
   buildLabel: string;
 
   /**
    * The in-game news
    */
-  @ApiProperty({ description: 'Current in-game news articles', type: [News] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => News)
@@ -221,7 +214,6 @@ export class WorldState {
   /**
    * The current events
    */
-  @ApiProperty({ description: 'Active world events', type: [WorldEvent] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => WorldEvent)
@@ -230,7 +222,6 @@ export class WorldState {
   /**
    * The current alerts
    */
-  @ApiProperty({ description: 'Active alerts', type: [Alert] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Alert)
@@ -239,7 +230,6 @@ export class WorldState {
   /**
    * The current sortie
    */
-  @ApiProperty({ description: 'Current daily sortie', type: () => Sortie })
   @ValidateNested()
   @Type(() => Sortie)
   sortie: Sortie;
@@ -247,10 +237,6 @@ export class WorldState {
   /**
    * The current syndicate missions
    */
-  @ApiProperty({
-    description: 'Active syndicate missions',
-    type: [SyndicateMission],
-  })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => SyndicateMission)
@@ -259,10 +245,6 @@ export class WorldState {
   /**
    * The current fissures: 'ActiveMissions' & 'VoidStorms'
    */
-  @ApiProperty({
-    description: 'Active void fissures and void storms',
-    type: [Fissure],
-  })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Fissure)
@@ -271,7 +253,6 @@ export class WorldState {
   /**
    * The current global upgrades
    */
-  @ApiProperty({ description: 'Active global upgrades', type: [GlobalUpgrade] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => GlobalUpgrade)
@@ -280,7 +261,6 @@ export class WorldState {
   /**
    * The current flash sales
    */
-  @ApiProperty({ description: 'Active flash sales', type: [FlashSale] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => FlashSale)
@@ -289,7 +269,6 @@ export class WorldState {
   /**
    * The current invasions
    */
-  @ApiProperty({ description: 'Active invasions', type: [Invasion] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Invasion)
@@ -298,7 +277,6 @@ export class WorldState {
   /**
    * The state of the dark sectors
    */
-  @ApiProperty({ description: 'Dark sector conflicts', type: [DarkSector] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => DarkSector)
@@ -307,7 +285,6 @@ export class WorldState {
   /**
    * The state of all Void Traders
    */
-  @ApiProperty({ description: 'All void traders', type: [VoidTrader] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => VoidTrader)
@@ -317,11 +294,6 @@ export class WorldState {
    * The first entry for voidTraders
    * @deprecated
    */
-  @ApiProperty({
-    description: 'Primary void trader (deprecated, use voidTraders)',
-    type: () => VoidTrader,
-    deprecated: true,
-  })
   @ValidateNested()
   @Type(() => VoidTrader)
   voidTrader: VoidTrader;
@@ -329,7 +301,6 @@ export class WorldState {
   /**
    * The current daily deals
    */
-  @ApiProperty({ description: 'Active daily deals', type: [DailyDeal] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => DailyDeal)
@@ -338,10 +309,6 @@ export class WorldState {
   /**
    * The state of the sanctuary synthesis targets
    */
-  @ApiProperty({
-    description: 'Sanctuary synthesis targets',
-    type: () => Simaris,
-  })
   @ValidateNested()
   @Type(() => Simaris)
   simaris: Simaris;
@@ -349,10 +316,6 @@ export class WorldState {
   /**
    * The current conclave challenges
    */
-  @ApiProperty({
-    description: 'Active conclave challenges',
-    type: [ConclaveChallenge],
-  })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ConclaveChallenge)
@@ -361,10 +324,6 @@ export class WorldState {
   /**
    * The currently active persistent enemies
    */
-  @ApiProperty({
-    description: 'Active persistent enemies (liches, sisters)',
-    type: [PersistentEnemy],
-  })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => PersistentEnemy)
@@ -373,7 +332,6 @@ export class WorldState {
   /**
    * The current earth cycle
    */
-  @ApiProperty({ description: 'Earth day/night cycle', type: () => EarthCycle })
   @ValidateNested()
   @Type(() => EarthCycle)
   earthCycle: EarthCycle;
@@ -381,10 +339,6 @@ export class WorldState {
   /**
    * The current Cetus cycle
    */
-  @ApiProperty({
-    description: 'Cetus (Plains of Eidolon) day/night cycle',
-    type: () => CetusCycle,
-  })
   @ValidateNested()
   @Type(() => CetusCycle)
   cetusCycle: CetusCycle;
@@ -392,7 +346,6 @@ export class WorldState {
   /**
    * Cambion Drift Cycle
    */
-  @ApiProperty({ description: 'Cambion Drift cycle', type: () => CambionCycle })
   @ValidateNested()
   @Type(() => CambionCycle)
   cambionCycle: CambionCycle;
@@ -400,7 +353,6 @@ export class WorldState {
   /**
    * The current Zariman cycle based off current time
    */
-  @ApiProperty({ description: 'Zariman cycle', type: () => ZarimanCycle })
   @ValidateNested()
   @Type(() => ZarimanCycle)
   zarimanCycle: ZarimanCycle;
@@ -414,10 +366,6 @@ export class WorldState {
   /**
    * Weekly challenges
    */
-  @ApiPropertyOptional({
-    description: 'Weekly challenges',
-    type: () => WeeklyChallenge,
-  })
   @IsOptional()
   @ValidateNested()
   @Type(() => WeeklyChallenge)
@@ -426,10 +374,6 @@ export class WorldState {
   /**
    * The Current construction progress for Fomorians/Razorback/etc.
    */
-  @ApiProperty({
-    description: 'Construction progress for Fomorian/Razorback',
-    type: () => ConstructionProgress,
-  })
   @ValidateNested()
   @Type(() => ConstructionProgress)
   constructionProgress: ConstructionProgress;
@@ -437,10 +381,6 @@ export class WorldState {
   /**
    * The current Orb Vallis cycle state
    */
-  @ApiProperty({
-    description: 'Orb Vallis temperature cycle',
-    type: () => VallisCycle,
-  })
   @ValidateNested()
   @Type(() => VallisCycle)
   vallisCycle: VallisCycle;
@@ -448,10 +388,6 @@ export class WorldState {
   /**
    * The current nightwave season
    */
-  @ApiPropertyOptional({
-    description: 'Current Nightwave season',
-    type: () => Nightwave,
-  })
   @IsOptional()
   @ValidateNested()
   @Type(() => Nightwave)
@@ -460,10 +396,6 @@ export class WorldState {
   /**
    * Kuva missions array
    */
-  @ApiPropertyOptional({
-    description: 'Kuva siphon/flood missions',
-    type: [ExternalMission],
-  })
   @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
@@ -473,10 +405,6 @@ export class WorldState {
   /**
    * Arbitration mission
    */
-  @ApiPropertyOptional({
-    description: 'Current arbitration mission',
-    type: ExternalMission,
-  })
   @IsOptional()
   @ValidateNested()
   @Type(() => ExternalMission)
@@ -485,16 +413,11 @@ export class WorldState {
   /**
    * Current sentient outposts
    */
-  @ApiProperty({ description: 'Sentient anomaly outposts' })
   sentientOutposts: SentientOutpost;
 
   /**
    * Steel path offering rotation
    */
-  @ApiProperty({
-    description: 'Steel Path offerings',
-    type: () => SteelPathOfferings,
-  })
   @ValidateNested()
   @Type(() => SteelPathOfferings)
   steelPath: SteelPathOfferings;
@@ -502,10 +425,6 @@ export class WorldState {
   /**
    * The current prime resurgence
    */
-  @ApiProperty({
-    description: 'Prime resurgence (Varzia)',
-    type: () => VoidTrader,
-  })
   @ValidateNested()
   @Type(() => VoidTrader)
   vaultTrader: VoidTrader;
@@ -513,7 +432,6 @@ export class WorldState {
   /**
    * The current archon hunt
    */
-  @ApiProperty({ description: 'Weekly archon hunt', type: () => Sortie })
   @ValidateNested()
   @Type(() => Sortie)
   archonHunt: Sortie;
@@ -521,10 +439,6 @@ export class WorldState {
   /**
    * Current Duviri circuit choices
    */
-  @ApiProperty({
-    description: 'Duviri circuit rotation',
-    type: () => DuviriCycle,
-  })
   @ValidateNested()
   @Type(() => DuviriCycle)
   duviriCycle: DuviriCycle;
@@ -532,13 +446,11 @@ export class WorldState {
   /**
    * Current kinepage message
    */
-  @ApiProperty({ description: 'Kinepage message' })
   kinepage: Kinepage;
 
   /**
    * The current Archimedea missions and modifiers
    */
-  @ApiProperty({ description: 'Archimedea missions', type: [Archimedea] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Archimedea)
@@ -547,10 +459,6 @@ export class WorldState {
   /**
    * The current calendar for 1999
    */
-  @ApiProperty({
-    description: 'Calendar for 1999 content',
-    type: () => Calendar,
-  })
   @ValidateNested()
   @Type(() => Calendar)
   calendar: Calendar;
