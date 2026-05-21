@@ -1,4 +1,3 @@
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsArray,
@@ -107,10 +106,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * Jobs associated with this event
    */
-  @ApiProperty({
-    description: 'Jobs associated with this event',
-    type: [SyndicateJob],
-  })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => SyndicateJob)
@@ -119,10 +114,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * Previous jobs associated with this event
    */
-  @ApiProperty({
-    description: 'Previous jobs associated with this event',
-    type: [SyndicateJob],
-  })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => SyndicateJob)
@@ -131,7 +122,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * The event's main score goal
    */
-  @ApiProperty({ description: "The event's main score goal" })
   @IsInt()
   @Min(0)
   maximumScore: number;
@@ -139,7 +129,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * The current score on the event
    */
-  @ApiProperty({ description: 'The current score on the event' })
   @IsInt()
   @Min(0)
   currentScore: number;
@@ -147,7 +136,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * The first intermediate score goal
    */
-  @ApiProperty({ description: 'The first intermediate score goal' })
   @IsInt()
   @Min(0)
   smallInterval: number;
@@ -155,7 +143,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * The second intermediate score goal
    */
-  @ApiProperty({ description: 'The second intermediate score goal' })
   @IsInt()
   @Min(0)
   largeInterval: number;
@@ -163,9 +150,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * The faction that the players must fight in the event
    */
-  @ApiPropertyOptional({
-    description: 'The faction that the players must fight in the event',
-  })
   @IsOptional()
   @IsString()
   faction: string | undefined;
@@ -173,14 +157,12 @@ export class WorldEvent extends WorldStateObject {
   /**
    * The description of the event
    */
-  @ApiProperty({ description: 'The description of the event' })
   @IsString()
   description: string;
 
   /**
    * Tooltip for the event
    */
-  @ApiPropertyOptional({ description: 'Tooltip for the event' })
   @IsOptional()
   @IsString()
   tooltip: string | undefined;
@@ -188,7 +170,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * The node where the event takes place
    */
-  @ApiPropertyOptional({ description: 'The node where the event takes place' })
   @IsOptional()
   @IsString()
   node: string | undefined;
@@ -196,10 +177,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * The other nodes where the event takes place
    */
-  @ApiProperty({
-    description: 'The other nodes where the event takes place',
-    type: [String],
-  })
   @IsArray()
   @IsString({ each: true })
   concurrentNodes: string[];
@@ -207,7 +184,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * The victim node
    */
-  @ApiPropertyOptional({ description: 'The victim node' })
   @IsOptional()
   @IsString()
   victimNode: string | undefined;
@@ -215,7 +191,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * The score description
    */
-  @ApiPropertyOptional({ description: 'The score description' })
   @IsOptional()
   @IsString()
   scoreLocTag: string | undefined;
@@ -223,7 +198,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * The event's rewards
    */
-  @ApiProperty({ description: "The event's rewards", type: [Reward] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => Reward)
@@ -232,7 +206,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * Health remaining for the target
    */
-  @ApiPropertyOptional({ description: 'Health remaining for the target' })
   @IsOptional()
   @IsNumber()
   @Min(0)
@@ -241,7 +214,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * Previous job id
    */
-  @ApiPropertyOptional({ description: 'Previous job id' })
   @IsOptional()
   @IsString()
   previousId: string | undefined;
@@ -249,29 +221,18 @@ export class WorldEvent extends WorldStateObject {
   /**
    * Array of steps
    */
-  @ApiProperty({
-    description: 'Array of interim steps',
-    type: 'array',
-    items: { type: 'object' },
-  })
   @IsArray()
   interimSteps: InterimStep[];
 
   /**
    * Progress Steps, if any are present
    */
-  @ApiProperty({
-    description: 'Progress steps, if any are present',
-    type: 'array',
-    items: { type: 'object' },
-  })
   @IsArray()
   progressSteps: ProgressStep[];
 
   /**
    * Total of all MultiProgress
    */
-  @ApiPropertyOptional({ description: 'Total of all MultiProgress' })
   @IsOptional()
   @IsNumber()
   progressTotal?: number;
@@ -279,30 +240,24 @@ export class WorldEvent extends WorldStateObject {
   /**
    * Whether to show the total score at the end of the mission
    */
-  @ApiProperty({
-    description: 'Whether to show the total score at the end of the mission',
-  })
   @IsBoolean()
   showTotalAtEndOfMission: boolean;
 
   /**
    * Whether the event is personal
    */
-  @ApiProperty({ description: 'Whether the event is personal' })
   @IsBoolean()
   isPersonal: boolean;
 
   /**
    * Whether the event is community
    */
-  @ApiProperty({ description: 'Whether the event is community' })
   @IsBoolean()
   isCommunity: boolean;
 
   /*
    * Affectors for this mission
    */
-  @ApiProperty({ description: 'Affectors for this mission', type: [String] })
   @IsArray()
   @IsString({ each: true })
   regionDrops: string[];
@@ -310,10 +265,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * Archwing Drops in effect while this event is active
    */
-  @ApiProperty({
-    description: 'Archwing Drops in effect while this event is active',
-    type: [String],
-  })
   @IsArray()
   @IsString({ each: true })
   archwingDrops: string[];
@@ -321,14 +272,12 @@ export class WorldEvent extends WorldStateObject {
   /**
    * Metadata provided by DE
    */
-  @ApiProperty({ description: 'Metadata provided by DE', type: 'object' })
   @IsObject()
   metadata: object;
 
   /**
    * Bonuses given for completion
    */
-  @ApiProperty({ description: 'Bonuses given for completion', type: [Number] })
   @IsArray()
   @IsNumber({}, { each: true })
   completionBonuses: number[];
@@ -336,14 +285,12 @@ export class WorldEvent extends WorldStateObject {
   /**
    * Score variable name
    */
-  @ApiProperty({ description: 'Score variable name' })
   @IsString()
   scoreVar: string;
 
   /**
    * Alternative expiry date
    */
-  @ApiProperty({ description: 'Alternative expiry date', type: Date })
   @IsDate()
   @Type(() => Date)
   altExpiry: Date;
@@ -351,7 +298,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * Alternative activation date
    */
-  @ApiProperty({ description: 'Alternative activation date', type: Date })
   @IsDate()
   @Type(() => Date)
   altActivation: Date;
@@ -359,7 +305,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * Next alternative cycle dates
    */
-  @ApiProperty({ description: 'Next alternative cycle dates', type: 'object' })
   @IsObject()
   @ValidateNested()
   nextAlt: { expiry: Date; activation: Date };
@@ -367,7 +312,6 @@ export class WorldEvent extends WorldStateObject {
   /**
    * Affiliated syndicate, if any
    */
-  @ApiPropertyOptional({ description: 'Affiliated syndicate, if any' })
   @IsOptional()
   @IsString()
   affiliatedWith?: string;
@@ -375,14 +319,12 @@ export class WorldEvent extends WorldStateObject {
   /**
    * The event's tag
    */
-  @ApiProperty({ description: "The event's tag" })
   @IsString()
   tag: string;
 
   /**
    * Victim identifier, if any
    */
-  @ApiPropertyOptional({ description: 'Victim identifier, if any' })
   @IsOptional()
   @IsString()
   victim?: string;

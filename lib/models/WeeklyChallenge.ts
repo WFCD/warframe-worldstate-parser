@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsArray, ValidateNested } from 'class-validator';
 
@@ -20,10 +19,6 @@ export class WeeklyChallenge extends WorldStateObject {
   /**
    * Array of weekly challenges
    */
-  @ApiProperty({
-    description: 'Array of weekly challenges',
-    type: [ChallengeInstance],
-  })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ChallengeInstance)

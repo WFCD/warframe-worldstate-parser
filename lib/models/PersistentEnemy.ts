@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsBoolean,
@@ -40,21 +39,18 @@ export class PersistentEnemy extends WorldStateObject {
   /**
    * The enemy's type
    */
-  @ApiProperty({ description: "The enemy's type" })
   @IsString()
   agentType: string;
 
   /**
    * The location tag
    */
-  @ApiProperty({ description: 'The location tag' })
   @IsString()
   locationTag: string;
 
   /**
    * The enemy's rank
    */
-  @ApiProperty({ description: "The enemy's rank" })
   @IsInt()
   @Min(0)
   rank: number;
@@ -62,7 +58,6 @@ export class PersistentEnemy extends WorldStateObject {
   /**
    * The enemy's remaining health percentage
    */
-  @ApiProperty({ description: "The enemy's remaining health percentage" })
   @IsNumber()
   @Min(0)
   healthPercent: number;
@@ -70,26 +65,17 @@ export class PersistentEnemy extends WorldStateObject {
   /**
    * The percentual damage that the enemy takes when it's defeated
    */
-  @ApiProperty({
-    description:
-      "The percentual damage that the enemy takes when it's defeated",
-  })
   @IsNumber()
   fleeDamage: number;
 
   /**
    * The region where the enemy is located
    */
-  @ApiProperty({ description: 'The region where the enemy is located' })
   region: string | number;
 
   /**
    * The last time the enemy was discovered
    */
-  @ApiProperty({
-    description: 'The last time the enemy was discovered',
-    type: Date,
-  })
   @IsDate()
   @Type(() => Date)
   lastDiscoveredTime: Date;
@@ -97,32 +83,24 @@ export class PersistentEnemy extends WorldStateObject {
   /**
    * The node at which the enemy was last discovered
    */
-  @ApiProperty({
-    description: 'The node at which the enemy was last discovered',
-  })
   @IsString()
   lastDiscoveredAt: string;
 
   /**
    * Whether or not the enemy is currently available
    */
-  @ApiProperty({
-    description: 'Whether or not the enemy is currently available',
-  })
   @IsBoolean()
   isDiscovered: boolean;
 
   /**
    * Whether or not the enemy is using ticketing
    */
-  @ApiProperty({ description: 'Whether or not the enemy is using ticketing' })
   @IsBoolean()
   isUsingTicketing: boolean;
 
   /**
    * Fake ID incorporating discovery
    */
-  @ApiProperty({ description: 'Fake ID incorporating discovery' })
   @IsString()
   pid: string;
 

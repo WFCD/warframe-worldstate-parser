@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsString } from 'class-validator';
 import { languageString } from 'warframe-worldstate-data/utilities';
 
@@ -16,14 +15,12 @@ export class Simaris {
   /**
    * The sanctuary target
    */
-  @ApiProperty({ description: 'The sanctuary target' })
   @IsString()
   target: string;
 
   /**
    * Whether or not the target is currently active
    */
-  @ApiProperty({ description: 'Whether or not the target is currently active' })
   @IsBoolean()
   isTargetActive: boolean;
 

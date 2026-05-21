@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   IsArray,
@@ -39,24 +38,18 @@ export class VoidTrader extends WorldStateObject {
   /**
    * The void trader's name
    */
-  @ApiProperty({ description: "Void trader's name (e.g., Baro Ki'Teer)" })
   @IsString()
   character: string;
 
   /**
    * The node at which the Void Trader appears
    */
-  @ApiProperty({ description: 'Location where the trader appears' })
   @IsString()
   location: string;
 
   /**
    * The trader's inventory
    */
-  @ApiProperty({
-    description: "Trader's inventory items",
-    type: [VoidTraderItem],
-  })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => VoidTraderItem)
@@ -65,14 +58,12 @@ export class VoidTrader extends WorldStateObject {
   /**
    * Pseudo Identifier for identifying changes in inventory
    */
-  @ApiProperty({ description: 'Pseudo-ID for inventory changes' })
   @IsString()
   psId: string;
 
   /**
    * The initial start date
    */
-  @ApiProperty({ description: 'Initial start date', type: Date })
   @IsDate()
   @Type(() => Date)
   initialStart: Date;
@@ -80,14 +71,12 @@ export class VoidTrader extends WorldStateObject {
   /**
    * Whether it's completed or not
    */
-  @ApiProperty({ description: 'Whether the trader visit is completed' })
   @IsBoolean()
   completed: boolean;
 
   /**
    * Possible schedule
    */
-  @ApiProperty({ description: 'Trader schedule', type: [VoidTraderSchedule] })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => VoidTraderSchedule)

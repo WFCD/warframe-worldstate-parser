@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsArray, IsString, ValidateNested } from 'class-validator';
 import {
@@ -28,7 +27,6 @@ export class SyndicateMission extends WorldStateObject {
    * The syndicate that is offering the mission
    * @type {string}
    */
-  @ApiProperty({ description: 'The syndicate that is offering the mission' })
   @IsString()
   syndicate: string;
 
@@ -36,7 +34,6 @@ export class SyndicateMission extends WorldStateObject {
    * The syndicate that is offering the mission
    * @type {string}
    */
-  @ApiProperty({ description: 'The syndicate key (English)' })
   @IsString()
   syndicateKey: string;
 
@@ -44,10 +41,6 @@ export class SyndicateMission extends WorldStateObject {
    * The nodes on which the missions are taking place
    * @type {Array.<string>}
    */
-  @ApiProperty({
-    description: 'The nodes on which the missions are taking place',
-    type: [String],
-  })
   @IsArray()
   @IsString({ each: true })
   nodes: string[];
@@ -56,10 +49,6 @@ export class SyndicateMission extends WorldStateObject {
    * The jobs for this syndicate. Will normally be []
    * @type {Array.<SyndicateJob>}
    */
-  @ApiProperty({
-    description: 'The jobs for this syndicate',
-    type: [SyndicateJob],
-  })
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => SyndicateJob)

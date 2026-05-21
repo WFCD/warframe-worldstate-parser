@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsString } from 'class-validator';
 import { fromNow, timeDeltaToString } from 'warframe-worldstate-data/utilities';
 
@@ -72,14 +71,12 @@ export class VallisCycle extends WorldStateObject {
   /**
    * Whether or not this it's daytime
    */
-  @ApiProperty({ description: 'Whether or not it is currently warm' })
   @IsBoolean()
   isWarm: boolean;
 
   /**
    * Current cycle state. One of `warm`, `cold`
    */
-  @ApiProperty({ description: "Current cycle state. One of 'warm', 'cold'" })
   @IsString()
   state: string;
 

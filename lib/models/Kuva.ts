@@ -1,6 +1,5 @@
 import { createHash } from 'node:crypto';
 
-import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsArray, IsOptional, ValidateNested } from 'class-validator';
 import type { Locale } from 'warframe-worldstate-data';
@@ -99,20 +98,12 @@ const parse = (data: KuvaLogEntry[], locale: Locale) => {
  * @property {ExternalMission} arbitration current arbitration
  */
 export class Kuva {
-  @ApiPropertyOptional({
-    description: 'Currently active kuva missions',
-    type: [ExternalMission],
-  })
   @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ExternalMission)
   kuva?: ExternalMission[];
 
-  @ApiPropertyOptional({
-    description: 'Current arbitration mission',
-    type: ExternalMission,
-  })
   @IsOptional()
   @ValidateNested()
   @Type(() => ExternalMission)

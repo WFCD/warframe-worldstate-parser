@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsDate, IsObject, IsString } from 'class-validator';
 
@@ -6,10 +5,6 @@ export class Kinepage {
   /**
    * Timestamp of when the message appeared on
    */
-  @ApiProperty({
-    description: 'Timestamp of when the message appeared on',
-    type: Date,
-  })
   @IsDate()
   @Type(() => Date)
   timestamp: Date;
@@ -17,14 +12,12 @@ export class Kinepage {
   /**
    * The message itself
    */
-  @ApiProperty({ description: 'The message itself' })
   @IsString()
   message: string;
 
   /**
    * Message translations
    */
-  @ApiProperty({ description: 'Message translations' })
   @IsObject()
   translations: { [k: string]: unknown };
 

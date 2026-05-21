@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { WorldState } from './lib/WorldState';
 
 export default WorldState;
