@@ -10,6 +10,12 @@ updates:
       prefix-development: 'ci'
     labels:
       - 'dependencies'
+    groups:
+      default:
+        directories:
+          - '*'
+        patterns:
+          - '*'
     open-pull-requests-limit: 10
     pull-request-branch-name:
       separator: '-'
@@ -21,3 +27,9 @@ updates:
     commit-message:
       prefix: 'fix'
       prefix-development: 'ci'
+    groups:
+      default:
+        directories:
+          - '*'
+        patterns:
+          - '*'
