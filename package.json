@@ -85,7 +85,7 @@
     "warframe-worldstate-data": ">=3.1.19"
   },
   "engines": {
-    "node": ">=22.18.0"
+    "node": "^22.18.0 || >=24.11.0"
   },
   "publishConfig": {
     "provenance": true
