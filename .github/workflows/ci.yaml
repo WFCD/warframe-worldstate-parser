@@ -31,6 +31,8 @@ jobs:
       fail-fast: false
       matrix:
         node-version: [22, 24, 'lts/*']
+    env:
+      WG_CONFIG: ${{ secrets.WG_CONFIG }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -39,12 +41,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - name: Sleep before WG Setup
-        if: secrets.WG_CONFIG != null && matrix.node-version != '22'
+        if: env.WG_CONFIG != null && matrix.node-version != '22'
         run: echo "Sleeping for 1m to allow previous cleanup" && sleep 60
         shell: bash
       - uses: wenoa/setup-wireguard@bb0ff3acfe6d7dea61f754e5eed504ebd58f5064 # v1.0.0
         # let this try to run even if the secret is not set, as it will just skip the setup and the tests will run without it
-        if: secrets.WG_CONFIG != null
+        if: env.WG_CONFIG != null
         with:
           WG_CONFIG: ${{ secrets.WG_CONFIG }}
       - name: Run Tests
