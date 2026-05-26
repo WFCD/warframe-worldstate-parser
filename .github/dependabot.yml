@@ -29,7 +29,5 @@ updates:
       prefix-development: 'ci'
     groups:
       default:
-        directories:
-          - '*'
         patterns:
           - '*'
