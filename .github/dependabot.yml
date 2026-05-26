@@ -12,8 +12,6 @@ updates:
       - 'dependencies'
     groups:
       default:
-        directories:
-          - '*'
         patterns:
           - '*'
     open-pull-requests-limit: 10
