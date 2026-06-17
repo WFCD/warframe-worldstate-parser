@@ -627,7 +627,10 @@ export class WorldState {
 
     [this.archonHunt] = parseArray(Sortie, data.LiteSorties, deps);
 
-    const choices = parseArray(DuviriChoice, data.EndlessXpSchedule[0].CategoryChoices, deps);
+    const rawChoices = safeArray<RawChoice>(
+      data.EndlessXpSchedule?.[0]?.CategoryChoices
+    );
+    const choices = parseArray(DuviriChoice, rawChoices, deps);
     this.duviriCycle = new DuviriCycle(choices);
 
     [this.calendar] = parseArray(Calendar, data.KnownCalendarSeasons, deps);
