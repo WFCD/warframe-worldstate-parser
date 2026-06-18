@@ -180,7 +180,7 @@ export interface InitialWorldState {
   ProjectPct: number[];
   SeasonInfo: RawNightwave;
   PrimeVaultTraders: RawVoidTrader[];
-  EndlessXpChoices: RawChoice[];
+  EndlessXpSchedule: Array<{ CategoryChoices: RawChoice[] }>;
   KnownCalendarSeasons: RawCalender[];
   Conquests: RawArchimedea[];
   Tmp: string;
@@ -627,7 +627,10 @@ export class WorldState {
 
     [this.archonHunt] = parseArray(Sortie, data.LiteSorties, deps);
 
-    const choices = parseArray(DuviriChoice, data.EndlessXpChoices, deps);
+    const rawChoices = safeArray<RawChoice>(
+      data.EndlessXpSchedule?.[0]?.CategoryChoices
+    );
+    const choices = parseArray(DuviriChoice, rawChoices, deps);
     this.duviriCycle = new DuviriCycle(choices);
 
     [this.calendar] = parseArray(Calendar, data.KnownCalendarSeasons, deps);
