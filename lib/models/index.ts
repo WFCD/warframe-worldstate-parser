@@ -4,6 +4,7 @@ export * from './Calendar';
 export * from './CambionCycle';
 export * from './CetusCycle';
 export * from './ChallengeInstance';
+export * from './ClanInitiativeRewards';
 export * from './ConclaveChallenge';
 export * from './ConstructionProgress';
 export * from './DailyDeal';

@@ -18,6 +18,7 @@ import {
   Calendar,
   CambionCycle,
   CetusCycle,
+  ClanInitiativeRewards,
   ConclaveChallenge,
   ConstructionProgress,
   DailyDeal,
@@ -61,6 +62,7 @@ import {
   VallisCycle,
   VoidTrader,
   WeeklyChallenge,
+  type WeeklyVaultBonusReward,
   WorldEvent,
   type WorldStateObject,
   ZarimanCycle,
@@ -183,6 +185,7 @@ export interface InitialWorldState {
   EndlessXpSchedule: Array<{ CategoryChoices: RawChoice[] }>;
   KnownCalendarSeasons: RawCalender[];
   Conquests: RawArchimedea[];
+  WeeklyVaultBonusRewards: WeeklyVaultBonusReward[];
   Tmp: string;
 }
 
@@ -474,6 +477,13 @@ export class WorldState {
   questToConquerCancer?: { count: number; goal: number };
 
   /**
+   * The current week's clan initiative rewards
+   */
+  @ValidateNested()
+  @Type(() => ClanInitiativeRewards)
+  clanWeeklyInitiative?: ClanInitiativeRewards;
+
+  /**
    * Generates the worldstate json as a string into usable objects
    */
   static async build(
@@ -643,6 +653,14 @@ export class WorldState {
       faceoffBonus: this.faceoffBonus,
       questToConquerCancer: this.questToConquerCancer,
     } = new Tmp(data.Tmp, deps));
+
+    const clanWeeklyInitiative = parseArray(
+      ClanInitiativeRewards,
+      data.WeeklyVaultBonusRewards,
+      deps
+    );
+
+    this.clanWeeklyInitiative = clanWeeklyInitiative?.[0];
   }
 }
 

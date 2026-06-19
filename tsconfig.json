@@ -1,5 +1,5 @@
 {
-  "exclude": ["node_modules", "test"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "module": "esnext",
     "target": "es2024", // set to the *lowest* target you support
@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "types": ["node"],
+    "types": ["node", "mocha", "chai"],
     "paths": {
       "@/models/*": ["./lib/models/*"],
       "@/models": ["./lib/models/index"],
@@ -18,7 +18,6 @@
       "@/supporting": ["./lib/supporting/index"],
       "@/data/*": ["./test/data/*"],
       "@/*": ["./lib/*"],
-      "*": ["./"]
     }
   }
 }

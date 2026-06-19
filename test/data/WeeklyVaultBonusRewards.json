@@ -1,0 +1,32 @@
+[
+    {
+      "WeekCount": 645,
+      "BonusRegion": "/Lotus/Language/Locations/DeepSpace",
+      "Rewards": [
+        {
+          "RewardClaimed": false,
+          "PointThreshold": 500,
+          "ItemCount": 50,
+          "Reward": "/Lotus/StoreItems/Types/Restoratives/SyndicateTeamEnergyTotem"
+        },
+        {
+          "RewardClaimed": false,
+          "PointThreshold": 1000,
+          "ItemCount": 7000,
+          "Reward": "/Lotus/StoreItems/Types/Items/MiscItems/Kuva"
+        },
+        {
+          "RewardClaimed": false,
+          "PointThreshold": 1500,
+          "ItemCount": 2,
+          "Reward": "/Lotus/StoreItems/Types/PickUps/Credits/50000Credits"
+        },
+        {
+          "RewardClaimed": false,
+          "PointThreshold": 2000,
+          "ItemCount": 21000,
+          "Reward": "/Lotus/StoreItems/Types/Items/MiscItems/Kuva"
+        }
+      ]
+    }
+  ]
