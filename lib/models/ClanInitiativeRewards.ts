@@ -1,3 +1,5 @@
+import { Type } from 'class-transformer';
+import { IsBoolean, IsNumber, IsString, ValidateNested } from 'class-validator';
 import {
   languageString,
   weeklyReset,
@@ -20,11 +22,35 @@ export interface WeeklyVaultBonusReward extends BaseContentObject {
 }
 
 export class ClanReward {
+  /**
+   * Reward uniqueName
+   */
+  @IsString()
   uniqueName: string;
+
+  /**
+   * Reward name localized
+   */
+  @IsString()
   reward: string;
+
+  /**
+   * Bundle size for the given reward
+   */
+  @IsNumber()
   count: number;
-  isClaimed: boolean;
+
+  /**
+   * Points required to earn reward
+   */
+  @IsNumber()
   pointsRequired: number;
+
+  /**
+   * Whether or not this reward has already been claimed
+   */
+  @IsBoolean()
+  isClaimed: boolean;
 
   constructor(
     reward: VaultBonusReward,
@@ -43,9 +69,23 @@ export class ClanReward {
 }
 
 export class ClanInitiativeRewards extends WorldStateObject {
+  /**
+   * Current week number since release
+   */
+  @IsNumber()
   week: number;
+
+  /**
+   * Region or planet where resources are doubled
+   */
+  @IsString()
   bonusRegion: string;
   regionUniqueName: string;
+  /**
+   * Rewards earned at each point threshold
+   */
+  @ValidateNested({ each: true })
+  @Type(() => ClanReward)
   rewwards: object[];
 
   constructor(
