@@ -4,6 +4,7 @@ import {
   fromNow,
   operation,
   operationSymbol,
+  parseDate,
   timeDeltaToString,
   upgrade,
 } from 'warframe-worldstate-data/utilities';
@@ -14,7 +15,7 @@ import { type BaseContentObject, WorldStateObject } from './WorldStateObject';
 
 export interface RawGlobalUpgrade extends BaseContentObject {
   Activation: ContentTimestamp;
-  Expiry: ContentTimestamp;
+  ExpiryDate: ContentTimestamp;
   UpgradeType: string;
   OperationType: string;
   Value: number;
@@ -59,6 +60,7 @@ export class GlobalUpgrade extends WorldStateObject {
   ) {
     super(data);
 
+    this.expiry = parseDate(data.ExpiryDate);
     this.upgrade = upgrade(data.UpgradeType, locale);
     this.operation = operation(data.OperationType, locale);
     this.operationSymbol = operationSymbol(data.OperationType, locale);
