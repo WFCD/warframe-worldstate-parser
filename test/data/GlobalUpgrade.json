@@ -1,0 +1,10 @@
+{
+  "_id": { "$oid": "6a1066e4b633098fd906764b" },
+  "Activation": { "$date": { "$numberLong": "1787238000000" } },
+  "ExpiryDate": { "$date": { "$numberLong": "1787583600000" } },
+  "UpgradeType": "GAMEPLAY_KILL_XP_AMOUNT",
+  "OperationType": "MULTIPLY",
+  "Value": 2,
+  "LocalizeTag": "",
+  "LocalizeDescTag": ""
+}
