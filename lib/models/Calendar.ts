@@ -32,6 +32,10 @@ export class DayEvent {
   challenge?: { title: string; description: string };
   upgrade?: { title: string; description: string };
   reward?: string;
+  /**
+   * Raw uniqueName path for the reward item
+   */
+  uniqueName?: string;
   dialogueName?: string;
   dialogueConvo?: string;
 
@@ -46,7 +50,10 @@ export class DayEvent {
 
     if (event.upgrade) this.upgrade = this.eventDescription(event.upgrade);
 
-    if (event.reward) this.reward = languageString(event.reward);
+    if (event.reward) {
+      this.reward = languageString(event.reward);
+      this.uniqueName = event.reward;
+    }
 
     if (event.type === 'CET_PLOT') {
       this.dialogueName = event.dialogueName;

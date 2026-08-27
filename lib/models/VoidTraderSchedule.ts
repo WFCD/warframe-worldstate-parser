@@ -16,11 +16,18 @@ export class VoidTraderSchedule {
   @IsString()
   item: string;
 
+  /**
+   * The uniqueName for the featured item
+   */
+  @IsString()
+  uniqueName: string;
+
   constructor(
     data: { Expiry: ContentTimestamp; FeaturedItem: string },
     { locale = 'en' }: Dependency = { locale: 'en' }
   ) {
     this.expiry = parseDate(data.Expiry);
     this.item = languageString(data.FeaturedItem, locale);
+    this.uniqueName = data.FeaturedItem;
   }
 }
