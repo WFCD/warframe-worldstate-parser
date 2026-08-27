@@ -10,6 +10,7 @@ export * from './ConstructionProgress';
 export * from './DailyDeal';
 export * from './DarkSector';
 export * from './DarkSectorBattle';
+export * from './Descendia';
 export * from './DuviriCycle';
 export * from './EarthCycle';
 export * from './Fissure';
