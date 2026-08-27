@@ -14,6 +14,12 @@ describe('Descendia', function () {
       expect(() => {
         new Descendia({} as unknown as RawDescent);
       }).to.throw(TypeError);
+      expect(() => {
+        new Descendia({
+          Activation: { $date: { $numberLong: '1787529600000' } },
+          Expiry: { $date: { $numberLong: '1788134400000' } },
+        } as unknown as RawDescent);
+      }).to.throw(TypeError);
     });
 
     it('should parse live-shaped descent data', () => {

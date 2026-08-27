@@ -658,7 +658,11 @@ export class WorldState {
 
     this.archimedeas = parseArray(Archimedea, data.Conquests, deps);
 
-    this.descendia = parseArray(Descendia, data.Descents, deps)[0];
+    this.descendia = parseArray(
+      Descendia,
+      safeArray<RawDescent>(data.Descents),
+      deps
+    )[0];
 
     ({
       kinepage: this.kinepage,

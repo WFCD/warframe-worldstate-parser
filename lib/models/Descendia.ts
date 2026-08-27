@@ -9,7 +9,7 @@ import {
   Min,
   ValidateNested,
 } from 'class-validator';
-import { languageString } from 'warframe-worldstate-data/utilities';
+import { insist, languageString } from 'warframe-worldstate-data/utilities';
 
 import type { Dependency } from '@/supporting';
 
@@ -169,6 +169,7 @@ export class Descendia extends WorldStateObject {
    * @param deps.locale Locale to use for translations
    */
   constructor(data: RawDescent, { locale }: Dependency = { locale: 'en' }) {
+    insist({ ...data }, 'RandSeed', 'Challenges');
     super(data);
 
     this.id = createHash('md5')
@@ -176,7 +177,7 @@ export class Descendia extends WorldStateObject {
       .digest('hex');
 
     this.seed = data.RandSeed;
-    this.challenges = (data.Challenges ?? []).map(
+    this.challenges = data.Challenges.map(
       (challenge) => new DescendiaChallenge(challenge, { locale })
     );
   }
