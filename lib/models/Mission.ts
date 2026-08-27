@@ -166,6 +166,13 @@ export class Mission {
   requiredItems: string[];
 
   /**
+   * Raw uniqueName paths for items required to enter the mission
+   */
+  @IsArray()
+  @IsString({ each: true })
+  requiredItemUniqueNames: string[];
+
+  /**
    * Whether or not the required items are consumed
    */
   @IsOptional()
@@ -205,6 +212,12 @@ export class Mission {
    */
   @IsString()
   exclusiveWeapon: string;
+
+  /**
+   * Raw uniqueName path for the exclusive weapon
+   */
+  @IsString()
+  exclusiveWeaponUniqueName: string;
 
   /**
    * @param data   The mission data
@@ -255,7 +268,8 @@ export class Mission {
       languageString(spawner, locale)
     );
 
-    this.requiredItems = (data.requiredItems || []).map((reqItem) =>
+    this.requiredItemUniqueNames = data.requiredItems || [];
+    this.requiredItems = this.requiredItemUniqueNames.map((reqItem) =>
       languageString(reqItem, locale)
     );
 
@@ -273,6 +287,7 @@ export class Mission {
       languageString(aura, locale)
     );
 
+    this.exclusiveWeaponUniqueName = data.exclusiveWeapon;
     this.exclusiveWeapon = languageString(data.exclusiveWeapon, locale);
   }
 }

@@ -21,5 +21,19 @@ describe('Event', () => {
         new WorldEvent(events[0] as unknown as RawWorldEvent);
       }).to.not.throw();
     });
+
+    it('should preserve region and archwing drop uniqueNames', () => {
+      const regionDrop =
+        '/Lotus/StoreItems/Weapons/Corpus/LongGuns/CrpBFG/Vandal/VandalCrpBFG';
+      const archwingDrop = '/Lotus/StoreItems/Upgrades/Skins/Clan/OrbBadgeItem';
+      const event = new WorldEvent({
+        ...(events[0] as unknown as RawWorldEvent),
+        RegionDrops: [regionDrop],
+        ArchwingDrops: [archwingDrop],
+      });
+
+      expect(event.regionDropUniqueNames).to.deep.equal([regionDrop]);
+      expect(event.archwingDropUniqueNames).to.deep.equal([archwingDrop]);
+    });
   });
 });

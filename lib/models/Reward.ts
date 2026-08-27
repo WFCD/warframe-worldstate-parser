@@ -27,21 +27,44 @@ export interface RawReward {
 }
 
 /**
+ * A counted reward item, including uncounted `items` folded in at count 1
+ */
+export interface CountedItem {
+  /**
+   * Raw item uniqueName path
+   */
+  uniqueName: string;
+  /**
+   * Localized item name
+   */
+  type: string;
+  /**
+   * English item name
+   */
+  key: string;
+  /**
+   * Quantity rewarded
+   */
+  count: number;
+}
+
+/**
  * Represents a mission reward
  */
 export class Reward {
   /**
    * The items being rewarded
+   * @deprecated Use {@link Reward.countedItems} instead
    */
   @IsArray()
   @IsString({ each: true })
   items: string[];
 
   /**
-   * The counted items being rewarded
+   * All rewarded items, including former uncounted `items` at count 1
    */
   @IsArray()
-  countedItems: { type: string; key: string; count: number }[];
+  countedItems: CountedItem[];
 
   /**
    * The credits being rewarded
@@ -77,13 +100,21 @@ export class Reward {
       ? data.items.map((i) => languageString(i, locale))
       : [];
 
-    this.countedItems = data.countedItems
-      ? data.countedItems.map((i) => ({
-          count: i.ItemCount,
-          type: languageString(i.ItemType, locale),
-          key: languageString(i.ItemType),
-        }))
-      : [];
+    const fromItems = (data.items ?? []).map((i) => ({
+      uniqueName: i,
+      type: languageString(i, locale),
+      key: languageString(i),
+      count: 1,
+    }));
+
+    const fromCounted = (data.countedItems ?? []).map((i) => ({
+      uniqueName: i.ItemType,
+      type: languageString(i.ItemType, locale),
+      key: languageString(i.ItemType),
+      count: i.ItemCount,
+    }));
+
+    this.countedItems = [...fromItems, ...fromCounted];
 
     this.credits = data.credits || 0;
 
@@ -100,17 +131,13 @@ export class Reward {
    * The types of all items that are being rewarded
    */
   getTypes(): string[] {
-    return this.items
-      .concat(this.countedItems.map((i) => i.key))
-      .map((t) => getItemType(t));
+    return this.countedItems.map((i) => getItemType(i.key));
   }
 
   /**
    * The types of all the items that are being rewarded
    */
   private getTypesFull(): Array<RewardType> {
-    return this.items
-      .concat(this.countedItems.map((i) => i.key))
-      .map((t) => getItemTypeFull(t));
+    return this.countedItems.map((i) => getItemTypeFull(i.key));
   }
 }

@@ -33,6 +33,12 @@ export class FlashSale extends WorldStateObject {
   item: string;
 
   /**
+   * The uniqueName for the item on sale
+   */
+  @IsString()
+  uniqueName: string;
+
+  /**
    * The item's discount percentage
    */
   @IsNumber()
@@ -89,6 +95,8 @@ export class FlashSale extends WorldStateObject {
     super({ Activation: data.StartDate, Expiry: data.EndDate });
 
     this.item = languageString(data.TypeName, locale);
+
+    this.uniqueName = data.TypeName;
 
     this.discount = data.Discount;
 

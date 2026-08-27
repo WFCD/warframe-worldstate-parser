@@ -17,6 +17,28 @@ describe('Reward', function () {
         new Reward({} as unknown as RawReward);
       }).to.throw(TypeError);
     });
+
+    it('should fold items into countedItems with count 1 and uniqueName', function () {
+      const itemPath =
+        '/Lotus/StoreItems/Upgrades/Skins/Events/InfQuantaInfestedAladV';
+      const countedPath = '/Lotus/StoreItems/Types/Items/MiscItems/Kuva';
+      const reward = new Reward({
+        items: [itemPath],
+        countedItems: [{ ItemType: countedPath, ItemCount: 5 }],
+        credits: 100,
+      });
+
+      expect(reward.items).to.have.length(1);
+      expect(reward.countedItems).to.have.length(2);
+      expect(reward.countedItems[0]).to.include({
+        uniqueName: itemPath,
+        count: 1,
+      });
+      expect(reward.countedItems[1]).to.include({
+        uniqueName: countedPath,
+        count: 5,
+      });
+    });
   });
   describe('getItemType', function () {
     it('should categorize the items using the provided functions', function () {

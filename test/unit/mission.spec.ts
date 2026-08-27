@@ -23,5 +23,15 @@ describe('Mission', () => {
         new Mission(mockMission);
       }).to.not.throw();
     });
+
+    it('should preserve exclusiveWeapon uniqueName', () => {
+      const mission = new Mission(mockMission);
+      expect(mission.exclusiveWeaponUniqueName).to.equal(
+        mockMission.exclusiveWeapon
+      );
+      expect(mission.requiredItemUniqueNames).to.deep.equal(
+        mockMission.requiredItems ?? []
+      );
+    });
   });
 });

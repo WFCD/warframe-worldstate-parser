@@ -263,11 +263,25 @@ export class WorldEvent extends WorldStateObject {
   regionDrops: string[];
 
   /**
+   * Raw uniqueName paths for region drops
+   */
+  @IsArray()
+  @IsString({ each: true })
+  regionDropUniqueNames: string[];
+
+  /**
    * Archwing Drops in effect while this event is active
    */
   @IsArray()
   @IsString({ each: true })
   archwingDrops: string[];
+
+  /**
+   * Raw uniqueName paths for archwing drops
+   */
+  @IsArray()
+  @IsString({ each: true })
+  archwingDropUniqueNames: string[];
 
   /**
    * Metadata provided by DE
@@ -405,7 +419,7 @@ export class WorldEvent extends WorldStateObject {
     this.rewards = Object.keys(data)
       .filter((k) => k.includes('Reward') || k.includes('reward'))
       .map((k) => new Reward(data[k as keyof RawWorldEvent] as RawReward, opts))
-      .filter((r) => r.items.length > 0);
+      .filter((r) => r.countedItems.length > 0);
 
     this.health =
       typeof data.HealthPct !== 'undefined'
@@ -461,11 +475,13 @@ export class WorldEvent extends WorldStateObject {
 
     this.isCommunity = data.Community ?? false;
 
-    this.regionDrops = (data.RegionDrops || []).map((drop) =>
+    this.regionDropUniqueNames = data.RegionDrops || [];
+    this.regionDrops = this.regionDropUniqueNames.map((drop) =>
       languageString(drop, locale)
     );
 
-    this.archwingDrops = (data.ArchwingDrops || []).map((drop) =>
+    this.archwingDropUniqueNames = data.ArchwingDrops || [];
+    this.archwingDrops = this.archwingDropUniqueNames.map((drop) =>
       languageString(drop, locale)
     );
 

@@ -25,5 +25,12 @@ describe('VoidTrader', () => {
         new VoidTrader(VaultTrader, deps);
       }).to.not.throw();
     });
+
+    it('should preserve FeaturedItem as uniqueName on schedule entries', () => {
+      const trader = new VoidTrader(VaultTrader, deps);
+      expect(trader.schedule[0].uniqueName).to.equal(
+        VaultTrader.ScheduleInfo[0].FeaturedItem
+      );
+    });
   });
 });

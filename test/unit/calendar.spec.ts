@@ -20,6 +20,9 @@ describe('SentientOutpost', function () {
       expect(calendar.days[4].events[0].reward!).to.equal(
         'Exilus Weapon Adapter Blueprint'
       );
+      expect(calendar.days[4].events[0].uniqueName).to.equal(
+        '/Lotus/StoreItems/Types/Recipes/Components/WeaponUtilityUnlockerBlueprint'
+      );
       expect(calendar.days[0].date).to.equal('1999-01-06T00:00:00.000Z');
     });
     it('should throw TypeError when called with no argument or an invalid argument', function () {
