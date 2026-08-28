@@ -1,0 +1,241 @@
+{
+  "Activation": {
+    "$date": {
+      "$numberLong": "1787529600000"
+    }
+  },
+  "Expiry": {
+    "$date": {
+      "$numberLong": "1788134400000"
+    }
+  },
+  "RandSeed": 2512983008,
+  "Challenges": [
+    {
+      "Index": 1,
+      "Type": "DT_EXTERMINATE",
+      "Challenge": "JadeGuardian",
+      "Level": "/Lotus/Levels/DevilTower/ArenaPeach.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/Tau/CoHGrineerSealabExterminate"
+      ],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/JadeGuardianEnhancementAura"
+      ]
+    },
+    {
+      "Index": 2,
+      "Type": "DT_ALCHEMY",
+      "Challenge": "UnseenFoes",
+      "Level": "/Lotus/Levels/DevilTower/ArenaEggplant.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/Tau/CoHGrineerZarimanExterminate"
+      ],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/CoHUnseenFoesAura"
+      ]
+    },
+    {
+      "Index": 3,
+      "Type": "DT_DEFENSE",
+      "Challenge": "SecuritySpin",
+      "Level": "/Lotus/Levels/DevilTower/ArenaMango.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/Tau/CoHGrineerNightwatchExterminate"
+      ],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/CoHSecuritySpinAura"
+      ]
+    },
+    {
+      "Index": 4,
+      "Type": "DT_SABOTAGE_HIVE",
+      "Challenge": "ShockingLeech",
+      "Level": "/Lotus/Levels/DevilTower/ArenaPeach.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/CorpusGrineerMix"
+      ],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/ShockingLeechEnhancementAura"
+      ]
+    },
+    {
+      "Index": 5,
+      "Type": "DT_PRESURE_GAUGE",
+      "Challenge": "FreezeInShoot",
+      "Level": "/Lotus/Levels/DevilTower/ArenaCoconut.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/Duviri/Arena/DuviriMITWSurvivalSpecA"
+      ],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/FreezeNShootEnhancementAura"
+      ]
+    },
+    {
+      "Index": 6,
+      "Type": "DT_COLLECTION",
+      "Challenge": "NC_NarmerPhobia",
+      "Level": "/Lotus/Levels/DevilTower/ArenaWaffle.level",
+      "Specs": [],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/CoHNarmerPhobiaAura"
+      ]
+    },
+    {
+      "Index": 7,
+      "Type": "DT_PROTOFRAME",
+      "Challenge": "Wisp",
+      "Level": "/Lotus/Levels/DevilTower/ProtoframeRoomWisp.level",
+      "Specs": [],
+      "Auras": []
+    },
+    {
+      "Index": 8,
+      "Type": "DT_NETRACELLS",
+      "Challenge": "RocketsOnly",
+      "Level": "/Lotus/Levels/DevilTower/ArenaMango.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/Tau/CoHForestGrineerFairy"
+      ],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/RocketSpawnAura",
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/RocketsOnlyAura"
+      ]
+    },
+    {
+      "Index": 9,
+      "Type": "DT_MIMICS",
+      "Challenge": "BasicMimics",
+      "Level": "/Lotus/Levels/DevilTower/ArenaMango.level",
+      "Specs": [],
+      "Auras": []
+    },
+    {
+      "Index": 10,
+      "Type": "DT_SABOTAGE_DEFENSE",
+      "Challenge": "MineField",
+      "Level": "/Lotus/Levels/DevilTower/ArenaCherry.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/VaniaExterminateTechrotSpec"
+      ],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/CoHMineFieldAura"
+      ]
+    },
+    {
+      "Index": 11,
+      "Type": "DT_SHRINE_DEFENSE",
+      "Challenge": "GlassMaker",
+      "Level": "/Lotus/Levels/DevilTower/ArenaMelon.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/CorpusExterminateRobots"
+      ],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/GlassMakerAura"
+      ]
+    },
+    {
+      "Index": 12,
+      "Type": "DT_EXCAVATION",
+      "Challenge": "ToxicFire",
+      "Level": "/Lotus/Levels/DevilTower/ArenaWaffle.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/CorpusGrineerInvasionHard"
+      ],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/ToxicFireEnhancementAura"
+      ]
+    },
+    {
+      "Index": 13,
+      "Type": "DT_EXTERMINATE",
+      "Challenge": "NecroMechWeakpoints",
+      "Level": "/Lotus/Levels/DevilTower/ArenaGrape.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/Tau/CoHNecroMechSpec"
+      ],
+      "Auras": [
+        "/Lotus/Types/Gameplay/EntratiLab/LabConquest/GenericFortifiedFoesWeakpointAura"
+      ]
+    },
+    {
+      "Index": 14,
+      "Type": "DT_PROTOFRAME",
+      "Challenge": "Harrow",
+      "Level": "/Lotus/Levels/DevilTower/ProtoframeRoomHarrow.level",
+      "Specs": [],
+      "Auras": []
+    },
+    {
+      "Index": 15,
+      "Type": "DT_BOSS",
+      "Challenge": "JohnProdman",
+      "Level": "/Lotus/Levels/DevilTower/ArenaWaffle.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/CorpusVenusResearchFacility"
+      ],
+      "Auras": []
+    },
+    {
+      "Index": 16,
+      "Type": "DT_COLLECTION",
+      "Challenge": "NC_SecuritySpin",
+      "Level": "/Lotus/Levels/DevilTower/ArenaEggplant.level",
+      "Specs": [],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/CoHSecuritySpinAura"
+      ]
+    },
+    {
+      "Index": 17,
+      "Type": "DT_LOOT_CREATURES",
+      "Challenge": "BasicLootCreatures",
+      "Level": "/Lotus/Levels/DevilTower/ArenaEggplant.level",
+      "Specs": [],
+      "Auras": []
+    },
+    {
+      "Index": 18,
+      "Type": "DT_ALCHEMY",
+      "Challenge": "Manics",
+      "Level": "/Lotus/Levels/DevilTower/ArenaMelon.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/Tau/CoHManicSpec"
+      ],
+      "Auras": []
+    },
+    {
+      "Index": 19,
+      "Type": "DT_NETRACELLS",
+      "Challenge": "GrenadesOnly",
+      "Level": "/Lotus/Levels/DevilTower/ArenaCoconut.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/OrokinExterminateB"
+      ],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/GrenadeSpawnAura",
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/GrenadesOnlyAura"
+      ]
+    },
+    {
+      "Index": 20,
+      "Type": "DT_DEFENSE",
+      "Challenge": "FieryTrail",
+      "Level": "/Lotus/Levels/DevilTower/ArenaWaffle.level",
+      "Specs": [
+        "/Lotus/Types/Game/EnemySpecs/Tau/CoHPNWNarmerCorpusGasExterminate"
+      ],
+      "Auras": [
+        "/Lotus/Types/Scripts/Tau/CoH/Complications/FieryTrailAura"
+      ]
+    },
+    {
+      "Index": 21,
+      "Type": "DT_PROTOFRAME",
+      "Challenge": "Devil",
+      "Level": "/Lotus/Levels/DevilTower/BossArenaUriel.level",
+      "Specs": [],
+      "Auras": []
+    }
+  ]
+}

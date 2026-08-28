@@ -23,6 +23,7 @@ import {
   ConstructionProgress,
   DailyDeal,
   DarkSector,
+  Descendia,
   DuviriCycle,
   EarthCycle,
   Fissure,
@@ -41,6 +42,7 @@ import {
   type RawChallenge,
   type RawDailyDeal,
   type RawDarkSector,
+  type RawDescent,
   type RawFissure,
   type RawFlashSale,
   type RawGlobalUpgrade,
@@ -185,6 +187,7 @@ export interface InitialWorldState {
   EndlessXpSchedule: Array<{ CategoryChoices: RawChoice[] }>;
   KnownCalendarSeasons: RawCalender[];
   Conquests: RawArchimedea[];
+  Descents?: RawDescent[];
   WeeklyVaultBonusRewards: WeeklyVaultBonusReward[];
   Tmp: string;
 }
@@ -460,6 +463,14 @@ export class WorldState {
   archimedeas: Archimedea[];
 
   /**
+   * Current week's Descendia rotation (first Descents entry)
+   */
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => Descendia)
+  descendia?: Descendia;
+
+  /**
    * The current calendar for 1999
    */
   @ValidateNested()
@@ -646,6 +657,12 @@ export class WorldState {
     [this.calendar] = parseArray(Calendar, data.KnownCalendarSeasons, deps);
 
     this.archimedeas = parseArray(Archimedea, data.Conquests, deps);
+
+    this.descendia = parseArray(
+      Descendia,
+      safeArray<RawDescent>(data.Descents),
+      deps
+    )[0];
 
     ({
       kinepage: this.kinepage,
