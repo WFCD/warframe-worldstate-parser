@@ -94,7 +94,15 @@ const searchDrops = (
         );
         return undefined;
       }
-      return (await res.json()) as GroupedDrops;
+      const data = (await res.json()) as GroupedDrops;
+      // fetchProxy resolves `{}` when the proxied body isn't valid JSON
+      if (!data || Object.keys(data).length === 0) {
+        logger?.debug(
+          `Failed to fetch bounty rewards for ${location}: empty or invalid response`
+        );
+        return undefined;
+      }
+      return data;
     })
     .catch((error: unknown) => {
       const errorMessage =

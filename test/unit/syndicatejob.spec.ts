@@ -122,6 +122,21 @@ describe('SyndicateJob', () => {
       expect(logs[0]).to.contain('HTTP 429');
     });
 
+    it('should treat an empty (invalid JSON) reply as a fetch failure, not a key mismatch', async () => {
+      // fetchProxy yields {} for a non-JSON body behind PROXY_URL
+      respondWith(200, {});
+      const job = await SyndicateJob.build(
+        TierATableABounty as RawSyndicateJob,
+        new Date(),
+        { locale, logger }
+      );
+      expect(job.rewardPool).to.deep.equal([
+        'Pattern Mismatch. Results inaccurate.',
+      ]);
+      expect(logs).to.have.lengthOf(1);
+      expect(logs[0]).to.not.contain('No bounty reward pool found');
+    });
+
     it('should log a real key mismatch distinctly from fetch failures', async () => {
       respondWith(200, cetusPool);
       const job = await SyndicateJob.build(
