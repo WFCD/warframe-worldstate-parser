@@ -24,9 +24,11 @@ jobs:
         run: npm run lint
       - name: Run commitlint
         run: npx commitlint --from=HEAD~1
-      - uses: wenoa/setup-wireguard@main
+      - name: Set up WARP
+        uses: fscarmen/warp-on-actions@37ce1997e075435a827991dabcce1d080c1fe512 # v1.4
         with:
-          WG_CONFIG: ${{ secrets.WG_CONFIG }}
+          stack: dual
+          mode: wireguard
       - name: Run tests
         run: npm run test:coverage
   release:
