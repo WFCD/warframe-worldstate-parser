@@ -62,6 +62,62 @@ interface BountyReward {
   chance: number;
 }
 
+type GroupedDrops = Record<string, { rewards: BountyReward[] }>;
+
+/**
+ * In-flight drop searches keyed by URL.
+ * Every job of a syndicate shares the same search URL (e.g. `Earth/Cetus `),
+ * and jobs are built concurrently, so without this each job fires its own
+ * identical request (x13 locales per worldstate parse). Entries are removed
+ * as soon as the request settles, so nothing is cached between parses.
+ */
+const pendingSearches = new Map<string, Promise<GroupedDrops | undefined>>();
+
+/**
+ * Fetch drops grouped by location, sharing concurrent identical requests.
+ * Resolves `undefined` (and logs why) on network errors, non-2xx responses
+ * or non-JSON bodies, instead of letting them surface as a key mismatch.
+ */
+const searchDrops = (
+  url: string,
+  location: string,
+  logger: Dependency['logger']
+): Promise<GroupedDrops | undefined> => {
+  const pending = pendingSearches.get(url);
+  if (pending) return pending;
+
+  const request = fetch(url)
+    .then(async (res) => {
+      if (!res.ok) {
+        logger?.debug(
+          `Failed to fetch bounty rewards for ${location}: HTTP ${res.status}`
+        );
+        return undefined;
+      }
+      const data = (await res.json()) as GroupedDrops;
+      // fetchProxy resolves `{}` when the proxied body isn't valid JSON
+      if (!data || Object.keys(data).length === 0) {
+        logger?.debug(
+          `Failed to fetch bounty rewards for ${location}: empty or invalid response`
+        );
+        return undefined;
+      }
+      return data;
+    })
+    .catch((error: unknown) => {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      logger?.debug(
+        `Failed to fetch bounty rewards for ${location}: ${errorMessage}`
+      );
+      return undefined;
+    })
+    .finally(() => pendingSearches.delete(url));
+
+  pendingSearches.set(url, request);
+  return request;
+};
+
 const getBountyRewards = async (
   i18n: string,
   raw: RawSyndicateJob,
@@ -78,17 +134,14 @@ const getBountyRewards = async (
     ({ location, locationWRot } = determineLocation(i18n, raw, isVault));
   }
   const url = `${apiBase}/drops/search/${encodeURIComponent(location!)}?grouped_by=location`;
-  const reply: Record<string, { rewards: BountyReward[] }> = await fetch(url)
-    .then((res) => res.json())
-    .catch((error) => {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      logger?.debug(
-        `Failed to fetch bounty rewards for ${location}: ${errorMessage}`
-      );
-    });
+  const reply = await searchDrops(url, location!, logger);
   const pool = reply?.[locationWRot];
   if (!pool) {
+    // Only a genuine key mismatch when the request itself succeeded;
+    // fetch failures were already logged by searchDrops.
+    if (reply) {
+      logger?.debug(`No bounty reward pool found for "${locationWRot}"`);
+    }
     return ['Pattern Mismatch. Results inaccurate.'];
   }
   const results = pool.rewards;
