@@ -64,6 +64,12 @@ interface BountyReward {
 
 type GroupedDrops = Record<string, { rewards: BountyReward[] }>;
 
+const isBountyReward = (entry: unknown): entry is BountyReward =>
+  !!entry &&
+  typeof entry === 'object' &&
+  !Array.isArray(entry) &&
+  typeof (entry as { item?: unknown }).item === 'string';
+
 const isGroupedDrops = (data: unknown): data is GroupedDrops => {
   if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
 
@@ -74,7 +80,8 @@ const isGroupedDrops = (data: unknown): data is GroupedDrops => {
     if (!group || typeof group !== 'object' || Array.isArray(group)) {
       return false;
     }
-    return Array.isArray((group as { rewards?: unknown }).rewards);
+    const { rewards } = group as { rewards?: unknown };
+    return Array.isArray(rewards) && rewards.every(isBountyReward);
   });
 };
 
@@ -110,8 +117,8 @@ const searchDrops = (
       }
       const data: unknown = await res.json();
       // fetchProxy resolves `{}` when the proxied body isn't valid JSON.
-      // Also reject null, primitives, arrays, and groups whose rewards
-      // property is not an array.
+      // Also reject null, primitives, arrays, groups whose rewards
+      // property is not an array, and reward entries lacking a string item.
       if (!isGroupedDrops(data)) {
         logger?.debug(
           `Failed to fetch bounty rewards for ${location}: empty or invalid response`

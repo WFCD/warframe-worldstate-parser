@@ -143,6 +143,9 @@ describe('SyndicateJob', () => {
         [{ rewards: [] }],
         '"not-an-object"',
         { [cetusKey]: { rewards: { item: 'Oxium' } } },
+        { [cetusKey]: { rewards: [null] } },
+        { [cetusKey]: { rewards: [{ rarity: 'Common', chance: 1 }] } },
+        { [cetusKey]: { rewards: [{ item: 42 }] } },
       ];
       for (const body of bodies) {
         respondWith(200, body);
