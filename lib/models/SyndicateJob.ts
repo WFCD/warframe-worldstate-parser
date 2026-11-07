@@ -62,12 +62,100 @@ interface BountyReward {
   chance: number;
 }
 
+type GroupedDrops = Record<string, { rewards: BountyReward[] }>;
+
+/** Mismatch / fetch failure → string messages; success → typed drop rows. */
+type BountyRewardsResult =
+  | { kind: 'messages'; messages: string[] }
+  | { kind: 'rewards'; rewards: BountyReward[] };
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  !!value && typeof value === 'object' && !Array.isArray(value);
+
+const isBountyReward = (entry: unknown): entry is BountyReward => {
+  if (!isRecord(entry)) return false;
+  // drops API schema: item/rarity string, chance number
+  return (
+    typeof entry.item === 'string' &&
+    typeof entry.rarity === 'string' &&
+    typeof entry.chance === 'number'
+  );
+};
+
+const isGroupedDrops = (data: unknown): data is GroupedDrops => {
+  if (!isRecord(data)) return false;
+
+  const groups = Object.values(data);
+  if (groups.length === 0) return false;
+
+  return groups.every((group) => {
+    if (!isRecord(group)) return false;
+    return Array.isArray(group.rewards) && group.rewards.every(isBountyReward);
+  });
+};
+
+/**
+ * In-flight drop searches keyed by URL.
+ * Every job of a syndicate shares the same search URL (e.g. `Earth/Cetus `),
+ * and jobs are built concurrently, so without this each job fires its own
+ * identical request (x13 locales per worldstate parse). Entries are removed
+ * as soon as the request settles, so nothing is cached between parses.
+ */
+const pendingSearches = new Map<string, Promise<GroupedDrops | undefined>>();
+
+/**
+ * Fetch drops grouped by location, sharing concurrent identical requests.
+ * Resolves `undefined` (and logs why) on network errors, non-2xx responses
+ * or non-JSON bodies, instead of letting them surface as a key mismatch.
+ */
+const searchDrops = (
+  url: string,
+  location: string,
+  logger: Dependency['logger']
+): Promise<GroupedDrops | undefined> => {
+  const pending = pendingSearches.get(url);
+  if (pending) return pending;
+
+  const request = fetch(url)
+    .then(async (res) => {
+      if (!res.ok) {
+        logger?.debug(
+          `Failed to fetch bounty rewards for ${location}: HTTP ${res.status}`
+        );
+        return undefined;
+      }
+      const data: unknown = await res.json();
+      // fetchProxy resolves `{}` when the proxied body isn't valid JSON.
+      // Also reject null, primitives, arrays, groups whose rewards
+      // property is not an array, and reward entries missing item/rarity/chance.
+      if (!isGroupedDrops(data)) {
+        logger?.debug(
+          `Failed to fetch bounty rewards for ${location}: empty or invalid response`
+        );
+        return undefined;
+      }
+      return data;
+    })
+    .catch((error: unknown) => {
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      logger?.debug(
+        `Failed to fetch bounty rewards for ${location}: ${errorMessage}`
+      );
+      return undefined;
+    })
+    .finally(() => pendingSearches.delete(url));
+
+  pendingSearches.set(url, request);
+  return request;
+};
+
 const getBountyRewards = async (
   i18n: string,
   raw: RawSyndicateJob,
   isVault?: boolean,
   logger: Dependency['logger'] = console
-): Promise<(string | BountyReward)[]> => {
+): Promise<BountyRewardsResult> => {
   let location: string | undefined;
   let locationWRot: string | undefined;
   if (i18n.endsWith('PlagueStarTableRewards')) {
@@ -78,24 +166,20 @@ const getBountyRewards = async (
     ({ location, locationWRot } = determineLocation(i18n, raw, isVault));
   }
   const url = `${apiBase}/drops/search/${encodeURIComponent(location!)}?grouped_by=location`;
-  const reply: Record<string, { rewards: BountyReward[] }> = await fetch(url)
-    .then((res) => res.json())
-    .catch((error) => {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      logger?.debug(
-        `Failed to fetch bounty rewards for ${location}: ${errorMessage}`
-      );
-    });
+  const reply = await searchDrops(url, location!, logger);
   const pool = reply?.[locationWRot];
   if (!pool) {
-    return ['Pattern Mismatch. Results inaccurate.'];
+    // Only a genuine key mismatch when the request itself succeeded;
+    // fetch failures were already logged by searchDrops.
+    if (reply) {
+      logger?.debug(`No bounty reward pool found for "${locationWRot}"`);
+    }
+    return {
+      kind: 'messages',
+      messages: ['Pattern Mismatch. Results inaccurate.'],
+    };
   }
-  const results = pool.rewards;
-  if (results) {
-    return Array.from(new Set(results));
-  }
-  return [];
+  return { kind: 'rewards', rewards: Array.from(new Set(pool.rewards)) };
 };
 
 const FIFTY_MINUTES = 3000000;
@@ -202,16 +286,16 @@ export class SyndicateJob extends WorldStateObject {
     deps: Dependency
   ): Promise<SyndicateJob> {
     const job = new SyndicateJob(data, expiry, deps);
-    const rewards = await getBountyRewards(
+    const result = await getBountyRewards(
       data.rewards,
       data,
       data.isVault,
       deps.logger
     );
-    if (typeof rewards[0] === 'string') {
-      job.rewardPool = rewards as string[];
+    if (result.kind === 'messages') {
+      job.rewardPool = result.messages;
     } else {
-      job.rewardPoolDrops = (rewards as BountyReward[]).map((reward) => {
+      job.rewardPoolDrops = result.rewards.map((reward) => {
         const countReg = /([0-9]{1,10})X/; // Don't usually see drop counts this high but you know, cast a wide net
         const count = reward.item.match(countReg)?.[1];
         return {
@@ -221,7 +305,7 @@ export class SyndicateJob extends WorldStateObject {
         };
       });
 
-      job.rewardPool = (rewards as BountyReward[]).map((reward) => reward.item);
+      job.rewardPool = result.rewards.map((reward) => reward.item);
     }
 
     return job;
