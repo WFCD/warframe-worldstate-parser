@@ -64,24 +64,35 @@ interface BountyReward {
 
 type GroupedDrops = Record<string, { rewards: BountyReward[] }>;
 
-const isBountyReward = (entry: unknown): entry is BountyReward =>
-  !!entry &&
-  typeof entry === 'object' &&
-  !Array.isArray(entry) &&
-  typeof (entry as { item?: unknown }).item === 'string';
+/** Mismatch / fetch failure → string messages; success → typed drop rows. */
+type BountyRewardsResult =
+  | { kind: 'messages'; messages: string[] }
+  | { kind: 'rewards'; rewards: BountyReward[] };
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  !!value && typeof value === 'object' && !Array.isArray(value);
+
+const isBountyReward = (entry: unknown): entry is BountyReward => {
+  if (!isRecord(entry)) return false;
+  // drops API schema: item/rarity string, chance number
+  return (
+    typeof entry.item === 'string' &&
+    typeof entry.rarity === 'string' &&
+    typeof entry.chance === 'number'
+  );
+};
 
 const isGroupedDrops = (data: unknown): data is GroupedDrops => {
-  if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
+  if (!isRecord(data)) return false;
 
   const groups = Object.values(data);
   if (groups.length === 0) return false;
 
   return groups.every((group) => {
-    if (!group || typeof group !== 'object' || Array.isArray(group)) {
-      return false;
-    }
-    const { rewards } = group as { rewards?: unknown };
-    return Array.isArray(rewards) && rewards.every(isBountyReward);
+    if (!isRecord(group)) return false;
+    return (
+      Array.isArray(group.rewards) && group.rewards.every(isBountyReward)
+    );
   });
 };
 
@@ -118,7 +129,7 @@ const searchDrops = (
       const data: unknown = await res.json();
       // fetchProxy resolves `{}` when the proxied body isn't valid JSON.
       // Also reject null, primitives, arrays, groups whose rewards
-      // property is not an array, and reward entries lacking a string item.
+      // property is not an array, and reward entries missing item/rarity/chance.
       if (!isGroupedDrops(data)) {
         logger?.debug(
           `Failed to fetch bounty rewards for ${location}: empty or invalid response`
@@ -146,7 +157,7 @@ const getBountyRewards = async (
   raw: RawSyndicateJob,
   isVault?: boolean,
   logger: Dependency['logger'] = console
-): Promise<(string | BountyReward)[]> => {
+): Promise<BountyRewardsResult> => {
   let location: string | undefined;
   let locationWRot: string | undefined;
   if (i18n.endsWith('PlagueStarTableRewards')) {
@@ -165,13 +176,12 @@ const getBountyRewards = async (
     if (reply) {
       logger?.debug(`No bounty reward pool found for "${locationWRot}"`);
     }
-    return ['Pattern Mismatch. Results inaccurate.'];
+    return {
+      kind: 'messages',
+      messages: ['Pattern Mismatch. Results inaccurate.'],
+    };
   }
-  const results = pool.rewards;
-  if (results) {
-    return Array.from(new Set(results));
-  }
-  return [];
+  return { kind: 'rewards', rewards: Array.from(new Set(pool.rewards)) };
 };
 
 const FIFTY_MINUTES = 3000000;
@@ -278,16 +288,16 @@ export class SyndicateJob extends WorldStateObject {
     deps: Dependency
   ): Promise<SyndicateJob> {
     const job = new SyndicateJob(data, expiry, deps);
-    const rewards = await getBountyRewards(
+    const result = await getBountyRewards(
       data.rewards,
       data,
       data.isVault,
       deps.logger
     );
-    if (typeof rewards[0] === 'string') {
-      job.rewardPool = rewards as string[];
+    if (result.kind === 'messages') {
+      job.rewardPool = result.messages;
     } else {
-      job.rewardPoolDrops = (rewards as BountyReward[]).map((reward) => {
+      job.rewardPoolDrops = result.rewards.map((reward) => {
         const countReg = /([0-9]{1,10})X/; // Don't usually see drop counts this high but you know, cast a wide net
         const count = reward.item.match(countReg)?.[1];
         return {
@@ -297,7 +307,7 @@ export class SyndicateJob extends WorldStateObject {
         };
       });
 
-      job.rewardPool = (rewards as BountyReward[]).map((reward) => reward.item);
+      job.rewardPool = result.rewards.map((reward) => reward.item);
     }
 
     return job;
