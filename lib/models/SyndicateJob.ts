@@ -64,6 +64,20 @@ interface BountyReward {
 
 type GroupedDrops = Record<string, { rewards: BountyReward[] }>;
 
+const isGroupedDrops = (data: unknown): data is GroupedDrops => {
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
+
+  const groups = Object.values(data);
+  if (groups.length === 0) return false;
+
+  return groups.every((group) => {
+    if (!group || typeof group !== 'object' || Array.isArray(group)) {
+      return false;
+    }
+    return Array.isArray((group as { rewards?: unknown }).rewards);
+  });
+};
+
 /**
  * In-flight drop searches keyed by URL.
  * Every job of a syndicate shares the same search URL (e.g. `Earth/Cetus `),
@@ -94,9 +108,11 @@ const searchDrops = (
         );
         return undefined;
       }
-      const data = (await res.json()) as GroupedDrops;
-      // fetchProxy resolves `{}` when the proxied body isn't valid JSON
-      if (!data || Object.keys(data).length === 0) {
+      const data: unknown = await res.json();
+      // fetchProxy resolves `{}` when the proxied body isn't valid JSON.
+      // Also reject null, primitives, arrays, and groups whose rewards
+      // property is not an array.
+      if (!isGroupedDrops(data)) {
         logger?.debug(
           `Failed to fetch bounty rewards for ${location}: empty or invalid response`
         );

@@ -137,6 +137,31 @@ describe('SyndicateJob', () => {
       expect(logs[0]).to.not.contain('No bounty reward pool found');
     });
 
+    it('should reject drops payloads that are not grouped reward tables', async () => {
+      const bodies: unknown[] = [
+        null,
+        [{ rewards: [] }],
+        '"not-an-object"',
+        { [cetusKey]: { rewards: { item: 'Oxium' } } },
+      ];
+      for (const body of bodies) {
+        respondWith(200, body);
+        const job = await SyndicateJob.build(
+          TierATableABounty as RawSyndicateJob,
+          new Date(),
+          { locale, logger }
+        );
+        expect(job.rewardPool).to.deep.equal([
+          'Pattern Mismatch. Results inaccurate.',
+        ]);
+        expect(logs).to.have.lengthOf(1);
+        expect(logs[0]).to.contain('empty or invalid response');
+        expect(logs[0]).to.not.contain('No bounty reward pool found');
+        sinon.restore();
+        logs = [];
+      }
+    });
+
     it('should log a real key mismatch distinctly from fetch failures', async () => {
       respondWith(200, cetusPool);
       const job = await SyndicateJob.build(
