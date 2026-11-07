@@ -90,9 +90,7 @@ const isGroupedDrops = (data: unknown): data is GroupedDrops => {
 
   return groups.every((group) => {
     if (!isRecord(group)) return false;
-    return (
-      Array.isArray(group.rewards) && group.rewards.every(isBountyReward)
-    );
+    return Array.isArray(group.rewards) && group.rewards.every(isBountyReward);
   });
 };
 
